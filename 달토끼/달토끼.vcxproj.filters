@@ -13,5 +13,72 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="소스 파일\GLFramework">
+      <UniqueIdentifier>{ab18ebe1-7844-4750-857f-c9638505faff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\main">
+      <UniqueIdentifier>{8340a9d7-edf5-4f41-9d35-6efca8186f08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\GLFramework\Scene">
+      <UniqueIdentifier>{a80cfad3-2e7d-4597-a765-434064c81386}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\ObjModel">
+      <UniqueIdentifier>{b11b9882-ac81-4f59-a0f5-e4bf18e6de5a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="GLFramework.cpp">
+      <Filter>소스 파일\GLFramework</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>소스 파일\main</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>소스 파일\main</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>소스 파일\GLFramework\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="TestScene.cpp">
+      <Filter>소스 파일\GLFramework\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjModel.cpp">
+      <Filter>소스 파일\ObjModel</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjFace.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjVertex.cpp">
+      <Filter>소스 파일\ObjModel</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GLFramework.h">
+      <Filter>소스 파일\GLFramework</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>소스 파일\main</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>소스 파일\GLFramework\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="TestScene.h">
+      <Filter>소스 파일\GLFramework\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjModel.h">
+      <Filter>소스 파일\ObjModel</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjFace.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjVertex.h">
+      <Filter>소스 파일\ObjModel</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

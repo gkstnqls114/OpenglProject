@@ -1,0 +1,60 @@
+#pragma once
+
+class CScene;
+class CTestScene;
+
+class CGLFramework
+{
+public:
+	CGLFramework();
+	~CGLFramework();
+
+	void Initialize(int argc
+		, char** argv
+		, int width, int height
+		, int x, int y
+		, int DisplayMode = GLUT_DOUBLE | GLUT_RGBA);
+
+	void Run() { glutMainLoop(); }
+
+	void DrawScene();
+
+	void Render();
+
+	void Reshape(int w, int h);
+
+	void Keyboard(unsigned char key, int x, int y);
+
+	using DrawFunc = void(*)();
+	using ReshapeFunc = void(*)(int, int);
+	using TimerFunc = void(*)(int);
+	using KeyboardFunc = void(*)(unsigned char, int, int);
+
+	void Timer(int value);
+
+	void RegisterDrawFunction(DrawFunc&& draw);
+	void RegisterTimerFunction(TimerFunc&& timer);
+	void RegisterReshapeFunction(ReshapeFunc&& reshape);
+	void RegisterKeyboardFunction(KeyboardFunc&& keyboard);
+
+	void Bind();
+
+	void ChangeScene(CScene* newScene)
+	{
+		auto old = m_CurrScene;
+		m_CurrScene = newScene;
+		delete old;
+	}
+private:
+
+	TimerFunc	fnTimer{ nullptr };
+	DrawFunc	fnDraw{ nullptr };
+	ReshapeFunc	fnReshape{ nullptr };
+	KeyboardFunc fnKeyboard{ nullptr };
+	
+
+	int m_fps = 16;
+
+	CScene *		m_CurrScene{ nullptr };
+};
+
