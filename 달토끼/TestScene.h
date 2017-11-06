@@ -1,15 +1,14 @@
 #pragma once
 #include "Scene.h"
 
+class CPlayer;
 class CObjModel;
 
 class CTestScene :
 	public CScene
 {
+	CPlayer * m_player{ nullptr };
 	CObjModel * m_obj{ nullptr };
-	int rotateXdegree = 0;
-	int rotateYdegree = 0;
-
 
 public:
 	CTestScene();

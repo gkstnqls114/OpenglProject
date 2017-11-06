@@ -48,10 +48,10 @@
     <ClCompile Include="ObjModel.cpp">
       <Filter>소스 파일\ObjModel</Filter>
     </ClCompile>
-    <ClCompile Include="ObjFace.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="ObjVertex.cpp">
+      <Filter>소스 파일\ObjModel</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjFace.cpp">
       <Filter>소스 파일\ObjModel</Filter>
     </ClCompile>
   </ItemGroup>
@@ -74,10 +74,10 @@
     <ClInclude Include="ObjModel.h">
       <Filter>소스 파일\ObjModel</Filter>
     </ClInclude>
-    <ClInclude Include="ObjFace.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="ObjVertex.h">
+      <Filter>소스 파일\ObjModel</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjFace.h">
       <Filter>소스 파일\ObjModel</Filter>
     </ClInclude>
   </ItemGroup>

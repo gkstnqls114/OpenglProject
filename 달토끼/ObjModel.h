@@ -16,7 +16,7 @@ public:
 	CObjModel();
 	~CObjModel();
 
-	void Initialize();
+	void Initialize(const char* filename);
 	void LoadObj(const char* filename);
 	void Render();
 	

@@ -18,14 +18,19 @@ CObjModel::~CObjModel()
 	m_pVertex = nullptr;
 }
 
-void CObjModel::Initialize()
+void CObjModel::Initialize(const char* filename)
+{
+	LoadObj(filename);
+}
+
+void CObjModel::LoadObj(const char * filename)
 {
 	m_VertexNum = 0;
 	m_FaceNum = 0;
 
 	FILE * fp;
 	char str[1024];
-	fopen_s(&fp, "TestObject.obj", "r");
+	fopen_s(&fp, filename, "r");
 
 	bool IsFail = fp == NULL;
 	if (IsFail) {
@@ -36,12 +41,12 @@ void CObjModel::Initialize()
 	//파일 읽기
 	//이 파일의 정점의 개수, 면의 개수를 구한다.
 	//feof 파일의 끝을 만날 때까지 루프
-	while (!feof(fp)){
+	while (!feof(fp)) {
 		fgets(str, 1024, fp);
 
 		bool IsVertex = str[0] == 'v' && str[1] == ' ';
 		bool IsFace = str[0] == 'f' && str[1] == ' ';
-		
+
 		if (IsVertex) {
 			m_VertexNum += 1;
 		}
@@ -49,19 +54,22 @@ void CObjModel::Initialize()
 			m_FaceNum += 1;
 		}
 
+
 	}
 
 	fclose(fp);
 	fp = NULL;
-	
+
+	std::cout << m_VertexNum << std::endl;
+	std::cout << m_FaceNum << std::endl;
+
 	//구한 개수를 동적할당 한다.
 	//동적할당: 배열
 	m_pVertex = new CObjVertex[m_VertexNum];
 	m_pFace = new CObjFace[m_FaceNum];
 
-	std::cout << m_FaceNum << std::endl << std::endl;
 
-	fopen_s(&fp, "TestObject.obj", "rt");
+	fopen_s(&fp, filename, "rt");
 	int VertexIndex = 0;
 	int FaceIndex = 0;
 
@@ -95,7 +103,7 @@ void CObjModel::Initialize()
 				&index[1], &nouse,
 				&index[2], &nouse,
 				&index[3], &nouse
-				);
+			);
 
 			m_pFace[FaceIndex].SetIndex_0(index[0]);
 			m_pFace[FaceIndex].SetIndex_1(index[1]);
@@ -103,18 +111,11 @@ void CObjModel::Initialize()
 			m_pFace[FaceIndex].SetIndex_3(index[3]);
 			m_pFace[FaceIndex].InitVertexNum();
 
-			m_pFace[FaceIndex].ShowData();
-
 			FaceIndex += 1;
 		}
-		
+
 	}
 	fclose(fp);
-}
-
-void CObjModel::LoadObj(const char * filename)
-{
-
 }
 
 void CObjModel::Render()

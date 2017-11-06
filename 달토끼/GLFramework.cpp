@@ -28,7 +28,7 @@ void CGLFramework::Initialize(int argc, char ** argv, int width, int height, int
 
 void CGLFramework::DrawScene()
 {
-	glClearColor(1.f, 1.f, 1.f, 1.f);
+	glClearColor(0.5f, 0.5f, 0.5f, 1.f);
 	glClear(GL_COLOR_BUFFER_BIT);
 	glLoadIdentity();
 
@@ -52,7 +52,7 @@ void CGLFramework::Reshape(int w, int h)
 	glMatrixMode(GL_PROJECTION);
 
 	glLoadIdentity();
-	glOrtho(0, w, h, 0, -20, 20);
+	glOrtho(0, w, h, 0, -200, 200);
 
 	glMatrixMode(GL_MODELVIEW);
 

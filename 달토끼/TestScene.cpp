@@ -1,45 +1,49 @@
 #include "pch.h"
+#include "Player.h"
 #include "ObjModel.h"
 #include "TestScene.h"
 
 
 CTestScene::CTestScene()
 {
-
+	
 }
 
 CTestScene::~CTestScene()
 {
+	delete m_player;
+	m_player = nullptr;
+
 	delete m_obj;
 	m_obj = nullptr;
 }
 
 void CTestScene::Initialize()
 {
-	m_obj = new CObjModel;
-	m_obj->Initialize();
+	if (m_player == nullptr) {
+		m_player = new CPlayer();
+	}
+
 }
 
 
 void CTestScene::Render()
 {
-	glColor3f(1.0f, 0.5f, 0.5f);
-	//glRectf(100, 100, 200, 200);
-	
-	glPushMatrix();
-		glTranslated(300, 300, 0);
-		glRotated(rotateXdegree, 0, 0, 1);
-		glRotated(rotateYdegree, 0, 1, 0);
-		glScaled(3, 3, 3);
-
-	if (m_obj != nullptr){
-		m_obj->Render();
+	glColor3f(0.f, 0.f, 0.f);
+	if (nullptr != m_player){
+		m_player->Render();
 	}
-	glPopMatrix();
+	if (nullptr != m_obj) {
+		//m_obj->Render();
+	}
 }
 
 void CTestScene::Update()
 {
+	if (nullptr != m_player) {
+		m_player->Update();
+	}
+
 }
 
 void CTestScene::Reshape(int w, int h)
@@ -49,26 +53,12 @@ void CTestScene::Reshape(int w, int h)
 
 void CTestScene::Timer(int value)
 {
-
 	glutPostRedisplay();
 }
 
 void CTestScene::Keyboard(unsigned char key, int x, int y)
 {
-	if (key == 'a') {
-		rotateXdegree -= 5;
-	}
-
-	if (key == 'd') {
-		rotateXdegree += 5;
-	}
-
-	if (key == 'w') {
-		rotateYdegree += 5;
-	}
-
-	if (key == 's') {
-		rotateYdegree -= 5;
-
+	if (nullptr != m_player) {
+		m_player->Keyboard(key, x, y);
 	}
 }
