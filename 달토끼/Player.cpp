@@ -11,7 +11,7 @@ CPlayer::CPlayer()
 	
 	glPushMatrix();
 		glLoadIdentity();
-		glRotated(90, 0, 1, 0);
+		glRotated(180, 0, 1, 0);
 		glMultMatrixf(m_Rotate_Matrix);
 		glGetFloatv(GL_MODELVIEW_MATRIX, m_Rotate_Matrix);
 	glPopMatrix();
@@ -102,14 +102,18 @@ void CPlayer::Render()
 
 void CPlayer::Jump()
 {
-	if (!IsJump) return;
+	if (!IsJump) {
+		m_vector_x = 0;
+		m_vector_y = 0;
+		m_vector_z = 0;
+		return;
+	}
 
 	JumpTime += 1.f;
 
-	std::cout << "점프" << std::endl;
 
 	float radian = m_jump_degree * 3.14 / 180;
-	m_vector_x = m_power * cos(radian) * JumpTime;
+	m_vector_z = -m_power * cos(radian) * JumpTime;
 	m_vector_y = m_power * sin(radian) * JumpTime
 		- m_gravitation_acceleration * JumpTime * JumpTime / 2;
 	float lenght = sqrt(m_vector_x * m_vector_x + m_vector_y * m_vector_y + m_vector_z * m_vector_z);
@@ -117,6 +121,12 @@ void CPlayer::Jump()
 	if (lenght != 0) {
 		m_vector_x /= lenght;
 		m_vector_y /= lenght;
+		m_vector_z /= lenght;
+
+
+		m_vector_x *= m_power;
+		m_vector_y *= m_power;
+		m_vector_z *= m_power;
 	}
 
 	glPushMatrix();
@@ -127,11 +137,20 @@ void CPlayer::Jump()
 	glPopMatrix();
 
 	if(m_Translate_Matrix[13] <= m_floor){
-		std::cout << "m_Translate_Matrix[13] : " << m_Translate_Matrix[13] << std::endl;
+		//std::cout << "m_Translate_Matrix[13] : " << m_Translate_Matrix[13] << std::endl;
+
+		m_vector_y -= (m_Translate_Matrix[13] - m_floor);
 
 		m_Translate_Matrix[13] = m_floor;
+
 		JumpTime = 0.f;
 		IsJump = false;
+		
 	}
+
+	std::cout << "y이동량: " << m_vector_y << std::endl;
+	std::cout << "tranlateY: " << m_Translate_Matrix[13] << std::endl;
+	std::cout << "바닥: " << m_floor << std::endl;
+	std::cout << std::endl << std::endl;
 
 }

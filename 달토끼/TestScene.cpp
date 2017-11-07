@@ -29,40 +29,40 @@ void CTestScene::Initialize()
 		m_camera = new CCamera;
 	}
 
-	CVector temp_pos(0.f, 0.f, 0.f);
-	m_camera->Initialize(temp_pos, 100, 0, 100, 60);
+	CVector temp_at(0.f, 0.f, 0.f);
+	m_camera->Initialize(temp_at, 100, 0, 1, 60);
+	m_camera->Rotate(0.3f, 0.5f);
 }
 
 
 void CTestScene::Render()
 {
-	//중심선
-	glLineWidth(5);
+	glColor3f(0.1f, 0.1f, 0.1f);
+	glutWireCube(10);
 
+	//중심선
 	//glPushMatrix();
 		glColor3f(1.f, 0.f, 0.f);
 		glBegin(GL_LINES);
 			glVertex3f(0, 0, 0);
-			glVertex3f(1, 0, 0);
+			glVertex3f(1000, 0, 0);
 		glEnd();
 	
 		//y
 		glColor3f(0.f, 1.f, 0.f);
 		glBegin(GL_LINES);
 			glVertex3d(0, 0, 0);
-			glVertex3d(0, 1, 0);
+			glVertex3d(0, 1000, 0);
 		glEnd();
 
 		//z
 		glColor3f(0.f, 0.f, 1.f);
 		glBegin(GL_LINES);
-			glVertex3d(0, 0, 0);
-			glVertex3d(0, 0, 1);
+			glVertex3d(0, 0, -1000);
+			glVertex3d(0, 0, 1000);
 		glEnd();
 	//glPopMatrix();
 
-	glLineWidth(1);
-	glColor3f(0.7f, 0.1f, 0.1f);
 	if (nullptr != m_player){
 		m_player->Render();
 	}
@@ -73,6 +73,15 @@ void CTestScene::Update()
 {
 	if (nullptr != m_player) {
 		m_player->Update();
+	}
+	if (nullptr != m_camera) {
+		float player_move_x = m_player->Get_VectorX();
+		float player_move_z = m_player->Get_VectorZ();
+		if (player_move_x != 0 || player_move_z != 0)
+		{
+			m_camera->Move(CVector(player_move_x, 0, player_move_z));
+
+		}
 	}
 
 }

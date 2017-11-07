@@ -15,7 +15,7 @@ class CPlayer
 		1, 0, 0, 0,
 		0, 1, 0, 0,
 		0, 0, 1, 0,
-		m_x, m_y, m_z, 1,
+		m_x, m_y, m_z, 1
 	};
 
 	GLfloat m_Scale_Matrix[16] =
@@ -23,7 +23,7 @@ class CPlayer
 		0.1f, 0, 0, 0,
 		0, 0.1f, 0, 0,
 		0, 0, 0.1f, 0,
-		0, 0, 0, 1.f,
+		0, 0, 0, 1.f
 	};
 
 	GLfloat m_Rotate_Matrix[16] =
@@ -31,7 +31,7 @@ class CPlayer
 		1, 0, 0, 0,
 		0, 1, 0, 0,
 		0, 0, 1, 0,
-		0, 0, 0, 1,
+		0, 0, 0, 1
 	};
 
 	bool IsJump{ false };
@@ -57,6 +57,10 @@ public:
 	void SpecialKeys(const int& key, const int& x, const int& y);
 	void Update();
 	void Render();
+
+	float Get_VectorX() const noexcept { return m_vector_x; }
+	float Get_VectorY() const noexcept { return m_vector_y; }
+	float Get_VectorZ() const noexcept { return m_vector_z; }
 
 	void Jump();
 

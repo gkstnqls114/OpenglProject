@@ -34,9 +34,6 @@ void CGLFramework::DrawScene()
 
 	Render();
 
-	//glColor3f(1.f, 1.f, 1.f);
-	//glRectf(-1.f, -1.f, 1.f, 1.f);
-
 	glutSwapBuffers();
 }
 
@@ -48,14 +45,6 @@ void CGLFramework::Render()
 void CGLFramework::Reshape(int w, int h)
 {
 	if (m_CurrScene) m_CurrScene->Reshape(w, h);
-
-	//glViewport(0, 0, w, h);
-	//glMatrixMode(GL_PROJECTION);
-
-	//glLoadIdentity();
-	//glOrtho(0, w, h, 0, -10, 10);
-
-	//glMatrixMode(GL_MODELVIEW);
 
 	glutPostRedisplay();
 }
