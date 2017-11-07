@@ -95,22 +95,34 @@ void CObjModel::LoadObj(const char * filename)
 			VertexIndex += 1;
 		}
 		if (IsFace) {
-			int index[4] = { -1, -1, -1, -1 };
+			int index[6] = { -1, -1, -1, -1 , -1, -1};
 			int nouse = 0;
 
-			fscanf(fp, "%d/%d %d/%d %d/%d %d/%d\n",
-				&index[0], &nouse,
-				&index[1], &nouse,
-				&index[2], &nouse,
-				&index[3], &nouse
+			//하드코딩..
+			fscanf(fp, "%d/%d/%d %d/%d/%d %d/%d/%d %d/%d/%d %d/%d/%d %d/%d/%d\n",
+				&index[0], &nouse, &nouse,
+				&index[1], &nouse, &nouse,
+				&index[2], &nouse, &nouse,
+				&index[3], &nouse, &nouse,
+				&index[4], &nouse, &nouse,
+				&index[5], &nouse, &nouse
 			);
 
-			m_pFace[FaceIndex].SetIndex_0(index[0]);
-			m_pFace[FaceIndex].SetIndex_1(index[1]);
-			m_pFace[FaceIndex].SetIndex_2(index[2]);
-			m_pFace[FaceIndex].SetIndex_3(index[3]);
-			m_pFace[FaceIndex].InitVertexNum();
+			int vertex_num_of_face = 0;
+			for (int x = 0; x < 6; ++x) {
+				if (index[x] != -1) {
+					vertex_num_of_face += 1;
+				}
+			}
+			
+			m_pFace[FaceIndex].SetVertexNum(vertex_num_of_face);
 
+			for (int x = 0; x < vertex_num_of_face; ++x) {
+				m_pFace[FaceIndex].SetIndex(x, index[x]);
+			}
+
+			std::cout << str << std::endl;
+			m_pFace[FaceIndex].ShowData();
 			FaceIndex += 1;
 		}
 

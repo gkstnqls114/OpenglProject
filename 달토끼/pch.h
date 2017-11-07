@@ -6,6 +6,7 @@
 //c++
 #include <iostream>
 #include <algorithm>
+#include <math.h>
 
 //c
 #include <stdio.h>

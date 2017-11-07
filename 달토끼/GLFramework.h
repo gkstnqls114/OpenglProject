@@ -25,10 +25,13 @@ public:
 
 	void Keyboard(unsigned char key, int x, int y);
 
+	void SpecialKeys(int key, int x, int y);
+
 	using DrawFunc = void(*)();
 	using ReshapeFunc = void(*)(int, int);
 	using TimerFunc = void(*)(int);
 	using KeyboardFunc = void(*)(unsigned char, int, int);
+	using SpecialKeysFunc = void(*)(int, int, int);
 
 	void Timer(int value);
 
@@ -36,6 +39,7 @@ public:
 	void RegisterTimerFunction(TimerFunc&& timer);
 	void RegisterReshapeFunction(ReshapeFunc&& reshape);
 	void RegisterKeyboardFunction(KeyboardFunc&& keyboard);
+	void RegisterSpecialKeysFunction(SpecialKeysFunc&& specialkeys);
 
 	void Bind();
 
@@ -51,8 +55,8 @@ private:
 	DrawFunc	fnDraw{ nullptr };
 	ReshapeFunc	fnReshape{ nullptr };
 	KeyboardFunc fnKeyboard{ nullptr };
+	SpecialKeysFunc fnSpecialKeys{ nullptr };
 	
-
 	int m_fps = 16;
 
 	CScene *		m_CurrScene{ nullptr };

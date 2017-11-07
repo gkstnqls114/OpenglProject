@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="GLFramework.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ObjFace.cpp" />
@@ -157,8 +158,10 @@
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="TestScene.cpp" />
     <ClCompile Include="ObjVertex.cpp" />
+    <ClCompile Include="Vector.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="GLFramework.h" />
     <ClInclude Include="ObjFace.h" />
     <ClInclude Include="ObjModel.h" />
@@ -167,6 +170,7 @@
     <ClInclude Include="Scene.h" />
     <ClInclude Include="TestScene.h" />
     <ClInclude Include="ObjVertex.h" />
+    <ClInclude Include="Vector.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

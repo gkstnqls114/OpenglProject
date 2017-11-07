@@ -22,6 +22,7 @@ void main(int argc, char** argv)
 	framework.RegisterTimerFunction([](int val) {framework.Timer(val); });
 	framework.RegisterReshapeFunction([](int w, int h) { framework.Reshape(w, h); });
 	framework.RegisterKeyboardFunction([](unsigned char key, int x, int y) { framework.Keyboard(key, x, y); });
+	framework.RegisterSpecialKeysFunction([](int key, int x, int y) { framework.SpecialKeys(key, x, y); });
 
 	framework.Bind();
 	framework.Run();

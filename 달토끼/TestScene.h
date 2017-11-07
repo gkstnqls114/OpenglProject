@@ -3,12 +3,14 @@
 
 class CPlayer;
 class CObjModel;
+class CCamera;
 
 class CTestScene :
 	public CScene
 {
-	CPlayer * m_player{ nullptr };
-	CObjModel * m_obj{ nullptr };
+	CPlayer * m_player	{ nullptr };
+
+	CCamera * m_camera	{ nullptr };
 
 public:
 	CTestScene();
@@ -17,8 +19,10 @@ public:
 	virtual void Initialize();
 	virtual void Render();
 	virtual void Update();
-	virtual void Reshape(int w, int h);
-	virtual void Timer(int value);
-	virtual void Keyboard(unsigned char key, int x, int y);
+	virtual void Reshape(const int& w, const int& h);
+	virtual void Timer(const int& value);
+	virtual void Keyboard(const unsigned char& key, const int& x, const int& y);
+	virtual void SpecialKeys(const int& key, const int& x, const int& y);
+
 };
 

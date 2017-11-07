@@ -9,18 +9,15 @@ public:
 	CObjFace();
 	~CObjFace();
 
+	void SetVertexNum(const int& num) {
+		m_VertexNum = num;
+		m_VertexIndex = new int[m_VertexNum];
+	}
+
 	void SetIndex(const int& num, const int& val)
 	{
 		if (m_VertexIndex != nullptr) {
 			m_VertexIndex[num] = val;
-		}
-	}
-	void InitVertexNum()
-	{
-		for (int x = 0; x < 4; ++x) {
-			if (m_VertexIndex[x] != -1) {
-				m_VertexNum += 1;
-			}
 		}
 	}
 
@@ -35,5 +32,6 @@ public:
 
 	const int GetIndex(const int& num) { return m_VertexIndex[num]; }
 	const int GetVertexNum() const { return m_VertexNum; }
+
 };
 
