@@ -9,22 +9,24 @@
 
 CObjModel::CObjModel()
 {
+	std::cout << "CObjModel 생성자" << std::endl;
 }
 
 
 CObjModel::~CObjModel()
 {
+	if (m_pVertex == nullptr) return;
+
+	std::cout << "CObjModel 소멸자" << std::endl;
+
 	delete m_pVertex;
 	m_pVertex = nullptr;
 }
 
-void CObjModel::Initialize(const char* filename)
-{
-	LoadObj(filename);
-}
-
 void CObjModel::LoadObj(const char * filename)
 {
+	std::cout << "CObjModel 모델 생성: " << filename << std::endl;
+
 	m_VertexNum = 0;
 	m_FaceNum = 0;
 
@@ -86,7 +88,7 @@ void CObjModel::LoadObj(const char * filename)
 			float y = -1.f;
 			float z = -1.f;
 
-			fscanf(fp, "%f %f %f\n", &x, &y, &z);
+			fscanf_s(fp, "%f %f %f\n", &x, &y, &z);
 
 			m_pVertex[VertexIndex].SetX(x);
 			m_pVertex[VertexIndex].SetY(y);
@@ -99,7 +101,7 @@ void CObjModel::LoadObj(const char * filename)
 			int nouse = 0;
 
 			//하드코딩..
-			fscanf(fp, "%d/%d/%d %d/%d/%d %d/%d/%d %d/%d/%d %d/%d/%d %d/%d/%d\n",
+			fscanf_s(fp, "%d/%d/%d %d/%d/%d %d/%d/%d %d/%d/%d %d/%d/%d %d/%d/%d\n",
 				&index[0], &nouse, &nouse,
 				&index[1], &nouse, &nouse,
 				&index[2], &nouse, &nouse,

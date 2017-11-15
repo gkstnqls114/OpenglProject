@@ -25,6 +25,12 @@
     <Filter Include="소스 파일\ObjModel">
       <UniqueIdentifier>{b11b9882-ac81-4f59-a0f5-e4bf18e6de5a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Road">
+      <UniqueIdentifier>{9221adbf-0844-4308-9adc-6686e31f2c4a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Player">
+      <UniqueIdentifier>{91643a20-215e-453f-bc21-82b37184d1e0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GLFramework.cpp">
@@ -42,9 +48,6 @@
     <ClCompile Include="TestScene.cpp">
       <Filter>소스 파일\GLFramework\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="ObjModel.cpp">
       <Filter>소스 파일\ObjModel</Filter>
     </ClCompile>
@@ -60,6 +63,18 @@
     <ClCompile Include="Vector.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Matrix.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="FootBoard.cpp">
+      <Filter>소스 파일\Road</Filter>
+    </ClCompile>
+    <ClCompile Include="Road.cpp">
+      <Filter>소스 파일\Road</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>소스 파일\Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GLFramework.h">
@@ -73,9 +88,6 @@
     </ClInclude>
     <ClInclude Include="TestScene.h">
       <Filter>소스 파일\GLFramework\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="ObjModel.h">
       <Filter>소스 파일\ObjModel</Filter>
@@ -91,6 +103,18 @@
     </ClInclude>
     <ClInclude Include="Vector.h">
       <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Matrix.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="FootBoard.h">
+      <Filter>소스 파일\Road</Filter>
+    </ClInclude>
+    <ClInclude Include="Road.h">
+      <Filter>소스 파일\Road</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>소스 파일\Player</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

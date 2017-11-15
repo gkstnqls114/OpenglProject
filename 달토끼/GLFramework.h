@@ -43,12 +43,7 @@ public:
 
 	void Bind();
 
-	void ChangeScene(CScene* newScene)
-	{
-		auto old = m_CurrScene;
-		m_CurrScene = newScene;
-		delete old;
-	}
+	void ChangeScene(CScene* newScene);
 private:
 
 	TimerFunc	fnTimer{ nullptr };

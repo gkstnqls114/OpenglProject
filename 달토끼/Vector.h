@@ -16,8 +16,8 @@ public:
 	float Get_Length() const noexcept;
 	void Normalize();
 
-	CVector& operator*(const int& val);
-	CVector& operator+(const CVector& val);
+	CVector operator*(const int& val);
+	CVector operator+(const CVector& val);
 	
 };
 

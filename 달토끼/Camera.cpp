@@ -51,12 +51,12 @@ CVector CCamera::GetLookVector() const
 
 CVector CCamera::eye() const
 {
-	CVector temp = GetLookVector();
+	//CVector temp = GetLookVector();
+	//
+	//temp = temp * m_distance;
+	//
+	//temp = temp + GetPosition();
 	
-	temp = temp * m_distance;
-	
-	temp = temp + GetPosition();
-	
-	//return GetLookVector() * m_distance + GetPosition();
-	return temp;
+	return GetLookVector() * m_distance + GetPosition();
+	//return temp;
 }

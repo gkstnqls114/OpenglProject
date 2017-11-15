@@ -20,9 +20,9 @@ class CPlayer
 
 	GLfloat m_Scale_Matrix[16] =
 	{
-		0.1f, 0, 0, 0,
-		0, 0.1f, 0, 0,
-		0, 0, 0.1f, 0,
+		0.3f, 0, 0, 0,
+		0, 0.3f, 0, 0,
+		0, 0, 0.3f, 0,
 		0, 0, 0, 1.f
 	};
 
@@ -46,7 +46,6 @@ class CPlayer
 	float m_vector_x{ 0 };
 	float m_vector_y{ 0 };
 	float m_vector_z{ 0 };
-
 
 
 public:

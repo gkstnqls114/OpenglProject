@@ -7,7 +7,7 @@ CPlayer::CPlayer()
 {
 	std::cout << "플레이어 생성" << std::endl;
 	m_rabit = new CObjModel;
-	m_rabit->Initialize("rabbit.obj");
+	m_rabit->LoadObj("rabbit.obj");
 	
 	glPushMatrix();
 		glLoadIdentity();
@@ -122,7 +122,6 @@ void CPlayer::Jump()
 		m_vector_x /= lenght;
 		m_vector_y /= lenght;
 		m_vector_z /= lenght;
-
 
 		m_vector_x *= m_power;
 		m_vector_y *= m_power;
