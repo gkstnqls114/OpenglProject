@@ -4,7 +4,6 @@
 
 // ? 왜 여기에다가 정의할수있는거지 잘모르겠어..
 //정적멤버변수는 클래스밖에서 초기화(정확히는 아니지만)해야한다.
-bool CFootBoard::isInitModel = false;
 CObjModel* CFootBoard::m_obj = nullptr;
 
 void CFootBoard::Disappear()
@@ -31,23 +30,21 @@ CFootBoard::~CFootBoard()
 void CFootBoard::InitModel()
 {
 	////단 한 번만 호출
-	if (CFootBoard::isInitModel) return;
+	if (CFootBoard::m_obj != nullptr) return;
 
 	std::cout << "FootBoard 모델 생성" << std::endl;
 
-	CFootBoard::isInitModel = true;
 	CFootBoard::m_obj = new CObjModel;
 	CFootBoard::m_obj->LoadObj("box2.obj");
 }
 
 void CFootBoard::DeleteModel()
 {
-	if (CFootBoard::isInitModel) {
+	if (CFootBoard::m_obj == nullptr) return;
+	std::cout << "FootBoard 모델 삭제" << std::endl;
 
-		std::cout << "FootBoard 모델 삭제" << std::endl;
+	delete[] CFootBoard::m_obj;
 
-		delete[] CFootBoard::m_obj;
-	}
 }
 
 void CFootBoard::Render()
@@ -56,8 +53,8 @@ void CFootBoard::Render()
 	//glLoadMatrixf(m_Translate_Matrix);
 	glLoadIdentity();
 	glMultMatrixf(m_Translate_Matrix);
-	glMultMatrixf(m_Scale_Matrix);
 	glMultMatrixf(m_Rotate_Matrix);
+	glMultMatrixf(m_Scale_Matrix);
 	glColor3f(m_r, m_g, m_b);
 	
 	RenderModel();
@@ -70,8 +67,18 @@ void CFootBoard::Update()
 	Disappear();
 }
 
-void CFootBoard::Translate(const float & x, const float & y, const float & z)
+void CFootBoard::InitPosition(const int & x, const int & y, const int & z)
 {
+	if (x < 0) {
+		m_Side = -1;
+	}
+	else if (x > 0) {
+		m_Side = 1;
+	}
+	else {
+		m_Side = 0;
+	}
+
 	glPushMatrix();
 	glLoadIdentity();
 	glTranslatef(x, y, z);

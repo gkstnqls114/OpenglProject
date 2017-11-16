@@ -1,4 +1,5 @@
 #include "pch.h"
+#include "ObjModel.h"
 #include "Player.h"
 #include "Camera.h"
 #include "Vector.h"
@@ -17,7 +18,6 @@ void CTestScene::RenderAxis()
 	glVertex3f(0, 0, 0);
 	glVertex3f(1000, 0, 0);
 	glEnd();
-
 
 
 	//y
@@ -56,17 +56,23 @@ CTestScene::CTestScene()
 {
 	m_player = new CPlayer();
 	m_camera = new CCamera();
-	m_road = new CRoad();
+	float distance = m_player->Get_JumpReach();
+
+	std::cout << distance << "ÀÌ´Ù" << std::endl;
+	
+	m_road = new CRoad(distance);
 
 	CVector temp_at(0.f, 0.f, 0.f);
 	m_camera->Initialize(temp_at, 100, 0.1f, 600.f, 60);
-	m_camera->Rotate(0.3f, 0.5f);
+	m_camera->Rotate(90 * 3.14 / 180, 0.f);
+
 }
 
 CTestScene::~CTestScene()
 {
 	delete m_player;
 	m_player = nullptr;
+
 
 	delete m_camera;
 	m_camera = nullptr;
@@ -101,7 +107,6 @@ void CTestScene::Update()
 
 	m_player->Update();
 	
-
 	if (nullptr != m_camera) {
 	
 		float player_move_x = m_player->Get_VectorX();
@@ -109,6 +114,7 @@ void CTestScene::Update()
 		if (player_move_x != 0 || player_move_z != 0)
 		{
 			m_camera->Move(CVector(player_move_x, 0, player_move_z));
+			//m_camera->SetPosition(CVector(player_move_x, 0, player_move_z));
 		}
 	}
 
@@ -133,8 +139,31 @@ void CTestScene::Timer(const int& value)
 void CTestScene::Keyboard(const unsigned char& key, const int& x, const int& y)
 {
 	if (nullptr != m_player) {
-		m_player->Keyboard(key, x, y);
+		//m_player->Keyboard(key, x, y);
 	}
+
+	if (key == '=' || key == '+') {
+		m_camera->zoom(1.2f);
+	}
+	if (key == '-' || key == '_') {
+		m_camera->zoom(0.8f);
+	}
+
+	if (key == 'd' || key =='D') {
+		m_camera->Rotate(0.1f, 0.f);
+	}
+	if (key == 'a' || key == 'A') {
+		m_camera->Rotate(-0.1f, 0.f);
+	}
+	if (key == 's' || key =='S') {
+		m_camera->Rotate(0.f, -0.1f);
+	}
+	if (key == 'w' || key =='W') {
+		m_camera->Rotate(0.f, 0.1f);
+	}
+
+
+	m_camera->LookAt();
 }
 
 void CTestScene::SpecialKeys(const int& key, const int& x, const int& y)
@@ -142,4 +171,7 @@ void CTestScene::SpecialKeys(const int& key, const int& x, const int& y)
 	if (nullptr != m_player) {
 		m_player->SpecialKeys(key, x, y);
 	}
+
+	if (nullptr == m_camera) return;
+
 }

@@ -9,8 +9,13 @@ CPlayer::CPlayer()
 	m_rabit = new CObjModel;
 	m_rabit->LoadObj("rabbit.obj");
 	
+	//플레이어 점프도달거리
+	float radian = m_jump_degree * k_PI / 180;
+	m_JumpReach = m_power * m_power * sin(2 * radian) / m_gravitation_acceleration;
+
 	glPushMatrix();
 		glLoadIdentity();
+
 		glRotated(180, 0, 1, 0);
 		glMultMatrixf(m_Rotate_Matrix);
 		glGetFloatv(GL_MODELVIEW_MATRIX, m_Rotate_Matrix);
@@ -27,6 +32,7 @@ CPlayer::~CPlayer()
 
 void CPlayer::Keyboard(const unsigned char & key, const int & x, const int & y)
 {
+	return;
 	int degree = 10;
 
 	if (key == 'a') {
@@ -75,6 +81,14 @@ void CPlayer::SpecialKeys(const int & key, const int & x, const int & y)
 	if (key == GLUT_KEY_UP) {
 		IsJump = true;
 	}
+	if (key == GLUT_KEY_RIGHT) {
+		IsJump = true;
+		IsRight = true;
+	}
+	if (key == GLUT_KEY_LEFT) {
+		IsJump = true;
+		IsLeft = true;
+	}		
 }
 
 void CPlayer::Update()
@@ -89,8 +103,8 @@ void CPlayer::Render()
 		//glLoadMatrixf(m_Translate_Matrix);
 		glLoadIdentity();
 		glMultMatrixf(m_Translate_Matrix);
-		glMultMatrixf(m_Scale_Matrix);
 		glMultMatrixf(m_Rotate_Matrix);
+		glMultMatrixf(m_Scale_Matrix);
 		glColor3f(0.f, 0.f, 0.f);
 
 	if (m_rabit != nullptr) {
@@ -111,22 +125,13 @@ void CPlayer::Jump()
 
 	JumpTime += 1.f;
 
+	float radian = m_jump_degree * k_PI / 180;
+	m_vector_z = - m_power * cos(radian);
+	m_vector_y = m_power * sin(radian) - m_gravitation_acceleration * JumpTime;
 
-	float radian = m_jump_degree * 3.14 / 180;
-	m_vector_z = -m_power * cos(radian) * JumpTime;
-	m_vector_y = m_power * sin(radian) * JumpTime
-		- m_gravitation_acceleration * JumpTime * JumpTime / 2;
 	float lenght = sqrt(m_vector_x * m_vector_x + m_vector_y * m_vector_y + m_vector_z * m_vector_z);
 
-	if (lenght != 0) {
-		m_vector_x /= lenght;
-		m_vector_y /= lenght;
-		m_vector_z /= lenght;
 
-		m_vector_x *= m_power;
-		m_vector_y *= m_power;
-		m_vector_z *= m_power;
-	}
 
 	glPushMatrix();
 		glLoadIdentity();
@@ -135,6 +140,7 @@ void CPlayer::Jump()
 		glGetFloatv(GL_MODELVIEW_MATRIX, m_Translate_Matrix);
 	glPopMatrix();
 
+
 	if(m_Translate_Matrix[13] <= m_floor){
 		//std::cout << "m_Translate_Matrix[13] : " << m_Translate_Matrix[13] << std::endl;
 
@@ -142,14 +148,19 @@ void CPlayer::Jump()
 
 		m_Translate_Matrix[13] = m_floor;
 
+
+		std::cout << "tranlateY: " << m_Translate_Matrix[13] << std::endl;
+		std::cout << "tranlateZ: " << m_Translate_Matrix[14] << std::endl;
+		std::cout << "시간: " << JumpTime << std::endl;
+		std::cout << "최대거리: " << m_JumpReach << std::endl;
+		std::cout << std::endl << std::endl;
+
 		JumpTime = 0.f;
 		IsJump = false;
+		IsRight = false;
+		IsLeft = false;
 		
 	}
 
-	std::cout << "y이동량: " << m_vector_y << std::endl;
-	std::cout << "tranlateY: " << m_Translate_Matrix[13] << std::endl;
-	std::cout << "바닥: " << m_floor << std::endl;
-	std::cout << std::endl << std::endl;
 
 }

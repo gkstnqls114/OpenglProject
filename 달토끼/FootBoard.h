@@ -16,7 +16,9 @@ class CFootBoard
 	//c++은 static storage duration 가진 객체는
 	//0을 보장합니다.
 	//표준은 전역, 정적변수는 0으로 초기화함을 명시합니다.
-	static bool isInitModel;
+	//static bool isInitModel;
+
+	int m_Side{ -2 }; //-2는 존재하지 않음
 
 	float m_x{ 0 };
 	float m_y{ 0 };
@@ -70,7 +72,7 @@ public:
 	void Render();
 	void Update();
 
-	void Translate(const float& x, const float & y, const float& z);
+	void InitPosition(const int& x, const int & y, const int& z);
 };
 
 

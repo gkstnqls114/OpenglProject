@@ -34,19 +34,27 @@ class CPlayer
 		0, 0, 0, 1
 	};
 
+	//움직임
 	bool IsJump{ false };
 	bool IsRight{ false };
 	bool IsLeft{ false };
+	bool isDead{ false };
 
-	//움직임
+	//포물선 운동 위한..
 	float m_gravitation_acceleration{ 0.98f };
 	float JumpTime{ 0.f };
-	float m_power{ 3.f };
-	int m_jump_degree{ 60 };
+	float m_power{ 10.f };
+	int m_jump_degree{ 70 };
 	float m_vector_x{ 0 };
 	float m_vector_y{ 0 };
 	float m_vector_z{ 0 };
+	const double k_PI{ 3.141592 };
+	
+	//수평도달거리
+	int m_JumpReach{0};
 
+private:
+	void Jump();
 
 public:
 	CPlayer();
@@ -61,7 +69,6 @@ public:
 	float Get_VectorY() const noexcept { return m_vector_y; }
 	float Get_VectorZ() const noexcept { return m_vector_z; }
 
-	void Jump();
-
+	float Get_JumpReach() const noexcept { return m_JumpReach; }
 };
 

@@ -2,6 +2,7 @@
 #include "Scene.h"
 
 class CPlayer;
+class CObjModel;
 class CCamera;
 class CRoad;
 
@@ -9,6 +10,7 @@ class CTestScene :
 	public CScene
 {
 	CPlayer * m_player{ nullptr };
+	CObjModel * m_model{ nullptr };
 	CCamera * m_camera	{ nullptr };
 	CRoad * m_road{ nullptr };
 
