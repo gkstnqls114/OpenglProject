@@ -22,10 +22,11 @@ class CCamera : public CColleague
 
 	const double PI{ 3.141592 };
 	
+	//Camera Animation
 	CMediator* m_Mediator{ nullptr };
 
-	//Camera Animation
 	bool isPlayerDead{ false };
+	bool isAnimate{ false };
 
 private:
 	void Animation_PlayerDead();

@@ -93,22 +93,18 @@ void CGameScene::Render()
 {
 	RenderAxis();
 
-	if (nullptr != m_Player){
-		m_Player->Render();
-	}
-
-	if (nullptr != m_Road) {
-		m_Road->Render();
-	}
+	m_Player->Render();
+	m_Road->Render();
+	
 }
 
 void CGameScene::Update()
 {
 	if (!Start) return;
-	if (nullptr == m_Player) return;
-
+	
 	m_Player->Update();
 	m_Road->Update();
+	m_Camera->Update();
 	
 }
 

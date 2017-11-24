@@ -7,6 +7,30 @@ void CCamera::Animation_PlayerDead()
 {
 	if (!isPlayerDead) return;
 
+	float max_v = 180 * PI / 180.f;
+	float max_h = 0 * PI / 180.f;
+
+	bool verticalMove = m_vertical < max_v;
+	if (verticalMove) {
+		Rotate(1, 0);
+	}
+
+	bool horizontalMove = m_horizontal < max_h;
+	if (horizontalMove) {
+		Rotate(0, 1);
+	}
+	
+	bool Far = m_distance > 50;
+	if (Far) {
+		zoom(0.99f);
+	}
+
+	LookAt();
+
+	bool Finish = !Far && !verticalMove && !horizontalMove;
+	if (Finish) {
+		isAnimate = false;
+	}
 }
 
 CCamera::CCamera(CMediator *& mediator)
@@ -82,6 +106,9 @@ CVector3D CCamera::eye() const
 
 void CCamera::Update()
 {
+	if (!isAnimate) return;
+
+	Animation_PlayerDead();
 }
 
 void CCamera::Player_JumpStart()
@@ -100,7 +127,8 @@ void CCamera::Player_JumpFinish()
 
 void CCamera::Player_Dead()
 {
-
+	isPlayerDead = true;
+	isAnimate = true;
 }
 
 
