@@ -1,13 +1,12 @@
 #include "pch.h"
-#include "ObjModel.h"
+#include "Mediator.h"
 #include "Player.h"
 #include "Camera.h"
-#include "Vector.h"
+#include "Vector3D.h"
 #include "Road.h"
 #include "TestScene.h"
 
-
-void CTestScene::RenderAxis()
+void CGameScene::RenderAxis()
 {
 	//좌표축 중심선을 그린다.
 
@@ -18,7 +17,6 @@ void CTestScene::RenderAxis()
 	glVertex3f(0, 0, 0);
 	glVertex3f(1000, 0, 0);
 	glEnd();
-
 
 	//y
 	glColor3f(0.f, 1.f, 0.f);
@@ -52,126 +50,129 @@ void CTestScene::RenderAxis()
 
 }
 
-CTestScene::CTestScene()
+CGameScene::CGameScene()
 {
-	m_player = new CPlayer();
-	m_camera = new CCamera();
-	float distance = m_player->Get_JumpReach();
+	m_Mediator = new CMediator;
 
+	m_Camera = new CCamera(m_Mediator);
+	m_Camera->Initialize(CVector3D(0.f, 0.f, 0.f), 130, 0.1f, 600.f, 60);
+	m_Camera->Rotate(25, 20);
+	//m_Camera->Rotate(90, 0);
+
+	m_Player = new CPlayer(m_Mediator);
+
+	double distance = m_Player->Get_JumpReach();
 	std::cout << distance << "이다" << std::endl;
-	
-	m_road = new CRoad(distance);
+	m_Road = new CRoad(distance, m_Mediator);
 
-	CVector temp_at(0.f, 0.f, 0.f);
-	m_camera->Initialize(temp_at, 100, 0.1f, 600.f, 60);
-	m_camera->Rotate(90 * 3.14 / 180, 0.f);
-
+	m_Mediator->Set_Colleague(m_Player, m_Road, m_Camera);
 }
 
-CTestScene::~CTestScene()
+CGameScene::~CGameScene()
 {
-	delete m_player;
-	m_player = nullptr;
+	delete m_Player;
+	m_Player = nullptr;
 
+	delete m_Camera;
+	m_Camera = nullptr;
 
-	delete m_camera;
-	m_camera = nullptr;
+	delete m_Road;
+	m_Road = nullptr;
 
-	delete m_road;
-	m_road = nullptr;
+	delete m_Mediator;
+	m_Mediator = nullptr;
 }
 
-void CTestScene::Initialize()
+void CGameScene::Initialize()
 {
 	//뭔가 해야하나?
 }
 
 
-void CTestScene::Render()
+void CGameScene::Render()
 {
 	RenderAxis();
 
-	if (nullptr != m_player){
-		m_player->Render();
+	if (nullptr != m_Player){
+		m_Player->Render();
 	}
 
-	if (nullptr != m_road) {
-		m_road->Render();
+	if (nullptr != m_Road) {
+		m_Road->Render();
 	}
-
 }
 
-void CTestScene::Update()
+void CGameScene::Update()
 {
-	if (nullptr == m_player) return;
+	if (!Start) return;
+	if (nullptr == m_Player) return;
 
-	m_player->Update();
+	m_Player->Update();
+	m_Road->Update();
 	
-	if (nullptr != m_camera) {
+	if (nullptr != m_Camera) {
 	
-		float player_move_x = m_player->Get_VectorX();
-		float player_move_z = m_player->Get_VectorZ();
+		float player_move_x = m_Player->Get_VectorX();
+		float player_move_z = m_Player->Get_VectorZ();
 		if (player_move_x != 0 || player_move_z != 0)
 		{
-			m_camera->Move(CVector(player_move_x, 0, player_move_z));
-			//m_camera->SetPosition(CVector(player_move_x, 0, player_move_z));
+			m_Camera->Move(CVector3D(player_move_x, 0, player_move_z));
 		}
 	}
 
 }
 
-void CTestScene::Reshape(const int& w, const int& h)
+void CGameScene::Reshape(const int& w, const int& h)
 {
 	glViewport(0, 0, w, h);
 
-	m_camera->LookAt();
+	m_Camera->LookAt();
 	
 	glMatrixMode(GL_MODELVIEW);
 }
 
-void CTestScene::Timer(const int& value)
+void CGameScene::Timer(const int& value)
 {
 	Update();
 	
 	glutPostRedisplay();
 }
 
-void CTestScene::Keyboard(const unsigned char& key, const int& x, const int& y)
+void CGameScene::Keyboard(const unsigned char& key, const int& x, const int& y)
 {
-	if (nullptr != m_player) {
-		//m_player->Keyboard(key, x, y);
+	if (nullptr != m_Player) {
+		//m_Player->Keyboard(key, x, y);
 	}
 
 	if (key == '=' || key == '+') {
-		m_camera->zoom(1.2f);
+		m_Camera->zoom(0.8f);
 	}
 	if (key == '-' || key == '_') {
-		m_camera->zoom(0.8f);
+		m_Camera->zoom(1.2f);
 	}
 
 	if (key == 'd' || key =='D') {
-		m_camera->Rotate(0.1f, 0.f);
+		m_Camera->Rotate(10, 0);
 	}
 	if (key == 'a' || key == 'A') {
-		m_camera->Rotate(-0.1f, 0.f);
+		m_Camera->Rotate(-10, 0);
 	}
 	if (key == 's' || key =='S') {
-		m_camera->Rotate(0.f, -0.1f);
+		m_Camera->Rotate(0, -10);
 	}
 	if (key == 'w' || key =='W') {
-		m_camera->Rotate(0.f, 0.1f);
+		m_Camera->Rotate(0, 10);
 	}
 
-
-	m_camera->LookAt();
+	m_Camera->LookAt();
 }
 
-void CTestScene::SpecialKeys(const int& key, const int& x, const int& y)
+void CGameScene::SpecialKeys(const int& key, const int& x, const int& y)
 {
-	if (nullptr != m_player) {
-		m_player->SpecialKeys(key, x, y);
+	if (!Start) {
+		Start = true;
 	}
 
-	if (nullptr == m_camera) return;
-
+	m_Player->SpecialKeys(key, x, y);
+	
 }

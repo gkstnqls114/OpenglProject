@@ -1,7 +1,7 @@
 #pragma once
 
 class CScene;
-class CTestScene;
+class CGameScene;
 
 class CGLFramework
 {

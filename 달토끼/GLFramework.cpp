@@ -22,7 +22,7 @@ void CGLFramework::Initialize(int argc, char ** argv, int width, int height, int
 	glutCreateWindow("Example1");
 
 	m_CurrScene =
-		new CTestScene{};
+		new CGameScene{};
 	m_CurrScene->Initialize();
 }
 

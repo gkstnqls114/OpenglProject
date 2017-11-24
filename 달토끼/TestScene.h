@@ -3,23 +3,26 @@
 
 class CPlayer;
 class CObjModel;
-class CCamera;
 class CRoad;
+class CMediator;
+class CCamera;
 
-class CTestScene :
+class CGameScene :
 	public CScene
 {
-	CPlayer * m_player{ nullptr };
-	CObjModel * m_model{ nullptr };
-	CCamera * m_camera	{ nullptr };
-	CRoad * m_road{ nullptr };
+	CPlayer * m_Player{ nullptr };
+	CCamera* m_Camera{ nullptr };
+	CRoad * m_Road{ nullptr };
 
+	CMediator * m_Mediator{ nullptr };
+
+	bool Start{ false };
 private:
 	void RenderAxis();
 
 public:
-	CTestScene();
-	virtual ~CTestScene();
+	CGameScene();
+	virtual ~CGameScene();
 
 	virtual void Initialize();
 	virtual void Render();
@@ -28,6 +31,5 @@ public:
 	virtual void Timer(const int& value);
 	virtual void Keyboard(const unsigned char& key, const int& x, const int& y);
 	virtual void SpecialKeys(const int& key, const int& x, const int& y);
-
 };
 

@@ -1,63 +1,56 @@
 #pragma once
 
 class CObjModel;
+class CMatrix;
+class CVector3D;
+class CMessageSender;
+class CMediator;
+class CRoad;
+class CCamera;
 
 class CPlayer
 {
-	CObjModel* m_rabit{ nullptr };
-	float m_x{ 0 };
-	float m_y{ 0 };
-	float m_z{ 0 };
-	float m_floor{ m_y };
+	CObjModel* m_RabitBody{ nullptr };
+	CObjModel* m_RabitFoot{ nullptr };
 
-	GLfloat m_Translate_Matrix[16] =
-	{
-		1, 0, 0, 0,
-		0, 1, 0, 0,
-		0, 0, 1, 0,
-		m_x, m_y, m_z, 1
-	};
+	CMatrix* m_Matrix{nullptr};
 
-	GLfloat m_Scale_Matrix[16] =
-	{
-		0.3f, 0, 0, 0,
-		0, 0.3f, 0, 0,
-		0, 0, 0.3f, 0,
-		0, 0, 0, 1.f
-	};
+	CMediator* m_Mediator{nullptr};
 
-	GLfloat m_Rotate_Matrix[16] =
-	{
-		1, 0, 0, 0,
-		0, 1, 0, 0,
-		0, 0, 1, 0,
-		0, 0, 0, 1
-	};
+	//점프변수들
+	//jump property
+	const float k_gravity{ 0.7f };
+	const double k_PI{ 3.14152 };
+	const int m_JumpDegree{ 70 };
+	const float m_power{ 5.f };
+	int m_FinishJumpTime{ 0 };
+	GLdouble m_JumpReach{0};
 
-	//움직임
 	bool IsJump{ false };
 	bool IsRight{ false };
 	bool IsLeft{ false };
+	int m_JumpTime{ 0 };
+	GLdouble m_vector_x{ 0 };
+	GLdouble m_vector_y{ 0 };
+	GLdouble m_vector_z{ 0 };
+	
 	bool isDead{ false };
 
-	//포물선 운동 위한..
-	float m_gravitation_acceleration{ 0.98f };
-	float JumpTime{ 0.f };
-	float m_power{ 10.f };
-	int m_jump_degree{ 70 };
-	float m_vector_x{ 0 };
-	float m_vector_y{ 0 };
-	float m_vector_z{ 0 };
-	const double k_PI{ 3.141592 };
+	//현재 발판 넘버
+	int m_BoardNum{ 0 };
+	int m_MySide{ 0 };
+
 	
-	//수평도달거리
-	int m_JumpReach{0};
 
 private:
+	void Find_JumpProperty();
 	void Jump();
+	void Calculate_JumpVector();
+	void Reset_JumpProperty();
+	void Finish_Jump();
 
 public:
-	CPlayer();
+	CPlayer(CMediator*& mediator);
 	~CPlayer();
 
 	void Keyboard(const unsigned char& key, const int& x, const int& y);
@@ -70,5 +63,10 @@ public:
 	float Get_VectorZ() const noexcept { return m_vector_z; }
 
 	float Get_JumpReach() const noexcept { return m_JumpReach; }
+
+	//Mediator
+	virtual void Player_JumpFinish();
+	virtual void Player_Dead();
+	virtual void Road_playerBoard_Disapper();
 };
 

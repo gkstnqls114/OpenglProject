@@ -1,34 +1,37 @@
 #include "pch.h"
+#include "Vector3D.h"
 #include "ObjModel.h"
+#include "Mediator.h"
+#include "Matrix.h"
 #include "Player.h"
 
 
-CPlayer::CPlayer()
+CPlayer::CPlayer(CMediator*& mediator)
 {
 	std::cout << "플레이어 생성" << std::endl;
-	m_rabit = new CObjModel;
-	m_rabit->LoadObj("rabbit.obj");
-	
+	m_RabitBody = new CObjModel;
+	m_RabitBody->LoadObj("body.obj");
+
+	m_RabitFoot = new CObjModel;
+	m_RabitFoot->LoadObj("foot_up.obj");
+
 	//플레이어 점프도달거리
-	float radian = m_jump_degree * k_PI / 180;
-	m_JumpReach = m_power * m_power * sin(2 * radian) / m_gravitation_acceleration;
+	// 실수라서 정확한 계산 힘드므로 여기서 한번 계산한다.
+	Find_JumpProperty();
 
-	glPushMatrix();
-		glLoadIdentity();
+	m_Matrix = new CMatrix();
+	m_Matrix->Calu_Rotate(180, 0, 1, 0);
 
-		glRotated(180, 0, 1, 0);
-		glMultMatrixf(m_Rotate_Matrix);
-		glGetFloatv(GL_MODELVIEW_MATRIX, m_Rotate_Matrix);
-	glPopMatrix();
+	m_Mediator = mediator;
 }
 
 
 CPlayer::~CPlayer()
 {
-	if (m_rabit != nullptr) {
-		delete m_rabit;
-	}
+	delete m_RabitBody;
+	delete m_RabitFoot;
 }
+
 
 void CPlayer::Keyboard(const unsigned char & key, const int & x, const int & y)
 {
@@ -36,40 +39,19 @@ void CPlayer::Keyboard(const unsigned char & key, const int & x, const int & y)
 	int degree = 10;
 
 	if (key == 'a') {
-		glPushMatrix();
-			glLoadIdentity();
-			glRotated(degree, 0, 1, 0);
-			glMultMatrixf(m_Rotate_Matrix);
-			glGetFloatv(GL_MODELVIEW_MATRIX, m_Rotate_Matrix);
-		glPopMatrix();
+		m_Matrix->Calu_Rotate(degree, 0, 1, 0);
 	}
 
 	if (key == 'd') {
-		glPushMatrix();
-			glLoadIdentity();
-			glRotated(-degree, 0, 1, 0);
-			glMultMatrixf(m_Rotate_Matrix);
-			glGetFloatv(GL_MODELVIEW_MATRIX, m_Rotate_Matrix);
-		glPopMatrix();
+		m_Matrix->Calu_Rotate(-degree, 0, -1, 0);
 	}
 
 	if (key == 'w') {
-		glPushMatrix();
-		glLoadIdentity();
-		glRotated(degree, 1, 0, 0);
-		glMultMatrixf(m_Rotate_Matrix);
-		glGetFloatv(GL_MODELVIEW_MATRIX, m_Rotate_Matrix);
-		glPopMatrix();
+		m_Matrix->Calu_Rotate(degree, 1, 0, 0);
 	}
 
 	if (key == 's') {
-		glPushMatrix();
-		glLoadIdentity();
-		glRotated(-degree, 1, 0, 0);
-		glMultMatrixf(m_Rotate_Matrix);
-		glGetFloatv(GL_MODELVIEW_MATRIX, m_Rotate_Matrix);
-		glPopMatrix();
-
+		m_Matrix->Calu_Rotate(-degree, 1, 0, 0);
 	}
 
 	
@@ -78,14 +60,21 @@ void CPlayer::Keyboard(const unsigned char & key, const int & x, const int & y)
 void CPlayer::SpecialKeys(const int & key, const int & x, const int & y)
 {
 	//JUMP
+	if (IsJump) return;
+	if (isDead) return;
+
 	if (key == GLUT_KEY_UP) {
+
+		m_BoardNum += 1;
 		IsJump = true;
 	}
-	if (key == GLUT_KEY_RIGHT) {
+	else if (key == GLUT_KEY_RIGHT) {
+		m_BoardNum += 1;
 		IsJump = true;
 		IsRight = true;
 	}
-	if (key == GLUT_KEY_LEFT) {
+	else if (key == GLUT_KEY_LEFT) {
+		m_BoardNum += 1;
 		IsJump = true;
 		IsLeft = true;
 	}		
@@ -93,74 +82,114 @@ void CPlayer::SpecialKeys(const int & key, const int & x, const int & y)
 
 void CPlayer::Update()
 {
-	Jump();
+	if (isDead) return;
 
+	Jump();
 }
 
 void CPlayer::Render()
 {
+	glColor3f(0.f, 0.f, 0.f);
 	glPushMatrix();
-		//glLoadMatrixf(m_Translate_Matrix);
-		glLoadIdentity();
-		glMultMatrixf(m_Translate_Matrix);
-		glMultMatrixf(m_Rotate_Matrix);
-		glMultMatrixf(m_Scale_Matrix);
-		glColor3f(0.f, 0.f, 0.f);
-
-	if (m_rabit != nullptr) {
-		m_rabit->Render();
-	}
+		m_Matrix->MultiMatrix();
+		m_RabitBody->Render();
+		m_RabitFoot->Render();
 	glPopMatrix();
+}
 
+void CPlayer::Player_JumpFinish()
+{
+	std::cout << "Player: 플레이어 점프 확인" << std::endl;
+}
+
+void CPlayer::Player_Dead()
+{
+	std::cout << "Player: 플레이어 죽음 확인" << std::endl;
+	isDead = true;
+}
+
+void CPlayer::Road_playerBoard_Disapper()
+{
+	std::cout << "Player: 플레이어 보드 사라짐 확인" << std::endl;
+}
+
+void CPlayer::Find_JumpProperty()
+{
+	float radian = m_JumpDegree * k_PI / 180;
+	int temp_jumptime = 0;
+	GLdouble temp_vector_z = 0;
+	GLdouble temp_vector_y = 0;
+	while (temp_vector_y >= 0)
+	{
+		temp_jumptime += 1;
+		temp_vector_z += -m_power * cos(radian);
+		temp_vector_y += m_power * sin(radian) - k_gravity * temp_jumptime;
+	}
+	
+	m_FinishJumpTime = temp_jumptime;
+	m_JumpReach = -temp_vector_z;
+
+	std::cout << "점프완료시간: " << m_FinishJumpTime << std::endl;
+	std::cout << "점프거리: " << m_JumpReach << std::endl;
 }
 
 void CPlayer::Jump()
 {
 	if (!IsJump) {
+		//카메라 때문에 점프끝나고 x = 0..
 		m_vector_x = 0;
 		m_vector_y = 0;
 		m_vector_z = 0;
 		return;
 	}
 
-	JumpTime += 1.f;
+	Calculate_JumpVector();
+	m_Matrix->Calu_Tranlate(CVector3D(m_vector_x, m_vector_y, m_vector_z));
+	
+	Finish_Jump();
+}
 
-	float radian = m_jump_degree * k_PI / 180;
-	m_vector_z = - m_power * cos(radian);
-	m_vector_y = m_power * sin(radian) - m_gravitation_acceleration * JumpTime;
+void CPlayer::Calculate_JumpVector()
+{
+	m_JumpTime += 1;
 
-	float lenght = sqrt(m_vector_x * m_vector_x + m_vector_y * m_vector_y + m_vector_z * m_vector_z);
-
-
-
-	glPushMatrix();
-		glLoadIdentity();
-		glTranslated(m_vector_x, m_vector_y, m_vector_z);
-		glMultMatrixf(m_Translate_Matrix);
-		glGetFloatv(GL_MODELVIEW_MATRIX, m_Translate_Matrix);
-	glPopMatrix();
-
-
-	if(m_Translate_Matrix[13] <= m_floor){
-		//std::cout << "m_Translate_Matrix[13] : " << m_Translate_Matrix[13] << std::endl;
-
-		m_vector_y -= (m_Translate_Matrix[13] - m_floor);
-
-		m_Translate_Matrix[13] = m_floor;
+	float radian = m_JumpDegree * k_PI / 180;
+	m_vector_z = -m_power * cos(radian);
+	m_vector_y = m_power * sin(radian) - k_gravity * m_JumpTime;
+	if (IsRight) {
+		m_vector_x = 20.f / m_FinishJumpTime;
+	}
+	else if (IsLeft) {
+		m_vector_x = -20.f / m_FinishJumpTime;
+	}
+}
 
 
-		std::cout << "tranlateY: " << m_Translate_Matrix[13] << std::endl;
-		std::cout << "tranlateZ: " << m_Translate_Matrix[14] << std::endl;
-		std::cout << "시간: " << JumpTime << std::endl;
-		std::cout << "최대거리: " << m_JumpReach << std::endl;
-		std::cout << std::endl << std::endl;
 
-		JumpTime = 0.f;
-		IsJump = false;
-		IsRight = false;
-		IsLeft = false;
-		
+void CPlayer::Reset_JumpProperty()
+{
+	IsJump = false;
+	IsRight = false;
+	IsLeft = false;
+	m_JumpTime = 0;
+
+	//점프 완료후 중재자에게 통지.
+	m_Mediator->Player_JumpFinish();
+}
+
+void CPlayer::Finish_Jump()
+{
+	if (m_Matrix->Get_Tranlate_13() >= 0) return;
+
+	m_Matrix->Set_Translate_13(0);
+
+	if (IsRight) {
+		m_MySide += 1;
+	}
+	else if (IsLeft) {
+		m_MySide -= 1;
 	}
 
 
+	Reset_JumpProperty();
 }

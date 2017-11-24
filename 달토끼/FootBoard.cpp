@@ -8,12 +8,18 @@ CObjModel* CFootBoard::m_obj = nullptr;
 
 void CFootBoard::Disappear()
 {
+	if (m_r < 0) {
+		IsDisappear = true;
+		return;
+	}
 
-	
+	m_r -= 0.03f;
 }
 
 void CFootBoard::RenderModel()
 {
+	if (IsDisappear) return;
+
 	m_obj->Render();
 }
 
@@ -55,7 +61,7 @@ void CFootBoard::Render()
 	glMultMatrixf(m_Translate_Matrix);
 	glMultMatrixf(m_Rotate_Matrix);
 	glMultMatrixf(m_Scale_Matrix);
-	glColor3f(m_r, m_g, m_b);
+	glColor4f(m_r, m_g, m_b, m_a);
 	
 	RenderModel();
 
@@ -64,6 +70,7 @@ void CFootBoard::Render()
 
 void CFootBoard::Update()
 {
+	if (isDisappear) return;
 	Disappear();
 }
 

@@ -6,12 +6,10 @@
 #include "ObjModel.h"
 
 
-
 CObjModel::CObjModel()
 {
 	std::cout << "CObjModel 생성자" << std::endl;
 }
-
 
 CObjModel::~CObjModel()
 {
@@ -101,14 +99,27 @@ void CObjModel::LoadObj(const char * filename)
 			int nouse = 0;
 
 			//하드코딩..
-			fscanf_s(fp, "%d/%d/%d %d/%d/%d %d/%d/%d %d/%d/%d %d/%d/%d %d/%d/%d\n",
-				&index[0], &nouse, &nouse,
-				&index[1], &nouse, &nouse,
-				&index[2], &nouse, &nouse,
-				&index[3], &nouse, &nouse,
-				&index[4], &nouse, &nouse,
-				&index[5], &nouse, &nouse
-			);
+			
+
+			if (!strcmp(filename, "moon3.obj")) {
+				std::cout << "달 불러옴" << std::endl;
+				fscanf_s(fp, "%d//%d %d//%d %d//%d %d//%d",
+					&index[0], &nouse,
+					&index[1], &nouse,
+					&index[2], &nouse,
+					&index[3], &nouse
+				);
+			}
+			else {
+				fscanf_s(fp, "%d/%d/%d %d/%d/%d %d/%d/%d %d/%d/%d %d/%d/%d %d/%d/%d\n",
+					&index[0], &nouse, &nouse,
+					&index[1], &nouse, &nouse,
+					&index[2], &nouse, &nouse,
+					&index[3], &nouse, &nouse,
+					&index[4], &nouse, &nouse,
+					&index[5], &nouse, &nouse
+				);
+			}
 
 			int vertex_num_of_face = 0;
 			for (int x = 0; x < 6; ++x) {
@@ -136,6 +147,7 @@ void CObjModel::Render()
 {
 	for (int Face_index = 0; Face_index < m_FaceNum; ++Face_index) {
 		glBegin(GL_LINE_LOOP);
+		//glBegin(GL_POLYGON);
 
 		int Vertex_in_Face = m_pFace[Face_index].GetVertexNum();
 		for (int Vertex_Num = 0; Vertex_Num < Vertex_in_Face; ++Vertex_Num) {

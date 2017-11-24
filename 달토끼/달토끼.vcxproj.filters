@@ -22,14 +22,44 @@
     <Filter Include="소스 파일\GLFramework\Scene">
       <UniqueIdentifier>{a80cfad3-2e7d-4597-a765-434064c81386}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\ObjModel">
-      <UniqueIdentifier>{b11b9882-ac81-4f59-a0f5-e4bf18e6de5a}</UniqueIdentifier>
+    <Filter Include="소스 파일\Vector3D">
+      <UniqueIdentifier>{fce4f147-7546-4645-999d-2424d9e5ef4f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\Road">
+    <Filter Include="소스 파일\Mediator">
+      <UniqueIdentifier>{caf245db-854e-46f8-8e7d-a90c57fd5116}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Colleague">
       <UniqueIdentifier>{9221adbf-0844-4308-9adc-6686e31f2c4a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\Player">
+    <Filter Include="소스 파일\Colleague\Road">
+      <UniqueIdentifier>{4b31c3d6-ebb1-4d12-85cc-85027509c872}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Colleague\Camera">
+      <UniqueIdentifier>{05189fed-5f1b-4f04-aa51-19db54497a0e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Colleague\Player">
+      <UniqueIdentifier>{f40500c5-b1a2-4703-9248-12520fe80484}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\temp">
       <UniqueIdentifier>{91643a20-215e-453f-bc21-82b37184d1e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Obj">
+      <UniqueIdentifier>{b11b9882-ac81-4f59-a0f5-e4bf18e6de5a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Obj\ObjFace">
+      <UniqueIdentifier>{1a23ba4d-27cd-421a-9028-5be161ec70c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Obj\ObjVertex">
+      <UniqueIdentifier>{508f1796-0d08-42a9-b684-4c32e3904ede}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Obj\ObjModel">
+      <UniqueIdentifier>{693889c6-6244-457a-90da-42147949f26e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Colleague\Earth">
+      <UniqueIdentifier>{c8e6adc9-4bdb-4c67-8f61-df72d5aff937}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Colleague\Moon">
+      <UniqueIdentifier>{94a5306b-6b55-4878-91c4-9ad086f20612}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -48,32 +78,47 @@
     <ClCompile Include="TestScene.cpp">
       <Filter>소스 파일\GLFramework\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="ObjModel.cpp">
-      <Filter>소스 파일\ObjModel</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjVertex.cpp">
-      <Filter>소스 파일\ObjModel</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjFace.cpp">
-      <Filter>소스 파일\ObjModel</Filter>
-    </ClCompile>
-    <ClCompile Include="Camera.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Vector.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Matrix.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Vector3D.cpp">
+      <Filter>소스 파일\Vector3D</Filter>
+    </ClCompile>
     <ClCompile Include="FootBoard.cpp">
-      <Filter>소스 파일\Road</Filter>
+      <Filter>소스 파일\Colleague\Road</Filter>
     </ClCompile>
     <ClCompile Include="Road.cpp">
-      <Filter>소스 파일\Road</Filter>
+      <Filter>소스 파일\Colleague\Road</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>소스 파일\Colleague\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="MyRGB.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Mediator.cpp">
+      <Filter>소스 파일\Mediator</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
-      <Filter>소스 파일\Player</Filter>
+      <Filter>소스 파일\Colleague\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjFace.cpp">
+      <Filter>소스 파일\Obj\ObjFace</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjVertex.cpp">
+      <Filter>소스 파일\Obj\ObjVertex</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjModel.cpp">
+      <Filter>소스 파일\Obj\ObjModel</Filter>
+    </ClCompile>
+    <ClCompile Include="Colleague.cpp">
+      <Filter>소스 파일\Colleague</Filter>
+    </ClCompile>
+    <ClCompile Include="Moon.cpp">
+      <Filter>소스 파일\Colleague\Moon</Filter>
+    </ClCompile>
+    <ClCompile Include="Earth.cpp">
+      <Filter>소스 파일\Colleague\Earth</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -89,32 +134,47 @@
     <ClInclude Include="TestScene.h">
       <Filter>소스 파일\GLFramework\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="ObjModel.h">
-      <Filter>소스 파일\ObjModel</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjVertex.h">
-      <Filter>소스 파일\ObjModel</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjFace.h">
-      <Filter>소스 파일\ObjModel</Filter>
-    </ClInclude>
-    <ClInclude Include="Camera.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Vector.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="Matrix.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Vector3D.h">
+      <Filter>소스 파일\Vector3D</Filter>
+    </ClInclude>
     <ClInclude Include="FootBoard.h">
-      <Filter>소스 파일\Road</Filter>
+      <Filter>소스 파일\Colleague\Road</Filter>
     </ClInclude>
     <ClInclude Include="Road.h">
-      <Filter>소스 파일\Road</Filter>
+      <Filter>소스 파일\Colleague\Road</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>소스 파일\Colleague\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="MyRGB.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Mediator.h">
+      <Filter>소스 파일\Mediator</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
-      <Filter>소스 파일\Player</Filter>
+      <Filter>소스 파일\Colleague\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjFace.h">
+      <Filter>소스 파일\Obj\ObjFace</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjVertex.h">
+      <Filter>소스 파일\Obj\ObjVertex</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjModel.h">
+      <Filter>소스 파일\Obj\ObjModel</Filter>
+    </ClInclude>
+    <ClInclude Include="Colleague.h">
+      <Filter>소스 파일\Colleague</Filter>
+    </ClInclude>
+    <ClInclude Include="Moon.h">
+      <Filter>소스 파일\Colleague\Moon</Filter>
+    </ClInclude>
+    <ClInclude Include="Earth.h">
+      <Filter>소스 파일\Colleague\Earth</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -25,9 +25,10 @@ class CFootBoard
 	float m_z{ 0 };
 	float m_floor{ m_y };
 
-	float m_r{ 0.f };
+	float m_r{ 1.f };
 	float m_g{ 0.f };
 	float m_b{ 0.f };
+	float m_a{ 1.f };
 
 	GLfloat m_Translate_Matrix[16] =
 	{
@@ -56,23 +57,27 @@ class CFootBoard
 	//움직임
 	float DisappearTime{ 0.f };
 	bool isDisappear{ false };
+
+	int m_PlayerPos{ 0 };
+
+	bool IsDisappear{ false };
 	
 private:
 	//내부함수
 	void Disappear();
 	void RenderModel();
 
-
 public:
 	CFootBoard();
 	~CFootBoard();
 	static void InitModel();
 	static void DeleteModel();
+	void InitPosition(const int& x, const int & y, const int& z);
 
 	void Render();
 	void Update();
 
-	void InitPosition(const int& x, const int & y, const int& z);
+	const bool GetDisappear() const { return IsDisappear; }
 };
 
 
