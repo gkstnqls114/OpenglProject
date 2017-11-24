@@ -1,24 +1,62 @@
 #include "pch.h"
 #include <fstream>
 #include <string>
+#include "Matrix.h"
+#include "Vector3D.h"
 #include "ObjVertex.h"
 #include "ObjFace.h"
 #include "ObjModel.h"
 
 
+void CObjModel::ModelRender()
+{
+	for (int Face_index = 0; Face_index < m_FaceNum; ++Face_index) {
+		glBegin(GL_LINE_LOOP);
+		//glBegin(GL_POLYGON);
+
+		int Vertex_in_Face = m_pFace[Face_index].GetVertexNum();
+		for (int Vertex_Num = 0; Vertex_Num < Vertex_in_Face; ++Vertex_Num) {
+			int vertex_index = m_pFace[Face_index].GetIndex(Vertex_Num);
+
+			float y = m_pVertex[vertex_index - 1].GetY();
+			float x = m_pVertex[vertex_index - 1].GetX();
+			float z = m_pVertex[vertex_index - 1].GetZ();
+
+			glVertex3f(x, y, z);
+		}
+
+		glEnd();
+	}
+}
+
 CObjModel::CObjModel()
 {
 	std::cout << "CObjModel 持失切" << std::endl;
+	m_PivotMove_Matrix = new CMatrix;
+	m_PivotReturn_Matrix = new CMatrix;
+	m_Matrix = new CMatrix;
 }
 
 CObjModel::~CObjModel()
 {
-	if (m_pVertex == nullptr) return;
-
 	std::cout << "CObjModel 社瑚切" << std::endl;
 
-	delete m_pVertex;
-	m_pVertex = nullptr;
+	if (m_pVertex != nullptr) {
+		delete[] m_pVertex;
+		m_pVertex = nullptr;
+	}
+
+	if (m_pFace != nullptr) {
+		delete[] m_pFace;
+		m_pFace = nullptr;
+	}
+
+	delete m_Matrix;
+	m_Matrix = nullptr;
+	delete m_PivotMove_Matrix;
+	m_PivotMove_Matrix = nullptr;
+	delete m_PivotReturn_Matrix;
+	m_PivotReturn_Matrix = nullptr;
 }
 
 void CObjModel::LoadObj(const char * filename)
@@ -145,21 +183,29 @@ void CObjModel::LoadObj(const char * filename)
 
 void CObjModel::Render()
 {
-	for (int Face_index = 0; Face_index < m_FaceNum; ++Face_index) {
-		glBegin(GL_LINE_LOOP);
-		//glBegin(GL_POLYGON);
+	glPushMatrix();
+	m_PivotReturn_Matrix->MultiMatrix();
 
-		int Vertex_in_Face = m_pFace[Face_index].GetVertexNum();
-		for (int Vertex_Num = 0; Vertex_Num < Vertex_in_Face; ++Vertex_Num) {
-			int vertex_index = m_pFace[Face_index].GetIndex(Vertex_Num);
-			
-			float y = m_pVertex[vertex_index - 1].GetY();
-			float x = m_pVertex[vertex_index - 1].GetX();
-			float z = m_pVertex[vertex_index - 1].GetZ();
+	glPushMatrix();
+	m_Matrix->MultiMatrix();
 
-			glVertex3f(x, y, z);
-		}
+	glPushMatrix();
+	m_PivotMove_Matrix->MultiMatrix();
 
-		glEnd();
-	}
+	ModelRender();
+
+	glPopMatrix();
+	glPopMatrix();
+	glPopMatrix();
+}
+
+void CObjModel::MovePivot(const GLdouble & x, const GLdouble & y, const GLdouble & z)
+{
+	m_PivotMove_Matrix->Calu_Tranlate(CVector3D(x, y, z));
+	m_PivotReturn_Matrix->Calu_Tranlate(CVector3D(-x, -y, z));
+}
+
+void CObjModel::Rotate(const int & degree, const int & x, const int & y, const int & z)
+{
+
 }

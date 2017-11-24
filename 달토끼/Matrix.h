@@ -14,9 +14,9 @@ class CMatrix
 
 	GLfloat m_Scale_Matrix[16] =
 	{
-		0.3f, 0, 0, 0,
-		0, 0.3f, 0, 0,
-		0, 0, 0.3f, 0,
+		1.f, 0, 0, 0,
+		0, 1.f, 0, 0,
+		0, 0, 1.f, 0,
 		0, 0, 0, 1.f
 	};
 
@@ -34,6 +34,7 @@ public:
 	void Calu_Tranlate(const CVector3D& rhs);
 	void Calu_Tranlate(CVector3D&& rhs);
 	void Calu_Rotate(const int& degree, const int& x, const int& y, const int& z);
+	void Calu_Scale(const float &size);
 
 	//잠시 임시로 사용
 	const GLdouble Get_Tranlate_13 ()

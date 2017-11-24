@@ -21,6 +21,7 @@ CPlayer::CPlayer(CMediator*& mediator)
 
 	m_Matrix = new CMatrix();
 	m_Matrix->Calu_Rotate(180, 0, 1, 0);
+	m_Matrix->Calu_Scale(0.3);
 
 	m_Mediator = mediator;
 }
@@ -98,8 +99,10 @@ void CPlayer::Render()
 	glColor3f(0.f, 0.f, 0.f);
 	glPushMatrix();
 		m_Matrix->MultiMatrix();
+
 		m_RabitBody->Render();
 		m_RabitFoot->Render();
+
 	glPopMatrix();
 }
 
