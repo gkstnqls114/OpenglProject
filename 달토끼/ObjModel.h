@@ -30,5 +30,7 @@ public:
 	
 	void MovePivot(const GLdouble& x, const GLdouble& y, const GLdouble& z);
 	void Rotate(const int& degree, const int& x, const int& y, const int& z);
+	void Rotate(const float& degree, const int& x, const int& y, const int& z);
+
 };
 

@@ -52,6 +52,16 @@ void CMatrix::Calu_Rotate(const int& degree, const int& x, const int& y, const i
 	glPopMatrix();
 }
 
+void CMatrix::Calu_Rotate(const float & degree, const int & x, const int & y, const int & z)
+{
+	glPushMatrix();
+	glLoadIdentity();
+	glRotatef(degree, x, y, z);
+	glMultMatrixf(m_Rotate_Matrix);
+	glGetFloatv(GL_MODELVIEW_MATRIX, m_Rotate_Matrix);
+	glPopMatrix();
+}
+
 void CMatrix::Calu_Scale(const float & size)
 {
 	glPushMatrix();

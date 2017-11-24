@@ -202,10 +202,15 @@ void CObjModel::Render()
 void CObjModel::MovePivot(const GLdouble & x, const GLdouble & y, const GLdouble & z)
 {
 	m_PivotMove_Matrix->Calu_Tranlate(CVector3D(x, y, z));
-	m_PivotReturn_Matrix->Calu_Tranlate(CVector3D(-x, -y, z));
+	m_PivotReturn_Matrix->Calu_Tranlate(CVector3D(-x, -y, -z));
 }
 
 void CObjModel::Rotate(const int & degree, const int & x, const int & y, const int & z)
 {
+	m_Matrix->Calu_Rotate(degree, x, y, z);
+}
 
+void CObjModel::Rotate(const float & degree, const int & x, const int & y, const int & z)
+{
+	m_Matrix->Calu_Rotate(degree, x, y, z);
 }

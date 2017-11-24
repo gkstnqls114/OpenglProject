@@ -14,6 +14,7 @@ CPlayer::CPlayer(CMediator*& mediator)
 
 	m_RabitFoot = new CObjModel;
 	m_RabitFoot->LoadObj("foot_up.obj");
+	m_RabitFoot->MovePivot(0, -10, 10);
 
 	//플레이어 점프도달거리
 	// 실수라서 정확한 계산 힘드므로 여기서 한번 계산한다.
@@ -99,7 +100,6 @@ void CPlayer::Render()
 	glColor3f(0.f, 0.f, 0.f);
 	glPushMatrix();
 		m_Matrix->MultiMatrix();
-
 		m_RabitBody->Render();
 		m_RabitFoot->Render();
 
@@ -112,6 +112,16 @@ void CPlayer::Player_JumpStart()
 
 void CPlayer::Player_Jumping()
 {
+	//홀수라서 어쩔수없이..
+	if (m_JumpTime == m_FinishJumpTime) return;
+
+	float degree = 180 / m_FinishJumpTime;
+	if (m_JumpTime <= m_FinishJumpTime / 2) {
+		m_RabitFoot->Rotate(degree, 1, 0, 0);
+	}
+	else {
+		m_RabitFoot->Rotate(-degree, 1, 0, 0);
+	}
 }
 
 void CPlayer::Player_JumpFinish()
