@@ -62,11 +62,14 @@ public:
 	float Get_VectorY() const noexcept { return m_vector_y; }
 	float Get_VectorZ() const noexcept { return m_vector_z; }
 
-	float Get_JumpReach() const noexcept { return m_JumpReach; }
+	const float Get_JumpReach() const noexcept { return m_JumpReach; }
+	const int Get_BoardNum() const noexcept { return m_BoardNum; }
+	const int Get_Side() const noexcept { return m_MySide; }
 
 	//Mediator
+	virtual void Player_JumpStart();
+	virtual void Player_Jumping();
 	virtual void Player_JumpFinish();
 	virtual void Player_Dead();
-	virtual void Road_playerBoard_Disapper();
 };
 

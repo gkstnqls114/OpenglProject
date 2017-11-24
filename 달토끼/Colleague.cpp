@@ -4,9 +4,11 @@
 
 CColleague::CColleague()
 {
+
 }
 
 
 CColleague::~CColleague()
 {
+
 }

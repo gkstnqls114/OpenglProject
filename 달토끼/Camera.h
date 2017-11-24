@@ -64,7 +64,8 @@ public:
 	//Mediator
 	void Update();
 
+	virtual void Player_JumpStart();
+	virtual void Player_Jumping(const CVector3D& move);
 	virtual void Player_JumpFinish();
 	virtual void Player_Dead();
-	virtual void Road_playerBoard_Disapper();
 };

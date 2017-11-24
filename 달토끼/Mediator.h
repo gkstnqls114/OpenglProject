@@ -16,8 +16,8 @@ public:
 	~CMediator();
 	void Set_Colleague(CPlayer*& p, CRoad*& r, CCamera*& m);
 
+	void Player_JumpStart();
+	void Player_Jumping();
 	void Player_JumpFinish();
 	void Player_Dead();
-	void Road_playerBoard_Disapper();
 };
-

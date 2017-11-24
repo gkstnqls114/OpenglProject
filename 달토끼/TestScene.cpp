@@ -110,16 +110,6 @@ void CGameScene::Update()
 	m_Player->Update();
 	m_Road->Update();
 	
-	if (nullptr != m_Camera) {
-	
-		float player_move_x = m_Player->Get_VectorX();
-		float player_move_z = m_Player->Get_VectorZ();
-		if (player_move_x != 0 || player_move_z != 0)
-		{
-			m_Camera->Move(CVector3D(player_move_x, 0, player_move_z));
-		}
-	}
-
 }
 
 void CGameScene::Reshape(const int& w, const int& h)
@@ -174,5 +164,4 @@ void CGameScene::SpecialKeys(const int& key, const int& x, const int& y)
 	}
 
 	m_Player->SpecialKeys(key, x, y);
-	
 }

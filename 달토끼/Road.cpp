@@ -72,19 +72,34 @@ void CRoad::Update()
 
 	m_pFootBoard[m_DisappearBoardNum].Update();
 
-	if (m_pFootBoard[m_DisappearBoardNum].GetDisappear()) {
-		m_DisappearBoardNum += 1;
-	}
-
 	if (m_pFootBoard[m_PlayerPosNum].GetDisappear()) {
 		m_Mediator->Player_Dead();
 	}
+
+	//위와 순서 중요!
+	if (m_pFootBoard[m_DisappearBoardNum].GetDisappear()) {
+		m_DisappearBoardNum += 1;
+	}
 }
 
-void CRoad::Player_JumpFinish()
+void CRoad::Player_JumpStart()
 {
-	std::cout << "Road: 플레이어 점프 확인" << std::endl;
 	m_PlayerPosNum += 1;
+}
+
+void CRoad::Player_Jumping()
+{
+
+}
+
+void CRoad::Player_JumpFinish(int playerside)
+{
+	//플레이어 위치가 올바른 곳인지 확인
+	bool IsWrongPos = m_pFootBoard[m_PlayerPosNum].GetSide() != playerside;
+	if (IsWrongPos) {
+		m_Mediator->Player_Dead();
+		return;
+	}
 
 	if (m_PlayerPosNum - 2 < 0) {
 		m_DisappearBoardNum = 0;
@@ -96,11 +111,5 @@ void CRoad::Player_JumpFinish()
 
 void CRoad::Player_Dead()
 {
-	std::cout << "Road: 플레이어 죽음 확인" << std::endl;
 	isPlayerDead = true;
-}
-
-void CRoad::Road_playerBoard_Disapper()
-{
-	std::cout << "Road: 플레이어 보드 사라짐 확인" << std::endl;
 }

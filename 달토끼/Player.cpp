@@ -54,7 +54,6 @@ void CPlayer::Keyboard(const unsigned char & key, const int & x, const int & y)
 		m_Matrix->Calu_Rotate(-degree, 1, 0, 0);
 	}
 
-	
 }
 
 void CPlayer::SpecialKeys(const int & key, const int & x, const int & y)
@@ -64,20 +63,27 @@ void CPlayer::SpecialKeys(const int & key, const int & x, const int & y)
 	if (isDead) return;
 
 	if (key == GLUT_KEY_UP) {
-
-		m_BoardNum += 1;
 		IsJump = true;
 	}
 	else if (key == GLUT_KEY_RIGHT) {
-		m_BoardNum += 1;
 		IsJump = true;
 		IsRight = true;
 	}
 	else if (key == GLUT_KEY_LEFT) {
-		m_BoardNum += 1;
 		IsJump = true;
 		IsLeft = true;
 	}		
+
+	if (IsRight) {
+		m_MySide += 1;
+	}
+	else if (IsLeft) {
+		m_MySide -= 1;
+	}
+
+	m_BoardNum += 1;
+
+	m_Mediator->Player_JumpStart();
 }
 
 void CPlayer::Update()
@@ -97,20 +103,27 @@ void CPlayer::Render()
 	glPopMatrix();
 }
 
+void CPlayer::Player_JumpStart()
+{
+}
+
+void CPlayer::Player_Jumping()
+{
+}
+
 void CPlayer::Player_JumpFinish()
 {
-	std::cout << "Player: 플레이어 점프 확인" << std::endl;
+
 }
 
 void CPlayer::Player_Dead()
 {
-	std::cout << "Player: 플레이어 죽음 확인" << std::endl;
-	isDead = true;
-}
+	if (IsJump) {
+		std::cout << "이상해!" << std::endl;
+		return;
+	}
 
-void CPlayer::Road_playerBoard_Disapper()
-{
-	std::cout << "Player: 플레이어 보드 사라짐 확인" << std::endl;
+	isDead = true;
 }
 
 void CPlayer::Find_JumpProperty()
@@ -135,17 +148,13 @@ void CPlayer::Find_JumpProperty()
 
 void CPlayer::Jump()
 {
-	if (!IsJump) {
-		//카메라 때문에 점프끝나고 x = 0..
-		m_vector_x = 0;
-		m_vector_y = 0;
-		m_vector_z = 0;
-		return;
-	}
+	if (!IsJump) return;
 
 	Calculate_JumpVector();
 	m_Matrix->Calu_Tranlate(CVector3D(m_vector_x, m_vector_y, m_vector_z));
 	
+	m_Mediator->Player_Jumping();
+
 	Finish_Jump();
 }
 
@@ -172,24 +181,25 @@ void CPlayer::Reset_JumpProperty()
 	IsRight = false;
 	IsLeft = false;
 	m_JumpTime = 0;
-
-	//점프 완료후 중재자에게 통지.
-	m_Mediator->Player_JumpFinish();
+	m_vector_x = 0;
+	m_vector_y = 0;
+	m_vector_z = 0;
 }
 
 void CPlayer::Finish_Jump()
 {
+	if (!IsJump) return;
 	if (m_Matrix->Get_Tranlate_13() >= 0) return;
 
 	m_Matrix->Set_Translate_13(0);
 
-	if (IsRight) {
-		m_MySide += 1;
-	}
-	else if (IsLeft) {
-		m_MySide -= 1;
-	}
-
-
 	Reset_JumpProperty();
+
+	bool InRange = m_MySide <= 1 && m_MySide >= -1;
+	if (InRange) {
+		m_Mediator->Player_JumpFinish();
+	}
+	else {
+		m_Mediator->Player_Dead();
+	}
 }

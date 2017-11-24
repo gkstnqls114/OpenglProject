@@ -23,7 +23,6 @@ class CFootBoard
 	float m_x{ 0 };
 	float m_y{ 0 };
 	float m_z{ 0 };
-	float m_floor{ m_y };
 
 	float m_r{ 1.f };
 	float m_g{ 0.f };
@@ -78,6 +77,7 @@ public:
 	void Update();
 
 	const bool GetDisappear() const { return IsDisappear; }
+	const int GetSide() const noexcept { return m_Side; }
 };
 
 

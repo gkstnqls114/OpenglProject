@@ -84,19 +84,23 @@ void CCamera::Update()
 {
 }
 
+void CCamera::Player_JumpStart()
+{
+}
+
+void CCamera::Player_Jumping(const CVector3D& move)
+{
+	Move(move);
+}
+
 void CCamera::Player_JumpFinish()
 {
-	std::cout << "Camera: 플레이어 점프 확인" << std::endl;
+
 }
 
 void CCamera::Player_Dead()
 {
-	std::cout << "Camera: 플레이어 죽음 확인" << std::endl;
-}
 
-void CCamera::Road_playerBoard_Disapper()
-{
-	std::cout << "Camera: 플레이어 보드 사라짐 확인" << std::endl;
 }
 
 
