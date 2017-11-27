@@ -39,10 +39,8 @@ CVector3D::CVector3D(const CVector3D & rhs)
 
 CVector3D::CVector3D(CVector3D && rhs)
 {
-	if (vector == nullptr) {
-		vector = new GLdouble[4];
-	}
-
+	vector = new GLdouble[4];
+	
 	vector[0] = rhs.vector[0];
 	vector[1] = rhs.vector[1];
 	vector[2] = rhs.vector[2];
