@@ -72,9 +72,6 @@
     <ClCompile Include="Scene.cpp">
       <Filter>소스 파일\GLFramework\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="TestScene.cpp">
-      <Filter>소스 파일\GLFramework\Scene</Filter>
-    </ClCompile>
     <ClCompile Include="Matrix.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -117,6 +114,9 @@
     <ClCompile Include="Earth.cpp">
       <Filter>소스 파일\Colleague\Earth</Filter>
     </ClCompile>
+    <ClCompile Include="GameScene.cpp">
+      <Filter>소스 파일\GLFramework\Scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GLFramework.h">
@@ -126,9 +126,6 @@
       <Filter>소스 파일\main</Filter>
     </ClInclude>
     <ClInclude Include="Scene.h">
-      <Filter>소스 파일\GLFramework\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="TestScene.h">
       <Filter>소스 파일\GLFramework\Scene</Filter>
     </ClInclude>
     <ClInclude Include="Matrix.h">
@@ -172,6 +169,9 @@
     </ClInclude>
     <ClInclude Include="Earth.h">
       <Filter>소스 파일\Colleague\Earth</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScene.h">
+      <Filter>소스 파일\GLFramework\Scene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

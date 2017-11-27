@@ -27,18 +27,18 @@ CVector3D::~CVector3D()
 CVector3D::CVector3D(const CVector3D & rhs)
 {
 	//복사생성자
-	std::cout << "복사생성자" << std::endl;
+	//std::cout << "복사생성자" << std::endl;
 	vector = new GLdouble[4];
 
 	vector[0] = rhs.vector[0];
 	vector[1] = rhs.vector[1];
 	vector[2] = rhs.vector[2];
 	vector[3] = rhs.vector[3];
-
 }
 
 CVector3D::CVector3D(CVector3D && rhs)
 {
+	//std::cout << "이동생성자" << std::endl;
 	vector = new GLdouble[4];
 	
 	vector[0] = rhs.vector[0];
@@ -99,6 +99,7 @@ CVector3D CVector3D::operator-(const CVector3D & rhs)
 
 CVector3D & CVector3D::operator=(const CVector3D & rhs)
 {
+	//std::cout << "복사 대입 연산자" << std::endl;
 	if (vector != nullptr) {
 		delete[] vector;
 	}
@@ -114,6 +115,7 @@ CVector3D & CVector3D::operator=(const CVector3D & rhs)
 
 CVector3D & CVector3D::operator=(CVector3D && rhs)
 {
+	//std::cout << "이동 대입 연산자" << std::endl;
 	if (vector == nullptr) {
 		vector = new GLdouble[4];
 	}

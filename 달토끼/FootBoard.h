@@ -76,6 +76,7 @@ public:
 	void Render();
 	void Update();
 
+	const CVector3D GetPos() const noexcept { return CVector3D(m_x, m_y, m_z); }
 	const bool GetDisappear() const { return IsDisappear; }
 	const int GetSide() const noexcept { return m_Side; }
 };

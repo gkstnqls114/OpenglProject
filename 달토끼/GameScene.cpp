@@ -1,10 +1,12 @@
 #include "pch.h"
 #include "Mediator.h"
 #include "Player.h"
+#include "Moon.h"
+#include "Earth.h"
 #include "Camera.h"
 #include "Vector3D.h"
 #include "Road.h"
-#include "TestScene.h"
+#include "GameScene.h"
 
 void CGameScene::RenderAxis()
 {
@@ -65,6 +67,10 @@ CGameScene::CGameScene()
 	std::cout << distance << "ÀÌ´Ù" << std::endl;
 	m_Road = new CRoad(distance, m_Mediator);
 
+	m_Moon = new CMoon;
+	
+	m_Earth = new CEarth;
+
 	m_Mediator->Set_Colleague(m_Player, m_Road, m_Camera);
 }
 
@@ -72,6 +78,12 @@ CGameScene::~CGameScene()
 {
 	delete m_Player;
 	m_Player = nullptr;
+
+	delete m_Moon;
+	m_Moon = nullptr;
+	
+	delete m_Earth;
+	m_Earth = nullptr;
 
 	delete m_Camera;
 	m_Camera = nullptr;
@@ -95,6 +107,16 @@ void CGameScene::Render()
 
 	m_Player->Render();
 	m_Road->Render();
+
+	glPushMatrix();
+	glTranslated(0, 10, 100);
+	m_Earth->Render();
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslated(0, 10, -100);
+	m_Moon->Render();
+	glPopMatrix();
 	
 }
 
@@ -105,6 +127,8 @@ void CGameScene::Update()
 	m_Player->Update();
 	m_Road->Update();
 	m_Camera->Update();
+	m_Earth->Update();
+	m_Moon->Update();
 	
 }
 

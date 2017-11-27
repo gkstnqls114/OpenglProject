@@ -1,16 +1,12 @@
 #pragma once
 
 //x, y, z를 가지는 벡터 클래스입니다.
+//혹시 모를 w를 위해 일단 할당은 4개로 해뒀음.
 
 class CVector3D
 {
 private:
 	GLdouble* vector{ nullptr };
-
-public:
-	//GLdouble x;
-	//GLdouble y;
-	//GLdouble z;
 
 private:
 

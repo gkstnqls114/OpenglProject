@@ -2,7 +2,8 @@
 #include "Scene.h"
 
 class CPlayer;
-class CObjModel;
+class CMoon;
+class CEarth;
 class CRoad;
 class CMediator;
 class CCamera;
@@ -11,6 +12,8 @@ class CGameScene :
 	public CScene
 {
 	CPlayer * m_Player{ nullptr };
+	CMoon * m_Moon{ nullptr };
+	CEarth * m_Earth{ nullptr };
 	CCamera* m_Camera{ nullptr };
 	CRoad * m_Road{ nullptr };
 

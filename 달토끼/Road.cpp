@@ -20,14 +20,14 @@ void CRoad::InitFootBoardPos(const GLdouble& distance)
 		int nowSide = k_side[rand() % 3];
 
 		//왼쪽발판 다음에서 오른쪽 발판이 생성되는 경우
-		bool is_Left_to_Right = (prev_Side == k_left) && (nowSide == k_right);
-		if (is_Left_to_Right) {
+		bool Is_Left_to_Right = (prev_Side == k_left) && (nowSide == k_right);
+		if (Is_Left_to_Right) {
 			nowSide = k_front;
 		}
 
 		//오른쪽발판 다음에서 왼쪽 발판이 생성되는 경우
-		bool is_Right_to_Left = (prev_Side == k_right) && (nowSide == k_left);
-		if (is_Right_to_Left) {
+		bool Is_Right_to_Left = (prev_Side == k_right) && (nowSide == k_left);
+		if (Is_Right_to_Left) {
 			nowSide = k_front;
 		}
 
@@ -53,7 +53,8 @@ CRoad::CRoad(const GLdouble& distance, CMediator*& mediator)
 CRoad::~CRoad()
 {
 	std::cout << "Road 소멸자" << std::endl;
-
+	
+	CFootBoard::DeleteModel();
 	delete[] m_pFootBoard;
 }
 
@@ -76,10 +77,15 @@ void CRoad::Update()
 		m_Mediator->Player_Dead();
 	}
 
-	//위와 순서 중요!
+	//위 if문과 순서 중요!
 	if (m_pFootBoard[m_DisappearBoardNum].GetDisappear()) {
 		m_DisappearBoardNum += 1;
 	}
+}
+
+const CVector3D CRoad::GetLastPos() const noexcept
+{
+	return m_pFootBoard[m_boardNum - 1].GetPos();
 }
 
 void CRoad::Player_JumpStart()

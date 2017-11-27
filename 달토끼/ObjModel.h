@@ -20,6 +20,8 @@ class CObjModel
 
 private:
 	void ModelRender();
+	void Find_VertexNum(const char*& filename);
+	void Save_Information(const char*& filename);
 
 public:
 	CObjModel();

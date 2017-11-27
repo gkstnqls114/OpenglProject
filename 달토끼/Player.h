@@ -10,8 +10,12 @@ class CCamera;
 
 class CPlayer
 {
-	CObjModel* m_RabitBody{ nullptr };
-	CObjModel* m_RabitFoot{ nullptr };
+	static CObjModel* m_Rabit_Body		;
+	static CObjModel* m_Rabit_Ear		;
+	static CObjModel* m_Rabit_LeftFoot	;
+	static CObjModel* m_Rabit_RightFoot	;
+
+	static CObjModel* m_Rabits_Helmet	;
 
 	CMatrix* m_Matrix{nullptr};
 
@@ -21,8 +25,8 @@ class CPlayer
 	//jump property
 	const float k_gravity{ 0.7f };
 	const double k_PI{ 3.14152 };
-	const int m_JumpDegree{ 70 };
-	const float m_power{ 5.f };
+	const int m_JumpDegree{ 80 };
+	const float m_power{ 7.f };
 	int m_FinishJumpTime{ 0 };
 	GLdouble m_JumpReach{0};
 
@@ -52,6 +56,8 @@ private:
 public:
 	CPlayer(CMediator*& mediator);
 	~CPlayer();
+	static void InitModel();
+	static void DeleteModel();
 
 	void Keyboard(const unsigned char& key, const int& x, const int& y);
 	void SpecialKeys(const int& key, const int& x, const int& y);

@@ -5,16 +5,15 @@
 #include "Matrix.h"
 #include "Player.h"
 
+CObjModel* CPlayer::m_Rabit_Body = nullptr;
+CObjModel* CPlayer::m_Rabit_Ear = nullptr;
+CObjModel* CPlayer::m_Rabit_LeftFoot = nullptr;
+CObjModel* CPlayer::m_Rabit_RightFoot = nullptr;
+CObjModel* CPlayer::m_Rabits_Helmet = nullptr;
 
 CPlayer::CPlayer(CMediator*& mediator)
 {
-	std::cout << "플레이어 생성" << std::endl;
-	m_RabitBody = new CObjModel;
-	m_RabitBody->LoadObj("body.obj");
-
-	m_RabitFoot = new CObjModel;
-	m_RabitFoot->LoadObj("foot_up.obj");
-	m_RabitFoot->MovePivot(0, -10, 10);
+	CPlayer::InitModel();
 
 	//플레이어 점프도달거리
 	// 실수라서 정확한 계산 힘드므로 여기서 한번 계산한다.
@@ -27,11 +26,71 @@ CPlayer::CPlayer(CMediator*& mediator)
 	m_Mediator = mediator;
 }
 
-
 CPlayer::~CPlayer()
 {
-	delete m_RabitBody;
-	delete m_RabitFoot;
+	//나중에 수정
+	//굳이 지울 필요가 있을까 싶기도 하고..
+	CPlayer::DeleteModel();
+}
+
+void CPlayer::InitModel()
+{
+	////단 한 번만 호출
+	//나중에 함수화하기
+	if (CPlayer::m_Rabit_Body == nullptr) {
+		CPlayer::m_Rabit_Body = new CObjModel;
+		CPlayer::m_Rabit_Body->LoadObj("Rabit_Body.obj");
+	}
+
+	if (CPlayer::m_Rabit_Ear == nullptr) {
+		CPlayer::m_Rabit_Ear = new CObjModel;
+		CPlayer::m_Rabit_Ear->LoadObj("Rabit_Ear.obj");
+	}
+
+	if (CPlayer::m_Rabit_LeftFoot == nullptr) {
+		CPlayer::m_Rabit_LeftFoot = new CObjModel;
+		CPlayer::m_Rabit_LeftFoot->LoadObj("Rabit_LeftFoot.obj");
+	}
+
+	if (CPlayer::m_Rabit_RightFoot == nullptr) {
+		CPlayer::m_Rabit_RightFoot = new CObjModel;
+		CPlayer::m_Rabit_RightFoot->LoadObj("Rabit_RightFoot.obj");
+	}
+
+	if (CPlayer::m_Rabits_Helmet == nullptr) {
+		CPlayer::m_Rabits_Helmet = new CObjModel;
+		CPlayer::m_Rabits_Helmet->LoadObj("Rabits_Helmet_low.obj");
+	}
+
+	std::cout << "Player 모델 생성 완료" << std::endl;
+}
+
+void CPlayer::DeleteModel()
+{
+	if (CPlayer::m_Rabit_Body != nullptr) {
+		delete m_Rabit_Body;
+		m_Rabit_Body = nullptr;
+	}
+
+	if (CPlayer::m_Rabit_Ear != nullptr) {
+		delete m_Rabit_Ear;
+		m_Rabit_Ear = nullptr;
+	}
+
+	if (CPlayer::m_Rabit_LeftFoot != nullptr) {
+		delete m_Rabit_LeftFoot;
+		m_Rabit_LeftFoot = nullptr;
+	}
+
+	if (CPlayer::m_Rabit_RightFoot != nullptr) {
+		delete m_Rabit_RightFoot;
+		m_Rabit_RightFoot = nullptr;
+	}
+
+	if (CPlayer::m_Rabits_Helmet != nullptr) {
+		delete m_Rabits_Helmet;
+		m_Rabits_Helmet = nullptr;
+	}
 }
 
 
@@ -100,9 +159,11 @@ void CPlayer::Render()
 	glColor3f(0.f, 0.f, 0.f);
 	glPushMatrix();
 		m_Matrix->MultiMatrix();
-		m_RabitBody->Render();
-		m_RabitFoot->Render();
-
+		m_Rabit_Body->Render();
+		m_Rabit_Ear->Render();
+		m_Rabit_LeftFoot->Render();
+		m_Rabit_RightFoot->Render();
+		m_Rabits_Helmet->Render();
 	glPopMatrix();
 }
 
@@ -117,10 +178,12 @@ void CPlayer::Player_Jumping()
 
 	float degree = 180 / m_FinishJumpTime;
 	if (m_JumpTime <= m_FinishJumpTime / 2) {
-		m_RabitFoot->Rotate(degree, 1, 0, 0);
+		m_Rabit_LeftFoot->Rotate(degree, 1, 0, 0);
+		m_Rabit_RightFoot->Rotate(degree, 1, 0, 0);
 	}
 	else {
-		m_RabitFoot->Rotate(-degree, 1, 0, 0);
+		m_Rabit_LeftFoot->Rotate(-degree, 1, 0, 0);
+		m_Rabit_RightFoot->Rotate(-degree, 1, 0, 0);
 	}
 }
 

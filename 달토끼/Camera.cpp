@@ -96,14 +96,11 @@ void CCamera::LookAt() const
 	CVector3D vEye{ eye() };
 
 	gluPerspective(m_fovy, m_aspect, m_near, m_far);
-
-	CVector3D temp_at = m_at;
-	CVector3D temp_up = m_up;
-
+	
 	gluLookAt(
 		vEye[0], vEye[1], vEye[2],
-		temp_at[0], temp_at[1], temp_at[2],
-		temp_up[0], temp_up[1], temp_up[2]
+		m_at[0], m_at[1], m_at[2],
+		m_up[0], m_up[1], m_up[2]
 	);
 
 	glMatrixMode(GL_MODELVIEW);

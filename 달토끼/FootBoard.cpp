@@ -41,7 +41,7 @@ void CFootBoard::InitModel()
 	std::cout << "FootBoard ¸ðµ¨ »ý¼º" << std::endl;
 
 	CFootBoard::m_obj = new CObjModel;
-	CFootBoard::m_obj->LoadObj("box2.obj");
+	CFootBoard::m_obj->LoadObj("sample_box.obj");
 }
 
 void CFootBoard::DeleteModel()

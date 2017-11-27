@@ -27,6 +27,12 @@ public:
 	void Render();
 	void Update();
 
+	const CVector3D GetLastPos() const noexcept;
+	const CVector3D GetFirstPos() const noexcept
+	{
+		return m_pFootBoard[0].GetPos();
+	}
+
 	//Mediator
 	virtual void Player_JumpStart();
 	virtual void Player_Jumping();

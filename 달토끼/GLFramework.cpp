@@ -1,7 +1,6 @@
 #include "pch.h"
-
 #include "Scene.h"
-#include "TestScene.h"
+#include "GameScene.h"
 #include "GLFramework.h"
 
 
