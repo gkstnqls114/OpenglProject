@@ -8,7 +8,7 @@ class CRoad : public CColleague
 {
 	const int k_side[3] = { k_left, k_front, k_right };
 	CFootBoard* m_pFootBoard;
-	int m_boardNum{ 100 };
+	int m_boardNum{ 20 };
 	int m_PlayerPosNum{ 0 };
 	int m_DisappearBoardNum{ 0 };
 
@@ -28,10 +28,7 @@ public:
 	void Update();
 
 	const CVector3D GetLastPos() const noexcept;
-	const CVector3D GetFirstPos() const noexcept
-	{
-		return m_pFootBoard[0].GetPos();
-	}
+	const CVector3D GetFirstPos() const noexcept;
 
 	//Mediator
 	virtual void Player_JumpStart();

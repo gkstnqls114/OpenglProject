@@ -14,7 +14,7 @@ private:
 	static void DeleteModel();
 
 public:
-	CEarth();
+	CEarth(const CVector3D& Pos);
 	~CEarth();
 
 	void Update();

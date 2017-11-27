@@ -16,7 +16,7 @@ void CRoad::InitFootBoardPos(const GLdouble& distance)
 
 	int prev_Side = 0;
 	//맨 첫번째는 이동하지 않으므로 1부터 시작
-	for (int x = 1; x < m_boardNum; ++x) {
+	for (int x = 1; x < m_boardNum - 1; ++x) {
 		int nowSide = k_side[rand() % 3];
 
 		//왼쪽발판 다음에서 오른쪽 발판이 생성되는 경우
@@ -33,10 +33,15 @@ void CRoad::InitFootBoardPos(const GLdouble& distance)
 
 		float tranlateX = 20 * nowSide;
 		float tranlateZ = -x * distance;
-		m_pFootBoard[x].InitPosition(tranlateX, 0, tranlateZ);
+		m_pFootBoard[x].InitPosition(CVector3D(tranlateX, 0, tranlateZ));
 
 		prev_Side = nowSide;
 	}
+	//마지막은 반드시 가운데
+	float tranlateX = 0;
+	float tranlateZ = -(m_boardNum - 1) * distance;
+	m_pFootBoard[m_boardNum - 1].InitPosition(CVector3D(tranlateX, 0, tranlateZ));
+
 }
 
 CRoad::CRoad(const GLdouble& distance, CMediator*& mediator)
@@ -86,6 +91,11 @@ void CRoad::Update()
 const CVector3D CRoad::GetLastPos() const noexcept
 {
 	return m_pFootBoard[m_boardNum - 1].GetPos();
+}
+
+const CVector3D CRoad::GetFirstPos() const noexcept
+{
+	return m_pFootBoard[0].GetPos();
 }
 
 void CRoad::Player_JumpStart()

@@ -20,11 +20,12 @@ void CEarth::DeleteModel()
 	m_Earth = nullptr;
 }
 
-CEarth::CEarth()
+CEarth::CEarth(const CVector3D& Pos)
 {
 	InitModel();
 
 	m_Matrix = new CMatrix;
+	m_Matrix->Calu_Tranlate(Pos);
 	m_Matrix->Calu_Scale(0.7);
 }
 
@@ -37,7 +38,7 @@ CEarth::~CEarth()
 
 void CEarth::Update()
 {
-	m_Matrix->Calu_Rotate(1, 0, 1, 0);
+	m_Earth->Rotate(1, 0, 1, 0);
 }
 
 void CEarth::Render()

@@ -93,3 +93,28 @@ void CFootBoard::InitPosition(const int & x, const int & y, const int & z)
 	glGetFloatv(GL_MODELVIEW_MATRIX, m_Translate_Matrix);
 	glPopMatrix();
 }
+
+void CFootBoard::InitPosition(const CVector3D & rhs)
+{
+	if (rhs[0] < 0) {
+		m_Side = -1;
+	}
+	else if (rhs[0] > 0) {
+		m_Side = 1;
+	}
+	else {
+		m_Side = 0;
+	}
+
+	m_Position[0] = rhs[0];
+	m_Position[1] = rhs[1];
+	m_Position[2] = rhs[2];
+	m_Position[3] = rhs[3];
+
+	glPushMatrix();
+	glLoadIdentity();
+	glTranslatef(m_Position[0], m_Position[1], m_Position[2]);
+	glMultMatrixf(m_Translate_Matrix);
+	glGetFloatv(GL_MODELVIEW_MATRIX, m_Translate_Matrix);
+	glPopMatrix();
+}

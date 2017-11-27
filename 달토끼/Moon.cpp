@@ -20,11 +20,12 @@ void CMoon::DeleteModel()
 	m_Moon = nullptr;
 }
 
-CMoon::CMoon()
+CMoon::CMoon(const CVector3D& Pos)
 {
 	InitModel();
 
 	m_Matrix = new CMatrix;
+	m_Matrix->Calu_Tranlate(Pos);
 	m_Matrix->Calu_Scale(0.7);
 }
 
@@ -37,7 +38,7 @@ CMoon::~CMoon()
 
 void CMoon::Update()
 {
-	m_Matrix->Calu_Rotate(1, 0, 1, 0);
+	m_Moon->Rotate(1, 0, 1, 0);
 }
 
 void CMoon::Render()

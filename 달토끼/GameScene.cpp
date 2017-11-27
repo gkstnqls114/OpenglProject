@@ -67,9 +67,12 @@ CGameScene::CGameScene()
 	std::cout << distance << "ÀÌ´Ù" << std::endl;
 	m_Road = new CRoad(distance, m_Mediator);
 
-	m_Moon = new CMoon;
-	
-	m_Earth = new CEarth;
+	GLdouble DownY = 60;
+	CVector3D MoonPos = m_Road->GetLastPos();
+	m_Moon = new CMoon(CVector3D(MoonPos[0] , MoonPos[1]- DownY, MoonPos[2]));
+
+	CVector3D EarthPos = m_Road->GetFirstPos();
+	m_Earth = new CEarth(CVector3D(EarthPos[0], EarthPos[1] - DownY + 10, EarthPos[2]));
 
 	m_Mediator->Set_Colleague(m_Player, m_Road, m_Camera);
 }
@@ -107,17 +110,8 @@ void CGameScene::Render()
 
 	m_Player->Render();
 	m_Road->Render();
-
-	glPushMatrix();
-	glTranslated(0, 10, 100);
 	m_Earth->Render();
-	glPopMatrix();
-
-	glPushMatrix();
-	glTranslated(0, 10, -100);
 	m_Moon->Render();
-	glPopMatrix();
-	
 }
 
 void CGameScene::Update()
