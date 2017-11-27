@@ -48,6 +48,28 @@ void CCamera::Initialize(const CVector3D & at, float distance, float zNear, floa
 	m_at = at;
 }
 
+void CCamera::SetPosition(const CVector3D & at)
+{
+	m_at = at;
+	LookAt();
+}
+
+void CCamera::SetPosition(CVector3D && at) noexcept
+{
+	m_at = std::move(at);
+	LookAt();
+}
+
+void CCamera::Move(const CVector3D & at) noexcept
+{
+	SetPosition(m_at + at);
+}
+
+void CCamera::Move(CVector3D && at) noexcept
+{
+	SetPosition(m_at + std::move(at));
+}
+
 
 void CCamera::Rotate(float v, float h)
 {
@@ -75,10 +97,13 @@ void CCamera::LookAt() const
 
 	gluPerspective(m_fovy, m_aspect, m_near, m_far);
 
+	CVector3D temp_at = m_at;
+	CVector3D temp_up = m_up;
+
 	gluLookAt(
-		vEye.x, vEye.y, vEye.z,
-		m_at.x, m_at.y, m_at.z,
-		m_up.x, m_up.y, m_up.z
+		vEye[0], vEye[1], vEye[2],
+		temp_at[0], temp_at[1], temp_at[2],
+		temp_up[0], temp_up[1], temp_up[2]
 	);
 
 	glMatrixMode(GL_MODELVIEW);

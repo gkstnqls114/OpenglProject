@@ -48,5 +48,4 @@ public:
 	{
 		m_Translate_Matrix[13] = val;
 	}
-
 };

@@ -24,8 +24,8 @@ void CMatrix::MultiMatrix()
 void CMatrix::Calu_Tranlate(const CVector3D & rhs)
 {
 	glPushMatrix();
-	glLoadIdentity();
-	glTranslated(rhs.x, rhs.y, rhs.z);
+	//glLoadIdentity();
+	glTranslated(rhs[0], rhs[1], rhs[2]);
 	glMultMatrixf(m_Translate_Matrix);
 	glGetFloatv(GL_MODELVIEW_MATRIX, m_Translate_Matrix);
 	glPopMatrix();
@@ -33,10 +33,10 @@ void CMatrix::Calu_Tranlate(const CVector3D & rhs)
 
 void CMatrix::Calu_Tranlate(CVector3D && rhs)
 {
-	std::cout << rhs.x << " " <<  rhs.y << " " << rhs.z << std::endl;
+	std::cout << rhs[0] << " " <<  rhs[1] << " " << rhs[2] << std::endl;
 	glPushMatrix();
-	glLoadIdentity();
-	glTranslated(rhs.x, rhs.y, rhs.z);
+	//glLoadIdentity();
+	glTranslated(rhs[0], rhs[1], rhs[2]);
 	glMultMatrixf(m_Translate_Matrix);
 	glGetFloatv(GL_MODELVIEW_MATRIX, m_Translate_Matrix);
 	glPopMatrix();
@@ -45,7 +45,7 @@ void CMatrix::Calu_Tranlate(CVector3D && rhs)
 void CMatrix::Calu_Rotate(const int& degree, const int& x, const int& y, const int& z)
 {
 	glPushMatrix();
-	glLoadIdentity();
+	////glLoadIdentity();
 	glRotated(degree, x, y, z);
 	glMultMatrixf(m_Rotate_Matrix);
 	glGetFloatv(GL_MODELVIEW_MATRIX, m_Rotate_Matrix);
@@ -55,7 +55,7 @@ void CMatrix::Calu_Rotate(const int& degree, const int& x, const int& y, const i
 void CMatrix::Calu_Rotate(const float & degree, const int & x, const int & y, const int & z)
 {
 	glPushMatrix();
-	glLoadIdentity();
+	//glLoadIdentity();
 	glRotatef(degree, x, y, z);
 	glMultMatrixf(m_Rotate_Matrix);
 	glGetFloatv(GL_MODELVIEW_MATRIX, m_Rotate_Matrix);
@@ -65,7 +65,7 @@ void CMatrix::Calu_Rotate(const float & degree, const int & x, const int & y, co
 void CMatrix::Calu_Scale(const float & size)
 {
 	glPushMatrix();
-	glLoadIdentity();
+	//glLoadIdentity();
 	glScaled(size, size, size);
 	glMultMatrixf(m_Scale_Matrix);
 	glGetFloatv(GL_MODELVIEW_MATRIX, m_Scale_Matrix);

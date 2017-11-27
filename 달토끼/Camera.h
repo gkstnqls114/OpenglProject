@@ -42,10 +42,10 @@ public:
 	void SetAspect(float aspect) { m_aspect = aspect; }
 	CVector3D GetPosition()	const { return m_at; }
 
-	void SetPosition(const CVector3D& at) { m_at = at; LookAt(); }
-	void SetPosition(CVector3D&& at)	noexcept { m_at = std::move(at); LookAt(); }
-	void Move(const CVector3D& at)	noexcept { SetPosition(m_at + at); }
-	void Move(CVector3D&& at)		noexcept { SetPosition(m_at + std::move(at)); }
+	void SetPosition(const CVector3D& at);
+	void SetPosition(CVector3D&& at)	noexcept;
+	void Move(const CVector3D& at)	noexcept;
+	void Move(CVector3D&& at)		noexcept;
 
 	void SetDistance(const float& d) { m_distance = fmax(d, m_near); }
 	float GetDistance() const { return m_distance; }

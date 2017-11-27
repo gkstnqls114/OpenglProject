@@ -40,9 +40,6 @@
     <Filter Include="소스 파일\Colleague\Player">
       <UniqueIdentifier>{f40500c5-b1a2-4703-9248-12520fe80484}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\temp">
-      <UniqueIdentifier>{91643a20-215e-453f-bc21-82b37184d1e0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\Obj">
       <UniqueIdentifier>{b11b9882-ac81-4f59-a0f5-e4bf18e6de5a}</UniqueIdentifier>
     </Filter>

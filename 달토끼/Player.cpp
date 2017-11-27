@@ -113,7 +113,7 @@ void CPlayer::Player_JumpStart()
 void CPlayer::Player_Jumping()
 {
 	//홀수라서 어쩔수없이..
-	if (m_JumpTime == m_FinishJumpTime) return;
+	if (m_FinishJumpTime % 2 == 1 && m_JumpTime == m_FinishJumpTime) return;
 
 	float degree = 180 / m_FinishJumpTime;
 	if (m_JumpTime <= m_FinishJumpTime / 2) {

@@ -62,7 +62,7 @@ void CMediator::Player_JumpFinish()
 
 void CMediator::Player_Dead()
 {
-	std::cout << "Mediator: 플레이어 죽음 완료" << std::endl;
+	//std::cout << "Mediator: 플레이어 죽음 완료" << std::endl;
 	//m_pPlayer->Player_Dead();
 	//m_pRoad->Player_Dead();
 	//m_pCamera->Player_Dead();
