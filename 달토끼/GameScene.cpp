@@ -119,7 +119,7 @@ void CGameScene::Update()
 	if (!Start) return;
 	
 	m_Player->Update();
-	m_Road->Update();
+	//m_Road->Update();
 	m_Camera->Update();
 	m_Earth->Update();
 	m_Moon->Update();

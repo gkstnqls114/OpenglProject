@@ -27,6 +27,7 @@ class CMatrix
 		0, 0, 1, 0,
 		0, 0, 0, 1
 	};
+
 public:
 	CMatrix();
 	~CMatrix();
@@ -35,6 +36,7 @@ public:
 	void Calu_Tranlate(CVector3D&& rhs);
 	void Calu_Rotate(const int& degree, const int& x, const int& y, const int& z);
 	void Calu_Rotate(const float& degree, const int& x, const int& y, const int& z);
+	
 	void Reset_Rotate();
 
 	void Calu_Scale(const float &size);

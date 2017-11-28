@@ -40,7 +40,7 @@ void CPlayer::InitModel()
 	if (CPlayer::m_Rabit_Body == nullptr) {
 		CPlayer::m_Rabit_Body = new CObjModel;
 		CPlayer::m_Rabit_Body->LoadObj("Rabit_Body.obj");
-		m_Rabit_Body->MovePivot(CVector3D(0, -10, 20));
+		m_Rabit_Body->MovePivot(CVector3D(0, -20, 10));
 	}
 
 	if (CPlayer::m_Rabit_Ear == nullptr) {
@@ -173,10 +173,13 @@ void CPlayer::Render()
 
 void CPlayer::Player_JumpStart()
 {
+	Process_Side(jumpSide);
 }
 
 void CPlayer::Player_Jumping()
 {
+	Jump_BodyRotate();
+
 	//아 점프 나중에 수정할래 ㅡ0ㅡ;;
 	//홀수는 제일 높은 지점을 계산하지 않는다.
 	if (m_FinishJumpTime % 2 == 1 && m_JumpTime == (m_FinishJumpTime / 2 + 1)) return;
@@ -194,7 +197,6 @@ void CPlayer::Player_Jumping()
 
 	bool Untill_Top = m_JumpTime <= TimeSection * 2;
 	if (Untill_Top) {
-		std::cout << m_JumpTime << " : 높이 올라가는 중" << std::endl;
 		m_Rabit_LeftFoot->Rotate(Foot_top_degree, 1, 0, 0);
 		m_Rabit_RightFoot->Rotate(Foot_top_degree, 1, 0, 0);
 		m_Rabit_Body->Rotate(Body_degree, 1, 0, 0);
@@ -242,6 +244,57 @@ void CPlayer::Player_Dead()
 	}
 
 	isDead = true;
+}
+
+void CPlayer::Process_Side(int & lhs)
+{
+	if (IsRight) {
+		lhs = k_right;
+	}
+	else if (IsLeft) {
+		lhs = k_left;
+	}
+	else {
+		lhs = k_front;
+	}
+}
+
+void CPlayer::Jump_BodyRotate()
+{
+	int Rotate = abs(prevSide - jumpSide);
+	float frame_degree = 0;
+
+	bool Rotate_degree_0 = Rotate == 0;
+	if (Rotate_degree_0) return;
+	
+	bool Rotate_degree_45 = Rotate == 1;
+	bool Rotate_degree_90 = Rotate == 2;
+	float degree = atan(float(m_JumpReach) / float(Road_Distance_X)) * 180 / k_PI;
+	degree = 90 - degree;
+	if (Rotate_degree_45) {
+		frame_degree = degree / float(m_FinishJumpTime);
+	}
+	else if (Rotate_degree_90) {
+		degree = degree * 2;
+		frame_degree = degree / float(m_FinishJumpTime);
+	}
+	std::cout << degree << std::endl;
+
+	if (IsRight) {
+		m_Matrix->Calu_Rotate(-frame_degree, 0, 1, 0);
+	}
+	else if (IsLeft) {
+		m_Matrix->Calu_Rotate(frame_degree, 0, 1, 0);
+	}
+	else {
+		//앞으로 향함
+		if (prevSide == k_right) {
+			m_Matrix->Calu_Rotate(frame_degree, 0, 1, 0);
+		}
+		else if (prevSide == k_left) {
+			m_Matrix->Calu_Rotate(-frame_degree, 0, 1, 0);
+		}
+	}
 }
 
 void CPlayer::Find_JumpProperty()
@@ -310,6 +363,8 @@ void CPlayer::Finish_Jump()
 	if (m_Matrix->Get_Tranlate_13() >= 0) return;
 
 	m_Matrix->Set_Translate_13(0);
+
+	Process_Side(prevSide);
 
 	Reset_JumpProperty();
 

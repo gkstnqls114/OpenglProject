@@ -29,10 +29,16 @@ class CPlayer
 	const float m_power{ 7.f };
 	int m_FinishJumpTime{ 0 };
 	GLdouble m_JumpReach{0};
-
+	
+	//아래의 점프변수를 하나로 묶을 수 있지 않을까?
+	//일단 이것도 나중에 생각
+	int prevSide{ 0 };
+	int jumpSide{ 0 };
 	bool IsJump{ false };
 	bool IsRight{ false };
 	bool IsLeft{ false };
+
+	
 	int m_JumpTime{ 0 };
 	GLdouble m_vector_x{ 0 };
 	GLdouble m_vector_y{ 0 };
@@ -47,6 +53,8 @@ class CPlayer
 	
 
 private:
+	void Process_Side(int& lhs);
+	void Jump_BodyRotate();
 	void Find_JumpProperty();
 	void Jump();
 	void Calculate_JumpVector();

@@ -24,3 +24,5 @@ enum side_num
 	k_front,
 	k_right
 };
+
+const int Road_Distance_X = 20;

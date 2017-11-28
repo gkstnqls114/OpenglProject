@@ -31,7 +31,7 @@ void CRoad::InitFootBoardPos(const GLdouble& distance)
 			nowSide = k_front;
 		}
 
-		float tranlateX = 20 * nowSide;
+		float tranlateX = Road_Distance_X * nowSide;
 		float tranlateZ = -x * distance;
 		m_pFootBoard[x].InitPosition(CVector3D(tranlateX, 0, tranlateZ));
 
