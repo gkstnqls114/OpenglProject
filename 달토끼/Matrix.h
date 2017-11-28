@@ -45,7 +45,7 @@ public:
 	void Set_Scale(const float &x, const float &y, const float &z);
 
 	//잠시 임시로 사용
-	const GLdouble Get_Tranlate_13 ()
+	const GLdouble Get_Tranlate_Y ()
 		const {
 		return m_Translate_Matrix[13];
 	}

@@ -142,6 +142,7 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Colleague.cpp" />
     <ClCompile Include="Earth.cpp" />
+    <ClCompile Include="MainScene.cpp" />
     <ClCompile Include="Mediator.cpp" />
     <ClCompile Include="FootBoard.cpp" />
     <ClCompile Include="GLFramework.cpp" />
@@ -166,12 +167,14 @@
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="ObjVertex.cpp" />
+    <ClCompile Include="SceneChanger.cpp" />
     <ClCompile Include="Vector3D.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Colleague.h" />
     <ClInclude Include="Earth.h" />
+    <ClInclude Include="MainScene.h" />
     <ClInclude Include="Mediator.h" />
     <ClInclude Include="FootBoard.h" />
     <ClInclude Include="GLFramework.h" />
@@ -186,6 +189,7 @@
     <ClInclude Include="Scene.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="ObjVertex.h" />
+    <ClInclude Include="SceneChanger.h" />
     <ClInclude Include="Vector3D.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

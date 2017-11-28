@@ -1,35 +1,44 @@
 #pragma once
 #include "Scene.h"
 
-class CPlayer;
-class CMoon;
-class CEarth;
-class CRoad;
-class CMediator;
 class CCamera;
+class CMediator;
+class CMoon;
+class CObjModel;
 
-class CGameScene :
+class CMainScene :
 	public CScene
 {
-	CPlayer * m_Player{ nullptr };
-	CMoon * m_Moon{ nullptr };
-	CEarth * m_Earth{ nullptr };
+	CMediator* m_Mediator{ nullptr };
 	CCamera* m_Camera{ nullptr };
-	CRoad * m_Road{ nullptr };
+	
+	enum {
+		k_PLAY,
+		k_EXIT
+	};
+	int m_Cursor = k_PLAY;
+	
+	CVector3D m_CursorPos;
 
-	CMediator * m_Mediator{ nullptr };
+	CMoon* m_Moon	{ nullptr };
+	CEarth* m_Earth	{ nullptr };
+	
+	float YTime{ 0.f };
 
-	bool Start{ false };
+	
+	CObjModel* m_PLAY	{ nullptr };
+	CObjModel* m_EXIT	{ nullptr };
+
 
 public:
-	CGameScene();
-	virtual ~CGameScene();
+	CMainScene();
+	virtual ~CMainScene();
 
 	virtual void Initialize();
 	virtual void Render();
-	virtual void Update();
 	virtual void Reshape(const int& w, const int& h);
 	virtual void Timer(const int& value);
+	virtual void Update();
 	virtual void Keyboard(const unsigned char& key, const int& x, const int& y);
 	virtual void SpecialKeys(const int& key, const int& x, const int& y);
 };

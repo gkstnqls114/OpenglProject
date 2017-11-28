@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "Scene.h"
 #include "GameScene.h"
+#include "MainScene.h"
 #include "GLFramework.h"
 
 
@@ -21,7 +22,8 @@ void CGLFramework::Initialize(int argc, char ** argv, int width, int height, int
 	glutCreateWindow("Example1");
 
 	m_CurrScene =
-		new CGameScene{};
+		//new CGameScene{};
+		new CMainScene;
 	m_CurrScene->Initialize();
 }
 
@@ -63,7 +65,6 @@ void CGLFramework::Timer(int value)
 	if (m_CurrScene) m_CurrScene->Timer(value);
 
 	glutTimerFunc(m_fps, fnTimer, 1);
-
 }
 
 void CGLFramework::RegisterDrawFunction(DrawFunc && draw)

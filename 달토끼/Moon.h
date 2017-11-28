@@ -8,6 +8,9 @@ class CMoon
 	static CObjModel* m_Moon;
 
 	CMatrix* m_Matrix{ nullptr };
+	GLdouble m_BeginY{ 0 };
+	GLdouble m_EndY{ 1.f };
+	float m_Time{ 0.f };
 
 private:
 	static void InitModel();
@@ -19,5 +22,7 @@ public:
 
 	void Update();
 	void Render();
+
+	void Float();
 };
 

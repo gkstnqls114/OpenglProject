@@ -278,8 +278,9 @@ void CPlayer::Jump_BodyRotate()
 		degree = degree * 2;
 		frame_degree = degree / float(m_FinishJumpTime);
 	}
-	std::cout << degree << std::endl;
 
+	//나중에 수정
+	// 굳이 4개면 안에 이프문 만들 필요가 없지..
 	if (IsRight) {
 		m_Matrix->Calu_Rotate(-frame_degree, 0, 1, 0);
 	}
@@ -360,7 +361,7 @@ void CPlayer::Reset_JumpProperty()
 void CPlayer::Finish_Jump()
 {
 	if (!IsJump) return;
-	if (m_Matrix->Get_Tranlate_13() >= 0) return;
+	if (m_Matrix->Get_Tranlate_Y() >= 0) return;
 
 	m_Matrix->Set_Translate_13(0);
 

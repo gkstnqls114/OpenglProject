@@ -50,3 +50,16 @@ void CMoon::Render()
 	m_Moon->Render();
 	glPopMatrix();
 }
+
+void CMoon::Float()
+{
+	m_Time += 0.02f;
+	if (m_Time >= 1.f) {
+		m_Time = 0.f;
+		m_BeginY = m_EndY;
+		m_EndY = -m_EndY;
+	}
+	GLdouble MoveY = Interpolation(m_BeginY, m_EndY, m_Time);
+
+	m_Matrix->Calu_Tranlate(CVector3D(0, MoveY, 0));
+}

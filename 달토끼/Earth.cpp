@@ -50,3 +50,17 @@ void CEarth::Render()
 	m_Earth->Render();
 	glPopMatrix();
 }
+
+void CEarth::Float()
+{
+	m_Time += 0.01f;
+	if (m_Time >= 1.f) {
+		m_Time = 0.f;
+		m_BeginY = m_EndY;
+		m_EndY = -m_EndY;
+	}
+	GLdouble MoveY = Interpolation(m_BeginY, m_EndY, m_Time);
+	std::cout << MoveY << std::endl;
+
+	m_Matrix->Calu_Tranlate(CVector3D(0, MoveY, 0));
+}

@@ -2,6 +2,9 @@
 
 class CScene
 {
+protected:
+	void RenderAxis();
+
 public:
 	CScene();
 	virtual ~CScene();
