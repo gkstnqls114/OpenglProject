@@ -34,11 +34,11 @@ public:
 	}
 
 	CVector3D operator+(const CVector3D& rhs);
-
 	CVector3D operator-(const CVector3D& rhs);
 
 	CVector3D& operator=(const CVector3D& rhs);
 	CVector3D& operator=(CVector3D&& rhs);
+	
 	GLdouble& operator[](const int& num) const;
 
 	void ShowData();

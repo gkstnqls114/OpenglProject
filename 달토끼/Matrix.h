@@ -35,8 +35,12 @@ public:
 	void Calu_Tranlate(CVector3D&& rhs);
 	void Calu_Rotate(const int& degree, const int& x, const int& y, const int& z);
 	void Calu_Rotate(const float& degree, const int& x, const int& y, const int& z);
+	void Reset_Rotate();
 
 	void Calu_Scale(const float &size);
+	void Calu_Scale(const float &x, const float &y, const float &z);
+	void Set_Scale(const float& size);
+	void Set_Scale(const float &x, const float &y, const float &z);
 
 	//잠시 임시로 사용
 	const GLdouble Get_Tranlate_13 ()

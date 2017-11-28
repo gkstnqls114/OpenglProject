@@ -40,21 +40,25 @@ void CPlayer::InitModel()
 	if (CPlayer::m_Rabit_Body == nullptr) {
 		CPlayer::m_Rabit_Body = new CObjModel;
 		CPlayer::m_Rabit_Body->LoadObj("Rabit_Body.obj");
+		m_Rabit_Body->MovePivot(CVector3D(0, -10, 20));
 	}
 
 	if (CPlayer::m_Rabit_Ear == nullptr) {
 		CPlayer::m_Rabit_Ear = new CObjModel;
 		CPlayer::m_Rabit_Ear->LoadObj("Rabit_Ear.obj");
+		m_Rabit_Ear->MovePivot(CVector3D(0, -37, -20));
 	}
 
 	if (CPlayer::m_Rabit_LeftFoot == nullptr) {
 		CPlayer::m_Rabit_LeftFoot = new CObjModel;
 		CPlayer::m_Rabit_LeftFoot->LoadObj("Rabit_LeftFoot.obj");
+		m_Rabit_LeftFoot->MovePivot(CVector3D(0, -10, 10));
 	}
 
 	if (CPlayer::m_Rabit_RightFoot == nullptr) {
 		CPlayer::m_Rabit_RightFoot = new CObjModel;
 		CPlayer::m_Rabit_RightFoot->LoadObj("Rabit_RightFoot.obj");
+		m_Rabit_RightFoot->MovePivot(CVector3D(0, -10, 10));
 	}
 
 	if (CPlayer::m_Rabits_Helmet == nullptr) {
@@ -173,17 +177,55 @@ void CPlayer::Player_JumpStart()
 
 void CPlayer::Player_Jumping()
 {
-	//홀수라서 어쩔수없이..
-	if (m_FinishJumpTime % 2 == 1 && m_JumpTime == m_FinishJumpTime) return;
+	//아 점프 나중에 수정할래 ㅡ0ㅡ;;
+	//홀수는 제일 높은 지점을 계산하지 않는다.
+	if (m_FinishJumpTime % 2 == 1 && m_JumpTime == (m_FinishJumpTime / 2 + 1)) return;
 
-	float degree = 180 / m_FinishJumpTime;
-	if (m_JumpTime <= m_FinishJumpTime / 2) {
-		m_Rabit_LeftFoot->Rotate(degree, 1, 0, 0);
-		m_Rabit_RightFoot->Rotate(degree, 1, 0, 0);
+	float TimeSection = float(m_FinishJumpTime) / 4.f;
+	int FrameSection = m_FinishJumpTime / 4;
+
+	// 자신의 움직이는 TimeSection
+	float Body_degree =					45.f	/ float(m_FinishJumpTime);
+	float Boby_flat_percent =			0.5f	/ float(m_FinishJumpTime);
+	float Ear_degree =					-35.f	/ float(FrameSection * 2);
+	float Foot_top_degree =				40.f	/ float(FrameSection * 2);
+	float Foot_befor_reach_degree =		-90.f	/ float(FrameSection);
+	float Foot_reach_degree =			50.f	/ float(FrameSection);
+
+	bool Untill_Top = m_JumpTime <= TimeSection * 2;
+	if (Untill_Top) {
+		std::cout << m_JumpTime << " : 높이 올라가는 중" << std::endl;
+		m_Rabit_LeftFoot->Rotate(Foot_top_degree, 1, 0, 0);
+		m_Rabit_RightFoot->Rotate(Foot_top_degree, 1, 0, 0);
+		m_Rabit_Body->Rotate(Body_degree, 1, 0, 0);
+		m_Rabit_Body->Scale(1.f, 1.f - Boby_flat_percent, 1.f);
+		m_Rabit_Ear->Rotate(Ear_degree, 1, 0, 0);
 	}
 	else {
-		m_Rabit_LeftFoot->Rotate(-degree, 1, 0, 0);
-		m_Rabit_RightFoot->Rotate(-degree, 1, 0, 0);
+		m_Rabit_Body->Rotate(-Body_degree, 1, 0, 0);
+		m_Rabit_Body->Scale(1.f, 1.f + Boby_flat_percent, 1.f);
+		m_Rabit_Ear->Rotate(-Ear_degree, 1, 0, 0);
+	}
+
+	if (m_FinishJumpTime % 2 == 1 &&
+		m_JumpTime == (m_FinishJumpTime / 2 + m_JumpTime / 4 + 2)) return;
+
+	bool Unitll_Before_Reach = m_JumpTime >= TimeSection * 2;
+	bool Unitll_Reach = m_JumpTime >= TimeSection * 3;
+	bool Unitll_Last = m_JumpTime == m_FinishJumpTime;
+	if (Unitll_Last) {
+		//아모르겠다!! 걍 회전 리셋
+		m_Rabit_LeftFoot->Reset_Rotate();
+		m_Rabit_RightFoot->Reset_Rotate();
+	}
+	else if (Unitll_Reach) {
+		//앞으로 발이 나아감
+		m_Rabit_LeftFoot->Rotate(Foot_reach_degree, 1, 0, 0);
+		m_Rabit_RightFoot->Rotate(Foot_reach_degree, 1, 0, 0);
+	}
+	else if (Unitll_Before_Reach) {
+		m_Rabit_LeftFoot->Rotate(Foot_befor_reach_degree, 1, 0, 0);
+		m_Rabit_RightFoot->Rotate(Foot_befor_reach_degree, 1, 0, 0);
 	}
 }
 

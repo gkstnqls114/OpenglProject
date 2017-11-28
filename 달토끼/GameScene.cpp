@@ -110,8 +110,8 @@ void CGameScene::Render()
 
 	m_Player->Render();
 	m_Road->Render();
-	m_Earth->Render();
-	m_Moon->Render();
+	//m_Earth->Render();
+	//m_Moon->Render();
 }
 
 void CGameScene::Update()
@@ -123,7 +123,6 @@ void CGameScene::Update()
 	m_Camera->Update();
 	m_Earth->Update();
 	m_Moon->Update();
-	
 }
 
 void CGameScene::Reshape(const int& w, const int& h)

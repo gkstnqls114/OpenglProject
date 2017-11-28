@@ -54,7 +54,6 @@ void CMediator::Player_Jumping()
 
 void CMediator::Player_JumpFinish()
 {
-	std::cout << "Mediator: 플레이어 점프 완료" << std::endl;
 	m_pPlayer->Player_JumpFinish();
 	m_pRoad->Player_JumpFinish(m_pPlayer->Get_Side());
 	m_pCamera->Player_JumpFinish();

@@ -23,7 +23,7 @@ class CPlayer
 
 	//점프변수들
 	//jump property
-	const float k_gravity{ 0.7f };
+	const float k_gravity{ 0.5f };
 	const double k_PI{ 3.14152 };
 	const int m_JumpDegree{ 80 };
 	const float m_power{ 7.f };

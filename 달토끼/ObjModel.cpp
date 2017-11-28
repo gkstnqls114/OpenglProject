@@ -10,6 +10,7 @@
 
 void CObjModel::ModelRender()
 {
+	//glColor3f(255.f / 225.f, 167.f / 255.f, 167.f / 167.f);
 	for (int Face_index = 0; Face_index < m_FaceNum; ++Face_index) {
 		glBegin(GL_LINE_LOOP);
 		//glBegin(GL_POLYGON);
@@ -222,6 +223,14 @@ void CObjModel::MovePivot(const GLdouble & x, const GLdouble & y, const GLdouble
 	m_PivotReturn_Matrix->Calu_Tranlate(CVector3D(-x, -y, -z));
 }
 
+void CObjModel::MovePivot(const CVector3D & Pos)
+{
+	m_PivotMove_Matrix->Calu_Tranlate(Pos);
+	//나중에 단항연산자 오버로딩 찾아보기
+	//지금은 일단 .. 쓰자 ㅠ
+	m_PivotReturn_Matrix->Calu_Tranlate(CVector3D(-Pos[0], -Pos[1], -Pos[2]));
+}
+
 void CObjModel::Rotate(const int & degree, const int & x, const int & y, const int & z)
 {
 	m_Matrix->Calu_Rotate(degree, x, y, z);
@@ -230,4 +239,14 @@ void CObjModel::Rotate(const int & degree, const int & x, const int & y, const i
 void CObjModel::Rotate(const float & degree, const int & x, const int & y, const int & z)
 {
 	m_Matrix->Calu_Rotate(degree, x, y, z);
+}
+
+void CObjModel::Reset_Rotate()
+{
+	m_Matrix->Reset_Rotate();
+}
+
+void CObjModel::Scale(const float & x, const float & y, const float & z)
+{
+	m_Matrix->Calu_Scale(x, y, z);
 }
