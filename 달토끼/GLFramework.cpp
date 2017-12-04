@@ -2,6 +2,7 @@
 #include "Scene.h"
 #include "GameScene.h"
 #include "MainScene.h"
+#include "TestScene.h"
 #include "GLFramework.h"
 
 
@@ -23,14 +24,15 @@ void CGLFramework::Initialize(int argc, char ** argv, int width, int height, int
 
 	m_CurrScene =
 		//new CGameScene{};
-		new CMainScene;
+		//new CMainScene;
+		new CTestScene;
 	m_CurrScene->Initialize();
 }
 
 void CGLFramework::DrawScene()
 {
 	glClearColor(0.5f, 0.5f, 0.5f, 1.f);
-	glClear(GL_COLOR_BUFFER_BIT);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
 
 	Render();
@@ -94,7 +96,6 @@ void CGLFramework::RegisterSpecialKeysFunction(SpecialKeysFunc && specialkeys)
 
 void CGLFramework::Bind()
 {
-
 	glutDisplayFunc(fnDraw);
 	glutReshapeFunc(fnReshape);
 	glutKeyboardFunc(fnKeyboard);

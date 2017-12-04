@@ -58,6 +58,18 @@
     <Filter Include="소스 파일\Colleague\Moon">
       <UniqueIdentifier>{94a5306b-6b55-4878-91c4-9ad086f20612}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\SoundManager">
+      <UniqueIdentifier>{7f80c40f-4838-4681-8c49-425d46b99e81}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Word">
+      <UniqueIdentifier>{c284c672-0942-4f79-8326-02161871e0d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Word\PLAY">
+      <UniqueIdentifier>{e0c183f0-f991-4b13-b715-70317c9fc473}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Word\EXIT">
+      <UniqueIdentifier>{2170e337-faf2-4d22-8226-5e81e8713e38}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GLFramework.cpp">
@@ -123,6 +135,18 @@
     <ClCompile Include="SceneChanger.cpp">
       <Filter>소스 파일\Mediator</Filter>
     </ClCompile>
+    <ClCompile Include="SoundManager.cpp">
+      <Filter>소스 파일\SoundManager</Filter>
+    </ClCompile>
+    <ClCompile Include="PLAY_word.cpp">
+      <Filter>소스 파일\Word\PLAY</Filter>
+    </ClCompile>
+    <ClCompile Include="EXIT_word.cpp">
+      <Filter>소스 파일\Word\EXIT</Filter>
+    </ClCompile>
+    <ClCompile Include="TestScene.cpp">
+      <Filter>소스 파일\GLFramework\Scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GLFramework.h">
@@ -184,6 +208,18 @@
     </ClInclude>
     <ClInclude Include="SceneChanger.h">
       <Filter>소스 파일\Mediator</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundManager.h">
+      <Filter>소스 파일\SoundManager</Filter>
+    </ClInclude>
+    <ClInclude Include="PLAY_word.h">
+      <Filter>소스 파일\Word\PLAY</Filter>
+    </ClInclude>
+    <ClInclude Include="EXIT_word.h">
+      <Filter>소스 파일\Word\EXIT</Filter>
+    </ClInclude>
+    <ClInclude Include="TestScene.h">
+      <Filter>소스 파일\GLFramework\Scene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

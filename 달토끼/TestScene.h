@@ -1,39 +1,17 @@
 #pragma once
 #include "Scene.h"
-
-class CCamera;
-class CMediator;
-class CMoon;
-class CEarth;
-class CEXIT_word;
-class CPLAY_word;
-
-class CMainScene :
+class CTestScene :
 	public CScene
 {
+
 	CMediator*		m_Mediator{ nullptr };
 	CCamera*		m_Camera{ nullptr };
 
-	CMoon*			m_Moon{ nullptr };
-	CEarth*			m_Earth{ nullptr };
-	CPLAY_word*		m_PLAY{ nullptr };
-	CEXIT_word*		m_EXIT{ nullptr };
-
-	enum {
-		k_PLAY,
-		k_EXIT
-	};
-	CVector3D		m_CursorPos;
-	int				m_Cursor{ k_PLAY };
-
-	float degree{ 0.f };
-
-private:
-	void WordRender(); //ortho ¶§¹®¿¡...
+	CPlayer * m_Player{ nullptr };
 
 public:
-	CMainScene();
-	virtual ~CMainScene();
+	CTestScene();
+	virtual ~CTestScene();
 
 	virtual void Initialize();
 	virtual void Render();
@@ -43,4 +21,3 @@ public:
 	virtual void Keyboard(const unsigned char& key, const int& x, const int& y);
 	virtual void SpecialKeys(const int& key, const int& x, const int& y);
 };
-

@@ -38,6 +38,7 @@ CEarth::~CEarth()
 
 void CEarth::Update()
 {
+	Float();
 	m_Earth->Rotate(1, 0, 1, 0);
 }
 
@@ -59,8 +60,7 @@ void CEarth::Float()
 		m_BeginY = m_EndY;
 		m_EndY = -m_EndY;
 	}
-	GLdouble MoveY = Interpolation(m_BeginY, m_EndY, m_Time);
-	std::cout << MoveY << std::endl;
 
+	GLdouble MoveY = Interpolation(m_BeginY, m_EndY, m_Time);
 	m_Matrix->Calu_Tranlate(CVector3D(0, MoveY, 0));
 }
