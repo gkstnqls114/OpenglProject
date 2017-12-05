@@ -2,8 +2,14 @@
 
 class CObjFace
 {
-	int * m_VertexIndex{ nullptr };
 	int m_VertexNum{ 0 };
+	int * m_VertexIndex{ nullptr };
+	
+	int m_TextureNum{ 0 };
+	int * m_TextureIndex{ nullptr };
+
+	int m_NormalNum{ 0 };
+	int * m_NormalIndex{ nullptr };
 
 public:
 	CObjFace();
@@ -13,11 +19,31 @@ public:
 		m_VertexNum = num;
 		m_VertexIndex = new int[m_VertexNum];
 	}
+	void SetTextureNum(const int& num) {
+		m_TextureNum = num;
+		m_TextureIndex = new int[m_TextureNum];
+	}
+	void SetNormalNum(const int& num) {
+		m_NormalNum = num;
+		m_NormalIndex = new int[m_NormalNum];
+	}
 
-	void SetIndex(const int& num, const int& val)
+	void Set_VertexIndex(const int& num, const int& val)
 	{
 		if (m_VertexIndex != nullptr) {
 			m_VertexIndex[num] = val;
+		}
+	}
+	void Set_TextureIndex(const int& num, const int& val)
+	{
+		if (m_TextureIndex != nullptr) {
+			m_TextureIndex[num] = val;
+		}
+	}
+	void Set_NormalIndex(const int& num, const int& val)
+	{
+		if (m_NormalIndex != nullptr) {
+			m_NormalIndex[num] = val;
 		}
 	}
 
@@ -30,8 +56,12 @@ public:
 
 	}
 
-	const int GetIndex(const int& num) { return m_VertexIndex[num]; }
-	const int GetVertexNum() const { return m_VertexNum; }
-
+	const int GetVertexIndex(const int& num) const noexcept;
+	const int GetTextureIndex(const int& num) const noexcept;
+	const int GetNormalIndex(const int& num) const noexcept;
+	
+	const int GetVertexNum() const noexcept { return m_VertexNum; }
+	const int GetTextureNum() const noexcept { return m_TextureNum; }
+	const int GetNormalNum() const noexcept { return m_NormalNum; }
 };
 

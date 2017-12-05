@@ -40,6 +40,7 @@ void CPlayer::InitModel()
 	if (CPlayer::m_Rabit_Body == nullptr) {
 		CPlayer::m_Rabit_Body = new CObjModel;
 		CPlayer::m_Rabit_Body->LoadObj("Rabit_Body.obj");
+		CPlayer::m_Rabit_Body->LoadTexture("Rabit_Body(24bmp).bmp");
 		m_Rabit_Body->MovePivot(CVector3D(0, -20, 10));
 	}
 
@@ -160,7 +161,6 @@ void CPlayer::Update()
 
 void CPlayer::Render()
 {
-	glColor3f(0.f, 0.f, 0.f);
 	glPushMatrix();
 		m_Matrix->MultiMatrix();
 		m_Rabit_Body->Render();

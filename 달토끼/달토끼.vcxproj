@@ -151,11 +151,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="BITMAP.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Colleague.cpp" />
     <ClCompile Include="Earth.cpp" />
     <ClCompile Include="EXIT_word.cpp" />
+    <ClCompile Include="Lighting.cpp" />
     <ClCompile Include="MainScene.cpp" />
     <ClCompile Include="Mediator.cpp" />
     <ClCompile Include="FootBoard.cpp" />
@@ -189,11 +189,11 @@
     <ClCompile Include="Vector3D.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BITMAP.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Colleague.h" />
     <ClInclude Include="Earth.h" />
     <ClInclude Include="EXIT_word.h" />
+    <ClInclude Include="Lighting.h" />
     <ClInclude Include="MainScene.h" />
     <ClInclude Include="Mediator.h" />
     <ClInclude Include="FootBoard.h" />
@@ -206,7 +206,6 @@
     <ClInclude Include="pch.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PLAY_word.h" />
-    <ClInclude Include="resource.h" />
     <ClInclude Include="Road.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="GameScene.h" />
