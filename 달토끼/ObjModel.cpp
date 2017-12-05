@@ -3,14 +3,12 @@
 #include <string>
 #include "Matrix.h"
 #include "Vector3D.h"
-#include "ObjVertex.h"
 #include "ObjFace.h"
 #include "ObjModel.h"
 
 
 void CObjModel::ModelRender()
 {
-	//glColor3f(255.f / 225.f, 167.f / 255.f, 167.f / 167.f);
 	for (int Face_index = 0; Face_index < m_FaceNum; ++Face_index) {
 		glBegin(GL_LINE_LOOP);
 		//glBegin(GL_POLYGON);
@@ -19,9 +17,9 @@ void CObjModel::ModelRender()
 		for (int Vertex_Num = 0; Vertex_Num < Vertex_in_Face; ++Vertex_Num) {
 			int vertex_index = m_pFace[Face_index].GetIndex(Vertex_Num);
 
-			float y = m_pVertex[vertex_index - 1].GetY();
-			float x = m_pVertex[vertex_index - 1].GetX();
-			float z = m_pVertex[vertex_index - 1].GetZ();
+			float x = m_pVertex[vertex_index - 1][0];
+			float y = m_pVertex[vertex_index - 1][1];
+			float z = m_pVertex[vertex_index - 1][2];
 
 			glVertex3f(x, y, z);
 		}
@@ -72,7 +70,7 @@ void CObjModel::Find_VertexNum(const char*& filename)
 
 	//구한 개수를 동적할당 한다.
 	//동적할당: 배열
-	m_pVertex = new CObjVertex[m_VertexNum];
+	m_pVertex = new CVector3D[m_VertexNum];
 	m_pFace = new CObjFace[m_FaceNum];
 }
 
@@ -106,9 +104,9 @@ void CObjModel::Save_Information(const char*& filename)
 
 			fscanf_s(fp, "%f %f %f\n", &x, &y, &z);
 
-			m_pVertex[VertexIndex].SetX(x);
-			m_pVertex[VertexIndex].SetY(y);
-			m_pVertex[VertexIndex].SetZ(z);
+			m_pVertex[VertexIndex][0] = x;
+			m_pVertex[VertexIndex][1] = y;
+			m_pVertex[VertexIndex][z] = z;
 
 			VertexIndex += 1;
 		}
@@ -151,8 +149,6 @@ void CObjModel::Save_Information(const char*& filename)
 				m_pFace[FaceIndex].SetIndex(x, index[x]);
 			}
 
-			//std::cout << str << std::endl;
-			//m_pFace[FaceIndex].ShowData();
 			FaceIndex += 1;
 		}
 

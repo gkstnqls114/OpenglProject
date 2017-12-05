@@ -10,6 +10,13 @@ CTexture::CTexture()
 
 CTexture::~CTexture()
 {
+	if (m_textureBit != nullptr) {
+		delete[] m_textureBit;
+	}
+
+	if (m_textureInfo != nullptr) {
+		delete[] m_textureInfo;
+	}
 }
 
 void CTexture::LoadDIBitmap(const char * filename)

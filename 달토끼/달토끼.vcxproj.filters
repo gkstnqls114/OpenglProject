@@ -70,6 +70,9 @@
     <Filter Include="소스 파일\Word\EXIT">
       <UniqueIdentifier>{2170e337-faf2-4d22-8226-5e81e8713e38}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Obj\Texture">
+      <UniqueIdentifier>{4b807b19-bb2f-4ffc-92b9-2a86523c2bdc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GLFramework.cpp">
@@ -147,11 +150,11 @@
     <ClCompile Include="TestScene.cpp">
       <Filter>소스 파일\GLFramework\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="Texture.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="BITMAP.cpp">
       <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>소스 파일\Obj\Texture</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -227,14 +230,14 @@
     <ClInclude Include="TestScene.h">
       <Filter>소스 파일\GLFramework\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Texture.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="BITMAP.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="resource.h">
       <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>소스 파일\Obj\Texture</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

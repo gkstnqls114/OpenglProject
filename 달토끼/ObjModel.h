@@ -1,8 +1,8 @@
 #pragma once
 
-class CObjVertex;
 class CObjFace;
 class CMatrix;
+class CTexture;
 
 class CObjModel
 {
@@ -10,13 +10,17 @@ class CObjModel
 	int m_VertexNum{ 0 };
 	int m_FaceNum { 0 };
 	
-	CObjVertex * m_pVertex{ nullptr };
-	CObjFace * m_pFace{ nullptr };
+	CVector3D *		m_pVertex			{ nullptr };
+	CVector3D *		m_pTexure			{ nullptr };
+	CVector3D *		m_pNormal			{ nullptr };
 
-	CMatrix* m_PivotMove_Matrix{ nullptr };
-	CMatrix* m_PivotReturn_Matrix{ nullptr };
+	CObjFace *		m_pFace				{ nullptr };
 
-	CMatrix* m_Matrix{ nullptr };
+	CTexture*		m_TextureImage		{ nullptr };
+
+	CMatrix*		m_PivotMove_Matrix	{ nullptr };
+	CMatrix*		m_PivotReturn_Matrix{ nullptr };
+	CMatrix*		m_Matrix			{ nullptr };
 
 private:
 	void ModelRender();
