@@ -4,6 +4,7 @@
 #include <gl/glut.h>
 
 //c++
+#include <wtypes.h>
 #include <iostream>
 #include <algorithm>
 #include <list>
@@ -11,7 +12,6 @@
 
 //make
 #include "Vector3D.h"
-
 
 template <typename T>
 T Interpolation(T begin, T end, float time) {

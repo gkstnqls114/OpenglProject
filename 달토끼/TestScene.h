@@ -1,11 +1,17 @@
 #pragma once
 #include "Scene.h"
+
+class CTexture;
+
 class CTestScene :
 	public CScene
 {
 
 	CMediator*		m_Mediator{ nullptr };
 	CCamera*		m_Camera{ nullptr };
+	
+	GLint	texture_object;
+	CTexture*		m_texture{ nullptr };
 
 	CPlayer * m_Player{ nullptr };
 

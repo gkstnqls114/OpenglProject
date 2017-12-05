@@ -2,6 +2,7 @@
 #include "Mediator.h"
 #include "Camera.h"
 #include "Player.h"
+#include "Texture.h"
 #include "TestScene.h"
 
 
@@ -15,6 +16,20 @@ CTestScene::CTestScene()
 
 	m_Player = new CPlayer(m_Mediator);
 
+	m_texture = new CTexture();
+	//텍스처와 갤체 결합
+	glBindTexture(GL_TEXTURE_2D, texture_object);
+	//이미지 로드
+	m_texture->LoadDIBitmap("Rabit_Body(24bmp).bmp");
+	//텍스쳐 설정 정의
+	glTexImage2D(
+		GL_TEXTURE_2D,	0, 3,
+		m_texture->GetWidth(), m_texture->GetHegiht(),
+		0, GL_BGR_EXT, GL_UNSIGNED_BYTE, m_texture->GetTextureBit()
+	);
+
+
+	glEnable(GL_TEXTURE_2D);
 	glEnable(GL_DEPTH_TEST);
 }
 
@@ -32,15 +47,34 @@ void CTestScene::Initialize()
 void CTestScene::Render()
 {
 	RenderAxis();
+
+	//glEnable(GL_TEXTURE_2D);
+	//바닥
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR); 
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR); 
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
+	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+	//glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
 	
+	glBindTexture(GL_TEXTURE_2D, texture_object);
 	glColor3f(0.7f, 0.7f, 0.7f);
 	glBegin(GL_QUADS);
+	glTexCoord2f(1.f, 1.f);
 	glVertex3d(50, 0, 50);
+
+	glTexCoord2f(0.f, 1.f);
 	glVertex3d(-50, 0, 50);
+
+	glTexCoord2f(0.f, 0.f);
 	glVertex3d(-50, 0, -50);
+
+	glTexCoord2f(1.f, 0.f);
 	glVertex3d(50, 0, -50);
 	glEnd();
 
+	//glDisable(GL_TEXTURE_2D);
 	glColor3f(1.f, 0.5f, 0.5f);
 	m_Player->Render();
 }
