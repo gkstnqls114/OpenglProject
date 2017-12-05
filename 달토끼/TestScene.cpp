@@ -28,9 +28,9 @@ CTestScene::CTestScene()
 
 	glLightfv(GL_LIGHT0, GL_POSITION, lightPos);
 
-	glEnable(GL_LIGHTING);
+	//glEnable(GL_LIGHTING);
 	glEnable(GL_LIGHT0);
-	
+	glEnable(GL_TEXTURE_2D);
 }
 
 
@@ -57,9 +57,7 @@ void CTestScene::Render()
 	glVertex3d(50, 0, -50);
 	glEnd();
 
-	glEnable(GL_TEXTURE_2D);
-	//m_Player->Render();
-	glDisable(GL_TEXTURE_2D);
+	m_Player->Render();
 }
 
 void CTestScene::Reshape(const int & w, const int & h)

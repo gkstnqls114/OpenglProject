@@ -17,7 +17,7 @@ public:
 	const BITMAPINFO* GetTextureInfo() const noexcept;
 
 	const int GetWidth() const noexcept;
-	const int GetHegiht() const noexcept;
+	const int GetHeight() const noexcept;
 
 	void ShowData();
 };

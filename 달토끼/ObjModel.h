@@ -17,7 +17,7 @@ class CObjModel
 	CVector3D *		m_pNormal			{ nullptr };
 	CObjFace *		m_pFace				{ nullptr };
 
-	GLuint			m_TextureObject;
+	GLuint			m_TextureID;
 	CTexture*		m_TextureImage		{ nullptr };
 
 	CMatrix*		m_PivotMove_Matrix	{ nullptr };

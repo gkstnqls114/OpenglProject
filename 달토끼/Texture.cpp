@@ -92,7 +92,6 @@ void CTexture::LoadDIBitmap(const char * filename)
 	}
 
 	std::cout << "¿Ï·á" << std::endl;
-	ShowData();
 	fclose(fp);
 }
 
@@ -117,7 +116,7 @@ const int CTexture::GetWidth() const noexcept
 	return m_textureInfo->bmiHeader.biWidth;
 }
 
-const int CTexture::GetHegiht() const noexcept
+const int CTexture::GetHeight() const noexcept
 {
 	if (m_textureInfo == nullptr) { return -1; }
 
