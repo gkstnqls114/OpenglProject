@@ -2,7 +2,7 @@
 
 class CObjFace;
 class CMatrix;
-class CTexture;
+class CTextureStorage;
 
 class CObjModel
 {
@@ -18,7 +18,7 @@ class CObjModel
 	CObjFace *		m_pFace				{ nullptr };
 
 	GLuint			m_TextureID;
-	CTexture*		m_TextureImage		{ nullptr };
+	CTextureStorage*		m_TextureImage		{ nullptr };
 
 	CMatrix*		m_PivotMove_Matrix	{ nullptr };
 	CMatrix*		m_PivotReturn_Matrix{ nullptr };

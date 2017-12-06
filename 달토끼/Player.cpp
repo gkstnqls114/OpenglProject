@@ -38,6 +38,7 @@ void CPlayer::InitModel()
 	InitBody();
 	InitEar();
 	InitLeftFoot();
+	InitRightFoot();
 	InitHelmet();
 
 	std::cout << "Player 모델 생성 완료" << std::endl;
@@ -57,32 +58,14 @@ void CPlayer::DeleteModel()
 
 void CPlayer::Keyboard(const unsigned char & key, const int & x, const int & y)
 {
-	return;
-	int degree = 10;
-
-	if (key == 'a') {
-		m_Matrix->Calu_Rotate(degree, 0, 1, 0);
-	}
-
-	if (key == 'd') {
-		m_Matrix->Calu_Rotate(-degree, 0, -1, 0);
-	}
-
-	if (key == 'w') {
-		m_Matrix->Calu_Rotate(degree, 1, 0, 0);
-	}
-
-	if (key == 's') {
-		m_Matrix->Calu_Rotate(-degree, 1, 0, 0);
-	}
-
+	
 }
 
 void CPlayer::SpecialKeys(const int & key, const int & x, const int & y)
 {
 	//JUMP
 	if (IsJump) return;
-	if (isDead) return;
+	if (IsDead) return;
 
 	if (key == GLUT_KEY_UP) {
 		IsJump = true;
@@ -110,7 +93,7 @@ void CPlayer::SpecialKeys(const int & key, const int & x, const int & y)
 
 void CPlayer::Update()
 {
-	if (isDead) return;
+	if (IsDead) return;
 
 	Jump();
 }
@@ -129,7 +112,7 @@ void CPlayer::Render()
 
 void CPlayer::Player_JumpStart()
 {
-	Process_Side(jumpSide);
+	ProcessSide(jumpSide);
 }
 
 void CPlayer::Player_Jumping()
@@ -199,10 +182,10 @@ void CPlayer::Player_Dead()
 		return;
 	}
 
-	isDead = true;
+	IsDead = true;
 }
 
-void CPlayer::Process_Side(int & lhs)
+void CPlayer::ProcessSide(int & lhs)
 {
 	if (IsRight) {
 		lhs = k_right;
@@ -321,7 +304,7 @@ void CPlayer::Finish_Jump()
 
 	m_Matrix->Set_Translate_13(0);
 
-	Process_Side(prevSide);
+	ProcessSide(prevSide);
 
 	Reset_JumpProperty();
 
@@ -340,7 +323,7 @@ void CPlayer::InitBody()
 
 	CPlayer::m_Rabit_Body = new CObjModel;
 	CPlayer::m_Rabit_Body->LoadObj("Rabit_Body.obj");
-	CPlayer::m_Rabit_Body->LoadTexture("Rabit_Body(24bmp).bmp");
+	CPlayer::m_Rabit_Body->LoadTexture("Rabit_Body.bmp");
 	m_Rabit_Body->MovePivot(CVector3D(0, -20, 10));
 
 }
@@ -351,6 +334,7 @@ void CPlayer::InitEar()
 
 	CPlayer::m_Rabit_Ear = new CObjModel;
 	CPlayer::m_Rabit_Ear->LoadObj("Rabit_Ear.obj");
+	CPlayer::m_Rabit_Ear->LoadTexture("Rabit_Ear.bmp");
 	m_Rabit_Ear->MovePivot(CVector3D(0, -37, -20));
 }
 
@@ -360,6 +344,7 @@ void CPlayer::InitLeftFoot()
 
 	CPlayer::m_Rabit_LeftFoot = new CObjModel;
 	CPlayer::m_Rabit_LeftFoot->LoadObj("Rabit_LeftFoot.obj");
+	CPlayer::m_Rabit_LeftFoot->LoadTexture("Rabit_LeftFoot.bmp");
 	m_Rabit_LeftFoot->MovePivot(CVector3D(0, -10, 10));
 }
 
@@ -369,6 +354,7 @@ void CPlayer::InitRightFoot()
 
 	CPlayer::m_Rabit_RightFoot = new CObjModel;
 	CPlayer::m_Rabit_RightFoot->LoadObj("Rabit_RightFoot.obj");
+	CPlayer::m_Rabit_RightFoot->LoadTexture("Rabit_RightFoot.bmp");
 	m_Rabit_RightFoot->MovePivot(CVector3D(0, -10, 10));
 }
 

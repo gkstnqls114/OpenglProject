@@ -42,17 +42,15 @@ class CPlayer
 	GLdouble m_vector_x{ 0 };
 	GLdouble m_vector_y{ 0 };
 	GLdouble m_vector_z{ 0 };
-	
-	bool isDead{ false };
+	bool IsDead{ false };
 
 	//현재 발판 넘버
 	int m_BoardNum{ 0 };
 	int m_MySide{ 0 };
 
 	
-
 private:
-	void Process_Side(int& lhs);
+	void ProcessSide(int& lhs);
 	void Jump_BodyRotate();
 	void Find_JumpProperty();
 	void Jump();

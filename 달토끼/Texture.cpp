@@ -1,17 +1,17 @@
 #include "pch.h"
-#include <bitset>
 #include "Texture.h"
 
+GLuint CTextureStorage::m_TextureID = 0;
 
-CTexture::CTexture()
+CTextureStorage::CTextureStorage()
 {
+
 }
 
-
-CTexture::~CTexture()
+CTextureStorage::~CTextureStorage()
 {
-	if (m_textureBit != nullptr) {
-		delete[] m_textureBit;
+	if (m_textureByte != nullptr) {
+		delete[] m_textureByte;
 	}
 
 	if (m_textureInfo != nullptr) {
@@ -19,7 +19,7 @@ CTexture::~CTexture()
 	}
 }
 
-void CTexture::LoadDIBitmap(const char * filename)
+void CTextureStorage::LoadDIBitmap(const char * filename)
 {
 	FILE *fp;
 	BITMAPFILEHEADER header;
@@ -75,7 +75,7 @@ void CTexture::LoadDIBitmap(const char * filename)
 	}
 	
 	// 비트맵의 크기만큼 메모리를 할당한다.  
-	if ( (m_textureBit = new GLubyte[m_BitSize] ) == NULL ) {
+	if ( (m_textureByte = new GLubyte[m_BitSize] ) == NULL ) {
 		std::cout << "bit 할당 실패." << std::endl;
 		delete m_textureInfo;  
 		fclose(fp);  
@@ -83,10 +83,10 @@ void CTexture::LoadDIBitmap(const char * filename)
 	} 
 
 	// 비트맵 데이터를 bit(GLubyte 타입)에 저장한다. 
-	if ( fread(m_textureBit, 1, m_BitSize, fp) < (unsigned int)m_BitSize ) {
+	if ( fread(m_textureByte, 1, m_BitSize, fp) < (unsigned int)m_BitSize ) {
 		std::cout << "데이터 입력 실패." << std::endl;
 		delete m_textureInfo;
-		delete m_textureBit;
+		delete m_textureByte;
 		fclose(fp);  
 		return;
 	}
@@ -95,35 +95,35 @@ void CTexture::LoadDIBitmap(const char * filename)
 	fclose(fp);
 }
 
-const GLubyte * CTexture::GetTextureBit() const noexcept
+const GLubyte * CTextureStorage::GetTextureBit() const noexcept
 {
-	if (m_textureBit == nullptr) { return 0; }
+	if (m_textureByte == nullptr) { return 0; }
 
-	return m_textureBit;
+	return m_textureByte;
 }
 
-const BITMAPINFO * CTexture::GetTextureInfo() const noexcept
+const BITMAPINFO * CTextureStorage::GetTextureInfo() const noexcept
 {
 	if (m_textureInfo == nullptr) { return NULL; }
 
 	return m_textureInfo;
 }
 
-const int CTexture::GetWidth() const noexcept
+const int CTextureStorage::GetWidth() const noexcept
 {
 	if (m_textureInfo == nullptr) { return -1; }
 
 	return m_textureInfo->bmiHeader.biWidth;
 }
 
-const int CTexture::GetHeight() const noexcept
+const int CTextureStorage::GetHeight() const noexcept
 {
 	if (m_textureInfo == nullptr) { return -1; }
 
 	return m_textureInfo->bmiHeader.biHeight;
 }
 
-void CTexture::ShowData()
+void CTextureStorage::ShowData()
 {
 	std::cout << "BITMAPINFOHEADER" << std::endl;
 	std::cout << "너비: " << m_textureInfo->bmiHeader.biWidth << std::endl;

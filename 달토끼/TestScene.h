@@ -1,7 +1,7 @@
 #pragma once
 #include "Scene.h"
 
-class CTexture;
+class CTextureStorage;
 
 class CTestScene :
 	public CScene
@@ -11,7 +11,7 @@ class CTestScene :
 	CCamera*		m_Camera{ nullptr };
 	
 	GLint	texture_object;
-	CTexture*		m_texture{ nullptr };
+	CTextureStorage*		m_texture{ nullptr };
 
 	CPlayer * m_Player{ nullptr };
 

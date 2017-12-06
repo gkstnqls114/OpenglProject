@@ -294,7 +294,7 @@ void CObjModel::LoadObj(const char * filename)
 
 void CObjModel::LoadTexture(const char * filename)
 {
-	m_TextureImage = new CTexture;
+	m_TextureImage = new CTextureStorage;
 	
 	glBindTexture(GL_TEXTURE_2D, m_TextureID);
 	m_TextureImage->LoadDIBitmap(filename);
