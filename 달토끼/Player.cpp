@@ -45,30 +45,13 @@ void CPlayer::InitModel()
 
 void CPlayer::DeleteModel()
 {
-	if (CPlayer::m_Rabit_Body != nullptr) {
-		delete m_Rabit_Body;
-		m_Rabit_Body = nullptr;
-	}
+	DeleteBody();
+	DeleteEar();
+	DeleteLeftFoot();
+	DeleteRightFoot();
+	DeleteHelmet();
 
-	if (CPlayer::m_Rabit_Ear != nullptr) {
-		delete m_Rabit_Ear;
-		m_Rabit_Ear = nullptr;
-	}
-
-	if (CPlayer::m_Rabit_LeftFoot != nullptr) {
-		delete m_Rabit_LeftFoot;
-		m_Rabit_LeftFoot = nullptr;
-	}
-
-	if (CPlayer::m_Rabit_RightFoot != nullptr) {
-		delete m_Rabit_RightFoot;
-		m_Rabit_RightFoot = nullptr;
-	}
-
-	if (CPlayer::m_Rabits_Helmet != nullptr) {
-		delete m_Rabits_Helmet;
-		m_Rabits_Helmet = nullptr;
-	}
+	std::cout << "Player 모델 삭제 완료" << std::endl;
 }
 
 
@@ -395,4 +378,44 @@ void CPlayer::InitHelmet()
 
 	CPlayer::m_Rabits_Helmet = new CObjModel;
 	CPlayer::m_Rabits_Helmet->LoadObj("Rabits_Helmet_low.obj");
+}
+
+void CPlayer::DeleteBody()
+{
+	if (CPlayer::m_Rabit_Body == nullptr) return;
+
+	delete m_Rabit_Body;
+	m_Rabit_Body = nullptr;
+}
+
+void CPlayer::DeleteEar()
+{
+	if (CPlayer::m_Rabit_Ear == nullptr) return;
+
+	delete m_Rabit_Ear;
+	m_Rabit_Ear = nullptr;
+}
+
+void CPlayer::DeleteLeftFoot()
+{
+	if (CPlayer::m_Rabit_LeftFoot == nullptr) return;
+
+	delete m_Rabit_LeftFoot;
+	m_Rabit_LeftFoot = nullptr;
+}
+
+void CPlayer::DeleteRightFoot()
+{
+	if (CPlayer::m_Rabit_RightFoot == nullptr) return;
+
+	delete m_Rabit_RightFoot;
+	m_Rabit_RightFoot = nullptr;
+}
+
+void CPlayer::DeleteHelmet()
+{
+	if (CPlayer::m_Rabits_Helmet == nullptr) return;
+
+	delete m_Rabits_Helmet;
+	m_Rabits_Helmet = nullptr;
 }

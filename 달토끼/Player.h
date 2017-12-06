@@ -65,7 +65,11 @@ private:
 	static void InitLeftFoot();
 	static void InitRightFoot();
 	static void InitHelmet();
-
+	static void DeleteBody();
+	static void DeleteEar();
+	static void DeleteLeftFoot();
+	static void DeleteRightFoot();
+	static void DeleteHelmet();
 
 public:
 	CPlayer(CMediator*& mediator);
