@@ -3,25 +3,34 @@
 
 class CTextureStorage
 {
-	int			m_BitSize		{ -1 };
-	int			m_InfoSize		{ -1 };
-	GLubyte*	m_textureByte	{ nullptr }; //데이터를 가리킬 포인터
-	BITMAPINFO* m_textureInfo	{ nullptr };
+public:
+	struct TextureData {
+		bool		IsAlpha{ false };
+		int			BitSize{ -1 };
+		int			InfoSize{ -1 };
+		GLubyte*	texturepByte{ nullptr }; //데이터를 가리킬 포인터
+		BITMAPINFO* textureInfo{ nullptr };
+	};
 
 private:
 	static GLuint m_TextureID;
-	std::vector<GLubyte> m_DataPoint;
+	std::vector<TextureData> m_DataStorage;
+
+private:
+	void DeleteData(TextureData& data);
+	TextureData LoadMyBitmap(const char* filename);
 
 public:
 	CTextureStorage();
 	~CTextureStorage();
 
-	void LoadDIBitmap(const char* filename);
-	const GLubyte* GetTextureBit() const noexcept;
-	const BITMAPINFO* GetTextureInfo() const noexcept;
+	void StoreBitmap(const char* filename, GLuint& ID);
 
-	const int GetWidth() const noexcept;
-	const int GetHeight() const noexcept;
+	void BindBitmap(const GLuint& ID) const;
 
-	void ShowData();
+	const GLubyte* GetTextureBit(const GLuint& ID) const noexcept;
+	const BITMAPINFO* GetTextureInfo(const GLuint& ID) const noexcept;
+	const int GetWidth(const GLuint& ID) const noexcept;
+	const int GetHeight(const GLuint& ID) const noexcept;
+	void ShowData(const GLuint& ID) const;
 };

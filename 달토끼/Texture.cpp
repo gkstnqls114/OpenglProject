@@ -10,25 +10,81 @@ CTextureStorage::CTextureStorage()
 
 CTextureStorage::~CTextureStorage()
 {
-	if (m_textureByte != nullptr) {
-		delete[] m_textureByte;
+
+}
+
+void CTextureStorage::StoreBitmap(const char * filename, GLuint& ID)
+{
+	//나중에 아이디 받는거랑 분리하기
+	glBindTexture(GL_TEXTURE_2D, m_TextureID);
+
+	TextureData Data = LoadMyBitmap(filename);
+	
+	//만약 로드하는데 실패한 경우
+	bool LoadFail =
+		Data.BitSize == -1 ||
+		Data.InfoSize == -1 ||
+		Data.texturepByte == nullptr ||
+		Data.textureInfo == nullptr;
+	if (LoadFail) {
+		std::cout << filename << " 을 읽어오는 것에 실패했습니다." << std::endl;
+		return;
 	}
 
-	if (m_textureInfo != nullptr) {
-		delete[] m_textureInfo;
+
+	//텍스쳐 설정 정의
+	glTexImage2D(
+		GL_TEXTURE_2D,
+		0,
+		3,
+		Data.textureInfo->bmiHeader.biWidth,
+		Data.textureInfo->bmiHeader.biHeight,
+		0,
+		GL_BGR_EXT,
+		GL_UNSIGNED_BYTE, 
+		Data.texturepByte
+	);
+	
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
+	ID = CTextureStorage::m_TextureID;
+	//glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+
+	m_DataStorage.push_back(Data);
+	CTextureStorage::m_TextureID += 1;
+}
+
+void CTextureStorage::DeleteData(TextureData & data)
+{
+	data.BitSize = -1;
+	data.InfoSize = -1;
+
+	if (data.texturepByte != nullptr) {
+		delete data.texturepByte;
+		data.texturepByte = nullptr;
+	}
+
+	if (data.textureInfo != nullptr) {
+		delete data.textureInfo;
+		data.textureInfo = nullptr;
 	}
 }
 
-void CTextureStorage::LoadDIBitmap(const char * filename)
+CTextureStorage::TextureData CTextureStorage::LoadMyBitmap(const char * filename)
 {
 	FILE *fp;
+
+	TextureData temp;
 	BITMAPFILEHEADER header;
 
 	//이미지 파일 불러오기를 실패할 경우
 	if ((fp = fopen(filename, "rb")) == NULL) {
 		fclose(fp);
 		std::cout << "이미지 파일을 불러올 수 없습니다." << std::endl;
-		return;
+		return temp;
 	}
 	std::cout << filename << "을 불러왔습니다. " << std::endl;
 
@@ -36,96 +92,94 @@ void CTextureStorage::LoadDIBitmap(const char * filename)
 	if (fread(&header, sizeof(BITMAPFILEHEADER), 1, fp) < 1) {
 		fclose(fp);
 		std::cout << "맞지 않는 bmp 파일입니다." << std::endl;
-		return;
+		return temp;
 	}
-	std::cout << "헤더 사이즈를 불러왔습니다. " << std::endl;
-	std::cout << "사이즈: " <<  sizeof(BITMAPFILEHEADER) << std::endl;
 
 	//비트맵 파일이 아닐 경우
 	//비트맵 파일은 맨 처음에 BM으로 시작한다.
 	if (header.bfType != 'MB') {
 		fclose(fp);
-		return;
+		return temp;
 	}
+
 	// BITMAPINFOHEADER 위치로 간다. 
-	m_InfoSize = header.bfOffBits - sizeof(BITMAPFILEHEADER);
+	temp.InfoSize = header.bfOffBits - sizeof(BITMAPFILEHEADER);
 
 	// 비트맵 이미지 데이터를 넣을 메모리 할당을 한다.
-	if ((m_textureInfo = new BITMAPINFO[m_InfoSize]) == nullptr) {
+	if ((temp.textureInfo = new BITMAPINFO[temp.InfoSize]) == nullptr) {
 		std::cout << "메모리 할당 실패." << std::endl;
+		DeleteData(temp);
 		fclose(fp);
 		exit(0);
-		return;
+		return temp;
 	}
 
 	// 비트맵 인포 헤더를 읽는다.  
-	if (fread(m_textureInfo, 1, m_InfoSize, fp) < (unsigned int)m_InfoSize) {
+	if (fread(temp.textureInfo, 1, temp.InfoSize, fp) < (unsigned int)temp.InfoSize) {
 		std::cout << "info header read fail." << std::endl;
-		delete m_textureInfo;
+		DeleteData(temp);
 		fclose(fp);
-		return;
+		return temp; 
 	}
 
 	// 비트맵의 크기 설정 
-	if ((m_BitSize = m_textureInfo->bmiHeader.biSizeImage) == 0) {
+	if ((temp.BitSize = temp.textureInfo->bmiHeader.biSizeImage) == 0) {
 		std::cout << "비트맵 크기 설정." << std::endl;
-		int size = ((m_textureInfo->bmiHeader.biWidth) * (m_textureInfo->bmiHeader.biBitCount) + 7) 
-		/ (8 *  abs((m_textureInfo)->bmiHeader.biHeight));
-		m_BitSize = size;
+		int size = ((temp.textureInfo->bmiHeader.biWidth) * (temp.textureInfo->bmiHeader.biBitCount) + 7) 
+		/ (8 *  abs((temp.textureInfo)->bmiHeader.biHeight));
+		temp.BitSize = size;
 	}
 	
 	// 비트맵의 크기만큼 메모리를 할당한다.  
-	if ( (m_textureByte = new GLubyte[m_BitSize] ) == NULL ) {
+	if ( (temp.texturepByte = new GLubyte[temp.BitSize] ) == NULL ) {
 		std::cout << "bit 할당 실패." << std::endl;
-		delete m_textureInfo;  
+		DeleteData(temp);
 		fclose(fp);  
-		return;
+		return temp;
 	} 
 
 	// 비트맵 데이터를 bit(GLubyte 타입)에 저장한다. 
-	if ( fread(m_textureByte, 1, m_BitSize, fp) < (unsigned int)m_BitSize ) {
+	if ( fread(temp.texturepByte, 1, temp.BitSize, fp) < (unsigned int)temp.BitSize ) {
 		std::cout << "데이터 입력 실패." << std::endl;
-		delete m_textureInfo;
-		delete m_textureByte;
+		DeleteData(temp);
 		fclose(fp);  
-		return;
+		return temp;
 	}
 
 	std::cout << "완료" << std::endl;
 	fclose(fp);
+
+	return temp;
 }
 
-const GLubyte * CTextureStorage::GetTextureBit() const noexcept
+void CTextureStorage::BindBitmap(const GLuint & ID) const
 {
-	if (m_textureByte == nullptr) { return 0; }
-
-	return m_textureByte;
+	glBindTexture(GL_TEXTURE_2D, ID);
 }
 
-const BITMAPINFO * CTextureStorage::GetTextureInfo() const noexcept
+const GLubyte * CTextureStorage::GetTextureBit(const GLuint& ID) const noexcept
 {
-	if (m_textureInfo == nullptr) { return NULL; }
-
-	return m_textureInfo;
+	return m_DataStorage[ID].texturepByte;
 }
 
-const int CTextureStorage::GetWidth() const noexcept
+const BITMAPINFO * CTextureStorage::GetTextureInfo(const GLuint& ID) const noexcept
 {
-	if (m_textureInfo == nullptr) { return -1; }
-
-	return m_textureInfo->bmiHeader.biWidth;
+	return m_DataStorage[ID].textureInfo;
 }
 
-const int CTextureStorage::GetHeight() const noexcept
+const int CTextureStorage::GetWidth(const GLuint& ID) const noexcept
 {
-	if (m_textureInfo == nullptr) { return -1; }
-
-	return m_textureInfo->bmiHeader.biHeight;
+	return m_DataStorage[ID].textureInfo->bmiHeader.biWidth;
 }
 
-void CTextureStorage::ShowData()
+const int CTextureStorage::GetHeight(const GLuint& ID) const noexcept
+{
+	return m_DataStorage[ID].textureInfo->bmiHeader.biHeight;
+}
+
+void CTextureStorage::ShowData(const GLuint& ID) const
 {
 	std::cout << "BITMAPINFOHEADER" << std::endl;
-	std::cout << "너비: " << m_textureInfo->bmiHeader.biWidth << std::endl;
-	std::cout << "높이: " << m_textureInfo->bmiHeader.biHeight << std::endl;
+	std::cout << "너비: " << m_DataStorage[ID].textureInfo->bmiHeader.biWidth << std::endl;
+	std::cout << "높이: " << m_DataStorage[ID].textureInfo->bmiHeader.biHeight << std::endl;
 }
