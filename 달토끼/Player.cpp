@@ -35,37 +35,10 @@ CPlayer::~CPlayer()
 
 void CPlayer::InitModel()
 {
-	////단 한 번만 호출
-	//나중에 함수화하기
-	if (CPlayer::m_Rabit_Body == nullptr) {
-		CPlayer::m_Rabit_Body = new CObjModel;
-		CPlayer::m_Rabit_Body->LoadObj("Rabit_Body.obj");
-		CPlayer::m_Rabit_Body->LoadTexture("Rabit_Body(24bmp).bmp");
-		m_Rabit_Body->MovePivot(CVector3D(0, -20, 10));
-	}
-
-	if (CPlayer::m_Rabit_Ear == nullptr) {
-		CPlayer::m_Rabit_Ear = new CObjModel;
-		CPlayer::m_Rabit_Ear->LoadObj("Rabit_Ear.obj");
-		m_Rabit_Ear->MovePivot(CVector3D(0, -37, -20));
-	}
-
-	if (CPlayer::m_Rabit_LeftFoot == nullptr) {
-		CPlayer::m_Rabit_LeftFoot = new CObjModel;
-		CPlayer::m_Rabit_LeftFoot->LoadObj("Rabit_LeftFoot.obj");
-		m_Rabit_LeftFoot->MovePivot(CVector3D(0, -10, 10));
-	}
-
-	if (CPlayer::m_Rabit_RightFoot == nullptr) {
-		CPlayer::m_Rabit_RightFoot = new CObjModel;
-		CPlayer::m_Rabit_RightFoot->LoadObj("Rabit_RightFoot.obj");
-		m_Rabit_RightFoot->MovePivot(CVector3D(0, -10, 10));
-	}
-
-	if (CPlayer::m_Rabits_Helmet == nullptr) {
-		CPlayer::m_Rabits_Helmet = new CObjModel;
-		CPlayer::m_Rabits_Helmet->LoadObj("Rabits_Helmet_low.obj");
-	}
+	InitBody();
+	InitEar();
+	InitLeftFoot();
+	InitHelmet();
 
 	std::cout << "Player 모델 생성 완료" << std::endl;
 }
@@ -376,4 +349,50 @@ void CPlayer::Finish_Jump()
 	else {
 		m_Mediator->Player_Dead();
 	}
+}
+
+void CPlayer::InitBody()
+{
+	if (CPlayer::m_Rabit_Body != nullptr) return;
+
+	CPlayer::m_Rabit_Body = new CObjModel;
+	CPlayer::m_Rabit_Body->LoadObj("Rabit_Body.obj");
+	CPlayer::m_Rabit_Body->LoadTexture("Rabit_Body(24bmp).bmp");
+	m_Rabit_Body->MovePivot(CVector3D(0, -20, 10));
+
+}
+
+void CPlayer::InitEar()
+{
+	if (CPlayer::m_Rabit_Ear != nullptr) return;
+
+	CPlayer::m_Rabit_Ear = new CObjModel;
+	CPlayer::m_Rabit_Ear->LoadObj("Rabit_Ear.obj");
+	m_Rabit_Ear->MovePivot(CVector3D(0, -37, -20));
+}
+
+void CPlayer::InitLeftFoot()
+{
+	if (CPlayer::m_Rabit_LeftFoot != nullptr) return;
+
+	CPlayer::m_Rabit_LeftFoot = new CObjModel;
+	CPlayer::m_Rabit_LeftFoot->LoadObj("Rabit_LeftFoot.obj");
+	m_Rabit_LeftFoot->MovePivot(CVector3D(0, -10, 10));
+}
+
+void CPlayer::InitRightFoot()
+{
+	if (CPlayer::m_Rabit_RightFoot != nullptr) return;
+
+	CPlayer::m_Rabit_RightFoot = new CObjModel;
+	CPlayer::m_Rabit_RightFoot->LoadObj("Rabit_RightFoot.obj");
+	m_Rabit_RightFoot->MovePivot(CVector3D(0, -10, 10));
+}
+
+void CPlayer::InitHelmet()
+{
+	if (CPlayer::m_Rabits_Helmet != nullptr) return;
+
+	CPlayer::m_Rabits_Helmet = new CObjModel;
+	CPlayer::m_Rabits_Helmet->LoadObj("Rabits_Helmet_low.obj");
 }

@@ -10,6 +10,13 @@
 
 void CObjModel::ModelRender()
 {
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
+	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+
 	glBindTexture(GL_TEXTURE_2D, m_TextureID);
 	for (int Face_index = 0; Face_index < m_FaceNum; ++Face_index) {
 		//glBegin(GL_LINE_LOOP);
@@ -29,7 +36,7 @@ void CObjModel::ModelRender()
 
 		glEnd();
 	}
-	glBindTexture(GL_TEXTURE_2D, 0);
+
 }
 
 void CObjModel::Find_VertexNum(const char*& filename)
@@ -288,19 +295,13 @@ void CObjModel::LoadObj(const char * filename)
 void CObjModel::LoadTexture(const char * filename)
 {
 	m_TextureImage = new CTexture;
+	
 	glBindTexture(GL_TEXTURE_2D, m_TextureID);
 	m_TextureImage->LoadDIBitmap(filename);
 	glTexImage2D(GL_TEXTURE_2D, 0, 3, 
 		m_TextureImage->GetWidth(), m_TextureImage->GetHeight(), 0,
 		GL_BGR_EXT, GL_UNSIGNED_BYTE,
 		m_TextureImage->GetTextureBit());
-
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-
-	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 
 	std::cout << filename << ": 텍스쳐 로드 완료" << std::endl;
 }

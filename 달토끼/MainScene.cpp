@@ -35,6 +35,8 @@ CMainScene::CMainScene()
 	m_Earth = new CEarth((CVector3D(-20, -50, 100)));
 	m_PLAY = new CPLAY_word(CVector3D(- 150, -250, 0));
 
+	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_TEXTURE_2D);
 }
 
 

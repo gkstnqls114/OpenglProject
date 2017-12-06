@@ -31,6 +31,28 @@ CGameScene::CGameScene()
 	m_Earth = new CEarth(CVector3D(EarthPos[0], EarthPos[1] - DownY + 10, EarthPos[2]));
 
 	m_Mediator->Set_Colleague(m_Player, m_Road, m_Camera);
+
+	//임시로 쓰이는 라이트값
+	GLfloat gray[] = { 0.7f, 0.7f, 0.7f, 1.0f };
+	GLfloat ambient[] = { 1.f, 0.7f, 1.f, 1.0f };
+	GLfloat diffuse[] = { 1.f, 1.f, 1.f, 1.f };
+	GLfloat  specref[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+
+	GLfloat lightPos[] = { 0, 100, 10, 0 };
+
+	glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, gray);
+	glMaterialfv(GL_FRONT, GL_SPECULAR, specref);
+	glMateriali(GL_FRONT, GL_SHININESS, 64);
+
+	glLightfv(GL_LIGHT0, GL_AMBIENT, ambient);
+	glLightfv(GL_LIGHT0, GL_DIFFUSE, diffuse);
+	glLightfv(GL_LIGHT0, GL_POSITION, lightPos);
+
+	glEnable(GL_LIGHTING);
+	glEnable(GL_LIGHT0);
+	//임시로 쓰이는 라이트값
+	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_TEXTURE_2D);
 }
 
 CGameScene::~CGameScene()

@@ -38,7 +38,6 @@ class CPlayer
 	bool IsRight{ false };
 	bool IsLeft{ false };
 
-	
 	int m_JumpTime{ 0 };
 	GLdouble m_vector_x{ 0 };
 	GLdouble m_vector_y{ 0 };
@@ -60,6 +59,13 @@ private:
 	void Calculate_JumpVector();
 	void Reset_JumpProperty();
 	void Finish_Jump();
+
+	static void InitBody();
+	static void InitEar();
+	static void InitLeftFoot();
+	static void InitRightFoot();
+	static void InitHelmet();
+
 
 public:
 	CPlayer(CMediator*& mediator);

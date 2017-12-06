@@ -16,19 +16,23 @@ CTestScene::CTestScene()
 
 	m_Player = new CPlayer(m_Mediator);
 
-	glEnable(GL_DEPTH_TEST);
-
-	GLfloat gray[] = { 0.5f, 0.5f, 0.5f, 1.0f }; 
+	GLfloat gray[] = { 0.7f, 0.7f, 0.7f, 1.0f };
+	GLfloat ambient[] = { 1.f, 0.7f, 1.f, 1.0f };
+	GLfloat diffuse[] = { 1.f, 1.f, 1.f, 1.f };
 	GLfloat  specref[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+
 	GLfloat lightPos[] = {0, 100, 10, 0};
 	
 	glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, gray); 
 	glMaterialfv(GL_FRONT, GL_SPECULAR, specref);
 	glMateriali(GL_FRONT, GL_SHININESS, 64);
 
+	glLightfv(GL_LIGHT0, GL_AMBIENT, ambient);
+	glLightfv(GL_LIGHT0, GL_DIFFUSE, diffuse);
 	glLightfv(GL_LIGHT0, GL_POSITION, lightPos);
 
-	//glEnable(GL_LIGHTING);
+	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_LIGHTING);
 	glEnable(GL_LIGHT0);
 	glEnable(GL_TEXTURE_2D);
 }
@@ -108,4 +112,5 @@ void CTestScene::Keyboard(const unsigned char & key, const int & x, const int & 
 
 void CTestScene::SpecialKeys(const int & key, const int & x, const int & y)
 {
+
 }
