@@ -8,6 +8,22 @@
 #include "MainScene.h"
 
 
+void CMainScene::SelectCursor()
+{
+	if (m_Cursor == k_EXIT) {
+		m_CursorPos = m_EXIT->GetPos();
+		m_CursorPos[1] += 100;
+		m_PLAY->NotSelected();
+		m_EXIT->Selected();
+	}
+	else if (m_Cursor == k_PLAY) {
+		m_CursorPos = m_PLAY->GetPos();
+		m_CursorPos[1] += 100;
+		m_PLAY->Selected();
+		m_EXIT->NotSelected();
+	}
+}
+
 void CMainScene::WordRender()
 {
 	//앞에 있는 play, exit
@@ -16,11 +32,20 @@ void CMainScene::WordRender()
 	glLoadIdentity();
 	glOrtho(-glutGet(GLUT_WINDOW_WIDTH) / 2, glutGet(GLUT_WINDOW_WIDTH) / 2,
 		- static_cast<float>(glutGet(GLUT_WINDOW_HEIGHT)) / 2, static_cast<float>(glutGet(GLUT_WINDOW_HEIGHT)) / 2,
-		0.1, 600);
+		-1.f, 600);
 	glMatrixMode(GL_MODELVIEW);
+
+	//커서
 	glColor3f(1.f, 1.f, 1.f);
+	glPushMatrix();
+	glTranslated(m_CursorPos[0], m_CursorPos[1], m_CursorPos[2]);
+	glRotated(90, 1, 0, 0);
+	glutSolidCone(10, 15, 10, 10);
+	glPopMatrix();
+
+	//모델
 	m_PLAY->Render();
-	//m_EXIT->Render();
+	m_EXIT->Render();
 }
 
 CMainScene::CMainScene()
@@ -31,10 +56,14 @@ CMainScene::CMainScene()
 	m_Camera->Initialize(CVector3D<>(0.f, 0.f, 0.f), 350, 0.1f, 600.f, 60);
 	m_Camera->Rotate(0, 0);
 
-	m_Moon = new CMoon(CVector3D<>(80, 50, -100));
+	//m_Moon = new CMoon(CVector3D<>(80, 50, -100));
 	m_Earth = new CEarth((CVector3D<>(-20, -50, 100)));
 	m_PLAY = new CPLAY_word(CVector3D<>(- 150, -250, 0));
+	//뭔가 모델이 이상해
+	//나중에 수정
+	m_EXIT = new CEXIT_word(CVector3D<>(150, -250, 0));
 
+	SelectCursor();
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_TEXTURE_2D);
 }
@@ -61,7 +90,7 @@ void CMainScene::Render()
 	glPushMatrix();
 	//glRotated(degree, 0, 1, 0);
 
-	m_Moon->Render();
+	//m_Moon->Render();
 	m_Earth->Render();
 	
 	glPopMatrix();
@@ -89,7 +118,7 @@ void CMainScene::Timer(const int & value)
 
 void CMainScene::Update()
 {
-	m_Moon->Update();
+	//m_Moon->Update();
 	m_Earth->Update();
 	m_Camera->LookAt();
 }
@@ -127,7 +156,6 @@ void CMainScene::SpecialKeys(const int & key, const int & x, const int & y)
 
 		if (m_Cursor > k_EXIT) {
 			m_Cursor = k_PLAY;
-			m_PLAY->Selected();
 		}
 	}
 	else if (key == GLUT_KEY_LEFT) {
@@ -135,11 +163,12 @@ void CMainScene::SpecialKeys(const int & key, const int & x, const int & y)
 		
 		if (m_Cursor > k_PLAY) {
 			m_Cursor = k_EXIT;
-			m_PLAY->NotSelected();
 		}
 	}
 	else if (key == GLUT_ENTERED) {
 		//확인
 
 	}
+
+	SelectCursor();
 }

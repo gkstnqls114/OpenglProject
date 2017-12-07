@@ -21,17 +21,7 @@ void CTextureStorage::StoreBitmap(const char * filename, GLuint& ID)
 	BITMAPINFO* Info;
 	GLubyte * pData = LoadMyBitmap(filename, Info);
 	
-	//만약 로드하는데 실패한 경우
-	//bool LoadFail =
-	//	pData.BitSize == -1 ||
-	//	pData.InfoSize == -1 ||
-	//	pData.texturepByte == nullptr;
-	//if (LoadFail) {
-	//	std::cout << filename << " 을 읽어오는 것에 실패했습니다." << std::endl;
-	//	return;
-	//}
 	if (pData == nullptr) return;
-
 
 	//텍스쳐 설정 정의
 	glTexImage2D(
@@ -64,7 +54,7 @@ void CTextureStorage::StoreBitmap(const char * filename, GLuint& ID)
 
 GLubyte * CTextureStorage::LoadMyBitmap(const char * filename, BITMAPINFO*& info)
 {
-	FILE *fp;
+	FILE *fp = NULL;
 	
 	GLubyte * pbit;
 	int BitSize = -1;
@@ -73,8 +63,8 @@ GLubyte * CTextureStorage::LoadMyBitmap(const char * filename, BITMAPINFO*& info
 
 	//이미지 파일 불러오기를 실패할 경우
 	if ((fp = fopen(filename, "rb")) == NULL) {
-		fclose(fp);
 		std::cout << "이미지 파일을 불러올 수 없습니다." << std::endl;
+		fclose(fp);
 		return nullptr;
 	}
 	std::cout << filename << "을 불러왔습니다. " << std::endl;

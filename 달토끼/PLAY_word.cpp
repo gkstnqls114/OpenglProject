@@ -6,8 +6,11 @@
 
 CPLAY_word::CPLAY_word(const CVector3D<>& pos)
 {
+	if (m_model != nullptr) return;
+
 	m_model = new CObjModel;
-	m_model->LoadObj("sample_play.obj");
+	m_model->LoadObj("PLAYWORD.obj");
+	m_model->LoadTexture("PLAYWORD.bmp");
 
 	m_Position = pos;
 	m_matrix = new CMatrix;

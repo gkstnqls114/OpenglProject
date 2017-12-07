@@ -24,9 +24,9 @@ void CGLFramework::Initialize(int argc, char ** argv, int width, int height, int
 	glutCreateWindow("Example1");
 
 	m_CurrScene =
-		//new CGameScene{};
-		//new CMainScene;
-		new CTestScene;
+		//new CGameScene;
+		new CMainScene;
+		//new CTestScene;
 	m_CurrScene->Initialize();
 }
 

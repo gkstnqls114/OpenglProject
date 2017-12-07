@@ -10,6 +10,7 @@ void CMoon::InitModel()
 	if (m_Moon != nullptr) return;
 	m_Moon = new CObjModel;
 	m_Moon->LoadObj("sample_moon.obj");
+	//m_Moon->LoadTexture("");
 }
 
 void CMoon::DeleteModel()

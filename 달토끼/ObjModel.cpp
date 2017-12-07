@@ -10,6 +10,13 @@
 
 void CObjModel::ModelRender()
 {
+	bool IsNotLoad =
+		m_pVertex == nullptr ||
+		m_pTexture == nullptr ||
+		m_pNormal == nullptr ||
+		m_pFace == nullptr;
+	if (IsNotLoad) return;
+
 	glBindTexture(GL_TEXTURE_2D, m_TextureID);
 	for (int Face_index = 0; Face_index < m_FaceNum; ++Face_index) {
 		//glBegin(GL_LINE_LOOP);

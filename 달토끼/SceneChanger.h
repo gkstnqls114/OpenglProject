@@ -4,7 +4,8 @@ class CScene;
 
 class CSceneChanger
 {
-	CScene* m_current{ nullptr };
+private:
+	static CScene* m_CurrScene;
 
 public:
 	CSceneChanger();

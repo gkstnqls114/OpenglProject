@@ -29,6 +29,7 @@ class CMainScene :
 	float degree{ 0.f };
 
 private:
+	void SelectCursor();
 	void WordRender(); //ortho ¶§¹®¿¡...
 
 public:

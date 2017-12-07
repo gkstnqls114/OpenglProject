@@ -76,6 +76,15 @@
     <Filter Include="소스 파일\Lighting">
       <UniqueIdentifier>{4d3a7e83-06f2-471d-9204-b2e7d5146902}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\GLFramework\Scene\Game">
+      <UniqueIdentifier>{857a72b4-25db-465e-9afb-cd368176b0d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\GLFramework\Scene\Main">
+      <UniqueIdentifier>{612d5732-4a89-4ef1-b34c-5c63bcf50cd6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\GLFramework\Scene\Test">
+      <UniqueIdentifier>{f47d3332-19e9-4669-a7e9-67a30a62a640}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GLFramework.cpp">
@@ -129,12 +138,6 @@
     <ClCompile Include="Earth.cpp">
       <Filter>소스 파일\Colleague\Earth</Filter>
     </ClCompile>
-    <ClCompile Include="GameScene.cpp">
-      <Filter>소스 파일\GLFramework\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="MainScene.cpp">
-      <Filter>소스 파일\GLFramework\Scene</Filter>
-    </ClCompile>
     <ClCompile Include="SceneChanger.cpp">
       <Filter>소스 파일\Mediator</Filter>
     </ClCompile>
@@ -147,9 +150,6 @@
     <ClCompile Include="EXIT_word.cpp">
       <Filter>소스 파일\Word\EXIT</Filter>
     </ClCompile>
-    <ClCompile Include="TestScene.cpp">
-      <Filter>소스 파일\GLFramework\Scene</Filter>
-    </ClCompile>
     <ClCompile Include="Lighting.cpp">
       <Filter>소스 파일\Lighting</Filter>
     </ClCompile>
@@ -161,6 +161,15 @@
     </ClCompile>
     <ClCompile Include="Vector3D.tpp">
       <Filter>소스 파일\Vector3D</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScene.cpp">
+      <Filter>소스 파일\GLFramework\Scene\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="MainScene.cpp">
+      <Filter>소스 파일\GLFramework\Scene\Main</Filter>
+    </ClCompile>
+    <ClCompile Include="TestScene.cpp">
+      <Filter>소스 파일\GLFramework\Scene\Test</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -215,12 +224,6 @@
     <ClInclude Include="Earth.h">
       <Filter>소스 파일\Colleague\Earth</Filter>
     </ClInclude>
-    <ClInclude Include="GameScene.h">
-      <Filter>소스 파일\GLFramework\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="MainScene.h">
-      <Filter>소스 파일\GLFramework\Scene</Filter>
-    </ClInclude>
     <ClInclude Include="SceneChanger.h">
       <Filter>소스 파일\Mediator</Filter>
     </ClInclude>
@@ -233,9 +236,6 @@
     <ClInclude Include="EXIT_word.h">
       <Filter>소스 파일\Word\EXIT</Filter>
     </ClInclude>
-    <ClInclude Include="TestScene.h">
-      <Filter>소스 파일\GLFramework\Scene</Filter>
-    </ClInclude>
     <ClInclude Include="Lighting.h">
       <Filter>소스 파일\Lighting</Filter>
     </ClInclude>
@@ -244,6 +244,15 @@
     </ClInclude>
     <ClInclude Include="Texture.h">
       <Filter>소스 파일\Obj\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScene.h">
+      <Filter>소스 파일\GLFramework\Scene\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="MainScene.h">
+      <Filter>소스 파일\GLFramework\Scene\Main</Filter>
+    </ClInclude>
+    <ClInclude Include="TestScene.h">
+      <Filter>소스 파일\GLFramework\Scene\Test</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

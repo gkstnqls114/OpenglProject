@@ -144,9 +144,9 @@ template <typename T, int NUM>
   T& CVector3D<T, NUM>::operator[](const int& num) const
 {
 	// TODO: 여기에 반환 구문을 삽입합니다.
-	if (num > 3 || num < 0) {
+	if (num >= NUM || num < 0) {
 		std::cout << "Out Range" << std::endl;
-		return vector[NUM]; //일단 임의로라도 제공..
+		return vector[0]; //일단 임의로라도 제공..
 	}
 
 	return vector[num];
