@@ -153,11 +153,14 @@
     <ClCompile Include="TestScene.cpp">
       <Filter>소스 파일\GLFramework\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="Texture.cpp">
-      <Filter>소스 파일\Obj\Texture</Filter>
-    </ClCompile>
     <ClCompile Include="Lighting.cpp">
       <Filter>소스 파일\Lighting</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureStorage.cpp">
+      <Filter>소스 파일\Obj\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>소스 파일\Obj\Texture</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -233,11 +236,14 @@
     <ClInclude Include="TestScene.h">
       <Filter>소스 파일\GLFramework\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Texture.h">
-      <Filter>소스 파일\Obj\Texture</Filter>
-    </ClInclude>
     <ClInclude Include="Lighting.h">
       <Filter>소스 파일\Lighting</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureStorage.h">
+      <Filter>소스 파일\Obj\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>소스 파일\Obj\Texture</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

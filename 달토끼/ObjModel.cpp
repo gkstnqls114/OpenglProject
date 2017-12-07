@@ -1,7 +1,7 @@
 #include "pch.h"
 #include <fstream>
 #include <string>
-#include "Texture.h"
+#include "TextureStorage.h"
 #include "Matrix.h"
 #include "Vector3D.h"
 #include "ObjFace.h"
