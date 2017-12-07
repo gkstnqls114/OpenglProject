@@ -18,7 +18,7 @@ void CMainScene::WordRender()
 		- static_cast<float>(glutGet(GLUT_WINDOW_HEIGHT)) / 2, static_cast<float>(glutGet(GLUT_WINDOW_HEIGHT)) / 2,
 		0.1, 600);
 	glMatrixMode(GL_MODELVIEW);
-	glColor3f(0.1f, 0.7f, 0.3f);
+	glColor3f(1.f, 1.f, 1.f);
 	m_PLAY->Render();
 	//m_EXIT->Render();
 }
@@ -28,12 +28,12 @@ CMainScene::CMainScene()
 	m_Mediator = new CMediator;
 
 	m_Camera = new CCamera(m_Mediator);
-	m_Camera->Initialize(CVector3D(0.f, 0.f, 0.f), 350, 0.1f, 600.f, 60);
+	m_Camera->Initialize(CVector3D<>(0.f, 0.f, 0.f), 350, 0.1f, 600.f, 60);
 	m_Camera->Rotate(0, 0);
 
-	m_Moon = new CMoon(CVector3D(80, 50, -100));
-	m_Earth = new CEarth((CVector3D(-20, -50, 100)));
-	m_PLAY = new CPLAY_word(CVector3D(- 150, -250, 0));
+	m_Moon = new CMoon(CVector3D<>(80, 50, -100));
+	m_Earth = new CEarth((CVector3D<>(-20, -50, 100)));
+	m_PLAY = new CPLAY_word(CVector3D<>(- 150, -250, 0));
 
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_TEXTURE_2D);

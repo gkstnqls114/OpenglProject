@@ -33,14 +33,14 @@ void CRoad::InitFootBoardPos(const GLdouble& distance)
 
 		float tranlateX = Road_Distance_X * nowSide;
 		float tranlateZ = -x * distance;
-		m_pFootBoard[x].InitPosition(CVector3D(tranlateX, 0, tranlateZ));
+		m_pFootBoard[x].InitPosition(CVector3D<>(tranlateX, 0, tranlateZ));
 
 		prev_Side = nowSide;
 	}
 	//마지막은 반드시 가운데
 	float tranlateX = 0;
 	float tranlateZ = -(m_boardNum - 1) * distance;
-	m_pFootBoard[m_boardNum - 1].InitPosition(CVector3D(tranlateX, 0, tranlateZ));
+	m_pFootBoard[m_boardNum - 1].InitPosition(CVector3D<>(tranlateX, 0, tranlateZ));
 
 }
 
@@ -88,12 +88,12 @@ void CRoad::Update()
 	}
 }
 
-const CVector3D CRoad::GetLastPos() const noexcept
+const CVector3D<> CRoad::GetLastPos() const noexcept
 {
 	return m_pFootBoard[m_boardNum - 1].GetPos();
 }
 
-const CVector3D CRoad::GetFirstPos() const noexcept
+const CVector3D<> CRoad::GetFirstPos() const noexcept
 {
 	return m_pFootBoard[0].GetPos();
 }

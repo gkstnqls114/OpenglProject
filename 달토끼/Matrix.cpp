@@ -21,7 +21,7 @@ void CMatrix::MultiMatrix()
 	glMultMatrixf(m_Scale_Matrix);
 }
 
-void CMatrix::Calu_Tranlate(const CVector3D & rhs)
+void CMatrix::Calu_Tranlate(const CVector3D<> & rhs)
 {
 	glPushMatrix();
 	//glLoadIdentity();
@@ -31,7 +31,7 @@ void CMatrix::Calu_Tranlate(const CVector3D & rhs)
 	glPopMatrix();
 }
 
-void CMatrix::Calu_Tranlate(CVector3D && rhs)
+void CMatrix::Calu_Tranlate(CVector3D<> && rhs)
 {
 	glPushMatrix();
 	//glLoadIdentity();

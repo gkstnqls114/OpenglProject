@@ -11,7 +11,7 @@ CTestScene::CTestScene()
 	m_Mediator = new CMediator;
 
 	m_Camera = new CCamera(m_Mediator);
-	m_Camera->Initialize(CVector3D(0.f, 0.f, 0.f), 100, 0.1f, 600.f, 60);
+	m_Camera->Initialize(CVector3D<>(0.f, 0.f, 0.f), 100, 0.1f, 600.f, 60);
 	m_Camera->Rotate(25, 20);
 
 	m_Player = new CPlayer(m_Mediator);

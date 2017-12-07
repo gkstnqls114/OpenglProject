@@ -23,7 +23,7 @@ class CMainScene :
 		k_PLAY,
 		k_EXIT
 	};
-	CVector3D		m_CursorPos;
+	CVector3D<>		m_CursorPos;
 	int				m_Cursor{ k_PLAY };
 
 	float degree{ 0.f };

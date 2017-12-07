@@ -27,8 +27,8 @@ public:
 	void Render();
 	void Update();
 
-	const CVector3D GetLastPos() const noexcept;
-	const CVector3D GetFirstPos() const noexcept;
+	const CVector3D<> GetLastPos() const noexcept;
+	const CVector3D<> GetFirstPos() const noexcept;
 
 	//Mediator
 	virtual void Player_JumpStart();

@@ -13,7 +13,7 @@ CGameScene::CGameScene()
 	m_Mediator = new CMediator;
 
 	m_Camera = new CCamera(m_Mediator);
-	m_Camera->Initialize(CVector3D(0.f, 0.f, 0.f), 130, 0.1f, 600.f, 60);
+	m_Camera->Initialize(CVector3D<>(0.f, 0.f, 0.f), 130, 0.1f, 600.f, 60);
 	m_Camera->Rotate(25, 20);
 	//m_Camera->Rotate(90, 0);
 
@@ -24,11 +24,11 @@ CGameScene::CGameScene()
 	m_Road = new CRoad(distance, m_Mediator);
 
 	GLdouble DownY = 60;
-	CVector3D MoonPos = m_Road->GetLastPos();
-	m_Moon = new CMoon(CVector3D(MoonPos[0] , MoonPos[1]- DownY, MoonPos[2]));
+	CVector3D<> MoonPos = m_Road->GetLastPos();
+	m_Moon = new CMoon(CVector3D<>(MoonPos[0] , MoonPos[1]- DownY, MoonPos[2]));
 
-	CVector3D EarthPos = m_Road->GetFirstPos();
-	m_Earth = new CEarth(CVector3D(EarthPos[0], EarthPos[1] - DownY + 10, EarthPos[2]));
+	CVector3D<> EarthPos = m_Road->GetFirstPos();
+	m_Earth = new CEarth(CVector3D<>(EarthPos[0], EarthPos[1] - DownY + 10, EarthPos[2]));
 
 	m_Mediator->Set_Colleague(m_Player, m_Road, m_Camera);
 

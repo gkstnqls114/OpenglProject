@@ -93,9 +93,6 @@
     <ClCompile Include="Matrix.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Vector3D.cpp">
-      <Filter>소스 파일\Vector3D</Filter>
-    </ClCompile>
     <ClCompile Include="FootBoard.cpp">
       <Filter>소스 파일\Colleague\Road</Filter>
     </ClCompile>
@@ -161,6 +158,9 @@
     </ClCompile>
     <ClCompile Include="Texture.cpp">
       <Filter>소스 파일\Obj\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector3D.tpp">
+      <Filter>소스 파일\Vector3D</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

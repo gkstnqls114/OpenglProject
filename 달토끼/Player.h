@@ -2,7 +2,6 @@
 
 class CObjModel;
 class CMatrix;
-class CVector3D;
 class CMessageSender;
 class CMediator;
 class CRoad;

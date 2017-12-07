@@ -20,7 +20,7 @@ void CMoon::DeleteModel()
 	m_Moon = nullptr;
 }
 
-CMoon::CMoon(const CVector3D& Pos)
+CMoon::CMoon(const CVector3D<>& Pos)
 {
 	InitModel();
 
@@ -62,5 +62,5 @@ void CMoon::Float()
 	}
 
 	GLdouble MoveY = Interpolation(m_BeginY, m_EndY, m_Time);
-	m_Matrix->Calu_Tranlate(CVector3D(0, MoveY, 0));
+	m_Matrix->Calu_Tranlate(CVector3D<>(0, MoveY, 0));
 }

@@ -20,7 +20,7 @@ class CFootBoard
 
 	int m_Side{ -2 }; //-2는 존재하지 않음
 
-	CVector3D m_Position{ 0, 0, 0 };
+	CVector3D<> m_Position{ 0, 0, 0 };
 
 	float m_r{ 1.f };
 	float m_g{ 0.f };
@@ -70,12 +70,12 @@ public:
 	static void InitModel();
 	static void DeleteModel();
 	void InitPosition(const int& x, const int & y, const int& z);
-	void InitPosition(const CVector3D& rhs);
+	void InitPosition(const CVector3D<>& rhs);
 
 	void Render();
 	void Update();
 
-	const CVector3D GetPos() const noexcept { return m_Position; }
+	const CVector3D<> GetPos() const noexcept { return m_Position; }
 	const bool GetDisappear() const { return IsDisappear; }
 	const int GetSide() const noexcept { return m_Side; }
 };

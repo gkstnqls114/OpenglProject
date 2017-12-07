@@ -262,7 +262,7 @@ void CPlayer::Jump()
 	if (!IsJump) return;
 
 	Calculate_JumpVector();
-	m_Matrix->Calu_Tranlate(CVector3D(m_vector_x, m_vector_y, m_vector_z));
+	m_Matrix->Calu_Tranlate(CVector3D<>(m_vector_x, m_vector_y, m_vector_z));
 	
 	m_Mediator->Player_Jumping();
 
@@ -324,7 +324,7 @@ void CPlayer::InitBody()
 	CPlayer::m_Rabit_Body = new CObjModel;
 	CPlayer::m_Rabit_Body->LoadObj("Rabit_Body.obj");
 	CPlayer::m_Rabit_Body->LoadTexture("Rabit_Body.bmp");
-	m_Rabit_Body->MovePivot(CVector3D(0, -20, 10));
+	m_Rabit_Body->MovePivot(CVector3D<>(0, -20, 10));
 
 }
 
@@ -335,7 +335,7 @@ void CPlayer::InitEar()
 	CPlayer::m_Rabit_Ear = new CObjModel;
 	CPlayer::m_Rabit_Ear->LoadObj("Rabit_Ear.obj");
 	CPlayer::m_Rabit_Ear->LoadTexture("Rabit_Ear.bmp");
-	m_Rabit_Ear->MovePivot(CVector3D(0, -37, -20));
+	m_Rabit_Ear->MovePivot(CVector3D<>(0, -37, -20));
 }
 
 void CPlayer::InitLeftFoot()
@@ -345,7 +345,7 @@ void CPlayer::InitLeftFoot()
 	CPlayer::m_Rabit_LeftFoot = new CObjModel;
 	CPlayer::m_Rabit_LeftFoot->LoadObj("Rabit_LeftFoot.obj");
 	CPlayer::m_Rabit_LeftFoot->LoadTexture("Rabit_LeftFoot.bmp");
-	m_Rabit_LeftFoot->MovePivot(CVector3D(0, -10, 10));
+	m_Rabit_LeftFoot->MovePivot(CVector3D<>(0, -10, 10));
 }
 
 void CPlayer::InitRightFoot()
@@ -355,7 +355,7 @@ void CPlayer::InitRightFoot()
 	CPlayer::m_Rabit_RightFoot = new CObjModel;
 	CPlayer::m_Rabit_RightFoot->LoadObj("Rabit_RightFoot.obj");
 	CPlayer::m_Rabit_RightFoot->LoadTexture("Rabit_RightFoot.bmp");
-	m_Rabit_RightFoot->MovePivot(CVector3D(0, -10, 10));
+	m_Rabit_RightFoot->MovePivot(CVector3D<>(0, -10, 10));
 }
 
 void CPlayer::InitHelmet()

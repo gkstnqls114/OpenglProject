@@ -17,7 +17,7 @@ private:
 	static void DeleteModel();
 
 public:
-	CMoon(const CVector3D& Pos);
+	CMoon(const CVector3D<>& Pos);
 	~CMoon();
 
 	void Update();

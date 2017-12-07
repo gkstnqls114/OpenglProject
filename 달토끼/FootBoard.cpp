@@ -94,7 +94,7 @@ void CFootBoard::InitPosition(const int & x, const int & y, const int & z)
 	glPopMatrix();
 }
 
-void CFootBoard::InitPosition(const CVector3D & rhs)
+void CFootBoard::InitPosition(const CVector3D<> & rhs)
 {
 	if (rhs[0] < 0) {
 		m_Side = -1;

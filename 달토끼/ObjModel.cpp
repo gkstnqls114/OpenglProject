@@ -82,9 +82,9 @@ void CObjModel::Find_VertexNum(const char*& filename)
 
 	//구한 개수를 동적할당 한다.
 	//동적할당: 배열
-	m_pVertex = new CVector3D[m_VertexNum];
-	m_pNormal = new CVector3D[m_NormalNum];
-	m_pTexture = new CVector3D[m_TextureNum];
+	m_pVertex = new CVector3D<>[m_VertexNum];
+	m_pNormal = new CVector3D<>[m_NormalNum];
+	m_pTexture = new CVector3D<>[m_TextureNum];
 	m_pFace = new CObjFace[m_FaceNum];
 
 }
@@ -285,13 +285,9 @@ void CObjModel::LoadObj(const char * filename)
 	Save_Information(filename);
 }
 
-void CObjModel::LoadTexture(const char * filename)
+void CObjModel::LoadTexture(const char* filename)
 {
-	m_TextureImage = new CTextureStorage;
-	
-	m_TextureImage->StoreBitmap(filename, m_TextureID);
-
-	std::cout << filename << ": 텍스쳐 로드 완료" << std::endl;
+	m_TextureStroage->StoreBitmap(filename, m_TextureID);
 }
 
 void CObjModel::Render()
@@ -314,16 +310,16 @@ void CObjModel::Render()
 
 void CObjModel::MovePivot(const GLdouble & x, const GLdouble & y, const GLdouble & z)
 {
-	m_PivotMove_Matrix->Calu_Tranlate(CVector3D(x, y, z));
-	m_PivotReturn_Matrix->Calu_Tranlate(CVector3D(-x, -y, -z));
+	m_PivotMove_Matrix->Calu_Tranlate(CVector3D<>(x, y, z));
+	m_PivotReturn_Matrix->Calu_Tranlate(CVector3D<>(-x, -y, -z));
 }
 
-void CObjModel::MovePivot(const CVector3D & Pos)
+void CObjModel::MovePivot(const CVector3D<> & Pos)
 {
 	m_PivotMove_Matrix->Calu_Tranlate(Pos);
 	//나중에 단항연산자 오버로딩 찾아보기
 	//지금은 일단 .. 쓰자 ㅠ
-	m_PivotReturn_Matrix->Calu_Tranlate(CVector3D(-Pos[0], -Pos[1], -Pos[2]));
+	m_PivotReturn_Matrix->Calu_Tranlate(CVector3D<>(-Pos[0], -Pos[1], -Pos[2]));
 }
 
 void CObjModel::Rotate(const int & degree, const int & x, const int & y, const int & z)

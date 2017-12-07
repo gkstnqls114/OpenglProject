@@ -6,8 +6,8 @@ class CMediator;
 
 class CCamera : public CColleague
 {
-	CVector3D m_at{ 0.f, 0.f, 0.f };
-	CVector3D m_up{ 0.f, 1.f,0.f };
+	CVector3D<> m_at{ 0.f, 0.f, 0.f };
+	CVector3D<> m_up{ 0.f, 1.f,0.f };
 
 	float m_distance{ 0 };
 
@@ -37,15 +37,15 @@ public:
 
 	~CCamera() = default;
 
-	void Initialize(const CVector3D & pos, float distance, float zNear, float zFar, float fov);
+	void Initialize(const CVector3D<> & pos, float distance, float zNear, float zFar, float fov);
 
 	void SetAspect(float aspect) { m_aspect = aspect; }
-	CVector3D GetPosition()	const { return m_at; }
+	CVector3D<> GetPosition()	const { return m_at; }
 
-	void SetPosition(const CVector3D& at);
-	void SetPosition(CVector3D&& at)	noexcept;
-	void Move(const CVector3D& at)	noexcept;
-	void Move(CVector3D&& at)		noexcept;
+	void SetPosition(const CVector3D<>& at);
+	void SetPosition(CVector3D<>&& at)	noexcept;
+	void Move(const CVector3D<>& at)	noexcept;
+	void Move(CVector3D<>&& at)		noexcept;
 
 	void SetDistance(const float& d) { m_distance = fmax(d, m_near); }
 	float GetDistance() const { return m_distance; }
@@ -57,16 +57,16 @@ public:
 
 	void LookAt() const;
 
-	CVector3D GetLookVector() const;
+	CVector3D<> GetLookVector() const;
 
-	CVector3D eye() const;
+	CVector3D<> eye() const;
 
 
 	//Mediator
 	void Update();
 
 	virtual void Player_JumpStart();
-	virtual void Player_Jumping(const CVector3D& move);
+	virtual void Player_Jumping(const CVector3D<>& move);
 	virtual void Player_JumpFinish();
 	virtual void Player_Dead();
 };

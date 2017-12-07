@@ -187,7 +187,7 @@
     <ClCompile Include="TestScene.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TextureStorage.cpp" />
-    <ClCompile Include="Vector3D.cpp" />
+    <ClCompile Include="Vector3D.tpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />

@@ -20,7 +20,7 @@ void CEarth::DeleteModel()
 	m_Earth = nullptr;
 }
 
-CEarth::CEarth(const CVector3D& Pos)
+CEarth::CEarth(const CVector3D<>& Pos)
 {
 	InitModel();
 
@@ -62,5 +62,5 @@ void CEarth::Float()
 	}
 
 	GLdouble MoveY = Interpolation(m_BeginY, m_EndY, m_Time);
-	m_Matrix->Calu_Tranlate(CVector3D(0, MoveY, 0));
+	m_Matrix->Calu_Tranlate(CVector3D<>(0, MoveY, 0));
 }

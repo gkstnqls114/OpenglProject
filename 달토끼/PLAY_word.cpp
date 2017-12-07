@@ -4,7 +4,7 @@
 #include "PLAY_word.h"
 
 
-CPLAY_word::CPLAY_word(const CVector3D& pos)
+CPLAY_word::CPLAY_word(const CVector3D<>& pos)
 {
 	m_model = new CObjModel;
 	m_model->LoadObj("sample_play.obj");

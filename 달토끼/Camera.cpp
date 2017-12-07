@@ -39,7 +39,7 @@ CCamera::CCamera(CMediator *& mediator)
 	m_Mediator = mediator;
 }
 
-void CCamera::Initialize(const CVector3D & at, float distance, float zNear, float zFar, float fov)
+void CCamera::Initialize(const CVector3D<> & at, float distance, float zNear, float zFar, float fov)
 {
 	m_fovy = fov;
 	m_near = zNear;
@@ -48,24 +48,24 @@ void CCamera::Initialize(const CVector3D & at, float distance, float zNear, floa
 	m_at = at;
 }
 
-void CCamera::SetPosition(const CVector3D & at)
+void CCamera::SetPosition(const CVector3D<> & at)
 {
 	m_at = at;
 	LookAt();
 }
 
-void CCamera::SetPosition(CVector3D && at) noexcept
+void CCamera::SetPosition(CVector3D<> && at) noexcept
 {
 	m_at = std::move(at);
 	LookAt();
 }
 
-void CCamera::Move(const CVector3D & at) noexcept
+void CCamera::Move(const CVector3D<> & at) noexcept
 {
 	SetPosition(m_at + at);
 }
 
-void CCamera::Move(CVector3D && at) noexcept
+void CCamera::Move(CVector3D<> && at) noexcept
 {
 	SetPosition(m_at + std::move(at));
 }
@@ -93,7 +93,7 @@ void CCamera::LookAt() const
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 
-	CVector3D vEye{ eye() };
+	CVector3D<> vEye{ eye() };
 
 	gluPerspective(m_fovy, m_aspect, m_near, m_far);
 	
@@ -107,9 +107,9 @@ void CCamera::LookAt() const
 }
 
 
-CVector3D CCamera::GetLookVector() const
+CVector3D<> CCamera::GetLookVector() const
 {
-	CVector3D temp
+	CVector3D<> temp
 	{
 		cos(m_horizontal) * sin(m_vertical),
 		sin(m_horizontal),
@@ -121,9 +121,9 @@ CVector3D CCamera::GetLookVector() const
 }
 
 
-CVector3D CCamera::eye() const
+CVector3D<> CCamera::eye() const
 {
-	return GetLookVector() * m_distance + GetPosition();
+	return GetLookVector() * double(m_distance) + GetPosition();
 }
 
 void CCamera::Update()
@@ -137,7 +137,7 @@ void CCamera::Player_JumpStart()
 {
 }
 
-void CCamera::Player_Jumping(const CVector3D& move)
+void CCamera::Player_Jumping(const CVector3D<>& move)
 {
 	Move(move);
 }

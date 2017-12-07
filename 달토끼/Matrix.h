@@ -1,7 +1,5 @@
 #pragma once
 
-class CVector3D;
-
 class CMatrix
 {
 	GLfloat m_Translate_Matrix[16] =
@@ -32,8 +30,8 @@ public:
 	CMatrix();
 	~CMatrix();
 	void MultiMatrix();
-	void Calu_Tranlate(const CVector3D& rhs);
-	void Calu_Tranlate(CVector3D&& rhs);
+	void Calu_Tranlate(const CVector3D<GLdouble>& rhs);
+	void Calu_Tranlate(CVector3D<GLdouble>&& rhs);
 	void Calu_Rotate(const int& degree, const int& x, const int& y, const int& z);
 	void Calu_Rotate(const float& degree, const int& x, const int& y, const int& z);
 	

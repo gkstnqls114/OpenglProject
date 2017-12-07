@@ -40,7 +40,7 @@ void CMediator::Player_Jumping()
 {
 	m_pPlayer->Player_Jumping();
 
-	CVector3D jumpmove
+	CVector3D<> jumpmove
 		(
 		m_pPlayer->Get_VectorX(),
 		0,
