@@ -182,7 +182,7 @@
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="ObjVertex.cpp" />
-    <ClCompile Include="SceneChanger.cpp" />
+    <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="TestScene.cpp" />
     <ClCompile Include="Texture.cpp" />
@@ -211,7 +211,7 @@
     <ClInclude Include="Scene.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="ObjVertex.h" />
-    <ClInclude Include="SceneChanger.h" />
+    <ClInclude Include="SceneManager.h" />
     <ClInclude Include="SoundManager.h" />
     <ClInclude Include="TestScene.h" />
     <ClInclude Include="Texture.h" />

@@ -2,6 +2,7 @@
 
 class CScene;
 class CGameScene;
+class CSceneManager;
 
 class CGLFramework
 {
@@ -54,6 +55,7 @@ private:
 	
 	int m_fps = 16;
 
-	CScene *		m_CurrScene{ nullptr };
+	//CScene *		m_CurrScene{ nullptr };
+	CSceneManager*	m_SceneChager{ nullptr };
 };
 

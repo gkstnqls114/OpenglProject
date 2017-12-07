@@ -1,4 +1,5 @@
 #include "pch.h"
+#include "SceneChanger.h"
 #include "Scene.h"
 #include "GameScene.h"
 #include "MainScene.h"
@@ -21,13 +22,15 @@ void CGLFramework::Initialize(int argc, char ** argv, int width, int height, int
 	glutInitDisplayMode(DisplayMode);
 	glutInitWindowSize(width, height);
 	glutInitWindowPosition(x, y);
-	glutCreateWindow("Example1");
+	glutCreateWindow("MOON RABBIT");
 
-	m_CurrScene =
-		//new CGameScene;
-		new CMainScene;
-		//new CTestScene;
-	m_CurrScene->Initialize();
+	m_SceneChager = new CSceneManager;
+
+	//m_CurrScene =
+	//	//new CGameScene;
+	//	new CMainScene();
+	//	//new CTestScene;
+	//m_CurrScene->Initialize();
 }
 
 void CGLFramework::DrawScene()
@@ -43,29 +46,39 @@ void CGLFramework::DrawScene()
 
 void CGLFramework::Render()
 {
-	if (m_CurrScene) m_CurrScene->Render();
+	m_SceneChager->SceneRender();
+
+	//if (m_CurrScene) m_CurrScene->Render();
 }
 
 void CGLFramework::Reshape(int w, int h)
 {
-	if (m_CurrScene) m_CurrScene->Reshape(w, h);
+	m_SceneChager->SceneReshape(w, h);
+
+	//if (m_CurrScene) m_CurrScene->Reshape(w, h);
 
 	glutPostRedisplay();
 }
 
 void CGLFramework::Keyboard(unsigned char key, int x, int y)
 {
-	if (m_CurrScene) m_CurrScene->Keyboard(key, x, y);
+	m_SceneChager->SceneKeyboard(key, x, y);
+	
+	//if (m_CurrScene) m_CurrScene->Keyboard(key, x, y);
 }
 
 void CGLFramework::SpecialKeys(int key, int x, int y)
 {
-	if(m_CurrScene) m_CurrScene->SpecialKeys(key, x, y);
+	m_SceneChager->SceneSpecialKeys(key, x, y);
+
+	//if(m_CurrScene) m_CurrScene->SpecialKeys(key, x, y);
 }
 
 void CGLFramework::Timer(int value)
 {
-	if (m_CurrScene) m_CurrScene->Timer(value);
+	m_SceneChager->SceneTimer(value);
+
+	//if (m_CurrScene) m_CurrScene->Timer(value);
 
 	glutTimerFunc(m_fps, fnTimer, 1);
 }
@@ -107,7 +120,7 @@ void CGLFramework::Bind()
 
 void CGLFramework::ChangeScene(CScene * newScene)
 {
-	auto old = m_CurrScene;
-	m_CurrScene = newScene;
-	delete old;
+	//auto old = m_CurrScene;
+	//m_CurrScene = newScene;
+	//delete old;
 }

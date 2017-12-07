@@ -8,9 +8,13 @@ class CEarth;
 class CEXIT_word;
 class CPLAY_word;
 
+class CSceneManager;
+
 class CMainScene :
 	public CScene
 {
+	CSceneManager*	m_pSceneChager{ nullptr };
+
 	CMediator*		m_Mediator{ nullptr };
 	CCamera*		m_Camera{ nullptr };
 
@@ -29,11 +33,12 @@ class CMainScene :
 	float degree{ 0.f };
 
 private:
+	void ConfirmCursor();
 	void SelectCursor();
 	void WordRender(); //ortho ¶§¹®¿¡...
 
 public:
-	CMainScene();
+	CMainScene(CSceneManager* const &changer);
 	virtual ~CMainScene();
 
 	virtual void Initialize();

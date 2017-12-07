@@ -1,12 +1,29 @@
 #include "pch.h"
+
 #include "Mediator.h"
 #include "Camera.h"
 #include "Moon.h"
 #include "Earth.h"
 #include "PLAY_word.h"
 #include "EXIT_word.h"
+#include "SceneManager.h"
+
+#include "TestScene.h"
 #include "MainScene.h"
 
+
+void CMainScene::ConfirmCursor()
+{
+	if (m_Cursor == k_EXIT) {
+		//나중에 수정
+		// 일단 임시사용
+		exit(0);
+	}
+	else if (m_Cursor == k_PLAY) {
+		//장면 넘어간다.
+		m_pSceneChager->ChangeToGame();
+	}
+}
 
 void CMainScene::SelectCursor()
 {
@@ -48,8 +65,11 @@ void CMainScene::WordRender()
 	m_EXIT->Render();
 }
 
-CMainScene::CMainScene()
+CMainScene::CMainScene(CSceneManager* const &changer)
 {
+	std::cout << "받은 주소: " << changer;
+	m_pSceneChager = changer;
+
 	m_Mediator = new CMediator;
 
 	m_Camera = new CCamera(m_Mediator);
@@ -146,6 +166,12 @@ void CMainScene::Keyboard(const unsigned char & key, const int & x, const int & 
 		m_Camera->Rotate(0, 10);
 	}
 
+	const int kENTER = 13;
+	const int kSPACE = 32;
+	if (key == kENTER || key == kSPACE) {
+		ConfirmCursor();
+	}
+
 	m_Camera->LookAt();
 }
 
@@ -164,10 +190,6 @@ void CMainScene::SpecialKeys(const int & key, const int & x, const int & y)
 		if (m_Cursor > k_PLAY) {
 			m_Cursor = k_EXIT;
 		}
-	}
-	else if (key == GLUT_ENTERED) {
-		//확인
-
 	}
 
 	SelectCursor();
