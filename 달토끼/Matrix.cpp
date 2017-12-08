@@ -62,10 +62,7 @@ void CMatrix::Calu_Rotate(const float & Nowdegree, const int & x, const int & y,
 void CMatrix::Set_Rotate(const int & Nowdegree, const int & x, const int & y, const int & z)
 {
 	glPushMatrix();
-	glLoadIdentity();
-	glMultMatrixf(m_Rotate_Matrix);
-
-	//ResetRotate();
+	
 	glRotated(Nowdegree, x, y, z);
 	glMultMatrixf(m_Rotate_Matrix);
 	glGetFloatv(GL_MODELVIEW_MATRIX, m_Rotate_Matrix);
@@ -118,11 +115,16 @@ void CMatrix::ResetScale()
 	m_Scale_Matrix[15] = 1;
 }
 
-void CMatrix::Calu_Scale(const float & size)
+void CMatrix::Calu_Scale(const float & NowSize)
 {
 	glPushMatrix();
-	//glLoadIdentity();
-	glScaled(size, size, size);
+
+	glLoadIdentity();
+	glMultMatrixf(m_Scale_Matrix);
+
+	//ResetRotate();
+
+	glScaled(NowSize, NowSize, NowSize);
 	glMultMatrixf(m_Scale_Matrix);
 	glGetFloatv(GL_MODELVIEW_MATRIX, m_Scale_Matrix);
 	glPopMatrix();
@@ -132,18 +134,17 @@ void CMatrix::Calu_Scale(const float & x, const float & y, const float & z)
 {
 
 	glPushMatrix();
-	//glLoadIdentity();
 	glScaled(x, y, z);
 	glMultMatrixf(m_Scale_Matrix);
 	glGetFloatv(GL_MODELVIEW_MATRIX, m_Scale_Matrix);
 	glPopMatrix();
 }
 
-void CMatrix::Set_Scale(const float & size)
+void CMatrix::Set_Scale(const float & NowSize)
 {
-	m_Scale_Matrix[0] = size;
-	m_Scale_Matrix[5] = size;
-	m_Scale_Matrix[10] = size;
+	m_Scale_Matrix[0] = NowSize;
+	m_Scale_Matrix[5] = NowSize;
+	m_Scale_Matrix[10] = NowSize;
 }
 
 void CMatrix::Set_Scale(const float & x, const float & y, const float & z)

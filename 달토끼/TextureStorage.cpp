@@ -105,10 +105,10 @@ GLubyte * CTextureStorage::LoadMyBitmap(const char * filename, BITMAPINFO*& info
 	// 비트맵의 크기 설정 
 	if ((BitSize = info->bmiHeader.biSizeImage) == 0) {
 		std::cout << "비트맵 크기 설정." << std::endl;
-		int size = ((info->bmiHeader.biWidth) * (info->bmiHeader.biBitCount) + 7) 
+		int NowSize = ((info->bmiHeader.biWidth) * (info->bmiHeader.biBitCount) + 7) 
 		/ (8 *  abs(info->bmiHeader.biHeight));
 		
-		BitSize = size;
+		BitSize = NowSize;
 	}
 	
 	// 비트맵의 크기만큼 메모리를 할당한다.  

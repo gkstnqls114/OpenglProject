@@ -35,16 +35,30 @@ void CEXIT_word::Update()
 {
 	if (!IsSelected) return;
 
-	m_matrix->Set_Scale(1.2f);
+	if (SizeTime >= 1.f) {
+		SizeTime = 0.f;
+		float temp = BeginSize;
+		BeginSize = EndSize;
+		EndSize = temp;
+	}
+
+	SizeTime += 0.03f;
+	NowSize = Interpolation(BeginSize, EndSize, SizeTime);
+
+	m_matrix->Set_Scale(NowSize);
 }
 
-void CEXIT_word::Scale(const float & size)
+void CEXIT_word::Scale(const float & NowSize)
 {
-	m_matrix->Calu_Scale(size);
+	m_matrix->Calu_Scale(NowSize);
 }
 
 void CEXIT_word::NotSelected()
 {
 	IsSelected = false;
+	NowSize = 1.f;
+	SizeTime = 0.f;
+	BeginSize =  1.1f;
+	EndSize = 1.3f;
 	m_matrix->ResetScale();
 }

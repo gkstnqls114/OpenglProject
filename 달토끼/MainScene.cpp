@@ -63,11 +63,11 @@ void CMainScene::RotateUpdate()
 
 	if (IsClockWise) {
 		//시계방향회전
-		Nowdegree -= 1;
+		Nowdegree -= 2;
 	}
 	else {
 		//반시계 회전
-		Nowdegree += 1;
+		Nowdegree += 2;
 	}
 	Nowdegree %= 360;
 
@@ -233,7 +233,7 @@ void CMainScene::SpecialKeys(const int & key, const int & x, const int & y)
 	else if (key == GLUT_KEY_LEFT) {
 		m_Cursor -= 1;
 		
-		if (m_Cursor > k_PLAY) {
+		if (m_Cursor < k_PLAY) {
 			m_Cursor = k_EXIT;
 		}
 	}
