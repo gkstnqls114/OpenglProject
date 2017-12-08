@@ -2,7 +2,6 @@
 #include "Vector3D.h"
 #include "Matrix.h"
 
-
 CMatrix::CMatrix()
 {
 }
@@ -41,27 +40,61 @@ void CMatrix::Calu_Tranlate(CVector3D<> && rhs)
 	glPopMatrix();
 }
 
-void CMatrix::Calu_Rotate(const int& degree, const int& x, const int& y, const int& z)
+void CMatrix::Calu_Rotate(const int& Nowdegree, const int& x, const int& y, const int& z)
 {
 	glPushMatrix();
 	////glLoadIdentity();
-	glRotated(degree, x, y, z);
+	glRotated(Nowdegree, x, y, z);
 	glMultMatrixf(m_Rotate_Matrix);
 	glGetFloatv(GL_MODELVIEW_MATRIX, m_Rotate_Matrix);
 	glPopMatrix();
 }
 
-void CMatrix::Calu_Rotate(const float & degree, const int & x, const int & y, const int & z)
+void CMatrix::Calu_Rotate(const float & Nowdegree, const int & x, const int & y, const int & z)
 {
 	glPushMatrix();
-	//glLoadIdentity();
-	glRotatef(degree, x, y, z);
+	glRotatef(Nowdegree, x, y, z);
 	glMultMatrixf(m_Rotate_Matrix);
 	glGetFloatv(GL_MODELVIEW_MATRIX, m_Rotate_Matrix);
 	glPopMatrix();
 }
 
-void CMatrix::Reset_Rotate()
+void CMatrix::Set_Rotate(const int & Nowdegree, const int & x, const int & y, const int & z)
+{
+	glPushMatrix();
+	glLoadIdentity();
+	glMultMatrixf(m_Rotate_Matrix);
+
+	//ResetRotate();
+	glRotated(Nowdegree, x, y, z);
+	glMultMatrixf(m_Rotate_Matrix);
+	glGetFloatv(GL_MODELVIEW_MATRIX, m_Rotate_Matrix);
+	glPopMatrix();
+}
+
+void CMatrix::Set_Rotate(const float & Nowdegree, const int & x, const int & y, const int & z)
+{
+	glPushMatrix();
+	ResetRotate();
+	glRotatef(Nowdegree, x, y, z);
+	glMultMatrixf(m_Rotate_Matrix);
+	glGetFloatv(GL_MODELVIEW_MATRIX, m_Rotate_Matrix);
+	glPopMatrix();
+}
+
+void CMatrix::ResetTranslate()
+{
+	for (int index = 0; index < 16; ++index) {
+		m_Translate_Matrix[index] = 0;
+	}
+
+	m_Translate_Matrix[0] = 1;
+	m_Translate_Matrix[5] = 1;
+	m_Translate_Matrix[10] = 1;
+	m_Translate_Matrix[15] = 1;
+}
+
+void CMatrix::ResetRotate()
 {
 	for (int index = 0; index < 16; ++index) {
 		m_Rotate_Matrix[index] = 0;
@@ -71,6 +104,18 @@ void CMatrix::Reset_Rotate()
 	m_Rotate_Matrix[5] = 1;
 	m_Rotate_Matrix[10] = 1;
 	m_Rotate_Matrix[15] = 1;
+}
+
+void CMatrix::ResetScale()
+{
+	for (int index = 0; index < 16; ++index) {
+		m_Scale_Matrix[index] = 0;
+	}
+
+	m_Scale_Matrix[0] = 1;
+	m_Scale_Matrix[5] = 1;
+	m_Scale_Matrix[10] = 1;
+	m_Scale_Matrix[15] = 1;
 }
 
 void CMatrix::Calu_Scale(const float & size)

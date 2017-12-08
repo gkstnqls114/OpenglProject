@@ -43,9 +43,9 @@ public:
 	void MovePivot(const GLdouble& x, const GLdouble& y, const GLdouble& z);
 	void MovePivot(const CVector3D<>& Pos);
 
-	void Rotate(const int& degree, const int& x, const int& y, const int& z);
-	void Rotate(const float& degree, const int& x, const int& y, const int& z);
-	void Reset_Rotate();
+	void Rotate(const int& Nowdegree, const int& x, const int& y, const int& z);
+	void Rotate(const float& Nowdegree, const int& x, const int& y, const int& z);
+	void ResetRotate();
 	
 	void Scale(const float& x, const float& y, const float& z);
 };

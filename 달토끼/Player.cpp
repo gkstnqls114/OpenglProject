@@ -156,8 +156,8 @@ void CPlayer::Player_Jumping()
 	bool Unitll_Last = m_JumpTime == m_FinishJumpTime;
 	if (Unitll_Last) {
 		//아모르겠다!! 걍 회전 리셋
-		m_Rabit_LeftFoot->Reset_Rotate();
-		m_Rabit_RightFoot->Reset_Rotate();
+		m_Rabit_LeftFoot->ResetRotate();
+		m_Rabit_RightFoot->ResetRotate();
 	}
 	else if (Unitll_Reach) {
 		//앞으로 발이 나아감
@@ -208,14 +208,14 @@ void CPlayer::Jump_BodyRotate()
 	
 	bool Rotate_degree_45 = Rotate == 1;
 	bool Rotate_degree_90 = Rotate == 2;
-	float degree = atan(float(m_JumpReach) / float(Road_Distance_X)) * 180 / k_PI;
-	degree = 90 - degree;
+	float Nowdegree = atan(float(m_JumpReach) / float(Road_Distance_X)) * 180 / k_PI;
+	Nowdegree = 90 - Nowdegree;
 	if (Rotate_degree_45) {
-		frame_degree = degree / float(m_FinishJumpTime);
+		frame_degree = Nowdegree / float(m_FinishJumpTime);
 	}
 	else if (Rotate_degree_90) {
-		degree = degree * 2;
-		frame_degree = degree / float(m_FinishJumpTime);
+		Nowdegree = Nowdegree * 2;
+		frame_degree = Nowdegree / float(m_FinishJumpTime);
 	}
 
 	//나중에 수정

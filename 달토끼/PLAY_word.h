@@ -20,7 +20,7 @@ public:
 
 	void Scale(const float& size);
 	void Selected() { IsSelected = true; }
-	void NotSelected() { IsSelected = false; }
+	void NotSelected();
 	const CVector3D<>& GetPos() const noexcept { return m_Position; }
 };
 

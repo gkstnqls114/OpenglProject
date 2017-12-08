@@ -35,10 +35,16 @@ void CEXIT_word::Update()
 {
 	if (!IsSelected) return;
 
-	m_matrix->Calu_Rotate(5, 0, 1, 0);
+	m_matrix->Set_Scale(1.2f);
 }
 
 void CEXIT_word::Scale(const float & size)
 {
 	m_matrix->Calu_Scale(size);
+}
+
+void CEXIT_word::NotSelected()
+{
+	IsSelected = false;
+	m_matrix->ResetScale();
 }

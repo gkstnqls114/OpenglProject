@@ -329,19 +329,19 @@ void CObjModel::MovePivot(const CVector3D<> & Pos)
 	m_PivotReturn_Matrix->Calu_Tranlate(CVector3D<>(-Pos[0], -Pos[1], -Pos[2]));
 }
 
-void CObjModel::Rotate(const int & degree, const int & x, const int & y, const int & z)
+void CObjModel::Rotate(const int & Nowdegree, const int & x, const int & y, const int & z)
 {
-	m_Matrix->Calu_Rotate(degree, x, y, z);
+	m_Matrix->Calu_Rotate(Nowdegree, x, y, z);
 }
 
-void CObjModel::Rotate(const float & degree, const int & x, const int & y, const int & z)
+void CObjModel::Rotate(const float & Nowdegree, const int & x, const int & y, const int & z)
 {
-	m_Matrix->Calu_Rotate(degree, x, y, z);
+	m_Matrix->Calu_Rotate(Nowdegree, x, y, z);
 }
 
-void CObjModel::Reset_Rotate()
+void CObjModel::ResetRotate()
 {
-	m_Matrix->Reset_Rotate();
+	m_Matrix->ResetRotate();
 }
 
 void CObjModel::Scale(const float & x, const float & y, const float & z)

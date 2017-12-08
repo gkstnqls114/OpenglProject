@@ -27,17 +27,59 @@ void CMainScene::ConfirmCursor()
 
 void CMainScene::SelectCursor()
 {
-	if (m_Cursor == k_EXIT) {
-		m_CursorPos = m_EXIT->GetPos();
-		m_CursorPos[1] += 100;
-		m_PLAY->NotSelected();
-		m_EXIT->Selected();
-	}
-	else if (m_Cursor == k_PLAY) {
+	if (m_Cursor == k_PLAY) {
 		m_CursorPos = m_PLAY->GetPos();
 		m_CursorPos[1] += 100;
 		m_PLAY->Selected();
 		m_EXIT->NotSelected();
+
+		if (Nowdegree < 360 && Nowdegree >= 180) {
+			IsClockWise = false;
+		}
+		else {
+			IsClockWise = true;
+		}
+	}
+	else if (m_Cursor == k_EXIT) {
+		m_CursorPos = m_EXIT->GetPos();
+		m_CursorPos[1] += 100;
+		m_PLAY->NotSelected();
+		m_EXIT->Selected();
+
+		if (Nowdegree < 180 && Nowdegree >= 0) {
+			IsClockWise = false;
+		}
+		else {
+			IsClockWise = true;
+		}
+	}
+
+	IsRotate = true;
+}
+
+void CMainScene::RotateUpdate()
+{
+	if (!IsRotate) return;
+
+	if (IsClockWise) {
+		//시계방향회전
+		Nowdegree -= 1;
+	}
+	else {
+		//반시계 회전
+		Nowdegree += 1;
+	}
+	Nowdegree %= 360;
+
+	const bool IsRotateFinish_PLAY =
+		m_Cursor == k_PLAY && Nowdegree == k_PLAYdegree;
+	if (IsRotateFinish_PLAY) {
+		IsRotate = false;
+	}
+	const bool IsRotateFinish_EXIT = 
+		m_Cursor == k_EXIT && Nowdegree == k_EXITdegree;
+	if (IsRotateFinish_EXIT) {
+		IsRotate = false;
 	}
 }
 
@@ -49,7 +91,7 @@ void CMainScene::WordRender()
 	glLoadIdentity();
 	glOrtho(-glutGet(GLUT_WINDOW_WIDTH) / 2, glutGet(GLUT_WINDOW_WIDTH) / 2,
 		- static_cast<float>(glutGet(GLUT_WINDOW_HEIGHT)) / 2, static_cast<float>(glutGet(GLUT_WINDOW_HEIGHT)) / 2,
-		-1.f, 600);
+		-100.f, 100);
 	glMatrixMode(GL_MODELVIEW);
 
 	//커서
@@ -67,7 +109,6 @@ void CMainScene::WordRender()
 
 CMainScene::CMainScene(CSceneManager* const changer)
 {
-	std::cout << "받은 주소: " << changer;
 	m_pSceneChager = changer;
 
 	m_Mediator = new CMediator;
@@ -77,11 +118,12 @@ CMainScene::CMainScene(CSceneManager* const changer)
 	m_Camera->Rotate(0, 0);
 
 	//m_Moon = new CMoon(CVector3D<>(80, 50, -100));
-	m_Earth = new CEarth((CVector3D<>(-20, -50, 100)));
+	m_Earth = new CEarth((CVector3D<>(-100, 0, 0)));
 	m_PLAY = new CPLAY_word(CVector3D<>(- 150, -250, 0));
 	m_EXIT = new CEXIT_word(CVector3D<>(150, -250, 0));
 
 	SelectCursor();
+	IsRotate = false;
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_TEXTURE_2D);
 }
@@ -106,12 +148,13 @@ void CMainScene::Render()
 	RenderAxis();
 
 	glPushMatrix();
-	//glRotated(degree, 0, 1, 0);
-
-	//m_Moon->Render();
-	m_Earth->Render();
-	
+	glRotated(Nowdegree, 0, 1, 0);
+	{
+		//m_Moon->Render();
+		m_Earth->Render();
+	}
 	glPopMatrix();
+	
 
 	WordRender();
 }
@@ -129,7 +172,6 @@ void CMainScene::Timer(const int & value)
 {
 	Update();
 
-	degree += 1;
 
 	glutPostRedisplay();
 }
@@ -138,6 +180,12 @@ void CMainScene::Update()
 {
 	//m_Moon->Update();
 	m_Earth->Update();
+
+	m_PLAY->Update();
+	m_EXIT->Update();
+
+	RotateUpdate();
+
 	m_Camera->LookAt();
 }
 
