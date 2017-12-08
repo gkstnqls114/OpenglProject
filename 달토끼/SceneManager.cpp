@@ -2,14 +2,14 @@
 #include "MainScene.h"
 #include "GameScene.h"
 #include "TestScene.h"
-#include "SceneChanger.h"
+#include "SceneManager.h"
 
 CSceneManager::CSceneManager()
 {
 	std::cout << "장면 체인지 주소: " << this << std::endl;
-	m_GameScene = new CGameScene;
+	m_GameScene = new CGameScene(this);
 	m_MainScene = new CMainScene(this);
-	m_TestScene = new CTestScene;
+	m_TestScene = new CTestScene(this);
 	m_pCurrScene = m_MainScene;
 }
 

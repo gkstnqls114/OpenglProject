@@ -18,11 +18,11 @@ public:
 	void ChangeToGame();
 	void ChangeToTest();
 
-	void SceneRender();
-	void SceneReshape(const int& w, const int& h);
-	void SceneKeyboard(const unsigned char& key, const int& x, const int& y);
-	void SceneSpecialKeys(const int& key, const int& x, const int& y);
-	void SceneTimer(const int& value);
+	void SceneRender		();
+	void SceneReshape		(const int& w, const int& h);
+	void SceneKeyboard		(const unsigned char& key, const int& x, const int& y);
+	void SceneSpecialKeys	(const int& key, const int& x, const int& y);
+	void SceneTimer			(const int& value);
 
 };
 

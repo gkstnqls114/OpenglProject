@@ -38,7 +38,7 @@ private:
 	void WordRender(); //ortho ¶§¹®¿¡...
 
 public:
-	CMainScene(CSceneManager* const &changer);
+	CMainScene(CSceneManager* const changer);
 	virtual ~CMainScene();
 
 	virtual void Initialize();

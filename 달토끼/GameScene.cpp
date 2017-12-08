@@ -1,4 +1,5 @@
 #include "pch.h"
+#include "SceneManager.h"
 #include "Mediator.h"
 #include "Player.h"
 #include "Moon.h"
@@ -8,8 +9,10 @@
 #include "Road.h"
 #include "GameScene.h"
 
-CGameScene::CGameScene()
+CGameScene::CGameScene(CSceneManager* const changer)
 {
+	m_pSceneManager = changer;
+
 	m_Mediator = new CMediator;
 
 	m_Camera = new CCamera(m_Mediator);

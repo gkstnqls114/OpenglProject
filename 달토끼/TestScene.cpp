@@ -1,4 +1,5 @@
 #include "pch.h"
+#include "SceneManager.h"
 #include "Mediator.h"
 #include "Camera.h"
 #include "Player.h"
@@ -6,8 +7,10 @@
 #include "TestScene.h"
 
 
-CTestScene::CTestScene()
+CTestScene::CTestScene(CSceneManager* const changer)
 {
+	m_pSceneManager = changer;
+
 	m_Mediator = new CMediator;
 
 	m_Camera = new CCamera(m_Mediator);

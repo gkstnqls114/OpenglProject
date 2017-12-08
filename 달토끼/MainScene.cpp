@@ -65,7 +65,7 @@ void CMainScene::WordRender()
 	m_EXIT->Render();
 }
 
-CMainScene::CMainScene(CSceneManager* const &changer)
+CMainScene::CMainScene(CSceneManager* const changer)
 {
 	std::cout << "받은 주소: " << changer;
 	m_pSceneChager = changer;
@@ -79,8 +79,6 @@ CMainScene::CMainScene(CSceneManager* const &changer)
 	//m_Moon = new CMoon(CVector3D<>(80, 50, -100));
 	m_Earth = new CEarth((CVector3D<>(-20, -50, 100)));
 	m_PLAY = new CPLAY_word(CVector3D<>(- 150, -250, 0));
-	//뭔가 모델이 이상해
-	//나중에 수정
 	m_EXIT = new CEXIT_word(CVector3D<>(150, -250, 0));
 
 	SelectCursor();

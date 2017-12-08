@@ -1,22 +1,24 @@
 #pragma once
 #include "Scene.h"
 
+class CSceneManager;
 class CTextureStorage;
 
 class CTestScene :
 	public CScene
 {
+	CSceneManager*		m_pSceneManager		{ nullptr };
 
-	CMediator*		m_Mediator{ nullptr };
-	CCamera*		m_Camera{ nullptr };
+	CMediator*			m_Mediator			{ nullptr };
+	CPlayer *			m_Player			{ nullptr };
+	CCamera*			m_Camera			{ nullptr };
 	
-	GLint	texture_object;
-	CTextureStorage*		m_texture{ nullptr };
+	GLint				texture_object;
+	CTextureStorage*	m_texture			{ nullptr };
 
-	CPlayer * m_Player{ nullptr };
 
 public:
-	CTestScene();
+	CTestScene(CSceneManager* const changer);
 	virtual ~CTestScene();
 
 	virtual void Initialize();
