@@ -3,7 +3,6 @@
 #include <string>
 #include "TextureStorage.h"
 #include "Matrix.h"
-#include "Vector3D.h"
 #include "ObjFace.h"
 #include "ObjModel.h"
 

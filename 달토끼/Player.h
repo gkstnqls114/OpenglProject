@@ -2,7 +2,6 @@
 
 class CObjModel;
 class CMatrix;
-class CMessageSender;
 class CMediator;
 class CRoad;
 class CCamera;
@@ -16,9 +15,9 @@ class CPlayer
 
 	static CObjModel* m_Rabits_Helmet	;
 
-	CMatrix* m_Matrix{nullptr};
+	CMediator* m_pMediator{nullptr};
 
-	CMediator* m_Mediator{nullptr};
+	CMatrix* m_Matrix{nullptr};
 
 	//점프변수들
 	//jump property
@@ -73,6 +72,7 @@ public:
 	~CPlayer();
 	static void InitModel();
 	static void DeleteModel();
+	void Initialize();
 
 	void Keyboard(const unsigned char& key, const int& x, const int& y);
 	void SpecialKeys(const int& key, const int& x, const int& y);
@@ -88,6 +88,7 @@ public:
 	const int Get_Side() const noexcept { return m_MySide; }
 
 	//Mediator
+	virtual void Init_GameScene();
 	virtual void Player_JumpStart();
 	virtual void Player_Jumping();
 	virtual void Player_JumpFinish();

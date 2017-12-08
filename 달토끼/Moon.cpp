@@ -26,8 +26,8 @@ CMoon::CMoon(const CVector3D<>& Pos)
 	InitModel();
 
 	m_Matrix = new CMatrix;
-	m_Matrix->Calu_Tranlate(Pos);
-	m_Matrix->Calu_Scale(0.7);
+	m_Matrix->Set_Translate(Pos);
+	m_Matrix->Set_Scale(0.7);
 }
 
 
@@ -37,8 +37,18 @@ CMoon::~CMoon()
 	delete m_Matrix;
 }
 
+void CMoon::Initialize()
+{
+
+}
+
 void CMoon::Update()
 {
+	if (IsGameStart) {
+		m_Matrix->Calu_Rotate(6, 0, 1, 0);
+		m_Matrix->Calu_Tranlate(CVector3D<>(0, 5, 0));
+	}
+
 	Float();
 	m_Moon->Rotate(1, 0, 1, 0);
 }
@@ -64,4 +74,12 @@ void CMoon::Float()
 
 	GLdouble MoveY = Interpolation(m_BeginY, m_EndY, m_Time);
 	m_Matrix->Calu_Tranlate(CVector3D<>(0, MoveY, 0));
+}
+
+void CMoon::Init_MainScene()
+{
+}
+
+void CMoon::GameStart()
+{
 }

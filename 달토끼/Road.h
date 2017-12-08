@@ -12,7 +12,7 @@ class CRoad : public CColleague
 	int m_PlayerPosNum{ 0 };
 	int m_DisappearBoardNum{ 0 };
 
-	CMediator* m_Mediator{ nullptr };
+	CMediator* m_pMediator{ nullptr };
 
 	bool isPlayerDead{ false };
 

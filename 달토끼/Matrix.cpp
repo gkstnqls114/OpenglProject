@@ -1,5 +1,4 @@
 #include "pch.h"
-#include "Vector3D.h"
 #include "Matrix.h"
 
 CMatrix::CMatrix()
@@ -40,6 +39,27 @@ void CMatrix::Calu_Tranlate(CVector3D<> && rhs)
 	glPopMatrix();
 }
 
+void CMatrix::Set_Translate(const CVector3D<GLdouble>& rhs)
+{
+	glPushMatrix();
+	ResetTranslate();
+	glTranslated(rhs[0], rhs[1], rhs[2]);
+	glMultMatrixf(m_Translate_Matrix);
+	glGetFloatv(GL_MODELVIEW_MATRIX, m_Translate_Matrix);
+	glPopMatrix();
+}
+
+void CMatrix::Set_Translate(CVector3D<GLdouble>&& rhs)
+{
+	glPushMatrix();
+	ResetTranslate();
+	glTranslated(rhs[0], rhs[1], rhs[2]);
+	glMultMatrixf(m_Translate_Matrix);
+	glGetFloatv(GL_MODELVIEW_MATRIX, m_Translate_Matrix);
+	glPopMatrix();
+
+}
+
 void CMatrix::Calu_Rotate(const int& Nowdegree, const int& x, const int& y, const int& z)
 {
 	glPushMatrix();
@@ -62,7 +82,7 @@ void CMatrix::Calu_Rotate(const float & Nowdegree, const int & x, const int & y,
 void CMatrix::Set_Rotate(const int & Nowdegree, const int & x, const int & y, const int & z)
 {
 	glPushMatrix();
-	
+	ResetRotate();
 	glRotated(Nowdegree, x, y, z);
 	glMultMatrixf(m_Rotate_Matrix);
 	glGetFloatv(GL_MODELVIEW_MATRIX, m_Rotate_Matrix);

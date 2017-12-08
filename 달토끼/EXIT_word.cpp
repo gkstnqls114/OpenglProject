@@ -14,7 +14,7 @@ CEXIT_word::CEXIT_word(const CVector3D<>& Pos)
 
 	m_Position = Pos;
 	m_matrix = new CMatrix;
-	m_matrix->Calu_Tranlate(m_Position);
+	m_matrix->Set_Translate(m_Position);
 }
 
 CEXIT_word::~CEXIT_word()
@@ -33,6 +33,11 @@ void CEXIT_word::Render()
 
 void CEXIT_word::Update()
 {
+	if (IsGameStart) {
+		//내려간다
+		m_matrix->Calu_Tranlate(CVector3D<>(0, -5, 0));
+	}
+
 	if (!IsSelected) return;
 
 	if (SizeTime >= 1.f) {
@@ -61,4 +66,11 @@ void CEXIT_word::NotSelected()
 	BeginSize =  1.1f;
 	EndSize = 1.3f;
 	m_matrix->ResetScale();
+}
+
+void CEXIT_word::Init_MainScene()
+{
+	m_matrix->Set_Translate(m_Position);
+	m_matrix->ResetRotate();
+	IsGameStart = false;
 }

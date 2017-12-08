@@ -12,6 +12,8 @@ class CMoon
 	GLdouble m_EndY{ 1.f };
 	float m_Time{ 0.f };
 
+	bool IsGameStart{ false };
+
 private:
 	static void InitModel();
 	static void DeleteModel();
@@ -19,10 +21,14 @@ private:
 public:
 	CMoon(const CVector3D<>& Pos);
 	~CMoon();
+	void Initialize();
 
 	void Update();
 	void Render();
 
 	void Float();
+
+	virtual void Init_MainScene();
+	virtual void GameStart();
 };
 

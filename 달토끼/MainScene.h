@@ -13,9 +13,9 @@ class CSceneManager;
 class CMainScene :
 	public CScene
 {
-	CSceneManager*	m_pSceneChager	{ nullptr };
+	CSceneManager*	m_pSceneManager	{ nullptr };
 
-	CMediator*		m_Mediator		{ nullptr };
+	CMediator*		m_pMediator		{ nullptr };
 	CCamera*		m_Camera		{ nullptr };
 	CMoon*			m_Moon			{ nullptr };
 	CEarth*			m_Earth			{ nullptr };
@@ -34,6 +34,8 @@ class CMainScene :
 	const int		k_EXITdegree	{ 180 };
 	bool			IsClockWise		{ false };
 	bool			IsRotate		{ false };
+
+	bool			IsGameStart		{ false };
 private:
 	void ConfirmCursor();
 	void SelectCursor();

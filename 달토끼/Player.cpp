@@ -1,5 +1,4 @@
 #include "pch.h"
-#include "Vector3D.h"
 #include "ObjModel.h"
 #include "Mediator.h"
 #include "Matrix.h"
@@ -14,16 +13,11 @@ CObjModel* CPlayer::m_Rabits_Helmet = nullptr;
 CPlayer::CPlayer(CMediator*& mediator)
 {
 	CPlayer::InitModel();
-
-	//플레이어 점프도달거리
-	// 실수라서 정확한 계산 힘드므로 여기서 한번 계산한다.
-	Find_JumpProperty();
+	m_pMediator = mediator;
 
 	m_Matrix = new CMatrix();
-	m_Matrix->Calu_Rotate(180, 0, 1, 0);
-	m_Matrix->Calu_Scale(0.3);
 
-	m_Mediator = mediator;
+	Initialize();
 }
 
 CPlayer::~CPlayer()
@@ -53,6 +47,15 @@ void CPlayer::DeleteModel()
 	DeleteHelmet();
 
 	std::cout << "Player 모델 삭제 완료" << std::endl;
+}
+
+void CPlayer::Initialize()
+{
+	//초기화
+	Find_JumpProperty();
+
+	m_Matrix->Set_Rotate(180, 0, 1, 0);
+	m_Matrix->Set_Scale(0.3);
 }
 
 
@@ -88,7 +91,7 @@ void CPlayer::SpecialKeys(const int & key, const int & x, const int & y)
 
 	m_BoardNum += 1;
 
-	m_Mediator->Player_JumpStart();
+	m_pMediator->Player_JumpStart();
 }
 
 void CPlayer::Update()
@@ -108,6 +111,11 @@ void CPlayer::Render()
 		m_Rabit_RightFoot->Render();
 		m_Rabits_Helmet->Render();
 	glPopMatrix();
+}
+
+void CPlayer::Init_GameScene()
+{
+	Initialize();
 }
 
 void CPlayer::Player_JumpStart()
@@ -264,7 +272,7 @@ void CPlayer::Jump()
 	Calculate_JumpVector();
 	m_Matrix->Calu_Tranlate(CVector3D<>(m_vector_x, m_vector_y, m_vector_z));
 	
-	m_Mediator->Player_Jumping();
+	m_pMediator->Player_Jumping();
 
 	Finish_Jump();
 }
@@ -310,10 +318,10 @@ void CPlayer::Finish_Jump()
 
 	bool InRange = m_MySide <= 1 && m_MySide >= -1;
 	if (InRange) {
-		m_Mediator->Player_JumpFinish();
+		m_pMediator->Player_JumpFinish();
 	}
 	else {
-		m_Mediator->Player_Dead();
+		m_pMediator->Player_Dead();
 	}
 }
 

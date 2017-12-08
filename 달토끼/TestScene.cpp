@@ -11,13 +11,13 @@ CTestScene::CTestScene(CSceneManager* const changer)
 {
 	m_pSceneManager = changer;
 
-	m_Mediator = new CMediator;
+	m_pMediator = new CMediator(m_pSceneManager);
 
-	m_Camera = new CCamera(m_Mediator);
+	m_Camera = new CCamera(m_pMediator);
 	m_Camera->Initialize(CVector3D<>(0.f, 0.f, 0.f), 100, 0.1f, 600.f, 60);
 	m_Camera->Rotate(25, 20);
 
-	m_Player = new CPlayer(m_Mediator);
+	m_Player = new CPlayer(m_pMediator);
 
 	GLfloat gray[] = { 0.7f, 0.7f, 0.7f, 1.0f };
 	GLfloat ambient[] = { 1.f, 0.7f, 1.f, 1.0f };

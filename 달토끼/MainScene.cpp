@@ -21,7 +21,9 @@ void CMainScene::ConfirmCursor()
 	}
 	else if (m_Cursor == k_PLAY) {
 		//장면 넘어간다.
-		m_pSceneChager->ChangeToGame();
+		IsGameStart = true;
+		m_pMediator->GameStart();
+		//m_pSceneManager->ChangeToGame();
 	}
 }
 
@@ -30,8 +32,7 @@ void CMainScene::SelectCursor()
 	if (m_Cursor == k_PLAY) {
 		m_CursorPos = m_PLAY->GetPos();
 		m_CursorPos[1] += 100;
-		m_PLAY->Selected();
-		m_EXIT->NotSelected();
+		m_pMediator->Cursor_PLAY();
 
 		if (Nowdegree < 360 && Nowdegree >= 180) {
 			IsClockWise = false;
@@ -43,8 +44,7 @@ void CMainScene::SelectCursor()
 	else if (m_Cursor == k_EXIT) {
 		m_CursorPos = m_EXIT->GetPos();
 		m_CursorPos[1] += 100;
-		m_PLAY->NotSelected();
-		m_EXIT->Selected();
+		m_pMediator->Cursor_EXIT();
 
 		if (Nowdegree < 180 && Nowdegree >= 0) {
 			IsClockWise = false;
@@ -109,30 +109,31 @@ void CMainScene::WordRender()
 
 CMainScene::CMainScene(CSceneManager* const changer)
 {
-	m_pSceneChager = changer;
+	m_pSceneManager = changer;
+	m_pMediator = new CMediator(m_pSceneManager);
 
-	m_Mediator = new CMediator;
-
-	m_Camera = new CCamera(m_Mediator);
-	m_Camera->Initialize(CVector3D<>(0.f, 0.f, 0.f), 350, 0.1f, 600.f, 60);
-	m_Camera->Rotate(0, 0);
-
+	m_Camera = new CCamera(m_pMediator);
 	//m_Moon = new CMoon(CVector3D<>(80, 50, -100));
-	m_Earth = new CEarth((CVector3D<>(-100, 0, 0)));
+	m_Earth = new CEarth(m_pMediator);
 	m_PLAY = new CPLAY_word(CVector3D<>(- 150, -250, 0));
 	m_EXIT = new CEXIT_word(CVector3D<>(150, -250, 0));
 
-	SelectCursor();
-	IsRotate = false;
+	m_pMediator->SetMoon(m_Moon);
+	m_pMediator->SetEarth(m_Earth);
+	m_pMediator->SetPLAYWORD(m_PLAY);
+	m_pMediator->SetEXITWORD(m_EXIT);
+	m_pMediator->SetCamera(m_Camera);
+
+	Initialize();
+
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_TEXTURE_2D);
 }
 
-
 CMainScene::~CMainScene()
 {
 	delete m_Camera;
-	delete m_Mediator;
+	delete m_pMediator;
 	delete m_Moon;
 	delete m_Earth;
 	delete m_PLAY;
@@ -140,7 +141,12 @@ CMainScene::~CMainScene()
 
 void CMainScene::Initialize()
 {
-
+	m_pMediator->Init_MainScene();
+	SelectCursor();
+	IsRotate = false;
+	IsGameStart = false;
+	IsClockWise = false;
+	Nowdegree = 0;
 }
 
 void CMainScene::Render()
@@ -191,6 +197,7 @@ void CMainScene::Update()
 
 void CMainScene::Keyboard(const unsigned char & key, const int & x, const int & y)
 {
+	if (IsGameStart) return;
 
 	if (key == '=' || key == '+') {
 		m_Camera->zoom(0.8f);

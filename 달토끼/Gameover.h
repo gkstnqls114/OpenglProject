@@ -2,24 +2,20 @@
 #include "Scene.h"
 
 class CSceneManager;
-class CTextureStorage;
+class CMediator;
 
-class CTestScene :
+class CGameOver:
 	public CScene
 {
-	CSceneManager*		m_pSceneManager		{ nullptr };
 
-	CMediator*			m_pMediator			{ nullptr };
-	CPlayer *			m_Player			{ nullptr };
-	CCamera*			m_Camera			{ nullptr };
-	
-	GLint				texture_object;
-	CTextureStorage*	m_texture			{ nullptr };
+	CSceneManager*		m_pSceneManager{ nullptr };
+
+	CMediator *			m_pMediator{ nullptr };
 
 
 public:
-	CTestScene(CSceneManager* const changer);
-	virtual ~CTestScene();
+	CGameOver(CSceneManager* const changer);
+	virtual ~CGameOver();
 
 	virtual void Initialize();
 	virtual void Render();
@@ -29,3 +25,4 @@ public:
 	virtual void Keyboard(const unsigned char& key, const int& x, const int& y);
 	virtual void SpecialKeys(const int& key, const int& x, const int& y);
 };
+

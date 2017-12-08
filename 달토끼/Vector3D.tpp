@@ -15,8 +15,10 @@ template <typename T, int NUM>
 	vector[0] = x;
 	vector[1] = y;
 	vector[2] = z;
-	if (NUM >= 3) {
-		vector[3] = 0;
+	if (NUM > 3) {
+		for(int index = 4; index < NUM; ++index){
+			vector[index] = 0;
+		}
 	}
 }
 
@@ -110,10 +112,7 @@ template <typename T, int NUM>
   CVector3D<T, NUM> & CVector3D<T, NUM>::operator=(const CVector3D<T, NUM> & rhs)
 {
 	//std::cout << "복사 대입 연산자" << std::endl;
-	if (vector != nullptr) {
-		delete[] vector;
-	}
-
+	
 	vector = new T[NUM];
 	for (int index = 0; index < NUM; ++index) {
 		vector[index] = rhs.vector[index];
@@ -130,10 +129,10 @@ template <typename T, int NUM>
 		vector = new T[NUM];
 	}
 
-	vector[0] = rhs.vector[0];
-	vector[1] = rhs.vector[1];
-	vector[2] = rhs.vector[2];
-	vector[3] = rhs.vector[3];
+	for(int index = 0 ; index < NUM ; ++ index){
+		vector[index] = rhs.vector[index];
+	}
+
 
 	rhs.vector = nullptr;
 

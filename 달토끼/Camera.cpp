@@ -30,13 +30,14 @@ void CCamera::Animation_PlayerDead()
 	bool Finish = !Far && !verticalMove && !horizontalMove;
 	if (Finish) {
 		isAnimate = false;
+		m_pMediator->GameOver();
 	}
 }
 
 CCamera::CCamera(CMediator *& mediator)
 {
 	m_aspect = glutGet(GLUT_WINDOW_WIDTH) / static_cast<float>(glutGet(GLUT_WINDOW_HEIGHT));
-	m_Mediator = mediator;
+	m_pMediator = mediator;
 }
 
 void CCamera::Initialize(const CVector3D<> & at, float distance, float zNear, float zFar, float fov)
@@ -46,6 +47,8 @@ void CCamera::Initialize(const CVector3D<> & at, float distance, float zNear, fl
 	m_far = zFar;
 	m_distance = distance;
 	m_at = at;
+	m_vertical = 0;
+	m_horizontal = 0;
 }
 
 void CCamera::SetPosition(const CVector3D<> & at)
@@ -128,9 +131,23 @@ CVector3D<> CCamera::eye() const
 
 void CCamera::Update()
 {
+	LookAt();
 	if (!isAnimate) return;
 
 	Animation_PlayerDead();
+}
+
+void CCamera::Init_MainScene()
+{
+	Initialize(CVector3D<>(0.f, 0.f, 0.f), 350, 0.1f, 600.f, 60);
+	Rotate(0, 0);
+}
+
+void CCamera::Init_GameScene()
+{
+	Initialize(CVector3D<>(0.f, 0.f, 0.f), 130, 0.1f, 600.f, 60);
+	Rotate(25, 20);
+	LookAt();
 }
 
 void CCamera::Player_JumpStart()

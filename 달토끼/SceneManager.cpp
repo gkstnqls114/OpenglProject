@@ -2,6 +2,8 @@
 #include "MainScene.h"
 #include "GameScene.h"
 #include "TestScene.h"
+#include "Gameover.h"
+#include "GameClear.h"
 #include "SceneManager.h"
 
 CSceneManager::CSceneManager()
@@ -10,6 +12,9 @@ CSceneManager::CSceneManager()
 	m_GameScene = new CGameScene(this);
 	m_MainScene = new CMainScene(this);
 	m_TestScene = new CTestScene(this);
+	m_GameOverScene = new CGameOver(this);
+	m_GameClearScene = new CGameClear(this);
+
 	m_pCurrScene = m_MainScene;
 }
 
@@ -19,22 +24,38 @@ CSceneManager::~CSceneManager()
 	delete[] m_GameScene;
 	delete[] m_MainScene;
 	delete[] m_TestScene;
+	delete[] m_GameOverScene;
+	delete[] m_GameClearScene;
 }
 
 void CSceneManager::ChangeToMain()
 {
 	m_pCurrScene = m_MainScene;
-	//나중에 리셋 추가
+	m_pCurrScene->Initialize();
 }
 
 void CSceneManager::ChangeToGame()
 {
 	m_pCurrScene = m_GameScene;
+	m_pCurrScene->Initialize();
 }
 
 void CSceneManager::ChangeToTest()
 {
 	m_pCurrScene = m_TestScene;
+	m_pCurrScene->Initialize();
+}
+
+void CSceneManager::ChangeToGameOver()
+{
+	m_pCurrScene = m_GameOverScene;
+	m_pCurrScene->Initialize();
+}
+
+void CSceneManager::ChangeToGameClear()
+{
+	m_pCurrScene = m_GameClearScene;
+	m_pCurrScene->Initialize();
 }
 
 void CSceneManager::SceneRender()

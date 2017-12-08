@@ -5,35 +5,35 @@
 #include "Moon.h"
 #include "Earth.h"
 #include "Camera.h"
-#include "Vector3D.h"
+#include "Skybox.h"
 #include "Road.h"
 #include "GameScene.h"
 
 CGameScene::CGameScene(CSceneManager* const changer)
 {
 	m_pSceneManager = changer;
+	m_pMediator = new CMediator(m_pSceneManager);
+	
+	m_Skybox = new CSkybox;
 
-	m_Mediator = new CMediator;
-
-	m_Camera = new CCamera(m_Mediator);
-	m_Camera->Initialize(CVector3D<>(0.f, 0.f, 0.f), 130, 0.1f, 600.f, 60);
-	m_Camera->Rotate(25, 20);
-	//m_Camera->Rotate(90, 0);
-
-	m_Player = new CPlayer(m_Mediator);
-
+	m_Camera = new CCamera(m_pMediator);
+	m_Player = new CPlayer(m_pMediator);
 	double distance = m_Player->Get_JumpReach();
-	std::cout << distance << "이다" << std::endl;
-	m_Road = new CRoad(distance, m_Mediator);
+	m_Road = new CRoad(distance, m_pMediator);
+
+	m_pMediator->SetPlayer(m_Player);
+	m_pMediator->SetRoad(m_Road);
+	m_pMediator->SetCamera(m_Camera);
 
 	GLdouble DownY = 60;
 	CVector3D<> MoonPos = m_Road->GetLastPos();
 	m_Moon = new CMoon(CVector3D<>(MoonPos[0] , MoonPos[1]- DownY, MoonPos[2]));
 
 	CVector3D<> EarthPos = m_Road->GetFirstPos();
-	m_Earth = new CEarth(CVector3D<>(EarthPos[0], EarthPos[1] - DownY + 10, EarthPos[2]));
+	m_Earth = new CEarth(m_pMediator);
+	m_Earth->SetPos(CVector3D<>(EarthPos[0], EarthPos[1] - DownY + 10, EarthPos[2]));
 
-	m_Mediator->Set_Colleague(m_Player, m_Road, m_Camera);
+	Initialize();
 
 	//임시로 쓰이는 라이트값
 	GLfloat gray[] = { 0.7f, 0.7f, 0.7f, 1.0f };
@@ -75,33 +75,42 @@ CGameScene::~CGameScene()
 	delete m_Road;
 	m_Road = nullptr;
 
-	delete m_Mediator;
-	m_Mediator = nullptr;
+	delete m_pMediator;
+	m_pMediator = nullptr;
+
+	delete m_Skybox;
+	m_Skybox = nullptr;
 }
 
 void CGameScene::Initialize()
 {
-	//뭔가 해야하나?
+	m_pMediator->Init_GameScene();
 }
 
 
 void CGameScene::Render()
 {
+	//반드시 스카이박스는 맨 처음에 렌더
+	m_Skybox->Render();
+
 	RenderAxis();
 
 	m_Player->Render();
 	m_Road->Render();
 	//m_Earth->Render();
 	//m_Moon->Render();
+	
 }
 
 void CGameScene::Update()
 {
-	if (!Start) return;
-	
-	m_Player->Update();
-	//m_Road->Update();
 	m_Camera->Update();
+
+	if (!Start) return;
+
+	m_Skybox->Update();
+	m_Player->Update();
+	m_Road->Update();
 	m_Earth->Update();
 	m_Moon->Update();
 }

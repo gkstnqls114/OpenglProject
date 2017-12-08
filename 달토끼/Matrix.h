@@ -35,6 +35,8 @@ public:
 	
 	void Calu_Tranlate(const CVector3D<GLdouble>& rhs);
 	void Calu_Tranlate(CVector3D<GLdouble>&& rhs);
+	void Set_Translate(const CVector3D<GLdouble>& rhs);
+	void Set_Translate(CVector3D<GLdouble>&& rhs);
 
 	void Calu_Rotate(const int& Nowdegree, const int& x, const int& y, const int& z);
 	void Calu_Rotate(const float& Nowdegree, const int& x, const int& y, const int& z);

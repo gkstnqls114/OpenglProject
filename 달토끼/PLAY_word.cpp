@@ -14,7 +14,7 @@ CPLAY_word::CPLAY_word(const CVector3D<>& pos)
 
 	m_Position = pos;
 	m_matrix = new CMatrix;
-	m_matrix->Calu_Tranlate(m_Position);
+	m_matrix->Set_Translate(m_Position);
 }
 
 
@@ -34,6 +34,10 @@ void CPLAY_word::Render()
 
 void CPLAY_word::Update()
 {
+	if (IsGameStart) {
+		//내려간다
+		m_matrix->Calu_Rotate(5, 0, 1, 0);
+	}
 	if (!IsSelected) return;
 
 	if (SizeTime >= 1.f) {
@@ -47,6 +51,19 @@ void CPLAY_word::Update()
 	NowSize = Interpolation(BeginSize, EndSize, SizeTime);
 
 	m_matrix->Set_Scale(NowSize);
+}
+
+void CPLAY_word::Init_MainScene()
+{
+	m_matrix->Set_Translate(m_Position);
+	m_matrix->ResetRotate();
+	IsGameStart = false;
+}
+
+void CPLAY_word::GameStart()
+{
+	//회전 한바퀴
+	IsGameStart = true;
 }
 
 void CPLAY_word::Scale(const float & NowSize)

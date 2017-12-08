@@ -155,6 +155,8 @@
     <ClCompile Include="Colleague.cpp" />
     <ClCompile Include="Earth.cpp" />
     <ClCompile Include="EXIT_word.cpp" />
+    <ClCompile Include="GameClear.cpp" />
+    <ClCompile Include="Gameover.cpp" />
     <ClCompile Include="Lighting.cpp" />
     <ClCompile Include="MainScene.cpp" />
     <ClCompile Include="Mediator.cpp" />
@@ -183,7 +185,9 @@
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="ObjVertex.cpp" />
     <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="Skybox.cpp" />
     <ClCompile Include="SoundManager.cpp" />
+    <ClCompile Include="Star.cpp" />
     <ClCompile Include="TestScene.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TextureStorage.cpp" />
@@ -194,6 +198,8 @@
     <ClInclude Include="Colleague.h" />
     <ClInclude Include="Earth.h" />
     <ClInclude Include="EXIT_word.h" />
+    <ClInclude Include="GameClear.h" />
+    <ClInclude Include="Gameover.h" />
     <ClInclude Include="Lighting.h" />
     <ClInclude Include="MainScene.h" />
     <ClInclude Include="Mediator.h" />
@@ -212,7 +218,9 @@
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="ObjVertex.h" />
     <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="Skybox.h" />
     <ClInclude Include="SoundManager.h" />
+    <ClInclude Include="Star.h" />
     <ClInclude Include="TestScene.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TextureStorage.h" />

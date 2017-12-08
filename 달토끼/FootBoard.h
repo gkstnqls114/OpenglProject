@@ -20,7 +20,7 @@ class CFootBoard
 
 	int m_Side{ -2 }; //-2는 존재하지 않음
 
-	CVector3D<> m_Position{ 0, 0, 0 };
+	CVector3D<> m_Position{ 0, -5, 0 };
 
 	float m_r{ 1.f };
 	float m_g{ 0.f };

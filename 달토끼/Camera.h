@@ -1,6 +1,5 @@
 #pragma once
 #include "Colleague.h"
-#include "Vector3D.h"
 
 class CMediator;
 
@@ -23,7 +22,7 @@ class CCamera : public CColleague
 	const double PI{ 3.141592 };
 	
 	//Camera Animation
-	CMediator* m_Mediator{ nullptr };
+	CMediator* m_pMediator{ nullptr };
 
 	bool isPlayerDead{ false };
 	bool isAnimate{ false };
@@ -65,6 +64,10 @@ public:
 	//Mediator
 	void Update();
 
+
+	virtual void Init_MainScene();
+
+	virtual void Init_GameScene();
 	virtual void Player_JumpStart();
 	virtual void Player_Jumping(const CVector3D<>& move);
 	virtual void Player_JumpFinish();

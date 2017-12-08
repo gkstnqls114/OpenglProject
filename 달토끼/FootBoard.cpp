@@ -8,12 +8,12 @@ CObjModel* CFootBoard::m_obj = nullptr;
 
 void CFootBoard::Disappear()
 {
-	if (m_r < 0) {
+	if (m_a <= 0) {
 		IsDisappear = true;
 		return;
 	}
 
-	m_r -= 0.03f;
+	m_a -= 0.03f;
 }
 
 void CFootBoard::RenderModel()
@@ -41,7 +41,8 @@ void CFootBoard::InitModel()
 	std::cout << "FootBoard ¸ðµ¨ »ý¼º" << std::endl;
 
 	CFootBoard::m_obj = new CObjModel;
-	CFootBoard::m_obj->LoadObj("sample_box.obj");
+	CFootBoard::m_obj->LoadObj("FootBoard.obj");
+	CFootBoard::m_obj->LoadTexture("FootBoard.bmp");
 }
 
 void CFootBoard::DeleteModel()
@@ -55,6 +56,7 @@ void CFootBoard::DeleteModel()
 
 void CFootBoard::Render()
 {
+	glEnable(GL_BLEND);
 	glPushMatrix();
 	//glLoadMatrixf(m_Translate_Matrix);
 	glLoadIdentity();

@@ -33,14 +33,14 @@ void CRoad::InitFootBoardPos(const GLdouble& distance)
 
 		float tranlateX = Road_Distance_X * nowSide;
 		float tranlateZ = -x * distance;
-		m_pFootBoard[x].InitPosition(CVector3D<>(tranlateX, 0, tranlateZ));
+		m_pFootBoard[x].InitPosition(CVector3D<>(tranlateX, -5, tranlateZ));
 
 		prev_Side = nowSide;
 	}
 	//마지막은 반드시 가운데
 	float tranlateX = 0;
 	float tranlateZ = -(m_boardNum - 1) * distance;
-	m_pFootBoard[m_boardNum - 1].InitPosition(CVector3D<>(tranlateX, 0, tranlateZ));
+	m_pFootBoard[m_boardNum - 1].InitPosition(CVector3D<>(tranlateX, -5, tranlateZ));
 
 }
 
@@ -51,7 +51,7 @@ CRoad::CRoad(const GLdouble& distance, CMediator*& mediator)
 	InitFootBoardModel();
 	InitFootBoardPos(distance);
 
-	m_Mediator = mediator;
+	m_pMediator = mediator;
 }
 
 
@@ -79,7 +79,7 @@ void CRoad::Update()
 	m_pFootBoard[m_DisappearBoardNum].Update();
 
 	if (m_pFootBoard[m_PlayerPosNum].GetDisappear()) {
-		m_Mediator->Player_Dead();
+		m_pMediator->Player_Dead();
 	}
 
 	//위 if문과 순서 중요!
@@ -113,7 +113,12 @@ void CRoad::Player_JumpFinish(int playerside)
 	//플레이어 위치가 올바른 곳인지 확인
 	bool IsWrongPos = m_pFootBoard[m_PlayerPosNum].GetSide() != playerside;
 	if (IsWrongPos) {
-		m_Mediator->Player_Dead();
+		m_pMediator->Player_Dead();
+		return;
+	}
+	bool IsGameClear = m_PlayerPosNum == (m_boardNum - 1);
+	if (IsGameClear) {
+		m_pMediator->GameClear();
 		return;
 	}
 
