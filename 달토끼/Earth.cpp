@@ -50,6 +50,8 @@ void CEarth::Update()
 		if (m_Matrix->Get_Tranlate_Y() > 400) {
 			m_pMediator->GameScene();
 		}
+
+		return;
 	}
 	Float();
 	m_Earth->Rotate(1, 0, 1, 0);
@@ -60,7 +62,7 @@ void CEarth::Render()
 	if (m_Earth == nullptr)return;
 
 	glPushMatrix();
-	//m_Matrix->MultiMatrix();
+	m_Matrix->MultiMatrix();
 	m_Earth->Render();
 	glPopMatrix();
 }
@@ -81,7 +83,6 @@ void CEarth::Float()
 void CEarth::Init_MainScene()
 {
 	SetPos(CVector3D<>(-100, 0, 0));
-	m_Matrix->ResetTranslate();
 	m_Matrix->ResetRotate();
 	IsGameStart = false;
 }

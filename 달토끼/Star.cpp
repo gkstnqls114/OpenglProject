@@ -35,6 +35,11 @@ void CStar::Initialize()
 {
 }
 
+void CStar::RandomPosZ(const int & z)
+{
+	m_Pos[2] = -(rand() % (abs(z) + 400) - 200);
+}
+
 void CStar::Render()
 {
 	glColor3f(m_RGB[0], m_RGB[1], m_RGB[2]);

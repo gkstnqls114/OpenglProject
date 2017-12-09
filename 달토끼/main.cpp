@@ -16,7 +16,7 @@ namespace
 void main(int argc, char** argv)
 {
 	//초기화 함수들
-	framework.Initialize(argc, argv, 600, 700, 0, 0);
+	framework.Initialize(argc, argv, 600, 800, 0, 0);
 
 	framework.RegisterDrawFunction([]() {framework.DrawScene(); });
 	framework.RegisterTimerFunction([](int val) {framework.Timer(val); });

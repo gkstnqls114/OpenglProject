@@ -7,6 +7,7 @@
 #include "PLAY_word.h"
 #include "EXIT_word.h"
 #include "SceneManager.h"
+#include "TextureStorage.h"
 
 #include "TestScene.h"
 #include "MainScene.h"
@@ -23,7 +24,6 @@ void CMainScene::ConfirmCursor()
 		//장면 넘어간다.
 		IsGameStart = true;
 		m_pMediator->GameStart();
-		//m_pSceneManager->ChangeToGame();
 	}
 }
 
@@ -69,7 +69,14 @@ void CMainScene::RotateUpdate()
 		//반시계 회전
 		Nowdegree += 2;
 	}
-	Nowdegree %= 360;
+	
+	if (m_Cursor == k_EXIT && abs(Nowdegree) == 180) {
+		Nowdegree = 180;
+	}
+	else if (m_Cursor == k_PLAY && abs(Nowdegree) == 360) {
+		Nowdegree = 0;
+	}
+	
 
 	const bool IsRotateFinish_PLAY =
 		m_Cursor == k_PLAY && Nowdegree == k_PLAYdegree;
@@ -89,10 +96,26 @@ void CMainScene::WordRender()
 	glClear(GL_DEPTH_BUFFER_BIT);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	glOrtho(-glutGet(GLUT_WINDOW_WIDTH) / 2, glutGet(GLUT_WINDOW_WIDTH) / 2,
-		- static_cast<float>(glutGet(GLUT_WINDOW_HEIGHT)) / 2, static_cast<float>(glutGet(GLUT_WINDOW_HEIGHT)) / 2,
-		-100.f, 100);
+	double Left = -glutGet(GLUT_WINDOW_WIDTH) / 2;
+	double Right = glutGet(GLUT_WINDOW_WIDTH) / 2;
+	double Top = static_cast<float>(glutGet(GLUT_WINDOW_HEIGHT)) / 2;
+	double Bottom = -static_cast<float>(glutGet(GLUT_WINDOW_HEIGHT)) / 2;
+
+	glOrtho(Left, Right, Bottom, Top, -100.f, 100);
 	glMatrixMode(GL_MODELVIEW);
+
+	glBindTexture(GL_TEXTURE_2D, m_BackgroundTextureID);
+		glBegin(GL_QUADS);
+		glTexCoord2f(0.f, 1.f);
+		glVertex3d(Left, Top, 0);
+		glTexCoord2f(1.f, 1.f);
+		glVertex3d(Right, Top, 0);
+		glTexCoord2f(1.f, 0.f);
+		glVertex3d(Right, Bottom, 0);
+		glTexCoord2f(0.f, 0.f);
+		glVertex3d(Left, Bottom, 0);
+		glEnd();
+	glClear(GL_DEPTH_BUFFER_BIT);
 
 	//커서
 	glColor3f(1.f, 1.f, 1.f);
@@ -115,8 +138,8 @@ CMainScene::CMainScene(CSceneManager* const changer)
 	m_Camera = new CCamera(m_pMediator);
 	//m_Moon = new CMoon(CVector3D<>(80, 50, -100));
 	m_Earth = new CEarth(m_pMediator);
-	m_PLAY = new CPLAY_word(CVector3D<>(- 150, -250, 0));
-	m_EXIT = new CEXIT_word(CVector3D<>(150, -250, 0));
+	m_PLAY = new CPLAY_word(CVector3D<>(- 150, -300, 0));
+	m_EXIT = new CEXIT_word(CVector3D<>(150, -300, 0));
 
 	m_pMediator->SetMoon(m_Moon);
 	m_pMediator->SetEarth(m_Earth);
@@ -126,8 +149,9 @@ CMainScene::CMainScene(CSceneManager* const changer)
 
 	Initialize();
 
-	glEnable(GL_DEPTH_TEST);
-	glEnable(GL_TEXTURE_2D);
+	m_textureStroage = new CTextureStorage;
+	m_textureStroage->StoreBitmap("MainBack.bmp", m_BackgroundTextureID);
+
 }
 
 CMainScene::~CMainScene()
@@ -142,6 +166,7 @@ CMainScene::~CMainScene()
 void CMainScene::Initialize()
 {
 	m_pMediator->Init_MainScene();
+	m_Cursor = k_PLAY;
 	SelectCursor();
 	IsRotate = false;
 	IsGameStart = false;
@@ -151,6 +176,11 @@ void CMainScene::Initialize()
 
 void CMainScene::Render()
 {
+	//배경
+	WordRender();
+
+	m_Camera->LookAt();
+	
 	RenderAxis();
 
 	glPushMatrix();
@@ -162,7 +192,6 @@ void CMainScene::Render()
 	glPopMatrix();
 	
 
-	WordRender();
 }
 
 void CMainScene::Reshape(const int & w, const int & h)

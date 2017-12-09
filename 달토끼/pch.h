@@ -26,3 +26,4 @@ enum side_num
 };
 
 const int Road_Distance_X = 20;
+const CVector3D<float, 3> LIGHTRGB{ 1.f, 0.7f, 0.7f };

@@ -22,10 +22,8 @@ class CFootBoard
 
 	CVector3D<> m_Position{ 0, -5, 0 };
 
-	float m_r{ 1.f };
-	float m_g{ 0.f };
-	float m_b{ 0.f };
-	float m_a{ 1.f };
+	CVector3D<float, 4>			m_TextureRGBA{1.f, 1.f, 1.f};
+
 
 	GLfloat m_Translate_Matrix[16] =
 	{
@@ -53,10 +51,6 @@ class CFootBoard
 
 	//¿òÁ÷ÀÓ
 	float DisappearTime{ 0.f };
-	bool isDisappear{ false };
-
-	int m_PlayerPos{ 0 };
-
 	bool IsDisappear{ false };
 	
 private:
@@ -78,6 +72,8 @@ public:
 	const CVector3D<> GetPos() const noexcept { return m_Position; }
 	const bool GetDisappear() const { return IsDisappear; }
 	const int GetSide() const noexcept { return m_Side; }
+
+	void Init_GameScene();
 };
 
 

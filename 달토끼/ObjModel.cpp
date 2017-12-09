@@ -9,16 +9,8 @@
 
 void CObjModel::ModelRender()
 {
-	bool IsNotLoad =
-		m_pVertex == nullptr ||
-		m_pTexture == nullptr ||
-		m_pNormal == nullptr ||
-		m_pFace == nullptr;
-	if (IsNotLoad) return;
-
 	glBindTexture(GL_TEXTURE_2D, m_TextureID);
 	for (int Face_index = 0; Face_index < m_FaceNum; ++Face_index) {
-		//glBegin(GL_LINE_LOOP);
 		glBegin(GL_POLYGON);
 
 		int Vertex_in_Face = m_pFace[Face_index].GetVertexNum();
@@ -35,7 +27,6 @@ void CObjModel::ModelRender()
 
 		glEnd();
 	}
-
 }
 
 void CObjModel::Find_VertexNum(const char*& filename)
@@ -281,6 +272,13 @@ CObjModel::~CObjModel()
 	m_PivotMove_Matrix = nullptr;
 	delete m_PivotReturn_Matrix;
 	m_PivotReturn_Matrix = nullptr;
+}
+
+void CObjModel::Reset()
+{
+	m_Matrix->ResetRotate();
+	m_Matrix->ResetTranslate();
+	m_Matrix->ResetScale();
 }
 
 void CObjModel::LoadObj(const char * filename)

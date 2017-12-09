@@ -7,19 +7,53 @@
 #include "Camera.h"
 #include "Skybox.h"
 #include "Road.h"
+#include "TextureStorage.h"
 #include "GameScene.h"
+
+void CGameScene::RenderBack()
+{
+	glClear(GL_DEPTH_BUFFER_BIT);
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	double Left = -glutGet(GLUT_WINDOW_WIDTH) / 2;
+	double Right = glutGet(GLUT_WINDOW_WIDTH) / 2;
+	double Top = static_cast<float>(glutGet(GLUT_WINDOW_HEIGHT)) / 2;
+	double Bottom = -static_cast<float>(glutGet(GLUT_WINDOW_HEIGHT)) / 2;
+
+	glOrtho(Left, Right, Bottom, Top, -100.f, 100);
+	glMatrixMode(GL_MODELVIEW);
+
+	glColor3f(LIGHTRGB[0], LIGHTRGB[1], LIGHTRGB[2]);
+	glBindTexture(GL_TEXTURE_2D, m_BackgroundTextureID);
+	glBegin(GL_QUADS);
+	glTexCoord2f(0.f, 1.f);
+	glVertex3d(Left, Top, 0);
+	glTexCoord2f(1.f, 1.f);
+	glVertex3d(Right, Top, 0);
+	glTexCoord2f(1.f, 0.f);
+	glVertex3d(Right, Bottom, 0);
+	glTexCoord2f(0.f, 0.f);
+	glVertex3d(Left, Bottom, 0);
+	glEnd();
+
+	glClear(GL_DEPTH_BUFFER_BIT);
+}
 
 CGameScene::CGameScene(CSceneManager* const changer)
 {
 	m_pSceneManager = changer;
 	m_pMediator = new CMediator(m_pSceneManager);
-	
-	m_Skybox = new CSkybox;
+
+	m_textureStroage = new CTextureStorage;
+	m_textureStroage->StoreBitmap("Background.bmp", m_BackgroundTextureID);
+
 
 	m_Camera = new CCamera(m_pMediator);
 	m_Player = new CPlayer(m_pMediator);
 	double distance = m_Player->Get_JumpReach();
 	m_Road = new CRoad(distance, m_pMediator);
+	int LastZ = m_Road->GetLastPos()[2];
+	m_Skybox = new CSkybox(LastZ);
 
 	m_pMediator->SetPlayer(m_Player);
 	m_pMediator->SetRoad(m_Road);
@@ -41,7 +75,7 @@ CGameScene::CGameScene(CSceneManager* const changer)
 	GLfloat diffuse[] = { 1.f, 1.f, 1.f, 1.f };
 	GLfloat  specref[] = { 1.0f, 1.0f, 1.0f, 1.0f };
 
-	GLfloat lightPos[] = { 0, 100, 10, 0 };
+	GLfloat lightPos[] = { 0, 30, -30, 0 };
 
 	glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, gray);
 	glMaterialfv(GL_FRONT, GL_SPECULAR, specref);
@@ -56,6 +90,7 @@ CGameScene::CGameScene(CSceneManager* const changer)
 	//임시로 쓰이는 라이트값
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_TEXTURE_2D);
+	glEnable(GL_COLOR_MATERIAL);
 }
 
 CGameScene::~CGameScene()
@@ -85,18 +120,21 @@ CGameScene::~CGameScene()
 void CGameScene::Initialize()
 {
 	m_pMediator->Init_GameScene();
+	Start = false;
 }
 
 
 void CGameScene::Render()
 {
 	//반드시 스카이박스는 맨 처음에 렌더
+	RenderBack();
+	m_Camera->LookAt();
+
 	m_Skybox->Render();
 
-	RenderAxis();
+	m_Road->Render();
 
 	m_Player->Render();
-	m_Road->Render();
 	//m_Earth->Render();
 	//m_Moon->Render();
 	
@@ -105,12 +143,14 @@ void CGameScene::Render()
 void CGameScene::Update()
 {
 	m_Camera->Update();
+	m_Skybox->Update();
 
 	if (!Start) return;
 
-	m_Skybox->Update();
 	m_Player->Update();
+
 	m_Road->Update();
+
 	m_Earth->Update();
 	m_Moon->Update();
 }

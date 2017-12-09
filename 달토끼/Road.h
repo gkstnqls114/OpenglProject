@@ -31,6 +31,7 @@ public:
 	const CVector3D<> GetFirstPos() const noexcept;
 
 	//Mediator
+	virtual void Init_GameScene();
 	virtual void Player_JumpStart();
 	virtual void Player_Jumping();
 	virtual void Player_JumpFinish(int playerside);

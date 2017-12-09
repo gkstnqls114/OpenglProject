@@ -1,4 +1,5 @@
 #include "pch.h"
+#include "SceneManager.h"
 #include "Gameover.h"
 
 
@@ -34,6 +35,7 @@ void CGameOver::Update()
 
 void CGameOver::Keyboard(const unsigned char & key, const int & x, const int & y)
 {
+	m_pSceneManager->ChangeToGame();
 }
 
 void CGameOver::SpecialKeys(const int & key, const int & x, const int & y)

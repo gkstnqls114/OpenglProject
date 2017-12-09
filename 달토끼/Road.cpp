@@ -15,6 +15,8 @@ void CRoad::InitFootBoardPos(const GLdouble& distance)
 	std::cout << distance << ": 거리" << std::endl;
 
 	int prev_Side = 0;
+	m_pFootBoard[0].InitPosition(CVector3D<>(0, -5, 0));
+
 	//맨 첫번째는 이동하지 않으므로 1부터 시작
 	for (int x = 1; x < m_boardNum - 1; ++x) {
 		int nowSide = k_side[rand() % 3];
@@ -67,9 +69,14 @@ void CRoad::Render()
 {
 	if (isPlayerDead) return;
 
-	for (int x = m_DisappearBoardNum; x < m_PlayerPosNum + 5; ++x) {
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+	int MaxNum = min(m_boardNum, m_PlayerPosNum + 5);
+	for (int x = m_DisappearBoardNum; x < MaxNum; ++x) {
 		m_pFootBoard[x].Render();
 	}
+	glDisable(GL_BLEND);
 }
 
 void CRoad::Update()
@@ -96,6 +103,16 @@ const CVector3D<> CRoad::GetLastPos() const noexcept
 const CVector3D<> CRoad::GetFirstPos() const noexcept
 {
 	return m_pFootBoard[0].GetPos();
+}
+
+void CRoad::Init_GameScene()
+{
+	for (int index = 0; index < m_boardNum; ++index) {
+		m_pFootBoard[index].Init_GameScene();
+	}
+	m_PlayerPosNum = 0;
+	m_DisappearBoardNum = 0;
+	isPlayerDead = false;
 }
 
 void CRoad::Player_JumpStart()

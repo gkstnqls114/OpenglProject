@@ -3,9 +3,13 @@
 #include "Skybox.h"
 
 
-CSkybox::CSkybox()
+CSkybox::CSkybox(const int& z)
 {
 	m_Stars = new CStar[m_StarNum];
+
+	for (int index = 0; index < m_StarNum; ++index) {
+		m_Stars[index].RandomPosZ(z);
+	}
 }
 
 

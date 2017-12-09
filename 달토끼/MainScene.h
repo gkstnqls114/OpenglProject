@@ -8,6 +8,7 @@ class CEarth;
 class CEXIT_word;
 class CPLAY_word;
 
+class CTextureStorage;
 class CSceneManager;
 
 class CMainScene :
@@ -21,6 +22,9 @@ class CMainScene :
 	CEarth*			m_Earth			{ nullptr };
 	CPLAY_word*		m_PLAY			{ nullptr };
 	CEXIT_word*		m_EXIT			{ nullptr };
+
+	GLuint			m_BackgroundTextureID;
+	CTextureStorage*m_textureStroage{ nullptr };
 
 	enum {
 		k_PLAY,

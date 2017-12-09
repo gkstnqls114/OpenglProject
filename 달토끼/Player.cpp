@@ -17,7 +17,7 @@ CPlayer::CPlayer(CMediator*& mediator)
 
 	m_Matrix = new CMatrix();
 
-	Initialize();
+	Init_GameScene();
 }
 
 CPlayer::~CPlayer()
@@ -51,11 +51,6 @@ void CPlayer::DeleteModel()
 
 void CPlayer::Initialize()
 {
-	//초기화
-	Find_JumpProperty();
-
-	m_Matrix->Set_Rotate(180, 0, 1, 0);
-	m_Matrix->Set_Scale(0.3);
 }
 
 
@@ -103,6 +98,7 @@ void CPlayer::Update()
 
 void CPlayer::Render()
 {
+	glColor3f(LIGHTRGB[0], LIGHTRGB[1], LIGHTRGB[2]);
 	glPushMatrix();
 		m_Matrix->MultiMatrix();
 		m_Rabit_Body->Render();
@@ -115,7 +111,27 @@ void CPlayer::Render()
 
 void CPlayer::Init_GameScene()
 {
-	Initialize();
+	//초기화
+	Find_JumpProperty();
+	
+	m_Rabit_LeftFoot->Reset();
+	m_Rabit_RightFoot->Reset();
+	m_Rabit_Body->Reset();
+	m_Rabit_Body->Reset();
+	m_Rabit_Ear->Reset();
+
+	m_Matrix->Set_Rotate(180, 0, 1, 0);
+	m_Matrix->Set_Scale(0.3);
+	m_Matrix->ResetTranslate();
+
+	prevSide = 0;
+	jumpSide = 0;
+	IsJump = false;
+	IsRight = false;
+	IsLeft = false;
+	IsDead = false;
+	m_BoardNum = 0;
+	m_MySide = 0;
 }
 
 void CPlayer::Player_JumpStart()

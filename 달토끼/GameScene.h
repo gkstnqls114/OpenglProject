@@ -10,6 +10,8 @@ class CMediator;
 class CSkybox;
 class CCamera;
 
+class CTextureStorage;
+
 class CGameScene :
 	public CScene
 {
@@ -25,7 +27,13 @@ class CGameScene :
 
 	CSkybox*			m_Skybox		{ nullptr };
 
+	GLuint				m_BackgroundTextureID;
+	CTextureStorage*	m_textureStroage{ nullptr };
+
 	bool				Start			{ false };
+
+private:
+	void RenderBack();
 
 public:
 	CGameScene(CSceneManager* const changer);

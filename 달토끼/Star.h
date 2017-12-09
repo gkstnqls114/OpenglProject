@@ -13,6 +13,7 @@ public:
 	CStar();
 	~CStar();
 	void Initialize();
+	void RandomPosZ(const int& z);
 
 	void Render();
 	void Update();

@@ -8,7 +8,7 @@ class CSkybox
 	int m_StarNum{ 3000 };
 
 public:
-	CSkybox();
+	CSkybox(const int& z);
 	~CSkybox();
 
 	void Render();

@@ -6,7 +6,6 @@ class CTextureStorage;
 
 class CObjModel
 {
-	char m_count[100];
 	int m_VertexNum{ 0 };
 	int m_TextureNum{ 0 };
 	int m_NormalNum{ 0 };
@@ -14,17 +13,16 @@ class CObjModel
 	
 	CTextureStorage*		 m_TextureStroage	{ nullptr };
 	GLuint					m_TextureID			;
-	
+
 	CVector3D<> *			m_pVertex			{ nullptr };
 	CVector3D<> *			m_pTexture			{ nullptr };
 	CVector3D<> *			m_pNormal			{ nullptr };
 	CObjFace *				m_pFace				{ nullptr };
 
-
 	CMatrix*		m_PivotMove_Matrix	{ nullptr };
 	CMatrix*		m_PivotReturn_Matrix{ nullptr };
 	CMatrix*		m_Matrix			{ nullptr };
-
+	
 private:
 	void ModelRender();
 	void Find_VertexNum(const char*& filename);
@@ -35,6 +33,7 @@ private:
 public:
 	CObjModel();
 	~CObjModel();
+	void Reset();
 
 	void LoadObj(const char* filename);
 	void LoadTexture(const char* filename);

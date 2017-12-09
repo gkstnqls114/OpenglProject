@@ -8,12 +8,12 @@ CObjModel* CFootBoard::m_obj = nullptr;
 
 void CFootBoard::Disappear()
 {
-	if (m_a <= 0) {
+	if (m_TextureRGBA[3] <= 0) {
 		IsDisappear = true;
 		return;
 	}
 
-	m_a -= 0.03f;
+	m_TextureRGBA[3] -= 0.03f;
 }
 
 void CFootBoard::RenderModel()
@@ -26,6 +26,7 @@ void CFootBoard::RenderModel()
 CFootBoard::CFootBoard()
 {
 	std::cout << "FootBoard »ý¼ºÀÚ" << std::endl;
+
 }
 
 CFootBoard::~CFootBoard()
@@ -56,14 +57,12 @@ void CFootBoard::DeleteModel()
 
 void CFootBoard::Render()
 {
-	glEnable(GL_BLEND);
+	glColor4f(LIGHTRGB[0], LIGHTRGB[1], LIGHTRGB[2], m_TextureRGBA[3]);
+	
 	glPushMatrix();
-	//glLoadMatrixf(m_Translate_Matrix);
-	glLoadIdentity();
 	glMultMatrixf(m_Translate_Matrix);
 	glMultMatrixf(m_Rotate_Matrix);
 	glMultMatrixf(m_Scale_Matrix);
-	glColor4f(m_r, m_g, m_b, m_a);
 	
 	RenderModel();
 
@@ -72,8 +71,18 @@ void CFootBoard::Render()
 
 void CFootBoard::Update()
 {
-	if (isDisappear) return;
+	if (IsDisappear) return;
 	Disappear();
+}
+
+void CFootBoard::Init_GameScene()
+{
+	m_TextureRGBA[0] - 1.f;
+	m_TextureRGBA[1] - 1.f;
+	m_TextureRGBA[2] - 1.f;
+	m_TextureRGBA[3] = 1.f;
+	DisappearTime = 0.f;
+	IsDisappear = false;
 }
 
 void CFootBoard::InitPosition(const int & x, const int & y, const int & z)
