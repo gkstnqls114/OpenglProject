@@ -23,8 +23,8 @@ class CPlayer
 	//jump property
 	const float k_gravity{ 0.7f };
 	const double k_PI{ 3.14152 };
-	const int m_JumpDegree{ 70 };
-	const float m_power{ 10.f };
+	const int m_JumpDegree{ 80 };
+	const int m_power{ 9 };
 	int m_FinishJumpTime{ 0 };
 	GLdouble m_JumpReach{0};
 

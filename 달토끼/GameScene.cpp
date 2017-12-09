@@ -59,14 +59,9 @@ CGameScene::CGameScene(CSceneManager* const changer)
 	m_pMediator->SetRoad(m_Road);
 	m_pMediator->SetCamera(m_Camera);
 
-	GLdouble DownY = 60;
-	CVector3D<> MoonPos = m_Road->GetLastPos();
-	m_Moon = new CMoon(CVector3D<>(MoonPos[0] , MoonPos[1]- DownY, MoonPos[2]));
-
-	CVector3D<> EarthPos = m_Road->GetFirstPos();
+	m_Moon = new CMoon(m_pMediator);
 	m_Earth = new CEarth(m_pMediator);
-	m_Earth->SetPos(CVector3D<>(EarthPos[0], EarthPos[1] - DownY + 10, EarthPos[2]));
-
+	
 	Initialize();
 
 }
@@ -105,6 +100,13 @@ void CGameScene::Initialize()
 	glEnable(GL_COLOR_MATERIAL);
 
 	m_pMediator->Init_GameScene();
+
+	GLdouble DownY = 100;
+	CVector3D<> MoonPos = m_Road->GetLastPos();
+	CVector3D<> EarthPos = m_Road->GetFirstPos();
+	m_Earth->SetPos(CVector3D<>(EarthPos[0], EarthPos[1] - DownY + 10, EarthPos[2]));
+	m_Moon->SetPos(CVector3D<>(MoonPos[0], MoonPos[1] - DownY, MoonPos[2]));
+
 	Start = false;
 }
 
@@ -120,24 +122,21 @@ void CGameScene::Render()
 	m_Road->Render();
 
 	m_Player->Render();
-	//m_Earth->Render();
-	//m_Moon->Render();
-	
+	m_Earth->Render();
+	m_Moon->Render();
 }
 
 void CGameScene::Update()
 {
 	m_Camera->Update();
 	m_Skybox->Update();
+	m_Earth->Update();
+	m_Moon->Update();
 
 	if (!Start) return;
 
 	m_Player->Update();
-
 	m_Road->Update();
-
-	//m_Earth->Update();
-	//m_Moon->Update();
 }
 
 void CGameScene::Reshape(const int& w, const int& h)

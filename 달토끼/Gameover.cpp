@@ -2,23 +2,11 @@
 #include "Player.h"
 #include "Camera.h"
 #include "Mediator.h"
+#include "GAMEOVER_word.h"
 #include "SceneManager.h"
 #include "Gameover.h"
 
 
-void CGameOver::Ortho()
-{
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-	double Left = -glutGet(GLUT_WINDOW_WIDTH) / 2;
-	double Right = glutGet(GLUT_WINDOW_WIDTH) / 2;
-	double Top = static_cast<float>(glutGet(GLUT_WINDOW_HEIGHT)) / 2;
-	double Bottom = -static_cast<float>(glutGet(GLUT_WINDOW_HEIGHT)) / 2;
-
-	glOrtho(Left, Right, Bottom, Top, -100.f, 100);
-
-	glMatrixMode(GL_MODELVIEW);
-}
 
 CGameOver::CGameOver(CSceneManager* const changer)
 {
@@ -27,6 +15,7 @@ CGameOver::CGameOver(CSceneManager* const changer)
 
 	m_Player = new CPlayer(m_pMediator);
 	m_Camera = new CCamera(m_pMediator);
+	m_GAMEOVER = new CGAMEOVER_word(CVector3D<>(0, -200, 0));
 	
 	m_pMediator->SetPlayer(m_Player);
 	m_pMediator->SetCamera(m_Camera);
@@ -39,6 +28,7 @@ CGameOver::~CGameOver()
 {
 	delete[] m_Camera;
 	delete[] m_Player;
+	delete[] m_GAMEOVER;
 }
 
 void CGameOver::Initialize()
@@ -50,16 +40,18 @@ void CGameOver::Initialize()
 
 	m_pMediator->Init_GameOver();
 
-	Ortho();
 }
 
 void CGameOver::Render()
 {
 	glPushMatrix();
-		//glTranslated(0, -100, 0);
 		glRotated(150, 0, 1, 0);
-		//glScaled(8.f, 8.f, 8.f);
 		m_Player->Render();
+	glPopMatrix();
+
+	glPushMatrix();
+	glScaled(0.04f, 0.04f, 0.04f);
+	m_GAMEOVER->Render();
 	glPopMatrix();
 }
 
@@ -111,5 +103,5 @@ void CGameOver::Keyboard(const unsigned char & key, const int & x, const int & y
 
 void CGameOver::SpecialKeys(const int & key, const int & x, const int & y)
 {
-	m_pMediator->GameScene();
+	m_pMediator->MainScene();
 }

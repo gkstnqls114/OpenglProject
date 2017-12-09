@@ -50,6 +50,9 @@ CRoad::CRoad(const GLdouble& distance, CMediator*& mediator)
 {
 	std::cout << "Road »ý¼ºÀÚ" << std::endl;
 	
+	//m_boardNum = 100;
+	m_boardNum = 10;
+
 	InitFootBoardModel();
 	InitFootBoardPos(distance);
 

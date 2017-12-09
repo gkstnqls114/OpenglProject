@@ -43,12 +43,12 @@ void CCamera::Animation_GameClear()
 
 	bool verticalMove = m_vertical < max_v;
 	if (verticalMove) {
-		Rotate(2, 0);
+		Rotate(1, 0);
 	}
 
 	bool horizontalMove = m_horizontal < max_h;
 	if (horizontalMove) {
-		Rotate(0, 2);
+		Rotate(0, 1);
 	}
 
 	bool Far = m_distance > 50;
@@ -172,12 +172,14 @@ void CCamera::Init_MainScene()
 {
 	Initialize(CVector3D<>(0.f, 0.f, 0.f), 350, 0.1f, 600.f, 60);
 	Rotate(0, 0);
+	LookAt();
 }
 
 void CCamera::Init_GameOver()
 {
 	Initialize(CVector3D<>(0.f, 0.f, 0.f), 100, 0.1f, 600.f, 60);
 	Rotate(0, 10);
+	LookAt();
 }
 
 void CCamera::Init_GameScene()
@@ -219,6 +221,7 @@ void CCamera::Player_Dead(const float& rotatedegree)
 
 void CCamera::Player_Fall()
 {
+
 }
 
 void CCamera::Player_Clear(const float& rotatedegree)

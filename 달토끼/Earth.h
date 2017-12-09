@@ -16,6 +16,7 @@ class CEarth
 	float m_Time{ 0.f };
 	
 	bool IsGameStart{ false };
+	bool IsFloat{ false };
 private:
 	static void InitModel();
 	static void DeleteModel();

@@ -137,7 +137,7 @@ CMainScene::CMainScene(CSceneManager* const changer)
 	m_pMediator = new CMediator(m_pSceneManager);
 
 	m_Camera = new CCamera(m_pMediator);
-	//m_Moon = new CMoon(CVector3D<>(80, 50, -100));
+	m_Moon = new CMoon(m_pMediator);
 	m_Earth = new CEarth(m_pMediator);
 	m_PLAY = new CPLAY_word(CVector3D<>(- 150, -300, 0));
 	m_EXIT = new CEXIT_word(CVector3D<>(150, -300, 0));
@@ -188,9 +188,10 @@ void CMainScene::Render()
 	m_Camera->LookAt();
 	
 	glPushMatrix();
+	glRotated(45, 0, 1, 0);
 	glRotated(Nowdegree, 0, 1, 0);
 	{
-		//m_Moon->Render();
+		m_Moon->Render();
 		m_Earth->Render();
 	}
 	glPopMatrix();
@@ -217,7 +218,7 @@ void CMainScene::Timer(const int & value)
 
 void CMainScene::Update()
 {
-	//m_Moon->Update();
+	m_Moon->Update();
 	m_Earth->Update();
 
 	m_PLAY->Update();
@@ -263,6 +264,8 @@ void CMainScene::Keyboard(const unsigned char & key, const int & x, const int & 
 
 void CMainScene::SpecialKeys(const int & key, const int & x, const int & y)
 {
+	if (IsGameStart) return;
+
 	if (key == GLUT_KEY_RIGHT) {
 		m_Cursor += 1;
 

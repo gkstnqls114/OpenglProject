@@ -8,7 +8,7 @@ class CRoad : public CColleague
 {
 	const int k_side[3] = { k_left, k_front, k_right };
 	CFootBoard* m_pFootBoard;
-	int m_boardNum{ 20 };
+	int m_boardNum{ 5 };
 	int m_PlayerPosNum{ 0 };
 	int m_DisappearBoardNum{ 0 };
 

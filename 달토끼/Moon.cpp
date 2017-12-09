@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "ObjModel.h"
+#include "Mediator.h"
 #include "Matrix.h"
 #include "Moon.h"
 
@@ -9,8 +10,8 @@ void CMoon::InitModel()
 {
 	if (m_Moon != nullptr) return;
 	m_Moon = new CObjModel;
-	m_Moon->LoadObj("sample_moon.obj");
-	//m_Moon->LoadTexture("");
+	m_Moon->LoadObj("Moon.obj");
+	m_Moon->LoadTexture("Moon.bmp");
 }
 
 void CMoon::DeleteModel()
@@ -21,15 +22,15 @@ void CMoon::DeleteModel()
 	m_Moon = nullptr;
 }
 
-CMoon::CMoon(const CVector3D<>& Pos)
+
+CMoon::CMoon(CMediator *& mediator)
 {
 	InitModel();
 
-	m_Matrix = new CMatrix;
-	m_Matrix->Set_Translate(Pos);
-	m_Matrix->Set_Scale(0.7);
-}
+	m_pMediator = mediator;
 
+	m_Matrix = new CMatrix;
+}
 
 CMoon::~CMoon()
 {
@@ -42,11 +43,29 @@ void CMoon::Initialize()
 
 }
 
+void CMoon::SetPos(const CVector3D<>& rhs)
+{
+	m_Matrix->Set_Translate(rhs);
+	m_Matrix->Set_Scale(0.7);
+}
+
+void CMoon::SetPos(CVector3D<>&& rhs)
+{
+	m_Matrix->Set_Translate(rhs);
+	m_Matrix->Set_Scale(0.7);
+}
+
 void CMoon::Update()
 {
 	if (IsGameStart) {
 		m_Matrix->Calu_Rotate(6, 0, 1, 0);
 		m_Matrix->Calu_Tranlate(CVector3D<>(0, 5, 0));
+
+		if (m_Matrix->Get_Tranlate_Y() > 400) {
+			m_pMediator->GameScene();
+		}
+
+		return;
 	}
 
 	Float();
@@ -57,7 +76,7 @@ void CMoon::Render()
 {
 	if (m_Moon == nullptr) return;
 
-	glColor3f(LIGHTRGB[0], LIGHTRGB[2], LIGHTRGB[3]);
+	glColor3f(LIGHTRGB[0], LIGHTRGB[1], LIGHTRGB[2]);
 	glPushMatrix();
 	m_Matrix->MultiMatrix();
 	m_Moon->Render();
@@ -66,6 +85,8 @@ void CMoon::Render()
 
 void CMoon::Float()
 {
+	if (!IsFloat) return;
+
 	m_Time += 0.02f;
 	if (m_Time >= 1.f) {
 		m_Time = 0.f;
@@ -79,8 +100,13 @@ void CMoon::Float()
 
 void CMoon::Init_MainScene()
 {
+	SetPos(CVector3D<>(100, 0, 0));
+	m_Matrix->ResetRotate();
+	IsFloat = true;
+	IsGameStart = false;
 }
 
 void CMoon::GameStart()
 {
+	IsGameStart = true;
 }

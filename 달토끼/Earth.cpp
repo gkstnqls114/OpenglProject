@@ -10,7 +10,8 @@ void CEarth::InitModel()
 {
 	if (m_Earth != nullptr) return;
 	m_Earth = new CObjModel;
-	m_Earth->LoadObj("sample_earth.obj");
+	m_Earth->LoadObj("Earth.obj");
+	m_Earth->LoadTexture("Earth.bmp");
 }
 
 void CEarth::DeleteModel()
@@ -26,8 +27,6 @@ CEarth::CEarth(CMediator*& mediator)
 	InitModel();
 	m_pMediator = mediator;
 	m_Matrix = new CMatrix;
-
-	Init_MainScene();
 }
 
 CEarth::~CEarth()
@@ -67,7 +66,7 @@ void CEarth::Render()
 {
 	if (m_Earth == nullptr)return;
 
-	glColor3f(LIGHTRGB[0], LIGHTRGB[2], LIGHTRGB[3]);
+	glColor3f(LIGHTRGB[0], LIGHTRGB[1], LIGHTRGB[2]);
 	glPushMatrix();
 	m_Matrix->MultiMatrix();
 	m_Earth->Render();
@@ -76,6 +75,8 @@ void CEarth::Render()
 
 void CEarth::Float()
 {
+	if (!IsFloat) return;
+
 	m_Time += 0.01f;
 	if (m_Time >= 1.f) {
 		m_Time = 0.f;
@@ -92,6 +93,7 @@ void CEarth::Init_MainScene()
 	SetPos(CVector3D<>(-100, 0, 0));
 	m_Matrix->ResetRotate();
 	IsGameStart = false;
+	IsFloat = true;
 }
 
 void CEarth::GameStart()

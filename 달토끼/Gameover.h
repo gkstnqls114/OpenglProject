@@ -5,6 +5,7 @@ class CSceneManager;
 class CMediator;
 class CPlayer;
 class CCamera;
+class CGAMEOVER_word;
 
 class CGameOver:
 	public CScene
@@ -15,8 +16,8 @@ class CGameOver:
 
 	CCamera*			m_Camera{ nullptr };
 	CPlayer *			m_Player{ nullptr };
+	CGAMEOVER_word*		m_GAMEOVER{ nullptr };
 private:
-	void Ortho();
 
 public:
 	CGameOver(CSceneManager* const changer);

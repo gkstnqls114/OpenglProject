@@ -22,7 +22,12 @@ void CObjModel::ModelRender()
 
 			glNormal3d(m_pNormal[normal_index - 1][0], m_pNormal[normal_index - 1][1], m_pNormal[normal_index - 1][2]);
 			glTexCoord2d(m_pTexture[texture_index - 1][0], m_pTexture[texture_index - 1][1]);
-			glVertex3f(m_pVertex[vertex_index - 1][0], m_pVertex[vertex_index - 1][1], m_pVertex[vertex_index - 1][2]);
+			
+			GLdouble x = m_pVertex[vertex_index - 1][0];
+			GLdouble y = m_pVertex[vertex_index - 1][1];
+			GLdouble z = m_pVertex[vertex_index - 1][2];
+
+			glVertex3f(x, y, z);
 		}
 
 		glEnd();
@@ -164,27 +169,17 @@ void CObjModel::Save_Information(const char*& filename)
 			int nouse = 0;
 
 			//하드코딩..
-			if (!strcmp(filename, "sample_moon.obj")) {
-				fscanf_s(fp, "%d//%d %d//%d %d//%d %d//%d",
-					&Vertex_index[0], &nouse,
-					&Vertex_index[1], &nouse,
-					&Vertex_index[2], &nouse,
-					&Vertex_index[3], &nouse
-				);
-			}
-			else {
-				fscanf_s(fp, "%d/%d/%d %d/%d/%d %d/%d/%d %d/%d/%d %d/%d/%d %d/%d/%d\n",
-					&Vertex_index[0], &Texture_index[0], &Normal_index[0],
-					&Vertex_index[1], &Texture_index[1], &Normal_index[1],
-					&Vertex_index[2], &Texture_index[2], &Normal_index[2],
-					&Vertex_index[3], &Texture_index[3], &Normal_index[3],
-					&Vertex_index[4], &Texture_index[4], &Normal_index[4],
-					&Vertex_index[5], &Texture_index[5], &Normal_index[5]
-				);
-			}
+			fscanf_s(fp, "%d/%d/%d %d/%d/%d %d/%d/%d %d/%d/%d %d/%d/%d %d/%d/%d\n",
+				&Vertex_index[0], &Texture_index[0], &Normal_index[0],
+				&Vertex_index[1], &Texture_index[1], &Normal_index[1],
+				&Vertex_index[2], &Texture_index[2], &Normal_index[2],
+				&Vertex_index[3], &Texture_index[3], &Normal_index[3],
+				&Vertex_index[4], &Texture_index[4], &Normal_index[4],
+				&Vertex_index[5], &Texture_index[5], &Normal_index[5]);
 
-			//면에 대한 정점의 개수를 센다.
-			int vertex_num_of_face = 0;
+
+				//면에 대한 정점의 개수를 센다.
+				int vertex_num_of_face = 0;
 			for (int x = 0; x < 6; ++x) {
 				if (Vertex_index[x] != -1) {
 					vertex_num_of_face += 1;
