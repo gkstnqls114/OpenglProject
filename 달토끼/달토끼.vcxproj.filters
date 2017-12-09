@@ -94,6 +94,12 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
+    <Filter Include="소스 파일\Colleague\Word\GAMEOVER">
+      <UniqueIdentifier>{07ed6f2a-6d72-4c5d-9e13-0561fe7d13a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Colleague\Word\GAMECLEAR">
+      <UniqueIdentifier>{29190dd2-b037-4b5d-aea3-d5f7e0339f96}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GLFramework.cpp">
@@ -165,9 +171,6 @@
     <ClCompile Include="Texture.cpp">
       <Filter>소스 파일\Obj\Texture</Filter>
     </ClCompile>
-    <ClCompile Include="Vector3D.tpp">
-      <Filter>소스 파일\Vector3D</Filter>
-    </ClCompile>
     <ClCompile Include="GameScene.cpp">
       <Filter>소스 파일\GLFramework\Scene\Game</Filter>
     </ClCompile>
@@ -191,6 +194,15 @@
     </ClCompile>
     <ClCompile Include="Star.cpp">
       <Filter>소스 파일\Skybox</Filter>
+    </ClCompile>
+    <ClCompile Include="GAMEOVER_word.cpp">
+      <Filter>소스 파일\Colleague\Word\GAMEOVER</Filter>
+    </ClCompile>
+    <ClCompile Include="GAMECLEAR_word.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector3D.hpp">
+      <Filter>소스 파일\Vector3D</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -286,6 +298,12 @@
     </ClInclude>
     <ClInclude Include="Star.h">
       <Filter>소스 파일\Skybox</Filter>
+    </ClInclude>
+    <ClInclude Include="GAMEOVER_word.h">
+      <Filter>소스 파일\Colleague\Word\GAMEOVER</Filter>
+    </ClInclude>
+    <ClInclude Include="GAMECLEAR_word.h">
+      <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

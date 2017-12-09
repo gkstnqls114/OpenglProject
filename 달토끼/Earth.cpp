@@ -41,6 +41,12 @@ void CEarth::SetPos(const CVector3D<>& rhs)
 	m_Matrix->Set_Translate(rhs);
 }
 
+void CEarth::SetPos(CVector3D<>&& rhs)
+{
+	m_Matrix->Set_Translate(rhs);
+
+}
+
 void CEarth::Update()
 {
 	if (IsGameStart) {

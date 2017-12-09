@@ -15,7 +15,7 @@ CSceneManager::CSceneManager()
 	m_GameOverScene = new CGameOver(this);
 	m_GameClearScene = new CGameClear(this);
 
-	m_pCurrScene = m_MainScene;
+	ChangeToGameOver();
 }
 
 

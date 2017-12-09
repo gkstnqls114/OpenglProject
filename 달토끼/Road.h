@@ -15,6 +15,7 @@ class CRoad : public CColleague
 	CMediator* m_pMediator{ nullptr };
 
 	bool isPlayerDead{ false };
+	bool isGameClear{ false };
 
 private:
 	void InitFootBoardModel();

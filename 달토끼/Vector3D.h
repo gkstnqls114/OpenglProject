@@ -39,7 +39,10 @@ public:
 	}
 
 	CVector3D<T, NUM> operator+(const CVector3D<T, NUM>& rhs);
+	CVector3D<T, NUM> operator+(CVector3D<T, NUM>&& rhs);
+
 	CVector3D<T, NUM> operator-(const CVector3D<T, NUM>& rhs);
+	CVector3D<T, NUM> operator-(CVector3D<T, NUM>&& rhs);
 
 	CVector3D<T, NUM>& operator=(const CVector3D<T, NUM>& rhs);
 	CVector3D<T, NUM>& operator=(CVector3D<T, NUM>&& rhs);
@@ -54,6 +57,6 @@ public:
 
 };
 
-#include "Vector3D.tpp"
+#include "Vector3D.hpp"
 
 #endif

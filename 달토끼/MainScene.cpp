@@ -168,6 +168,8 @@ void CMainScene::Initialize()
 {
 	glEnable(GL_LIGHT0);
 	glDisable(GL_LIGHT1);
+	glDisable(GL_LIGHT2);
+	glDisable(GL_LIGHT3);
 
 	m_pMediator->Init_MainScene();
 	m_Cursor = k_PLAY;

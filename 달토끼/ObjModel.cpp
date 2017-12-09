@@ -326,6 +326,14 @@ void CObjModel::MovePivot(const CVector3D<> & Pos)
 	m_PivotReturn_Matrix->Calu_Tranlate(CVector3D<>(-Pos[0], -Pos[1], -Pos[2]));
 }
 
+void CObjModel::MovePivot(CVector3D<>&& Pos)
+{
+	m_PivotMove_Matrix->Calu_Tranlate(Pos);
+	//나중에 단항연산자 오버로딩 찾아보기
+	//지금은 일단 .. 쓰자 ㅠ
+	m_PivotReturn_Matrix->Calu_Tranlate(CVector3D<>(-Pos[0], -Pos[1], -Pos[2]));
+}
+
 void CObjModel::Rotate(const int & Nowdegree, const int & x, const int & y, const int & z)
 {
 	m_Matrix->Calu_Rotate(Nowdegree, x, y, z);
@@ -334,6 +342,16 @@ void CObjModel::Rotate(const int & Nowdegree, const int & x, const int & y, cons
 void CObjModel::Rotate(const float & Nowdegree, const int & x, const int & y, const int & z)
 {
 	m_Matrix->Calu_Rotate(Nowdegree, x, y, z);
+}
+
+void CObjModel::Translate(const CVector3D<>& rhs)
+{
+	m_Matrix->Calu_Tranlate(rhs);
+}
+
+void CObjModel::Translate(CVector3D<>&& rhs)
+{
+	m_Matrix->Calu_Tranlate(rhs);
 }
 
 void CObjModel::ResetRotate()

@@ -17,7 +17,10 @@ CGameClear::~CGameClear()
 
 void CGameClear::Initialize()
 {
-
+	glDisable(GL_LIGHT0);
+	glDisable(GL_LIGHT1);
+	glDisable(GL_LIGHT2);
+	glEnable(GL_LIGHT3);
 }
 
 void CGameClear::Render()

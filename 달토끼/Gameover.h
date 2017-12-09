@@ -3,15 +3,20 @@
 
 class CSceneManager;
 class CMediator;
+class CPlayer;
+class CCamera;
 
 class CGameOver:
 	public CScene
 {
-
 	CSceneManager*		m_pSceneManager{ nullptr };
 
 	CMediator *			m_pMediator{ nullptr };
 
+	CCamera*			m_Camera{ nullptr };
+	CPlayer *			m_Player{ nullptr };
+private:
+	void Ortho();
 
 public:
 	CGameOver(CSceneManager* const changer);

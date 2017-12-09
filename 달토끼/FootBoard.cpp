@@ -77,9 +77,9 @@ void CFootBoard::Update()
 
 void CFootBoard::Init_GameScene()
 {
-	m_TextureRGBA[0] - 1.f;
-	m_TextureRGBA[1] - 1.f;
-	m_TextureRGBA[2] - 1.f;
+	m_TextureRGBA[0] = 1.f;
+	m_TextureRGBA[1] = 1.f;
+	m_TextureRGBA[2] = 1.f;
 	m_TextureRGBA[3] = 1.f;
 	DisappearTime = 0.f;
 	IsDisappear = false;
@@ -107,6 +107,32 @@ void CFootBoard::InitPosition(const int & x, const int & y, const int & z)
 
 void CFootBoard::InitPosition(const CVector3D<> & rhs)
 {
+	if (rhs[0] < 0) {
+		m_Side = -1;
+	}
+	else if (rhs[0] > 0) {
+		m_Side = 1;
+	}
+	else {
+		m_Side = 0;
+	}
+
+	m_Position[0] = rhs[0];
+	m_Position[1] = rhs[1];
+	m_Position[2] = rhs[2];
+	m_Position[3] = rhs[3];
+
+	glPushMatrix();
+	glLoadIdentity();
+	glTranslatef(m_Position[0], m_Position[1], m_Position[2]);
+	glMultMatrixf(m_Translate_Matrix);
+	glGetFloatv(GL_MODELVIEW_MATRIX, m_Translate_Matrix);
+	glPopMatrix();
+}
+
+void CFootBoard::InitPosition(CVector3D<>&& rhs)
+{
+
 	if (rhs[0] < 0) {
 		m_Side = -1;
 	}

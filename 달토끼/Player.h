@@ -21,10 +21,10 @@ class CPlayer
 
 	//점프변수들
 	//jump property
-	const float k_gravity{ 0.5f };
+	const float k_gravity{ 0.7f };
 	const double k_PI{ 3.14152 };
-	const int m_JumpDegree{ 80 };
-	const float m_power{ 7.f };
+	const int m_JumpDegree{ 70 };
+	const float m_power{ 10.f };
 	int m_FinishJumpTime{ 0 };
 	GLdouble m_JumpReach{0};
 
@@ -50,6 +50,7 @@ class CPlayer
 	int m_MySide{ 0 };
 
 	bool IsFall{ false };
+	bool IsGameClear{ false };
 	
 private:
 	void ProcessSide(int& lhs);
@@ -101,5 +102,7 @@ public:
 	virtual void Player_Fall();
 
 	virtual void Player_Clear();
+
+	virtual void Init_GameOver();
 };
 

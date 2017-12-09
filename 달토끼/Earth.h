@@ -25,6 +25,7 @@ public:
 	CEarth(CMediator*& mediator);
 	~CEarth();
 	void SetPos(const CVector3D<>& rhs);
+	void SetPos(CVector3D<>&& rhs);
 
 	void Update();
 	void Render();

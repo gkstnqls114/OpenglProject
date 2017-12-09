@@ -99,6 +99,10 @@ void CGameScene::Initialize()
 {
 	glDisable(GL_LIGHT0);
 	glEnable(GL_LIGHT1);
+	glDisable(GL_LIGHT2);
+	glDisable(GL_LIGHT3);
+
+	glEnable(GL_COLOR_MATERIAL);
 
 	m_pMediator->Init_GameScene();
 	Start = false;
@@ -111,7 +115,7 @@ void CGameScene::Render()
 	RenderBack();
 	m_Camera->LookAt();
 
-	m_Skybox->Render();
+ 	m_Skybox->Render();
 
 	m_Road->Render();
 
@@ -132,8 +136,8 @@ void CGameScene::Update()
 
 	m_Road->Update();
 
-	m_Earth->Update();
-	m_Moon->Update();
+	//m_Earth->Update();
+	//m_Moon->Update();
 }
 
 void CGameScene::Reshape(const int& w, const int& h)

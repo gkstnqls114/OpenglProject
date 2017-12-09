@@ -42,8 +42,7 @@ public:
 	void Calu_Rotate(const float& Nowdegree, const int& x, const int& y, const int& z);
 	void Set_Rotate(const int& Nowdegree, const int& x, const int& y, const int& z);
 	void Set_Rotate(const float& Nowdegree, const int& x, const int& y, const int& z);
-
-
+	
 	void Calu_Scale(const float &NowSize);
 	void Calu_Scale(const float &x, const float &y, const float &z);
 	void Set_Scale(const float& NowSize);

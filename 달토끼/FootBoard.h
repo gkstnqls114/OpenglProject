@@ -65,6 +65,7 @@ public:
 	static void DeleteModel();
 	void InitPosition(const int& x, const int & y, const int& z);
 	void InitPosition(const CVector3D<>& rhs);
+	void InitPosition(CVector3D<>&& rhs);
 
 	void Render();
 	void Update();

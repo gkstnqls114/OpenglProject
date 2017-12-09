@@ -81,6 +81,7 @@ void CRoad::Render()
 
 void CRoad::Update()
 {
+	if (isGameClear) return;
 	if (isPlayerDead) return;
 
 	m_pFootBoard[m_DisappearBoardNum].Update();
@@ -113,6 +114,7 @@ void CRoad::Init_GameScene()
 	m_PlayerPosNum = 0;
 	m_DisappearBoardNum = 0;
 	isPlayerDead = false;
+	isGameClear = false;
 }
 
 void CRoad::Player_JumpStart()
@@ -158,4 +160,5 @@ void CRoad::Player_Fall()
 
 void CRoad::Player_Clear()
 {
+	isGameClear = true;
 }

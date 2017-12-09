@@ -25,12 +25,14 @@ class CCamera : public CColleague
 	CMediator* m_pMediator{ nullptr };
 
 	bool isPlayerDead{ false };
+	bool isGameClear{ false };
 	bool isAnimate{ false };
 
 	float Rotatedegree{ 0 };
 
 private:
 	void Animation_PlayerDead();
+	void Animation_GameClear();
 
 public:
 	CCamera(CMediator*& mediator);
@@ -68,13 +70,15 @@ public:
 
 
 	virtual void Init_MainScene();
+	virtual void Init_GameOver();
 
 	virtual void Init_GameScene();
 	virtual void Player_JumpStart();
 	virtual void Player_Jumping(const CVector3D<>& move);
+	virtual void Player_Jumping(CVector3D<>&& move);
 	virtual void Player_JumpFinish();
 	virtual void Player_Dead(const float& rotatedegree);
 	virtual void Player_Fall();
 
-	virtual void Player_Clear();
+	virtual void Player_Clear(const float& rotatedegree);
 };

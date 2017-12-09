@@ -12,12 +12,12 @@ void CCamera::Animation_PlayerDead()
 
 	bool verticalMove = m_vertical < max_v;
 	if (verticalMove) {
-		Rotate(1, 0);
+		Rotate(3, 0);
 	}
 
 	bool horizontalMove = m_horizontal < max_h;
 	if (horizontalMove) {
-		Rotate(0, 1);
+		Rotate(0, 3);
 	}
 	
 	bool Far = m_distance > 50;
@@ -31,6 +31,37 @@ void CCamera::Animation_PlayerDead()
 	if (Finish) {
 		isAnimate = false;
 		m_pMediator->Player_Fall();
+	}
+}
+
+void CCamera::Animation_GameClear()
+{
+	if (!isGameClear) return;
+
+	float max_v = float(180 + Rotatedegree) * PI / 180.f;
+	float max_h = 0 * PI / 180.f;
+
+	bool verticalMove = m_vertical < max_v;
+	if (verticalMove) {
+		Rotate(2, 0);
+	}
+
+	bool horizontalMove = m_horizontal < max_h;
+	if (horizontalMove) {
+		Rotate(0, 2);
+	}
+
+	bool Far = m_distance > 50;
+	if (Far) {
+		zoom(0.99f);
+	}
+
+	LookAt();
+
+	bool Finish = !Far && !verticalMove && !horizontalMove;
+	if (Finish) {
+		isAnimate = false;
+		m_pMediator->GameClear();
 	}
 }
 
@@ -131,10 +162,10 @@ CVector3D<> CCamera::eye() const
 
 void CCamera::Update()
 {
-	LookAt();
 	if (!isAnimate) return;
 
 	Animation_PlayerDead();
+	Animation_GameClear();
 }
 
 void CCamera::Init_MainScene()
@@ -143,18 +174,33 @@ void CCamera::Init_MainScene()
 	Rotate(0, 0);
 }
 
+void CCamera::Init_GameOver()
+{
+	Initialize(CVector3D<>(0.f, 0.f, 0.f), 100, 0.1f, 600.f, 60);
+	Rotate(0, 10);
+}
+
 void CCamera::Init_GameScene()
 {
 	Initialize(CVector3D<>(0.f, 0.f, 0.f), 130, 0.1f, 600.f, 60);
 	Rotate(25, 20);
+	LookAt();
 	isAnimate = false;
+	isPlayerDead = false;
+	isGameClear = false;
 }
 
 void CCamera::Player_JumpStart()
 {
+
 }
 
 void CCamera::Player_Jumping(const CVector3D<>& move)
+{
+	Move(move);
+}
+
+void CCamera::Player_Jumping(CVector3D<>&& move)
 {
 	Move(move);
 }
@@ -175,8 +221,11 @@ void CCamera::Player_Fall()
 {
 }
 
-void CCamera::Player_Clear()
+void CCamera::Player_Clear(const float& rotatedegree)
 {
+	Rotatedegree = rotatedegree;
+	isAnimate = true;
+	isGameClear = true;
 }
 
 

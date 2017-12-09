@@ -96,6 +96,7 @@ void CPlayer::SpecialKeys(const int & key, const int & x, const int & y)
 
 void CPlayer::Update()
 {
+	if (IsGameClear) return;
 	if (IsFall) {
 		m_Matrix->Calu_Rotate(10, 0, 1, 0);
 		m_Matrix->Calu_Tranlate(CVector3D<>(0, -3, 0));
@@ -129,10 +130,10 @@ void CPlayer::Init_GameScene()
 {
 	//ÃÊ±âÈ­
 	Find_JumpProperty();
+
 	
 	m_Rabit_LeftFoot->Reset();
 	m_Rabit_RightFoot->Reset();
-	m_Rabit_Body->Reset();
 	m_Rabit_Body->Reset();
 	m_Rabit_Ear->Reset();
 
@@ -147,6 +148,7 @@ void CPlayer::Init_GameScene()
 	IsLeft = false;
 	IsDead = false;
 	IsFall = false;
+	IsGameClear = false;
 	m_BoardNum = 0;
 	m_MySide = 0;
 }
@@ -213,7 +215,11 @@ void CPlayer::Player_Jumping()
 
 void CPlayer::Player_JumpFinish()
 {
-
+	m_Rabit_Body->Reset();
+	m_Rabit_Ear->Reset();
+	m_Rabit_LeftFoot->Reset();
+	m_Rabit_RightFoot->Reset();
+	m_Rabits_Helmet->Reset();
 }
 
 void CPlayer::Player_Dead()
@@ -234,7 +240,26 @@ void CPlayer::Player_Fall()
 
 void CPlayer::Player_Clear()
 {
+	IsGameClear = true;
+}
 
+void CPlayer::Init_GameOver()
+{
+	m_Rabit_LeftFoot->Reset();
+	m_Rabit_RightFoot->Reset();
+	m_Rabit_Body->Reset();
+	m_Rabit_Ear->Reset();
+
+	m_Rabit_LeftFoot->Translate(CVector3D<>(0, -7, 30));
+	m_Rabit_LeftFoot->Rotate(-90, 1, 0, 0);
+
+	m_Rabit_RightFoot->Translate(CVector3D<>(0, -7, 30));
+	m_Rabit_RightFoot->Rotate(-90, 1, 0, 0);
+	
+	m_Rabit_Body->Rotate(15, 1, 0, 0);
+
+	m_Rabit_Ear->Translate(CVector3D<>(0, -10, -10));
+	m_Rabit_Ear->Rotate(70, 1, 0, 0);
 }
 
 void CPlayer::ProcessSide(int & lhs)
@@ -267,7 +292,7 @@ void CPlayer::Jump_BodyRotate()
 		frame_degree = Nowdegree / float(m_FinishJumpTime);
 	}
 	else if (Rotate_degree_90) {
-		Nowdegree = Nowdegree * 2;
+		Nowdegree = Rotatedegree * 2;
 		frame_degree = Nowdegree / float(m_FinishJumpTime);
 	}
 

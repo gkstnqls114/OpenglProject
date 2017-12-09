@@ -35,7 +35,7 @@ void CSkybox::Render()
 
 void CSkybox::Update()
 {
-	for (int index = 0; index < m_StarNum; ++index) {
+	/*for (int index = 0; index < m_StarNum; ++index) {
 		m_Stars[index].Update();
-	}
+	}*/
 }

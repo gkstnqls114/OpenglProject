@@ -22,6 +22,7 @@ CMediator::~CMediator()
 void CMediator::GameOver()
 {
 	m_pSceneManager->ChangeToGameOver();
+	
 	Init_GameOver();
 }
 
@@ -131,11 +132,13 @@ void CMediator::Player_Clear()
 {
 	if (m_pPlayer)	m_pPlayer->Player_Clear();
 	if (m_pRoad)	m_pRoad->Player_Clear();
-	if (m_pCamera)	m_pCamera->Player_Clear();
+	if (m_pCamera)	m_pCamera->Player_Clear(m_pPlayer->Get_Sidedegree());
 }
 
 void CMediator::Init_GameOver()
 {
+	if (m_pPlayer)	m_pPlayer->Init_GameOver();
+	if (m_pCamera)	m_pCamera->Init_GameOver();
 }
 
 void CMediator::Init_GameClear()

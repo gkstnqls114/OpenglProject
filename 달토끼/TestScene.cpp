@@ -19,11 +19,6 @@ CTestScene::CTestScene(CSceneManager* const changer)
 
 	m_Player = new CPlayer(m_pMediator);
 
-
-	//glEnable(GL_DEPTH_TEST);
-	//glEnable(GL_LIGHTING);
-	//glEnable(GL_LIGHT0);
-	//glEnable(GL_TEXTURE_2D);
 }
 
 
@@ -71,6 +66,7 @@ void CTestScene::Timer(const int & value)
 
 void CTestScene::Update()
 {
+
 }
 
 void CTestScene::Keyboard(const unsigned char & key, const int & x, const int & y)
