@@ -27,6 +27,9 @@ class CPlayer
 	const float m_power{ 7.f };
 	int m_FinishJumpTime{ 0 };
 	GLdouble m_JumpReach{0};
+
+	float Rotatedegree{ 0 };
+	float Sidedegree{ 0 };
 	
 	//아래의 점프변수를 하나로 묶을 수 있지 않을까?
 	//일단 이것도 나중에 생각
@@ -46,6 +49,7 @@ class CPlayer
 	int m_BoardNum{ 0 };
 	int m_MySide{ 0 };
 
+	bool IsFall{ false };
 	
 private:
 	void ProcessSide(int& lhs);
@@ -86,6 +90,7 @@ public:
 	const float Get_JumpReach() const noexcept { return m_JumpReach; }
 	const int Get_BoardNum() const noexcept { return m_BoardNum; }
 	const int Get_Side() const noexcept { return m_MySide; }
+	const float Get_Sidedegree() const noexcept{ return Sidedegree; };
 
 	//Mediator
 	virtual void Init_GameScene();
@@ -93,5 +98,8 @@ public:
 	virtual void Player_Jumping();
 	virtual void Player_JumpFinish();
 	virtual void Player_Dead();
+	virtual void Player_Fall();
+
+	virtual void Player_Clear();
 };
 

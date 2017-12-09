@@ -104,6 +104,7 @@ void CMainScene::WordRender()
 	glOrtho(Left, Right, Bottom, Top, -100.f, 100);
 	glMatrixMode(GL_MODELVIEW);
 
+	glColor3f(1.f, 1.f, 1.f);
 	glBindTexture(GL_TEXTURE_2D, m_BackgroundTextureID);
 		glBegin(GL_QUADS);
 		glTexCoord2f(0.f, 1.f);
@@ -165,6 +166,9 @@ CMainScene::~CMainScene()
 
 void CMainScene::Initialize()
 {
+	glEnable(GL_LIGHT0);
+	glDisable(GL_LIGHT1);
+
 	m_pMediator->Init_MainScene();
 	m_Cursor = k_PLAY;
 	SelectCursor();
@@ -181,8 +185,6 @@ void CMainScene::Render()
 
 	m_Camera->LookAt();
 	
-	RenderAxis();
-
 	glPushMatrix();
 	glRotated(Nowdegree, 0, 1, 0);
 	{

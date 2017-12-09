@@ -56,6 +56,8 @@ public:
 	void Player_Jumping();
 	void Player_JumpFinish();
 	void Player_Dead();
+	void Player_Fall();
+	void Player_Clear();
 
 	//게임종료
 	void Init_GameOver();

@@ -135,7 +135,7 @@ void CRoad::Player_JumpFinish(int playerside)
 	}
 	bool IsGameClear = m_PlayerPosNum == (m_boardNum - 1);
 	if (IsGameClear) {
-		m_pMediator->GameClear();
+		m_pMediator->Player_Clear();
 		return;
 	}
 
@@ -150,4 +150,12 @@ void CRoad::Player_JumpFinish(int playerside)
 void CRoad::Player_Dead()
 {
 	isPlayerDead = true;
+}
+
+void CRoad::Player_Fall()
+{
+}
+
+void CRoad::Player_Clear()
+{
 }

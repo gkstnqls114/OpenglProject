@@ -36,4 +36,8 @@ public:
 	virtual void Player_Jumping();
 	virtual void Player_JumpFinish(int playerside);
 	virtual void Player_Dead();
+	virtual void Player_Fall();
+
+	virtual void Player_Clear();
+
 };

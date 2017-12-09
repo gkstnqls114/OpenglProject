@@ -7,7 +7,7 @@ void CCamera::Animation_PlayerDead()
 {
 	if (!isPlayerDead) return;
 
-	float max_v = 180 * PI / 180.f;
+	float max_v = float(180 + Rotatedegree) * PI / 180.f;
 	float max_h = 0 * PI / 180.f;
 
 	bool verticalMove = m_vertical < max_v;
@@ -30,7 +30,7 @@ void CCamera::Animation_PlayerDead()
 	bool Finish = !Far && !verticalMove && !horizontalMove;
 	if (Finish) {
 		isAnimate = false;
-		m_pMediator->GameOver();
+		m_pMediator->Player_Fall();
 	}
 }
 
@@ -164,10 +164,19 @@ void CCamera::Player_JumpFinish()
 
 }
 
-void CCamera::Player_Dead()
+void CCamera::Player_Dead(const float& rotatedegree)
 {
+	Rotatedegree = rotatedegree;
 	isPlayerDead = true;
 	isAnimate = true;
+}
+
+void CCamera::Player_Fall()
+{
+}
+
+void CCamera::Player_Clear()
+{
 }
 
 

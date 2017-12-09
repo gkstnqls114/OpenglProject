@@ -109,16 +109,29 @@ void CMediator::Player_Jumping()
 void CMediator::Player_JumpFinish()
 {
 	if (m_pPlayer)	m_pPlayer->Player_JumpFinish();
-	if (m_pCamera)	m_pRoad->Player_JumpFinish(m_pPlayer->Get_Side());
-	if (m_pRoad)	m_pCamera->Player_JumpFinish();
+	if (m_pRoad)	m_pRoad->Player_JumpFinish(m_pPlayer->Get_Side());
+	if (m_pCamera)	m_pCamera->Player_JumpFinish();
 }
 
 void CMediator::Player_Dead()
 {
-	std::cout << "Mediator: 플레이어 죽음 완료" << std::endl;
 	if (m_pPlayer)	m_pPlayer->Player_Dead();
-	if (m_pCamera)	m_pRoad->Player_Dead();
-	if (m_pRoad)	m_pCamera->Player_Dead();
+	if (m_pRoad)	m_pRoad->Player_Dead();
+	if (m_pCamera)	m_pCamera->Player_Dead(m_pPlayer->Get_Sidedegree());
+}
+
+void CMediator::Player_Fall()
+{
+	if (m_pPlayer)	m_pPlayer->Player_Fall();
+	if (m_pRoad)	m_pRoad->Player_Fall();
+	if (m_pCamera)	m_pCamera->Player_Fall();
+}
+
+void CMediator::Player_Clear()
+{
+	if (m_pPlayer)	m_pPlayer->Player_Clear();
+	if (m_pRoad)	m_pRoad->Player_Clear();
+	if (m_pCamera)	m_pCamera->Player_Clear();
 }
 
 void CMediator::Init_GameOver()

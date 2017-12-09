@@ -26,11 +26,45 @@ void CGLFramework::Initialize(int argc, char ** argv, int width, int height, int
 
 	m_SceneChager = new CSceneManager;
 
-	//m_CurrScene =
-	//	//new CGameScene;
-	//	new CMainScene();
-	//	//new CTestScene;
-	//m_CurrScene->Initialize();
+
+	//임시로 쓰이는 라이트값
+	//게임 라이트
+	GLfloat gray0[] = { 0.7f, 0.7f, 0.7f, 1.0f };
+	GLfloat ambient0[] = { 1.f, 0.7f, 1.f, 1.0f };
+	GLfloat diffuse0[] = { 1.f, 1.f, 1.f, 1.f };
+	GLfloat  specref0[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+
+	GLfloat lightPos0[] = { 0, 30, -30, 0 };
+
+	//glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, gray);
+	//glMaterialfv(GL_FRONT, GL_SPECULAR, specref);
+	//glMateriali(GL_FRONT, GL_SHININESS, 64);
+
+	glLightfv(GL_LIGHT1, GL_AMBIENT, ambient0);
+	glLightfv(GL_LIGHT1, GL_DIFFUSE, diffuse0);
+	glLightfv(GL_LIGHT1, GL_POSITION, lightPos0);
+
+	//임시로 쓰이는 라이트값
+	//메인 라이트
+	GLfloat gray1[] = { 0.7f, 0.7f, 0.7f, 1.0f };
+	GLfloat ambient1[] = { 1.f, 0.7f, 1.f, 1.0f };
+	GLfloat diffuse1[] = { 1.f, 1.f, 1.f, 1.f };
+	GLfloat  specref1[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+
+	GLfloat lightPos1[] = { 0, 30, 0, 0 };
+
+	//glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, gray);
+	//glMaterialfv(GL_FRONT, GL_SPECULAR, specref);
+	//glMateriali(GL_FRONT, GL_SHININESS, 64);
+
+	glLightfv(GL_LIGHT0, GL_AMBIENT, ambient1);
+	glLightfv(GL_LIGHT0, GL_DIFFUSE, diffuse1);
+	glLightfv(GL_LIGHT0, GL_POSITION, lightPos1);
+
+	glEnable(GL_LIGHTING);
+	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_TEXTURE_2D);
+	glEnable(GL_COLOR_MATERIAL);
 }
 
 void CGLFramework::DrawScene()

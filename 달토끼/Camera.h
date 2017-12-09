@@ -27,6 +27,8 @@ class CCamera : public CColleague
 	bool isPlayerDead{ false };
 	bool isAnimate{ false };
 
+	float Rotatedegree{ 0 };
+
 private:
 	void Animation_PlayerDead();
 
@@ -71,5 +73,8 @@ public:
 	virtual void Player_JumpStart();
 	virtual void Player_Jumping(const CVector3D<>& move);
 	virtual void Player_JumpFinish();
-	virtual void Player_Dead();
+	virtual void Player_Dead(const float& rotatedegree);
+	virtual void Player_Fall();
+
+	virtual void Player_Clear();
 };

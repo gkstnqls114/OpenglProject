@@ -57,6 +57,7 @@ void CMoon::Render()
 {
 	if (m_Moon == nullptr) return;
 
+	glColor3f(LIGHTRGB[0], LIGHTRGB[2], LIGHTRGB[3]);
 	glPushMatrix();
 	m_Matrix->MultiMatrix();
 	m_Moon->Render();

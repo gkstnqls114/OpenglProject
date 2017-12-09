@@ -64,15 +64,20 @@ void CPlayer::SpecialKeys(const int & key, const int & x, const int & y)
 	//JUMP
 	if (IsJump) return;
 	if (IsDead) return;
+	if (key != GLUT_KEY_UP && key != GLUT_KEY_LEFT && key != GLUT_KEY_RIGHT) return;
+	
 
 	if (key == GLUT_KEY_UP) {
+		Sidedegree = 0;
 		IsJump = true;
 	}
 	else if (key == GLUT_KEY_RIGHT) {
+		Sidedegree = - Rotatedegree;
 		IsJump = true;
 		IsRight = true;
 	}
 	else if (key == GLUT_KEY_LEFT) {
+		Sidedegree = Rotatedegree * 2;
 		IsJump = true;
 		IsLeft = true;
 	}		
@@ -91,7 +96,18 @@ void CPlayer::SpecialKeys(const int & key, const int & x, const int & y)
 
 void CPlayer::Update()
 {
+	if (IsFall) {
+		m_Matrix->Calu_Rotate(10, 0, 1, 0);
+		m_Matrix->Calu_Tranlate(CVector3D<>(0, -3, 0));
+
+		if (m_Matrix->Get_Tranlate_Y() <= -200) {
+			m_pMediator->GameOver();
+		}
+		return;
+	}
 	if (IsDead) return;
+
+	
 
 	Jump();
 }
@@ -130,6 +146,7 @@ void CPlayer::Init_GameScene()
 	IsRight = false;
 	IsLeft = false;
 	IsDead = false;
+	IsFall = false;
 	m_BoardNum = 0;
 	m_MySide = 0;
 }
@@ -209,6 +226,17 @@ void CPlayer::Player_Dead()
 	IsDead = true;
 }
 
+void CPlayer::Player_Fall()
+{
+	m_Matrix->Calu_Scale(1.f, 1.2f, 1.f);
+	IsFall = true;
+}
+
+void CPlayer::Player_Clear()
+{
+
+}
+
 void CPlayer::ProcessSide(int & lhs)
 {
 	if (IsRight) {
@@ -226,26 +254,35 @@ void CPlayer::Jump_BodyRotate()
 {
 	int Rotate = abs(prevSide - jumpSide);
 	float frame_degree = 0;
+	float Nowdegree = 0;
 
 	bool Rotate_degree_0 = Rotate == 0;
-	if (Rotate_degree_0) return;
+	if (Rotate_degree_0) {
+		return;
+	}
 	
 	bool Rotate_degree_45 = Rotate == 1;
 	bool Rotate_degree_90 = Rotate == 2;
-	float Nowdegree = atan(float(m_JumpReach) / float(Road_Distance_X)) * 180 / k_PI;
-	Nowdegree = 90 - Nowdegree;
+
 	if (Rotate_degree_45) {
-		frame_degree = Nowdegree / float(m_FinishJumpTime);
+		Nowdegree = Rotatedegree;
 	}
 	else if (Rotate_degree_90) {
-		Nowdegree = Nowdegree * 2;
+		Nowdegree = Rotatedegree * 2;
+	}
+
+	if (IsRight) {
+		frame_degree = -Nowdegree / float(m_FinishJumpTime);
+	}
+	else if (IsLeft) {
 		frame_degree = Nowdegree / float(m_FinishJumpTime);
 	}
+
 
 	//나중에 수정
 	// 굳이 4개면 안에 이프문 만들 필요가 없지..
 	if (IsRight) {
-		m_Matrix->Calu_Rotate(-frame_degree, 0, 1, 0);
+		m_Matrix->Calu_Rotate(frame_degree, 0, 1, 0);
 	}
 	else if (IsLeft) {
 		m_Matrix->Calu_Rotate(frame_degree, 0, 1, 0);
@@ -277,6 +314,8 @@ void CPlayer::Find_JumpProperty()
 	m_FinishJumpTime = temp_jumptime;
 	m_JumpReach = -temp_vector_z;
 
+	Rotatedegree = atan(float(m_JumpReach) / float(Road_Distance_X)) * 180 / k_PI;
+	
 	std::cout << "점프완료시간: " << m_FinishJumpTime << std::endl;
 	std::cout << "점프거리: " << m_JumpReach << std::endl;
 }

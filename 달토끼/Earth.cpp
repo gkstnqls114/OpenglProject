@@ -61,6 +61,7 @@ void CEarth::Render()
 {
 	if (m_Earth == nullptr)return;
 
+	glColor3f(LIGHTRGB[0], LIGHTRGB[2], LIGHTRGB[3]);
 	glPushMatrix();
 	m_Matrix->MultiMatrix();
 	m_Earth->Render();

@@ -69,28 +69,6 @@ CGameScene::CGameScene(CSceneManager* const changer)
 
 	Initialize();
 
-	//임시로 쓰이는 라이트값
-	GLfloat gray[] = { 0.7f, 0.7f, 0.7f, 1.0f };
-	GLfloat ambient[] = { 1.f, 0.7f, 1.f, 1.0f };
-	GLfloat diffuse[] = { 1.f, 1.f, 1.f, 1.f };
-	GLfloat  specref[] = { 1.0f, 1.0f, 1.0f, 1.0f };
-
-	GLfloat lightPos[] = { 0, 30, -30, 0 };
-
-	glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, gray);
-	glMaterialfv(GL_FRONT, GL_SPECULAR, specref);
-	glMateriali(GL_FRONT, GL_SHININESS, 64);
-
-	glLightfv(GL_LIGHT0, GL_AMBIENT, ambient);
-	glLightfv(GL_LIGHT0, GL_DIFFUSE, diffuse);
-	glLightfv(GL_LIGHT0, GL_POSITION, lightPos);
-
-	glEnable(GL_LIGHTING);
-	glEnable(GL_LIGHT0);
-	//임시로 쓰이는 라이트값
-	glEnable(GL_DEPTH_TEST);
-	glEnable(GL_TEXTURE_2D);
-	glEnable(GL_COLOR_MATERIAL);
 }
 
 CGameScene::~CGameScene()
@@ -119,6 +97,9 @@ CGameScene::~CGameScene()
 
 void CGameScene::Initialize()
 {
+	glDisable(GL_LIGHT0);
+	glEnable(GL_LIGHT1);
+
 	m_pMediator->Init_GameScene();
 	Start = false;
 }
@@ -202,7 +183,7 @@ void CGameScene::Keyboard(const unsigned char& key, const int& x, const int& y)
 
 void CGameScene::SpecialKeys(const int& key, const int& x, const int& y)
 {
-	if (!Start) {
+	if (key == GLUT_KEY_UP || key == GLUT_KEY_LEFT || key == GLUT_KEY_RIGHT) {
 		Start = true;
 	}
 
