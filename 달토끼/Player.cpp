@@ -77,7 +77,7 @@ void CPlayer::SpecialKeys(const int & key, const int & x, const int & y)
 		IsRight = true;
 	}
 	else if (key == GLUT_KEY_LEFT) {
-		Sidedegree = Rotatedegree * 2;
+		Sidedegree = Rotatedegree;
 		IsJump = true;
 		IsLeft = true;
 	}		
@@ -253,28 +253,21 @@ void CPlayer::ProcessSide(int & lhs)
 void CPlayer::Jump_BodyRotate()
 {
 	int Rotate = abs(prevSide - jumpSide);
-	float frame_degree = 0;
-	float Nowdegree = 0;
-
+	
 	bool Rotate_degree_0 = Rotate == 0;
-	if (Rotate_degree_0) {
-		return;
-	}
+	if (Rotate_degree_0) return;
 	
 	bool Rotate_degree_45 = Rotate == 1;
 	bool Rotate_degree_90 = Rotate == 2;
+	float frame_degree = 0;
+	float Nowdegree = 0;
 
 	if (Rotate_degree_45) {
 		Nowdegree = Rotatedegree;
+		frame_degree = Nowdegree / float(m_FinishJumpTime);
 	}
 	else if (Rotate_degree_90) {
-		Nowdegree = Rotatedegree * 2;
-	}
-
-	if (IsRight) {
-		frame_degree = -Nowdegree / float(m_FinishJumpTime);
-	}
-	else if (IsLeft) {
+		Nowdegree = Nowdegree * 2;
 		frame_degree = Nowdegree / float(m_FinishJumpTime);
 	}
 
@@ -282,7 +275,7 @@ void CPlayer::Jump_BodyRotate()
 	//나중에 수정
 	// 굳이 4개면 안에 이프문 만들 필요가 없지..
 	if (IsRight) {
-		m_Matrix->Calu_Rotate(frame_degree, 0, 1, 0);
+		m_Matrix->Calu_Rotate(-frame_degree, 0, 1, 0);
 	}
 	else if (IsLeft) {
 		m_Matrix->Calu_Rotate(frame_degree, 0, 1, 0);
@@ -315,7 +308,8 @@ void CPlayer::Find_JumpProperty()
 	m_JumpReach = -temp_vector_z;
 
 	Rotatedegree = atan(float(m_JumpReach) / float(Road_Distance_X)) * 180 / k_PI;
-	
+	Rotatedegree = 90 - Rotatedegree;
+
 	std::cout << "점프완료시간: " << m_FinishJumpTime << std::endl;
 	std::cout << "점프거리: " << m_JumpReach << std::endl;
 }
