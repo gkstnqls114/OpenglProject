@@ -143,6 +143,8 @@ void CMediator::Init_GameOver()
 
 void CMediator::Init_GameClear()
 {
+	//if (m_pPlayer)	m_pPlayer->Init_GameClear();
+	if (m_pCamera)	m_pCamera->Init_GameClear();
 }
 
 

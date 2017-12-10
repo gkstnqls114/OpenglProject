@@ -5,6 +5,8 @@
 
 CSkybox::CSkybox(const int& z)
 {
+	m_StarNum = 1000;
+
 	m_Stars = new CStar[m_StarNum];
 
 	for (int index = 0; index < m_StarNum; ++index) {

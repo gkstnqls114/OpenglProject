@@ -231,7 +231,6 @@ void CObjModel::Save_Information(const char*& filename)
 
 CObjModel::CObjModel()
 {
-	std::cout << "CObjModel 持失切" << std::endl;
 	m_PivotMove_Matrix = new CMatrix;
 	m_PivotReturn_Matrix = new CMatrix;
 	m_Matrix = new CMatrix;
@@ -239,8 +238,6 @@ CObjModel::CObjModel()
 
 CObjModel::~CObjModel()
 {
-	std::cout << "CObjModel 社瑚切" << std::endl;
-
 	if (m_pVertex != nullptr) {
 		delete[] m_pVertex;
 		m_pVertex = nullptr;

@@ -182,6 +182,13 @@ void CCamera::Init_GameOver()
 	LookAt();
 }
 
+void CCamera::Init_GameClear()
+{
+	Initialize(CVector3D<>(0.f, 0.f, 0.f), 100, 0.1f, 600.f, 60);
+	Rotate(0, 10);
+	LookAt();
+}
+
 void CCamera::Init_GameScene()
 {
 	Initialize(CVector3D<>(0.f, 0.f, 0.f), 130, 0.1f, 600.f, 60);

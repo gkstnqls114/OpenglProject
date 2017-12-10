@@ -25,21 +25,19 @@ void CFootBoard::RenderModel()
 
 CFootBoard::CFootBoard()
 {
-	std::cout << "FootBoard 생성자" << std::endl;
+
 
 }
 
 CFootBoard::~CFootBoard()
 {
-	std::cout << "FootBoard 소멸자" << std::endl;
+
 }
 
 void CFootBoard::InitModel()
 {
 	////단 한 번만 호출
 	if (CFootBoard::m_obj != nullptr) return;
-
-	std::cout << "FootBoard 모델 생성" << std::endl;
 
 	CFootBoard::m_obj = new CObjModel;
 	CFootBoard::m_obj->LoadObj("FootBoard.obj");
@@ -49,7 +47,6 @@ void CFootBoard::InitModel()
 void CFootBoard::DeleteModel()
 {
 	if (CFootBoard::m_obj == nullptr) return;
-	std::cout << "FootBoard 모델 삭제" << std::endl;
 
 	delete[] CFootBoard::m_obj;
 

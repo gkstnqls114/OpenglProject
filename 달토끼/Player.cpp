@@ -45,8 +45,6 @@ void CPlayer::DeleteModel()
 	DeleteLeftFoot();
 	DeleteRightFoot();
 	DeleteHelmet();
-
-	std::cout << "Player 모델 삭제 완료" << std::endl;
 }
 
 void CPlayer::Initialize()
@@ -335,8 +333,6 @@ void CPlayer::Find_JumpProperty()
 	Rotatedegree = atan(float(m_JumpReach) / float(Road_Distance_X)) * 180 / k_PI;
 	Rotatedegree = 90 - Rotatedegree;
 
-	std::cout << "점프완료시간: " << m_FinishJumpTime << std::endl;
-	std::cout << "점프거리: " << m_JumpReach << std::endl;
 }
 
 void CPlayer::Jump()

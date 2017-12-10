@@ -8,14 +8,13 @@
 
 CSceneManager::CSceneManager()
 {
-	std::cout << "장면 체인지 주소: " << this << std::endl;
 	m_GameScene = new CGameScene(this);
 	m_MainScene = new CMainScene(this);
 	m_TestScene = new CTestScene(this);
 	m_GameOverScene = new CGameOver(this);
 	m_GameClearScene = new CGameClear(this);
 
-	ChangeToGameOver();
+	ChangeToGameClear();
 }
 
 

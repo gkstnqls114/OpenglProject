@@ -71,6 +71,7 @@ public:
 
 	virtual void Init_MainScene();
 	virtual void Init_GameOver();
+	virtual void Init_GameClear();
 
 	virtual void Init_GameScene();
 	virtual void Player_JumpStart();

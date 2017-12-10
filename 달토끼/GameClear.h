@@ -4,12 +4,19 @@
 class CSceneManager;
 class CMediator;
 
+class CGAMECLEAR_word;
+
 class CGameClear :
 	public CScene
 {
 	CSceneManager*		m_pSceneManager{ nullptr };
 
 	CMediator *			m_pMediator{ nullptr };
+
+
+	CCamera*			m_Camera{ nullptr };
+	CPlayer *			m_Player{ nullptr };
+	CGAMECLEAR_word*		m_GAMECLEAR{ nullptr };
 
 public:
 	CGameClear(CSceneManager* const changer);

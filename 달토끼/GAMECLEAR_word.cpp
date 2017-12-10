@@ -24,6 +24,7 @@ CGAMECLEAR_word::~CGAMECLEAR_word()
 
 void CGAMECLEAR_word::Render()
 {
+	glColor3f(LIGHTRGB[0], LIGHTRGB[1], LIGHTRGB[2]);
 	glPushMatrix();
 	m_matrix->MultiMatrix();
 	m_model->Render();

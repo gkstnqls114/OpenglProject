@@ -12,8 +12,6 @@ void CRoad::InitFootBoardModel()
 
 void CRoad::InitFootBoardPos(const GLdouble& distance)
 {
-	std::cout << distance << ": 芭府" << std::endl;
-
 	int prev_Side = 0;
 	m_pFootBoard[0].InitPosition(CVector3D<>(0, -5, 0));
 
@@ -48,8 +46,6 @@ void CRoad::InitFootBoardPos(const GLdouble& distance)
 
 CRoad::CRoad(const GLdouble& distance, CMediator*& mediator)
 {
-	std::cout << "Road 积己磊" << std::endl;
-	
 	//m_boardNum = 100;
 	m_boardNum = 10;
 
@@ -62,8 +58,6 @@ CRoad::CRoad(const GLdouble& distance, CMediator*& mediator)
 
 CRoad::~CRoad()
 {
-	std::cout << "Road 家戈磊" << std::endl;
-	
 	CFootBoard::DeleteModel();
 	delete[] m_pFootBoard;
 }

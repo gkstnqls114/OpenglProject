@@ -56,13 +56,13 @@ void CGLFramework::Initialize(int argc, char ** argv, int width, int height, int
 	glLightfv(GL_LIGHT2, GL_POSITION, Over_lightPos);
 
 	//클리어 라이트
-	GLfloat Clear_ambient[] = { 1.f, 0.7f, 1.f, 1.0f };
+	GLfloat Clear_ambient[] = { 1.f, 1.f, 1.f, 1.0f };
 	GLfloat Clear_diffuse[] = { 1.f, 1.f, 1.f, 1.f };
-	GLfloat Clear_lightPos[] = { 0, 30, 0, 0 };
+	GLfloat Clear_lightPos[] = { 0, 0, 30, 0 };
 
-	glLightfv(GL_LIGHT2, GL_AMBIENT, Over_ambient);
-	glLightfv(GL_LIGHT2, GL_DIFFUSE, Over_diffuse);
-	glLightfv(GL_LIGHT2, GL_POSITION, Over_lightPos);
+	glLightfv(GL_LIGHT3, GL_AMBIENT, Clear_ambient);
+	glLightfv(GL_LIGHT3, GL_DIFFUSE, Clear_diffuse);
+	glLightfv(GL_LIGHT3, GL_POSITION, Clear_lightPos);
 
 	glEnable(GL_LIGHTING);
 	glEnable(GL_DEPTH_TEST);
@@ -90,26 +90,22 @@ void CGLFramework::Reshape(int w, int h)
 {
 	m_SceneChager->SceneReshape(w, h);
 
-
 	glutPostRedisplay();
 }
 
 void CGLFramework::Keyboard(unsigned char key, int x, int y)
 {
 	m_SceneChager->SceneKeyboard(key, x, y);
-	
 }
 
 void CGLFramework::SpecialKeys(int key, int x, int y)
 {
 	m_SceneChager->SceneSpecialKeys(key, x, y);
-
 }
 
 void CGLFramework::Timer(int value)
 {
 	m_SceneChager->SceneTimer(value);
-
 
 	glutTimerFunc(m_fps, fnTimer, 1);
 }
