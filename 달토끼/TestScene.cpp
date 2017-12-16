@@ -32,6 +32,10 @@ void CTestScene::Initialize()
 
 }
 
+void CTestScene::SoundStop()
+{
+}
+
 void CTestScene::Render()
 {
 	RenderAxis();

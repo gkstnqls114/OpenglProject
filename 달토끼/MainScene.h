@@ -10,12 +10,16 @@ class CPLAY_word;
 
 class CTextureStorage;
 class CSceneManager;
+class CSoundManager;
+
 
 class CMainScene :
 	public CScene
 {
-	CSceneManager*	m_pSceneManager	{ nullptr };
+	CVector3D<float> ClickPos;
 
+	CSceneManager*	m_pSceneManager	{ nullptr };
+	
 	CMediator*		m_pMediator		{ nullptr };
 	CCamera*		m_Camera		{ nullptr };
 	CMoon*			m_Moon			{ nullptr };
@@ -51,6 +55,7 @@ public:
 	virtual ~CMainScene();
 
 	virtual void Initialize		();
+	virtual void SoundStop		();
 	virtual void Render			();
 	virtual void Reshape		(const int& w, const int& h);
 	virtual void Timer			(const int& value);

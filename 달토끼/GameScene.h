@@ -40,6 +40,7 @@ public:
 	virtual ~CGameScene();
 
 	virtual void Initialize		();
+	virtual void SoundStop		();
 	virtual void Render			();
 	virtual void Update			();
 	virtual void Reshape		(const int& w, const int& h);

@@ -14,6 +14,7 @@ CGLFramework::CGLFramework()
 
 CGLFramework::~CGLFramework()
 {
+
 }
 
 void CGLFramework::Initialize(int argc, char ** argv, int width, int height, int x, int y, int DisplayMode)

@@ -22,6 +22,7 @@ public:
 	virtual ~CTestScene();
 
 	virtual void Initialize();
+	virtual void SoundStop();
 	virtual void Render();
 	virtual void Reshape(const int& w, const int& h);
 	virtual void Timer(const int& value);

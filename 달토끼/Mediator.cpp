@@ -22,7 +22,6 @@ CMediator::~CMediator()
 void CMediator::GameOver()
 {
 	m_pSceneManager->ChangeToGameOver();
-	
 	Init_GameOver();
 }
 
@@ -40,6 +39,7 @@ void CMediator::MainScene()
 
 void CMediator::GameScene()
 {
+	m_pSoundManager->Play("GameBGM");
 	m_pSceneManager->ChangeToGame();
 	Init_GameScene();
 }
@@ -123,6 +123,8 @@ void CMediator::Player_Dead()
 
 void CMediator::Player_Fall()
 {
+	PushPlayQueue("FallEffect", CVector3D<float>());
+
 	if (m_pPlayer)	m_pPlayer->Player_Fall();
 	if (m_pRoad)	m_pRoad->Player_Fall();
 	if (m_pCamera)	m_pCamera->Player_Fall();

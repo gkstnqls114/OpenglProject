@@ -41,6 +41,23 @@ void CGameScene::RenderBack()
 
 CGameScene::CGameScene(CSceneManager* const changer)
 {
+	SoundManager.AddSound(
+		"GameBGM"
+		, "./Sound/GamePlayBGM/Chew_Chew_Island_Main_Theme.mp3"
+		, SoundType::Stream
+	);
+	SoundManager.AddSound(
+		"JumpEffect"
+		, "./Sound/Effect/Jump.wav"
+		, SoundType::Effect2D
+	);
+	SoundManager.AddSound(
+		"FallEffect"
+		, "./Sound/Effect/Fall.wav"
+		, SoundType::Effect2D
+	);
+
+
 	m_pSceneManager = changer;
 	m_pMediator = new CMediator(m_pSceneManager);
 
@@ -92,6 +109,8 @@ CGameScene::~CGameScene()
 
 void CGameScene::Initialize()
 {
+	SoundManager.Play("GameBGM");
+
 	glDisable(GL_LIGHT0);
 	glEnable(GL_LIGHT1);
 	glDisable(GL_LIGHT2);
@@ -108,6 +127,13 @@ void CGameScene::Initialize()
 	m_Moon->SetPos(CVector3D<>(MoonPos[0], MoonPos[1] - DownY, MoonPos[2]));
 
 	Start = false;
+}
+
+void CGameScene::SoundStop()
+{
+	SoundManager.Stop("GameBGM");
+	SoundManager.Stop("JumpEffect");
+	SoundManager.Stop("FallEffect");
 }
 
 
@@ -128,13 +154,18 @@ void CGameScene::Render()
 
 void CGameScene::Update()
 {
+	if (PlayQueueSize() > 0) {
+		auto info = PopPlayQueue();
+		SoundManager.Play(info.first, info.second);
+	}
+
 	m_Camera->Update();
 	m_Skybox->Update();
 	m_Earth->Update();
 	m_Moon->Update();
 
 	if (!Start) return;
-
+	
 	m_Player->Update();
 	m_Road->Update();
 }
@@ -187,8 +218,9 @@ void CGameScene::Keyboard(const unsigned char& key, const int& x, const int& y)
 void CGameScene::SpecialKeys(const int& key, const int& x, const int& y)
 {
 	if (key == GLUT_KEY_UP || key == GLUT_KEY_LEFT || key == GLUT_KEY_RIGHT) {
+		PushPlayQueue("JumpEffect", CVector3D<float>());
 		Start = true;
 	}
-
+	
 	m_Player->SpecialKeys(key, x, y);
 }

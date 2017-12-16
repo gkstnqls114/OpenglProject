@@ -10,11 +10,13 @@ class CEXIT_word;
 class CColleague;
 
 class CSceneManager;
+class CSoundManager;
 
 // ÇÏ¾Æ¾Æ.. ...(±íÀº ÇÑ¼û)
 class CMediator
 {
 	CSceneManager* m_pSceneManager{ nullptr };
+	CSoundManager* m_pSoundManager = &SoundManager;
 
 	CPlayer*	m_pPlayer	{ nullptr };
 	CRoad*		m_pRoad		{ nullptr };

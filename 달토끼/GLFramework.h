@@ -3,6 +3,9 @@
 class CScene;
 class CGameScene;
 class CSceneManager;
+//class CSoundManager;
+//	.AddSound("MainBGM", "Sound/Ramble_loop.mp3", SoundType::Stream);
+
 
 class CGLFramework
 {

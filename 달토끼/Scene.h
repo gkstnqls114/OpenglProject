@@ -10,6 +10,7 @@ public:
 	virtual ~CScene();
 
 	virtual void Initialize() {}
+	virtual void SoundStop() {}
 	virtual void Render() {}
 	virtual void Reshape(const int& w, const int& h) = 0;
 	virtual void Timer(const int& value) = 0;

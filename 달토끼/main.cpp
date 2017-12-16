@@ -1,4 +1,5 @@
 #include "pch.h"
+//#include "SoundManager.h"
 #include "GLFramework.h"
 
 using namespace std;
@@ -12,6 +13,7 @@ namespace
 	CGLFramework framework;
 
 }//익명 네임스페이스 
+
 
 void main(int argc, char** argv)
 {
@@ -27,4 +29,3 @@ void main(int argc, char** argv)
 	framework.Bind();
 	framework.Run();
 }
-

@@ -13,6 +13,10 @@
 //make
 #include "Vector3D.h"
 
+#include "SoundManager.h"
+
+static CSoundManager SoundManager;
+
 template <typename T>
 T Interpolation(T begin, T end, float time) {
 	return begin * (1 - time) + end * time;

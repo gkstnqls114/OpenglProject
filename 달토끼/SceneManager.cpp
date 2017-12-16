@@ -9,12 +9,17 @@
 CSceneManager::CSceneManager()
 {
 	m_GameScene = new CGameScene(this);
+	m_GameScene->SoundStop();
 	m_MainScene = new CMainScene(this);
+	m_MainScene->SoundStop();
 	m_TestScene = new CTestScene(this);
+	m_TestScene->SoundStop();
 	m_GameOverScene = new CGameOver(this);
+	m_GameOverScene->SoundStop();
 	m_GameClearScene = new CGameClear(this);
+	m_GameClearScene->SoundStop();
 
-	ChangeToGameClear();
+	ChangeToGame();
 }
 
 
@@ -29,30 +34,35 @@ CSceneManager::~CSceneManager()
 
 void CSceneManager::ChangeToMain()
 {
+	if(m_pCurrScene) m_pCurrScene->SoundStop();
 	m_pCurrScene = m_MainScene;
 	m_pCurrScene->Initialize();
 }
 
 void CSceneManager::ChangeToGame()
 {
+	if (m_pCurrScene) m_pCurrScene->SoundStop();
 	m_pCurrScene = m_GameScene;
 	m_pCurrScene->Initialize();
 }
 
 void CSceneManager::ChangeToTest()
 {
+	if (m_pCurrScene) m_pCurrScene->SoundStop();
 	m_pCurrScene = m_TestScene;
 	m_pCurrScene->Initialize();
 }
 
 void CSceneManager::ChangeToGameOver()
 {
+	if (m_pCurrScene) m_pCurrScene->SoundStop();
 	m_pCurrScene = m_GameOverScene;
 	m_pCurrScene->Initialize();
 }
 
 void CSceneManager::ChangeToGameClear()
 {
+	if (m_pCurrScene) m_pCurrScene->SoundStop();
 	m_pCurrScene = m_GameClearScene;
 	m_pCurrScene->Initialize();
 }

@@ -8,6 +8,12 @@
 
 CGameClear::CGameClear(CSceneManager* const changer)
 {
+	SoundManager.AddSound(
+		"GameClearBGM"
+		, "./Sound/GameClearBGM/ViviC Heart Session!.mp3"
+		, SoundType::Stream
+	);
+
 	m_pSceneManager = changer;
 	m_pMediator = new CMediator(m_pSceneManager);
 
@@ -24,12 +30,12 @@ CGameClear::~CGameClear()
 	delete[] m_Camera;
 	//delete[] m_Player;
 	delete[] m_GAMECLEAR;
-
-	
 }
 
 void CGameClear::Initialize()
 {
+	SoundManager.Play("GameClearBGM");
+
 	glDisable(GL_LIGHT0);
 	glDisable(GL_LIGHT1);
 	glDisable(GL_LIGHT2);
@@ -37,6 +43,11 @@ void CGameClear::Initialize()
 
 	m_pMediator->Init_GameOver();
 
+}
+
+void CGameClear::SoundStop()
+{
+	SoundManager.Stop("GameClearBGM");
 }
 
 void CGameClear::Render()

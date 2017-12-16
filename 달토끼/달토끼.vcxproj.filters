@@ -153,9 +153,6 @@
     <ClCompile Include="Earth.cpp">
       <Filter>소스 파일\Colleague\Earth</Filter>
     </ClCompile>
-    <ClCompile Include="SoundManager.cpp">
-      <Filter>소스 파일\SoundManager</Filter>
-    </ClCompile>
     <ClCompile Include="PLAY_word.cpp">
       <Filter>소스 파일\Colleague\Word\PLAY</Filter>
     </ClCompile>
@@ -203,6 +200,9 @@
     </ClCompile>
     <ClCompile Include="GAMECLEAR_word.cpp">
       <Filter>소스 파일\Colleague\Word\GAMECLEAR</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundManager.cpp">
+      <Filter>소스 파일\SoundManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -257,9 +257,6 @@
     <ClInclude Include="Earth.h">
       <Filter>소스 파일\Colleague\Earth</Filter>
     </ClInclude>
-    <ClInclude Include="SoundManager.h">
-      <Filter>소스 파일\SoundManager</Filter>
-    </ClInclude>
     <ClInclude Include="PLAY_word.h">
       <Filter>소스 파일\Colleague\Word\PLAY</Filter>
     </ClInclude>
@@ -304,6 +301,9 @@
     </ClInclude>
     <ClInclude Include="GAMECLEAR_word.h">
       <Filter>소스 파일\Colleague\Word\GAMECLEAR</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundManager.h">
+      <Filter>소스 파일\SoundManager</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

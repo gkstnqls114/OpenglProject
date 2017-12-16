@@ -8,6 +8,7 @@
 #include "EXIT_word.h"
 #include "SceneManager.h"
 #include "TextureStorage.h"
+//#include "SoundManager.h"
 
 #include "TestScene.h"
 #include "MainScene.h"
@@ -133,7 +134,14 @@ void CMainScene::WordRender()
 
 CMainScene::CMainScene(CSceneManager* const changer)
 {
+	SoundManager.AddSound(
+		"MainBGM"
+		, "./Sound/MainBGM/Fly to the sky.wav"
+		, SoundType::Stream
+	);
+
 	m_pSceneManager = changer;
+
 	m_pMediator = new CMediator(m_pSceneManager);
 
 	m_Camera = new CCamera(m_pMediator);
@@ -166,6 +174,8 @@ CMainScene::~CMainScene()
 
 void CMainScene::Initialize()
 {
+	SoundManager.Play("MainBGM");
+
 	glEnable(GL_LIGHT0);
 	glDisable(GL_LIGHT1);
 	glDisable(GL_LIGHT2);
@@ -178,6 +188,11 @@ void CMainScene::Initialize()
 	IsGameStart = false;
 	IsClockWise = false;
 	Nowdegree = 0;
+}
+
+void CMainScene::SoundStop()
+{
+	SoundManager.Stop("MainBGM");
 }
 
 void CMainScene::Render()
@@ -195,7 +210,7 @@ void CMainScene::Render()
 		m_Earth->Render();
 	}
 	glPopMatrix();
-	
+
 
 }
 
@@ -212,12 +227,19 @@ void CMainScene::Timer(const int & value)
 {
 	Update();
 
-
 	glutPostRedisplay();
 }
 
 void CMainScene::Update()
 {
+	//FMOD_System_Instance()->update();
+	//
+	//FMOD_System_Instance()->update(0.16, CVector3D<float>(1, 0, 0), CVector3D<float>(0, 1, 0), CVector3D<float>(0, 0, 0));
+	//if (PlayQueueSize() > 0) {
+	//	auto info = PopPlayQueue();
+	//	SoundManager.Play(info.first, info.second);
+	//}
+
 	m_Moon->Update();
 	m_Earth->Update();
 

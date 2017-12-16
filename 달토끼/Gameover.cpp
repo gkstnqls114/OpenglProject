@@ -10,6 +10,12 @@
 
 CGameOver::CGameOver(CSceneManager* const changer)
 {
+	SoundManager.AddSound(
+		"GameOverBGM"
+		, "./Sound/GameOverBGM/Isaku98.mp3"
+		, SoundType::Stream
+	);
+
 	m_pSceneManager = changer;
 	m_pMediator = new CMediator(m_pSceneManager);
 
@@ -33,6 +39,8 @@ CGameOver::~CGameOver()
 
 void CGameOver::Initialize()
 {
+	SoundManager.Play("GameOverBGM");
+
 	glDisable(GL_LIGHT0);
 	glDisable(GL_LIGHT1);
 	glEnable(GL_LIGHT2);
@@ -40,6 +48,11 @@ void CGameOver::Initialize()
 
 	m_pMediator->Init_GameOver();
 
+}
+
+void CGameOver::SoundStop()
+{
+	SoundManager.Stop("GameOverBGM");
 }
 
 void CGameOver::Render()
