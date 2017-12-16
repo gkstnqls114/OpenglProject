@@ -12,7 +12,7 @@ CGAMECLEAR_word::CGAMECLEAR_word(const CVector3D<>& Pos)
 	m_model = new CObjModel;
 	m_model->LoadObj("GAMECLEARWORD.obj");
 	m_model->LoadTexture("GAMECLEARWORD.bmp");
-
+	
 	m_Position = Pos;
 	m_matrix = new CMatrix;
 	m_matrix->Set_Translate(m_Position);

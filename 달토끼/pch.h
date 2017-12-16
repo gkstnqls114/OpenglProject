@@ -10,9 +10,8 @@
 #include <vector>
 #include <math.h>
 
-//make
+//makeDAKF
 #include "Vector3D.h"
-
 #include "SoundManager.h"
 
 static CSoundManager SoundManager;

@@ -5,22 +5,29 @@
 // ? 왜 여기에다가 정의할수있는거지 잘모르겠어..
 //정적멤버변수는 클래스밖에서 초기화(정확히는 아니지만)해야한다.
 CObjModel* CFootBoard::m_obj = nullptr;
+CObjModel* CFootBoard::m_Light_obj = nullptr;
 
 void CFootBoard::Disappear()
 {
-	if (m_TextureRGBA[3] <= 0) {
+	if (m_TextureAlpha <= 0) {
 		IsDisappear = true;
 		return;
 	}
 
-	m_TextureRGBA[3] -= 0.03f;
+	m_TextureAlpha -= 0.03f;
 }
 
 void CFootBoard::RenderModel()
 {
 	if (IsDisappear) return;
 
+	glColor4f(LIGHTRGB[0], LIGHTRGB[1], LIGHTRGB[2], m_TextureAlpha);
 	m_obj->Render();
+
+	if (IsLast) {
+		glColor4f(LIGHTRGB[0], LIGHTRGB[1], LIGHTRGB[2], m_LightAlpha);
+		m_Light_obj->Render();
+	}
 }
 
 CFootBoard::CFootBoard()
@@ -42,6 +49,11 @@ void CFootBoard::InitModel()
 	CFootBoard::m_obj = new CObjModel;
 	CFootBoard::m_obj->LoadObj("FootBoard.obj");
 	CFootBoard::m_obj->LoadTexture("FootBoard.bmp");
+	//CFootBoard::m_obj->LoadTexture("Goal.bmp");
+
+	CFootBoard::m_Light_obj = new CObjModel;
+	CFootBoard::m_Light_obj->LoadObj("GoalLight.obj");
+	CFootBoard::m_Light_obj->LoadTexture("GoalLight.bmp");
 }
 
 void CFootBoard::DeleteModel()
@@ -49,13 +61,10 @@ void CFootBoard::DeleteModel()
 	if (CFootBoard::m_obj == nullptr) return;
 
 	delete[] CFootBoard::m_obj;
-
 }
 
 void CFootBoard::Render()
 {
-	glColor4f(LIGHTRGB[0], LIGHTRGB[1], LIGHTRGB[2], m_TextureRGBA[3]);
-	
 	glPushMatrix();
 	glMultMatrixf(m_Translate_Matrix);
 	glMultMatrixf(m_Rotate_Matrix);
@@ -68,16 +77,15 @@ void CFootBoard::Render()
 
 void CFootBoard::Update()
 {
+	
+
 	if (IsDisappear) return;
 	Disappear();
 }
 
 void CFootBoard::Init_GameScene()
 {
-	m_TextureRGBA[0] = 1.f;
-	m_TextureRGBA[1] = 1.f;
-	m_TextureRGBA[2] = 1.f;
-	m_TextureRGBA[3] = 1.f;
+	m_TextureAlpha = 1.f;
 	DisappearTime = 0.f;
 	IsDisappear = false;
 }
@@ -151,4 +159,23 @@ void CFootBoard::InitPosition(CVector3D<>&& rhs)
 	glMultMatrixf(m_Translate_Matrix);
 	glGetFloatv(GL_MODELVIEW_MATRIX, m_Translate_Matrix);
 	glPopMatrix();
+}
+
+void CFootBoard::IsLight()
+{
+	IsLast = true;
+	m_LightAlpha = 0.5f;
+	IsLightDisappear = false;
+}
+
+void CFootBoard::IsNotLight()
+{
+	IsLightDisappear = true;
+}
+
+void CFootBoard::LightDisappear()
+{
+	if (IsLightDisappear) {
+		m_LightAlpha -= 0.01f;
+	}
 }

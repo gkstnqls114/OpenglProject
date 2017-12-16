@@ -121,7 +121,6 @@ void CPlayer::Render()
 		m_Rabit_Ear->Render();
 		m_Rabit_LeftFoot->Render();
 		m_Rabit_RightFoot->Render();
-		m_Rabits_Helmet->Render();
 	glPopMatrix();
 }
 
@@ -219,7 +218,6 @@ void CPlayer::Player_JumpFinish()
 	m_Rabit_Ear->Reset();
 	m_Rabit_LeftFoot->Reset();
 	m_Rabit_RightFoot->Reset();
-	m_Rabits_Helmet->Reset();
 }
 
 void CPlayer::Player_Dead()
@@ -453,8 +451,8 @@ void CPlayer::InitHelmet()
 {
 	if (CPlayer::m_Rabits_Helmet != nullptr) return;
 
-	CPlayer::m_Rabits_Helmet = new CObjModel;
-	CPlayer::m_Rabits_Helmet->LoadObj("Rabits_Helmet_low.obj");
+	//CPlayer::m_Rabits_Helmet = new CObjModel;
+	//CPlayer::m_Rabits_Helmet->LoadObj("Rabit_Helmet.obj");
 }
 
 void CPlayer::DeleteBody()

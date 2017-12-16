@@ -9,7 +9,7 @@
 template <typename T = GLdouble, int NUM = 4>
 class CVector3D
 {
-private:
+public:
 	T* vector{ nullptr };
 
 private:

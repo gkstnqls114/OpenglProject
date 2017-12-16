@@ -159,8 +159,8 @@ void CGameScene::Render()
 
 	m_Skybox->Render();
 
-	m_Road->Render();
 	m_Player->Render();
+	m_Road->Render();
 	m_Earth->Render();
 	m_Moon->Render();
 	

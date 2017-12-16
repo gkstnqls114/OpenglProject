@@ -42,7 +42,7 @@ void CRoad::InitFootBoardPos(const GLdouble& distance)
 	float tranlateX = 0;
 	float tranlateZ = -(m_boardNum - 1) * distance;
 	m_pFootBoard[m_boardNum - 1].InitPosition(CVector3D<>(tranlateX, -5, tranlateZ));
-
+	m_pFootBoard[m_boardNum - 1].IsLight();
 }
 
 CRoad::CRoad(const GLdouble& distance, CMediator*& mediator)
@@ -70,10 +70,11 @@ void CRoad::Render()
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-	int MaxNum = min(m_boardNum, m_PlayerPosNum + 5);
+	int MaxNum = min(m_boardNum - 1, m_PlayerPosNum + 5);
 	for (int x = m_DisappearBoardNum; x < MaxNum; ++x) {
 		m_pFootBoard[x].Render();
 	}
+	m_pFootBoard[m_boardNum - 1].Render();
 	glDisable(GL_BLEND);
 }
 
@@ -86,7 +87,10 @@ void CRoad::AllRender()
 
 void CRoad::Update()
 {
-	if (isGameClear) return;
+	if (isGameClear) {
+		m_pFootBoard[m_boardNum - 1].LightDisappear();
+		return;
+	}
 	if (isPlayerDead) return;
 
 	m_pFootBoard[m_DisappearBoardNum].Update();
@@ -138,6 +142,7 @@ void CRoad::Init_GameScene()
 	for (int index = 0; index < m_boardNum; ++index) {
 		m_pFootBoard[index].Init_GameScene();
 	}
+	m_pFootBoard[m_boardNum - 1].IsLight();
 	m_PlayerPosNum = 0;
 	m_DisappearBoardNum = 0;
 	isPlayerDead = false;
@@ -164,6 +169,7 @@ void CRoad::Player_JumpFinish(int playerside)
 	}
 	bool IsGameClear = m_PlayerPosNum == (m_boardNum - 1);
 	if (IsGameClear) {
+		m_pFootBoard[m_boardNum - 1].IsNotLight();
 		m_pMediator->Player_Clear();
 		return;
 	}
