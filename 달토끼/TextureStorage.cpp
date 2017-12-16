@@ -63,11 +63,11 @@ GLubyte * CTextureStorage::LoadMyBitmap(const char * filename, BITMAPINFO*& info
 
 	//이미지 파일 불러오기를 실패할 경우
 	if ((fp = fopen(filename, "rb")) == NULL) {
-		std::cout << "이미지 파일을 불러올 수 없습니다." << std::endl;
+		//std::cout << "이미지 파일을 불러올 수 없습니다." << std::endl;
 		fclose(fp);
 		return nullptr;
 	}
-	std::cout << filename << "을 불러왔습니다. " << std::endl;
+	//std::cout << filename << "을 불러왔습니다. " << std::endl;
 
 	//헤더 사이즈가 맞지 않는 경우
 	if (fread(&header, sizeof(BITMAPFILEHEADER), 1, fp) < 1) {
@@ -127,7 +127,7 @@ GLubyte * CTextureStorage::LoadMyBitmap(const char * filename, BITMAPINFO*& info
 
 	fclose(fp);
 	
-	std::cout << filename << ": 완료" << std::endl;
+	//std::cout << filename << ": 완료" << std::endl;
 	
 	return pbit;
 }

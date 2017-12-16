@@ -35,7 +35,7 @@ void CPlayer::InitModel()
 	InitRightFoot();
 	InitHelmet();
 
-	std::cout << "Player 모델 생성 완료" << std::endl;
+	//std::cout << "Player 모델 생성 완료" << std::endl;
 }
 
 void CPlayer::DeleteModel()

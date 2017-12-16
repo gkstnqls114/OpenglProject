@@ -166,18 +166,17 @@ void CGameScene::Render()
 	
 	//ui viewport
 	//glViewport(0, Height / 4 * 3, Width, Height);
-	//glViewport(0, -Height/2 + 100, Width, Height);
-	/*glClear(GL_DEPTH_BUFFER_BIT);
+	glViewport(0, -Height/2 + 100, Width, Height);
+	glClear(GL_DEPTH_BUFFER_BIT);
 	glPushMatrix();
 	m_MapCamera->LookAt();
 	{
-		
 		m_Road->AllRender();
 		m_Player->Render();
 	}
-	glPopMatrix();*/
+	glPopMatrix();
 
-	//glViewport(0, 0, Width, Height);
+	glViewport(0, 0, Width, Height);
 }
 
 void CGameScene::Update()

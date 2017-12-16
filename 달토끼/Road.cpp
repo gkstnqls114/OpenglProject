@@ -16,6 +16,7 @@ void CRoad::InitFootBoardPos(const GLdouble& distance)
 	m_pFootBoard[0].InitPosition(CVector3D<>(0, -5, 0));
 
 	//맨 첫번째는 이동하지 않으므로 1부터 시작
+	srand(time(NULL));
 	for (int x = 1; x < m_boardNum - 1; ++x) {
 		int nowSide = k_side[rand() % 3];
 

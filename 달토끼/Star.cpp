@@ -4,19 +4,21 @@
 
 CStar::CStar()
 {
-	m_StartRGB = CVector3D<float, 3>
-		(
+	CVector3D<float, 3> RandStart(
 		float(rand() % 156 + 100) / 255.f,
 		float(rand() % 156 + 100) / 255.f,
 		float(rand() % 156 + 100) / 255.f
-		);
-	m_EndRGB = CVector3D<float, 3>
-		(
-			float(rand() % 156 + 100) / 255.f,
-			float(rand() % 156 + 100) / 255.f,
-			float(rand() % 156 + 100) / 255.f
-		);
+	);
 
+	m_StartRGB = RandStart;
+		
+	CVector3D<float, 3> RandEnd(
+		float(rand() % 156 + 100) / 255.f,
+		float(rand() % 156 + 100) / 255.f,
+		float(rand() % 156 + 100) / 255.f
+	);
+	m_EndRGB = RandEnd;
+		
 	m_RGB = m_StartRGB;
 
 	m_Pos = CVector3D<>(
@@ -55,13 +57,13 @@ void CStar::Update()
 	if (m_Time >= 1.f) {
 		m_Time = 0.f;
 		m_StartRGB = m_EndRGB;
-
-		m_EndRGB = CVector3D<float, 3>
-			(
-				float(rand() % 156 + 100) / 255.f,
-				float(rand() % 156 + 100) / 255.f,
-				float(rand() % 156 + 100) / 255.f
-			);
+		CVector3D<float, 3> RandEnd(
+			float(rand() % 156 + 100) / 255.f,
+			float(rand() % 156 + 100) / 255.f,
+			float(rand() % 156 + 100) / 255.f
+		);
+		
+		m_EndRGB = RandEnd;
 	}
 
 	m_RGB[0] = Interpolation(m_StartRGB[0], m_EndRGB[0], m_Time);

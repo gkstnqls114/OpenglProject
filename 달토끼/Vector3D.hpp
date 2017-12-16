@@ -45,12 +45,7 @@ template <typename T, int NUM>
   CVector3D<T, NUM>::CVector3D(CVector3D<T, NUM> && rhs)
 {
 	//std::cout << "이동생성자" << std::endl;
-	vector = new T[NUM];
-	
-	vector[0] = rhs.vector[0];
-	vector[1] = rhs.vector[1];
-	vector[2] = rhs.vector[2];
-	vector[3] = rhs.vector[3];
+	vector = rhs.vector;
 
 	rhs.vector = nullptr;
 }
@@ -145,14 +140,11 @@ template <typename T, int NUM>
   CVector3D<T, NUM> & CVector3D<T, NUM>::operator=(CVector3D<T, NUM> && rhs)
 {
 	//std::cout << "이동 대입 연산자" << std::endl;
-	if (vector == nullptr) {
-		vector = new T[NUM];
+	 
+	if (vector != nullptr) {
+	  delete[] vector;
 	}
-
-	for(int index = 0 ; index < NUM ; ++ index){
-		vector[index] = rhs.vector[index];
-	}
-
+	vector = rhs.vector;
 
 	rhs.vector = nullptr;
 
