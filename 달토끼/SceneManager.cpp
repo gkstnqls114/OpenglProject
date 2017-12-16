@@ -37,6 +37,8 @@ void CSceneManager::ChangeToMain()
 	if(m_pCurrScene) m_pCurrScene->SoundStop();
 	m_pCurrScene = m_MainScene;
 	m_pCurrScene->Initialize();
+
+	m_pCurrScene->SoundStop();
 }
 
 void CSceneManager::ChangeToGame()
@@ -44,6 +46,8 @@ void CSceneManager::ChangeToGame()
 	if (m_pCurrScene) m_pCurrScene->SoundStop();
 	m_pCurrScene = m_GameScene;
 	m_pCurrScene->Initialize();
+
+	m_pCurrScene->SoundStop();
 }
 
 void CSceneManager::ChangeToTest()
@@ -51,6 +55,8 @@ void CSceneManager::ChangeToTest()
 	if (m_pCurrScene) m_pCurrScene->SoundStop();
 	m_pCurrScene = m_TestScene;
 	m_pCurrScene->Initialize();
+	
+	m_pCurrScene->SoundStop();
 }
 
 void CSceneManager::ChangeToGameOver()
@@ -58,6 +64,8 @@ void CSceneManager::ChangeToGameOver()
 	if (m_pCurrScene) m_pCurrScene->SoundStop();
 	m_pCurrScene = m_GameOverScene;
 	m_pCurrScene->Initialize();
+
+	m_pCurrScene->SoundStop();
 }
 
 void CSceneManager::ChangeToGameClear()
@@ -65,6 +73,8 @@ void CSceneManager::ChangeToGameClear()
 	if (m_pCurrScene) m_pCurrScene->SoundStop();
 	m_pCurrScene = m_GameClearScene;
 	m_pCurrScene->Initialize();
+
+	m_pCurrScene->SoundStop();
 }
 
 void CSceneManager::SceneRender()

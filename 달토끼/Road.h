@@ -26,6 +26,7 @@ public:
 	~CRoad();
 
 	void Render();
+	void AllRender();
 	void Update();
 
 	const CVector3D<> GetLastPos() const noexcept;

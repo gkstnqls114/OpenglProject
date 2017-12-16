@@ -361,6 +361,10 @@ void CPlayer::Calculate_JumpVector()
 	else if (IsLeft) {
 		m_vector_x = -20.f / m_FinishJumpTime;
 	}
+
+	m_Pos[0] += m_vector_x;
+	m_Pos[1] += m_vector_y;
+	m_Pos[2] += m_vector_z;
 }
 
 
@@ -382,6 +386,7 @@ void CPlayer::Finish_Jump()
 	if (m_Matrix->Get_Tranlate_Y() >= 0) return;
 
 	m_Matrix->Set_Translate_13(0);
+	m_Pos[1] = 0;
 
 	ProcessSide(prevSide);
 

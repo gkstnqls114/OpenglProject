@@ -21,7 +21,8 @@ class CMediator
 	CPlayer*	m_pPlayer	{ nullptr };
 	CRoad*		m_pRoad		{ nullptr };
 	CCamera*	m_pCamera	{ nullptr };
-	
+	CCamera*	m_pMapCamera{ nullptr };
+
 	CMoon*		m_pMoon		{ nullptr };
 	CEarth*		m_pEarth	{ nullptr };
 	CPLAY_word* m_pPLAY		{ nullptr };
@@ -34,6 +35,7 @@ public:
 	void SetPlayer(CPlayer*& player) { m_pPlayer = player; };
 	void SetRoad(CRoad*& road) { m_pRoad = road; };
 	void SetCamera(CCamera*& camera) { m_pCamera = camera; };
+	void SetMapCamera(CCamera*& camera) { m_pMapCamera = camera; }
 	void SetMoon(CMoon*& moon) { m_pMoon = moon; };
 	void SetEarth(CEarth*& earth) { m_pEarth = earth; };
 	void SetPLAYWORD(CPLAY_word*& play) { m_pPLAY = play; };

@@ -170,7 +170,7 @@ void CCamera::Update()
 
 void CCamera::Init_MainScene()
 {
-	Initialize(CVector3D<>(0.f, 0.f, 0.f), 350, 0.1f, 600.f, 60);
+	Initialize(CVector3D<>(0.f, 0.f, 0.f), 500, 0.1f, 600.f, 60);
 	Rotate(0, 0);
 	LookAt();
 }

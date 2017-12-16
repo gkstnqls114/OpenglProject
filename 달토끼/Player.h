@@ -19,6 +19,7 @@ class CPlayer
 
 	CMatrix* m_Matrix{nullptr};
 
+	CVector3D<> m_Pos;
 	//점프변수들
 	//jump property
 	const float k_gravity{ 0.7f };
@@ -78,6 +79,8 @@ public:
 	static void InitModel();
 	static void DeleteModel();
 	void Initialize();
+
+	CVector3D<> GetPos() const noexcept { return m_Pos; }
 
 	void Keyboard(const unsigned char& key, const int& x, const int& y);
 	void SpecialKeys(const int& key, const int& x, const int& y);

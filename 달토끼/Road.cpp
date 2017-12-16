@@ -76,6 +76,13 @@ void CRoad::Render()
 	glDisable(GL_BLEND);
 }
 
+void CRoad::AllRender()
+{
+	for (int x = 0; x < m_boardNum; ++x) {
+		m_pFootBoard[x].Render();
+	}
+}
+
 void CRoad::Update()
 {
 	if (isGameClear) return;

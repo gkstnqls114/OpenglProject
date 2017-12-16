@@ -70,6 +70,7 @@ CGameScene::CGameScene(CSceneManager* const changer)
 	m_textureStroage->StoreBitmap("Background.bmp", m_BackgroundTextureID);
 
 
+	m_MapCamera = new CCamera(m_pMediator);
 	m_Camera = new CCamera(m_pMediator);
 	m_Player = new CPlayer(m_pMediator);
 	double distance = m_Player->Get_JumpReach();
@@ -80,16 +81,13 @@ CGameScene::CGameScene(CSceneManager* const changer)
 	m_pMediator->SetPlayer(m_Player);
 	m_pMediator->SetRoad(m_Road);
 	m_pMediator->SetCamera(m_Camera);
+	m_pMediator->SetMapCamera(m_MapCamera);
 
 	m_Moon = new CMoon(m_pMediator);
 	m_Earth = new CEarth(m_pMediator);
 
-	m_MapCamera = new CCamera(m_pMediator);
-	m_MapCamera->Initialize(CVector3D<>(0.f, 200.f, m_Road->GetCenterPos()[2] + 25), 500, 0.1f, 600.f, 60);
-	m_MapCamera->Rotate(90, 180);
 
 	Initialize();
-
 }
 
 CGameScene::~CGameScene()
@@ -129,11 +127,15 @@ void CGameScene::Initialize()
 
 	m_pMediator->Init_GameScene();
 
+	m_MapCamera->Initialize(CVector3D<>(0.f, 0.f, m_Road->GetCenterPos()[2] + 50), 500, 0.1f, 600.f, 60);
+	m_MapCamera->Rotate(0.f, 1.4f);
+	m_MapCamera->Rotate(90, 0);
+
 	GLdouble DownY = 100;
 	CVector3D<> MoonPos = m_Road->GetLastPos();
 	CVector3D<> EarthPos = m_Road->GetFirstPos();
-	m_Earth->SetPos(CVector3D<>(EarthPos[0], EarthPos[1] - DownY + 10, EarthPos[2]));
-	m_Moon->SetPos(CVector3D<>(MoonPos[0], MoonPos[1] - DownY, MoonPos[2]));
+	m_Earth->SetPos(CVector3D<>(EarthPos[0], EarthPos[1] - DownY, EarthPos[2]));
+	m_Moon->SetPos(CVector3D<>(MoonPos[0], MoonPos[1] - DownY + 30, MoonPos[2]));
 
 	Start = false;
 }
@@ -151,46 +153,31 @@ void CGameScene::Render()
 	double Width = glutGet(GLUT_WINDOW_WIDTH);
 	double Height = static_cast<float>(glutGet(GLUT_WINDOW_HEIGHT));
 
-	//game viewport
-	glViewport(0, 0, Width, Height);
-	glPushMatrix();
-	{
-		RenderBack();
-		//RenderAxis();
+	RenderBack();
 
-		m_Camera->LookAt();
+	m_Camera->LookAt();
 
-		//m_Skybox->Render();
+	m_Skybox->Render();
 
-		m_Road->Render();
-		m_Player->Render();
-		m_Earth->Render();
-		m_Moon->Render();
-	}
-	glPopMatrix();
-
+	m_Road->Render();
+	m_Player->Render();
+	m_Earth->Render();
+	m_Moon->Render();
+	
 	//ui viewport
-	glViewport(0, Height / 4 * 3, Width, Height);
+	//glViewport(0, Height / 4 * 3, Width, Height);
+	//glViewport(0, -Height/2 + 100, Width, Height);
+	/*glClear(GL_DEPTH_BUFFER_BIT);
 	glPushMatrix();
+	m_MapCamera->LookAt();
 	{
-		glClear(GL_DEPTH_BUFFER_BIT);
-		m_MapCamera->LookAt();
 		
-		glPushMatrix();
-		//glTranslated(0, - 200, 0);
-		{
-			//RenderAxis();
-
-			m_Road->Render();
-			m_Player->Render();/*
-			m_Earth->Render();
-			m_Moon->Render();*/
-		}
-		glPopMatrix();
+		m_Road->AllRender();
+		m_Player->Render();
 	}
-	glPopMatrix();
+	glPopMatrix();*/
 
-	glViewport(0, 0, Width, Height);
+	//glViewport(0, 0, Width, Height);
 }
 
 void CGameScene::Update()

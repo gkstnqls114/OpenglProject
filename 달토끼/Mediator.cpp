@@ -39,7 +39,6 @@ void CMediator::MainScene()
 
 void CMediator::GameScene()
 {
-	m_pSoundManager->Play("GameBGM");
 	m_pSceneManager->ChangeToGame();
 	Init_GameScene();
 }
@@ -104,6 +103,7 @@ void CMediator::Player_Jumping()
 		);
 
 	if (m_pCamera) m_pCamera->Player_Jumping(jumpmove);
+	if (m_pMapCamera) m_pMapCamera->Player_Jumping(CVector3D<>(0, 0, m_pPlayer->Get_VectorZ()));
 	if (m_pRoad) m_pRoad->Player_Jumping();
 }
 

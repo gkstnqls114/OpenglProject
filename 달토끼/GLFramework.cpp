@@ -19,6 +19,8 @@ CGLFramework::~CGLFramework()
 
 void CGLFramework::Initialize(int argc, char ** argv, int width, int height, int x, int y, int DisplayMode)
 {
+	m_fps = 1;
+
 	glutInit(&argc, argv);
 	glutInitDisplayMode(DisplayMode);
 	glutInitWindowSize(width, height);
