@@ -103,6 +103,28 @@ const CVector3D<> CRoad::GetFirstPos() const noexcept
 	return m_pFootBoard[0].GetPos();
 }
 
+const CVector3D<> CRoad::GetCenterPos() const noexcept
+{
+	CVector3D<> Center;
+	if (m_boardNum % 2 == 0) {
+		int center_num_1 = m_boardNum / 2;
+		int center_num_2 = center_num_1 + 1;
+		CVector3D<> Prev = m_pFootBoard[center_num_1].GetPos();
+		CVector3D<> Next = m_pFootBoard[center_num_2].GetPos();
+
+		Center = CVector3D<>(
+			(Prev[0] + Next[0]) / 2
+			, (Prev[1] + Next[1]) / 2
+			, (Prev[2] + Next[2]) / 2
+			);
+	}
+	else {
+		int center_num = float(m_boardNum) / 2.f + 0.5;
+		Center = m_pFootBoard[center_num].GetPos();
+	}
+	return Center;
+}
+
 void CRoad::Init_GameScene()
 {
 	for (int index = 0; index < m_boardNum; ++index) {

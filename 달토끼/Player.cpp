@@ -153,6 +153,7 @@ void CPlayer::Init_GameScene()
 
 void CPlayer::Player_JumpStart()
 {
+	PushPlayQueue("JumpEffect", CVector3D<float>());
 	ProcessSide(jumpSide);
 }
 

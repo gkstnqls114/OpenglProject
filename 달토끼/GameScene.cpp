@@ -36,6 +36,11 @@ void CGameScene::RenderBack()
 	glVertex3d(Left, Bottom, 0);
 	glEnd();
 
+	glEnable(GL_BLEND);
+	//쟈쟌
+
+	glDisable(GL_BLEND);
+
 	glClear(GL_DEPTH_BUFFER_BIT);
 }
 
@@ -78,7 +83,11 @@ CGameScene::CGameScene(CSceneManager* const changer)
 
 	m_Moon = new CMoon(m_pMediator);
 	m_Earth = new CEarth(m_pMediator);
-	
+
+	m_MapCamera = new CCamera(m_pMediator);
+	m_MapCamera->Initialize(CVector3D<>(0.f, 200.f, m_Road->GetCenterPos()[2] + 25), 500, 0.1f, 600.f, 60);
+	m_MapCamera->Rotate(90, 180);
+
 	Initialize();
 
 }
@@ -139,17 +148,49 @@ void CGameScene::SoundStop()
 
 void CGameScene::Render()
 {
-	//반드시 스카이박스는 맨 처음에 렌더
-	RenderBack();
-	m_Camera->LookAt();
+	double Width = glutGet(GLUT_WINDOW_WIDTH);
+	double Height = static_cast<float>(glutGet(GLUT_WINDOW_HEIGHT));
 
- 	m_Skybox->Render();
+	//game viewport
+	glViewport(0, 0, Width, Height);
+	glPushMatrix();
+	{
+		RenderBack();
+		//RenderAxis();
 
-	m_Road->Render();
+		m_Camera->LookAt();
 
-	m_Player->Render();
-	m_Earth->Render();
-	m_Moon->Render();
+		//m_Skybox->Render();
+
+		m_Road->Render();
+		m_Player->Render();
+		m_Earth->Render();
+		m_Moon->Render();
+	}
+	glPopMatrix();
+
+	//ui viewport
+	glViewport(0, Height / 4 * 3, Width, Height);
+	glPushMatrix();
+	{
+		glClear(GL_DEPTH_BUFFER_BIT);
+		m_MapCamera->LookAt();
+		
+		glPushMatrix();
+		//glTranslated(0, - 200, 0);
+		{
+			//RenderAxis();
+
+			m_Road->Render();
+			m_Player->Render();/*
+			m_Earth->Render();
+			m_Moon->Render();*/
+		}
+		glPopMatrix();
+	}
+	glPopMatrix();
+
+	glViewport(0, 0, Width, Height);
 }
 
 void CGameScene::Update()
@@ -217,8 +258,12 @@ void CGameScene::Keyboard(const unsigned char& key, const int& x, const int& y)
 
 void CGameScene::SpecialKeys(const int& key, const int& x, const int& y)
 {
+	if (key == GLUT_KEY_F1) {
+		std::cout << m_Camera->GetVertical() << ", "
+			<< m_Camera->GetHorizon() << ", " << std::endl;
+	}
+
 	if (key == GLUT_KEY_UP || key == GLUT_KEY_LEFT || key == GLUT_KEY_RIGHT) {
-		PushPlayQueue("JumpEffect", CVector3D<float>());
 		Start = true;
 	}
 	

@@ -30,7 +30,8 @@ public:
 
 	const CVector3D<> GetLastPos() const noexcept;
 	const CVector3D<> GetFirstPos() const noexcept;
-
+	const CVector3D<> GetCenterPos() const noexcept;
+	
 	//Mediator
 	virtual void Init_GameScene();
 	virtual void Player_JumpStart();

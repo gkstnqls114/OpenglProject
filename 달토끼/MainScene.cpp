@@ -136,7 +136,7 @@ CMainScene::CMainScene(CSceneManager* const changer)
 {
 	SoundManager.AddSound(
 		"MainBGM"
-		, "./Sound/MainBGM/Fly to the sky.wav"
+		, "./Sound/MainBGM/Main.mp3"
 		, SoundType::Stream
 	);
 

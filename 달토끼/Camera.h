@@ -57,6 +57,8 @@ public:
 
 	void Rotate(float v, float h);
 	void Rotate(int degree_v, int degree_h);
+	const float GetVertical() const noexcept { return m_vertical; }
+	const float GetHorizon() const noexcept { return m_horizontal; }
 
 	void LookAt() const;
 

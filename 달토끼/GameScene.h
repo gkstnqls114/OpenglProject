@@ -23,6 +23,7 @@ class CGameScene :
 	CMoon *				m_Moon			{ nullptr };
 	CEarth *			m_Earth			{ nullptr };
 	CCamera*			m_Camera		{ nullptr };
+	CCamera*			m_MapCamera		{ nullptr };
 	CRoad *				m_Road			{ nullptr };
 
 	CSkybox*			m_Skybox		{ nullptr };
