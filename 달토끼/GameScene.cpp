@@ -127,7 +127,7 @@ void CGameScene::Initialize()
 
 	m_pMediator->Init_GameScene();
 
-	m_MapCamera->Initialize(CVector3D<>(0.f, 0.f, m_Road->GetCenterPos()[2] + 50), 500, 0.1f, 600.f, 60);
+	m_MapCamera->Initialize(CVector3D<>(0.f, 0.f, m_Road->GetFirstPos()[2] * 5), 500, 0.1f, 600.f, 60);
 	m_MapCamera->Rotate(0.f, 1.4f);
 	m_MapCamera->Rotate(90, 0);
 
@@ -165,6 +165,7 @@ void CGameScene::Render()
 	m_Moon->Render();
 	
 	//ui viewport
+
 	//glViewport(0, Height / 4 * 3, Width, Height);
 	glViewport(0, -Height/2 + 100, Width, Height);
 	glClear(GL_DEPTH_BUFFER_BIT);

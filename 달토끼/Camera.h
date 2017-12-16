@@ -41,6 +41,7 @@ public:
 	~CCamera() = default;
 
 	void Initialize(const CVector3D<> & pos, float distance, float zNear, float zFar, float fov);
+	//void Initialize(CVector3D<> && pos, float distance, float zNear, float zFar, float fov);
 
 	void SetAspect(float aspect) { m_aspect = aspect; }
 	CVector3D<> GetPosition()	const { return m_at; }

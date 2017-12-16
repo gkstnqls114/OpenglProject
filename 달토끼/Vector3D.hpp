@@ -83,44 +83,47 @@ template <typename T, int NUM>
 }
 
 template <typename T, int NUM>
-  CVector3D<T, NUM> CVector3D<T, NUM>::operator+(const CVector3D<T, NUM> & rhs)
+CVector3D<T, NUM> CVector3D<T, NUM>::operator+(const CVector3D<T, NUM> & rhs)
 {
-	// TODO: 여기에 반환 구문을 삽입합니다.
-	return CVector3D<T, NUM>(
+	CVector3D<T, NUM> Temp(
 		vector[0] + rhs.vector[0],
 		vector[1] + rhs.vector[1],
 		vector[2] + rhs.vector[2]
 	);
+	return Temp;
 }
 
 template<typename T, int NUM>
 CVector3D<T, NUM> CVector3D<T, NUM>::operator+(CVector3D<T, NUM>&& rhs)
 {
-	return CVector3D<T, NUM>(
+	CVector3D<T, NUM> Temp(
 		vector[0] + rhs.vector[0],
 		vector[1] + rhs.vector[1],
 		vector[2] + rhs.vector[2]
-		);
+	);
+	return Temp;
 }
 
 template <typename T, int NUM>
   CVector3D<T, NUM> CVector3D<T, NUM>::operator-(const CVector3D<T, NUM> & rhs)
 {
-	return CVector3D<T, NUM>(
+	CVector3D<T, NUM> Temp(
 		vector[0] - rhs.vector[0],
 		vector[1] - rhs.vector[1],
 		vector[2] - rhs.vector[2]
-		);
+	);
+	return Temp;
 }
 
 template<typename T, int NUM>
 CVector3D<T, NUM> CVector3D<T, NUM>::operator-(CVector3D<T, NUM>&& rhs)
 {
-	return CVector3D<T, NUM>(
+	CVector3D<T, NUM> Temp(
 		vector[0] - rhs.vector[0],
 		vector[1] - rhs.vector[1],
 		vector[2] - rhs.vector[2]
-		);
+	);
+	return Temp;
 }
 
 template <typename T, int NUM>
@@ -140,10 +143,6 @@ template <typename T, int NUM>
   CVector3D<T, NUM> & CVector3D<T, NUM>::operator=(CVector3D<T, NUM> && rhs)
 {
 	//std::cout << "이동 대입 연산자" << std::endl;
-	 
-	if (vector != nullptr) {
-	  delete[] vector;
-	}
 	vector = rhs.vector;
 
 	rhs.vector = nullptr;
@@ -156,7 +155,7 @@ template <typename T, int NUM>
 {
 	// TODO: 여기에 반환 구문을 삽입합니다.
 	if (num >= NUM || num < 0) {
-		std::cout << "Out Range" << std::endl;
+		//std::cout << "Out Range" << std::endl;
 		return vector[0]; //일단 임의로라도 제공..
 	}
 

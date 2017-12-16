@@ -100,6 +100,9 @@
     <Filter Include="소스 파일\Colleague\Word\GAMECLEAR">
       <UniqueIdentifier>{29190dd2-b037-4b5d-aea3-d5f7e0339f96}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Colleague\ClearObj">
+      <UniqueIdentifier>{efdb6548-ecd7-46ba-9730-41b18310fdf9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GLFramework.cpp">
@@ -204,6 +207,9 @@
     <ClCompile Include="SoundManager.cpp">
       <Filter>소스 파일\SoundManager</Filter>
     </ClCompile>
+    <ClCompile Include="ClearObject.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GLFramework.h">
@@ -304,6 +310,9 @@
     </ClInclude>
     <ClInclude Include="SoundManager.h">
       <Filter>소스 파일\SoundManager</Filter>
+    </ClInclude>
+    <ClInclude Include="ClearObject.h">
+      <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -9,7 +9,9 @@
 
 void CObjModel::ModelRender()
 {
-	glBindTexture(GL_TEXTURE_2D, m_TextureID);
+	if (m_TextuerIndex > -1) {
+		glBindTexture(GL_TEXTURE_2D, m_TextureID[m_TextuerIndex]);
+	}
 	for (int Face_index = 0; Face_index < m_FaceNum; ++Face_index) {
 		glBegin(GL_POLYGON);
 
@@ -283,7 +285,10 @@ void CObjModel::LoadObj(const char * filename)
 
 void CObjModel::LoadTexture(const char* filename)
 {
-	m_TextureStroage->StoreBitmap(filename, m_TextureID);
+	GLuint ID;
+	m_TextureStroage->StoreBitmap(filename, ID);
+	m_TextureID.push_back(ID);
+	m_TextuerIndex += 1;
 }
 
 void CObjModel::Render()
@@ -302,6 +307,11 @@ void CObjModel::Render()
 	glPopMatrix();
 	glPopMatrix();
 	glPopMatrix();
+}
+
+void CObjModel::SetTextuerIDindex(const int& index)
+{
+	m_TextuerIndex = index;
 }
 
 void CObjModel::MovePivot(const GLdouble & x, const GLdouble & y, const GLdouble & z)

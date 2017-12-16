@@ -62,6 +62,7 @@ void CPlayer::SpecialKeys(const int & key, const int & x, const int & y)
 	//JUMP
 	if (IsJump) return;
 	if (IsDead) return;
+	if (IsGameClear) return;
 	if (key != GLUT_KEY_UP && key != GLUT_KEY_LEFT && key != GLUT_KEY_RIGHT) return;
 	
 
@@ -127,6 +128,7 @@ void CPlayer::Render()
 void CPlayer::Init_GameScene()
 {
 	//ÃÊ±âÈ­
+	m_Rabit_Body->SetTextuerIDindex(0);
 	Find_JumpProperty();
 
 	
@@ -153,7 +155,6 @@ void CPlayer::Init_GameScene()
 
 void CPlayer::Player_JumpStart()
 {
-	PushPlayQueue("JumpEffect", CVector3D<float>());
 	ProcessSide(jumpSide);
 }
 
@@ -233,17 +234,20 @@ void CPlayer::Player_Dead()
 
 void CPlayer::Player_Fall()
 {
+	m_Rabit_Body->SetTextuerIDindex(2);
 	m_Matrix->Calu_Scale(1.f, 1.2f, 1.f);
 	IsFall = true;
 }
 
 void CPlayer::Player_Clear()
 {
+	m_Rabit_Body->SetTextuerIDindex(0);
 	IsGameClear = true;
 }
 
 void CPlayer::Init_GameOver()
 {
+	m_Rabit_Body->SetTextuerIDindex(1);
 	m_Rabit_LeftFoot->Reset();
 	m_Rabit_RightFoot->Reset();
 	m_Rabit_Body->Reset();
@@ -341,7 +345,8 @@ void CPlayer::Jump()
 	if (!IsJump) return;
 
 	Calculate_JumpVector();
-	m_Matrix->Calu_Tranlate(CVector3D<>(m_vector_x, m_vector_y, m_vector_z));
+	CVector3D<> move(m_vector_x, m_vector_y, m_vector_z);
+	m_Matrix->Calu_Tranlate(move);
 	
 	m_pMediator->Player_Jumping();
 
@@ -408,6 +413,8 @@ void CPlayer::InitBody()
 	CPlayer::m_Rabit_Body = new CObjModel;
 	CPlayer::m_Rabit_Body->LoadObj("Rabit_Body.obj");
 	CPlayer::m_Rabit_Body->LoadTexture("Rabit_Body.bmp");
+	CPlayer::m_Rabit_Body->LoadTexture("Rabit_Body_Dead.bmp");
+	CPlayer::m_Rabit_Body->LoadTexture("Rabit_Body_Fall.bmp");
 	m_Rabit_Body->MovePivot(CVector3D<>(0, -20, 10));
 
 }

@@ -86,6 +86,8 @@ void CMediator::Init_GameScene()
 
 void CMediator::Player_JumpStart()
 {
+	PushPlayQueue("JumpEffect", CVector3D<float>());
+
 	if (m_pPlayer)	m_pPlayer->Player_JumpStart();
 	if (m_pCamera)	m_pCamera->Player_JumpStart();
 	if (m_pRoad)	m_pRoad->Player_JumpStart();

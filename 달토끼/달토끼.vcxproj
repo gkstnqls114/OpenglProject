@@ -156,6 +156,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="ClearObject.cpp" />
     <ClCompile Include="Colleague.cpp" />
     <ClCompile Include="Earth.cpp" />
     <ClCompile Include="EXIT_word.cpp" />
@@ -201,6 +202,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="ClearObject.h" />
     <ClInclude Include="Colleague.h" />
     <ClInclude Include="Earth.h" />
     <ClInclude Include="EXIT_word.h" />

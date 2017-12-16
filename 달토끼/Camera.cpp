@@ -82,6 +82,7 @@ void CCamera::Initialize(const CVector3D<> & at, float distance, float zNear, fl
 	m_horizontal = 0;
 }
 
+
 void CCamera::SetPosition(const CVector3D<> & at)
 {
 	m_at = at;
