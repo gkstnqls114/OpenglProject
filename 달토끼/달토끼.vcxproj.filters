@@ -208,7 +208,7 @@
       <Filter>소스 파일\SoundManager</Filter>
     </ClCompile>
     <ClCompile Include="ClearObject.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\Colleague\ClearObj</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -312,7 +312,7 @@
       <Filter>소스 파일\SoundManager</Filter>
     </ClInclude>
     <ClInclude Include="ClearObject.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>소스 파일\Colleague\ClearObj</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

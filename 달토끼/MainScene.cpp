@@ -61,6 +61,7 @@ void CMainScene::SelectCursor()
 void CMainScene::RotateUpdate()
 {
 	if (!IsRotate) return;
+	LogoAlpha -= 0.05f;
 
 	if (IsClockWise) {
 		//시계방향회전
@@ -119,6 +120,8 @@ void CMainScene::WordRender()
 		glEnd();
 	glClear(GL_DEPTH_BUFFER_BIT);
 
+	
+
 	//커서
 	glColor3f(1.f, 1.f, 1.f);
 	glPushMatrix();
@@ -160,6 +163,8 @@ CMainScene::CMainScene(CSceneManager* const changer)
 
 	m_textureStroage = new CTextureStorage;
 	m_textureStroage->StoreBitmap("MainBack.bmp", m_BackgroundTextureID);
+	m_textureStroage->StoreBitmap("main_mask.bmp", m_LogoMaskTextureID);
+	m_textureStroage->StoreBitmap("main_image.bmp", m_LogoTextureID);
 
 }
 
@@ -188,6 +193,7 @@ void CMainScene::Initialize()
 	IsGameStart = false;
 	IsClockWise = false;
 	Nowdegree = 0;
+	LogoAlpha = 1.f;
 }
 
 void CMainScene::SoundStop()
@@ -203,6 +209,7 @@ void CMainScene::Render()
 	m_Camera->LookAt();
 	
 	glPushMatrix();
+	glTranslated(0, -50, 0);
 	glRotated(45, 0, 1, 0);
 	glRotated(Nowdegree, 0, 1, 0);
 	{
@@ -211,7 +218,42 @@ void CMainScene::Render()
 	}
 	glPopMatrix();
 
+	glClear(GL_DEPTH_BUFFER_BIT);
+	float Left = -150;
+	float Right = 150;
+	float Top = 150 + 150;
+	float Bottom = -150 + 150;
+	glColor3f(1.f, 1.f, 1.f);
+	glEnable(GL_BLEND);
+	/*glBlendFunc(GL_DST_COLOR, GL_ZERO);
+	glBindTexture(GL_TEXTURE_2D, m_LogoMaskTextureID);
+	glBegin(GL_QUADS);
+	glTexCoord2f(0.f, 1.f);
+	glVertex3d(Left, Top, 0);
+	glTexCoord2f(1.f, 1.f);
+	glVertex3d(Right, Top, 0);
+	glTexCoord2f(1.f, 0.f);
+	glVertex3d(Right, Bottom, 0);
+	glTexCoord2f(0.f, 0.f);
+	glVertex3d(Left, Bottom, 0);
+	glEnd();*/
 
+	glColor4f(1.f, 1.f, 0.5f, LogoAlpha);
+	glBlendFunc(GL_ONE, GL_ONE);
+	glBindTexture(GL_TEXTURE_2D, m_LogoTextureID);
+	glBegin(GL_QUADS);
+	glTexCoord2f(0.f, 1.f);
+	glVertex3d(Left, Top, 0);
+	glTexCoord2f(1.f, 1.f);
+	glVertex3d(Right, Top, 0);
+	glTexCoord2f(1.f, 0.f);
+	glVertex3d(Right, Bottom, 0);
+	glTexCoord2f(0.f, 0.f);
+	glVertex3d(Left, Bottom, 0);
+	glEnd();
+
+	glDisable(GL_BLEND);
+	glClear(GL_DEPTH_BUFFER_BIT);
 }
 
 void CMainScene::Reshape(const int & w, const int & h)

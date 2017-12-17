@@ -45,6 +45,8 @@ class CPlayer
 	GLdouble m_vector_y{ 0 };
 	GLdouble m_vector_z{ 0 };
 	bool IsDead{ false };
+	bool IsTumbling{ false };
+	float Tumblingdegree{ 0 };
 
 	//현재 발판 넘버
 	int m_BoardNum{ 0 };

@@ -2,9 +2,12 @@
 #include "Scene.h"
 
 class CSceneManager;
+class CClearObject;
 class CMediator;
+class CEarth;
 
 class CGAMECLEAR_word;
+class CTextureStorage;
 
 class CGameClear :
 	public CScene
@@ -12,11 +15,15 @@ class CGameClear :
 	CSceneManager*		m_pSceneManager{ nullptr };
 
 	CMediator *			m_pMediator{ nullptr };
+	CTextureStorage*	m_textureStroage{ nullptr };
 
 
 	CCamera*			m_Camera{ nullptr };
-	CPlayer *			m_Player{ nullptr };
-	CGAMECLEAR_word*		m_GAMECLEAR{ nullptr };
+	CClearObject*		m_ClearObj{ nullptr };
+	CEarth*				m_earth{ nullptr };
+
+	CGAMECLEAR_word*	m_GAMECLEAR{ nullptr };
+	GLuint				m_BackgroundTextureID;
 
 public:
 	CGameClear(CSceneManager* const changer);

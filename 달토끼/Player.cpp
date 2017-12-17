@@ -117,10 +117,13 @@ void CPlayer::Render()
 	glColor3f(LIGHTRGB[0], LIGHTRGB[1], LIGHTRGB[2]);
 	glPushMatrix();
 		m_Matrix->MultiMatrix();
+	glPushMatrix();
+		glRotated(Tumblingdegree, 1, 0, 0);
 		m_Rabit_Body->Render();
 		m_Rabit_Ear->Render();
 		m_Rabit_LeftFoot->Render();
 		m_Rabit_RightFoot->Render();
+	glPopMatrix();
 	glPopMatrix();
 }
 
@@ -154,6 +157,12 @@ void CPlayer::Init_GameScene()
 
 void CPlayer::Player_JumpStart()
 {
+	if (rand() % 3 == 0) {
+		IsTumbling = true;
+	}
+	else {
+		IsTumbling = false;
+	}
 	ProcessSide(jumpSide);
 }
 
@@ -175,6 +184,11 @@ void CPlayer::Player_Jumping()
 	float Foot_top_degree =				40.f	/ float(FrameSection * 2);
 	float Foot_befor_reach_degree =		-90.f	/ float(FrameSection);
 	float Foot_reach_degree =			50.f	/ float(FrameSection);
+
+	if (IsTumbling) {
+		float tumblig = (360.f / float(m_FinishJumpTime));
+		Tumblingdegree += tumblig;
+	}
 
 	bool Untill_Top = m_JumpTime <= TimeSection * 2;
 	if (Untill_Top) {
@@ -198,6 +212,7 @@ void CPlayer::Player_Jumping()
 	bool Unitll_Last = m_JumpTime == m_FinishJumpTime;
 	if (Unitll_Last) {
 		//아모르겠다!! 걍 회전 리셋
+		Tumblingdegree = 0;
 		m_Rabit_LeftFoot->ResetRotate();
 		m_Rabit_RightFoot->ResetRotate();
 	}

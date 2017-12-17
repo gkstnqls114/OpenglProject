@@ -27,6 +27,11 @@ class CMainScene :
 	CPLAY_word*		m_PLAY			{ nullptr };
 	CEXIT_word*		m_EXIT			{ nullptr };
 
+
+	GLuint			m_LogoMaskTextureID;
+	GLuint			m_LogoTextureID;
+	float			LogoAlpha{ 1.f };
+
 	GLuint			m_BackgroundTextureID;
 	CTextureStorage*m_textureStroage{ nullptr };
 
