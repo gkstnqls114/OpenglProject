@@ -11,7 +11,7 @@ CJumping::~CJumping()
 {
 }
 
-void CJumping::Behave()
+void CJumping::Update()
 {
 }
 

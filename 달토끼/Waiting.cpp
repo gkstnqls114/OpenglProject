@@ -12,7 +12,7 @@ CWaiting::~CWaiting()
 {
 }
 
-void CWaiting::Behave()
+void CWaiting::Update()
 {
 }
 

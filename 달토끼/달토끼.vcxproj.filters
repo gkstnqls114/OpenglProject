@@ -109,6 +109,18 @@
     <Filter Include="소스 파일\Player\PlayerState\Abstract">
       <UniqueIdentifier>{c01faf57-992a-43ee-aba7-7325b36896da}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Player\PlayerSkin">
+      <UniqueIdentifier>{bb3acb73-d47c-4d5b-b4eb-40aff7849bf8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Player\PlayerSkin\Abstract">
+      <UniqueIdentifier>{1d670363-958c-44e5-943f-b136166318f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Player\Property">
+      <UniqueIdentifier>{36eacb1d-0e9c-4a89-9607-24a733b3cae3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Player\PlayerState\Jumping">
+      <UniqueIdentifier>{b3b1f6ec-608d-4752-bf16-0be0efd1fe05}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GLFramework.cpp">
@@ -225,14 +237,47 @@
     <ClCompile Include="Dead.cpp">
       <Filter>소스 파일\Player\PlayerState</Filter>
     </ClCompile>
-    <ClCompile Include="Jumping.cpp">
-      <Filter>소스 파일\Player\PlayerState</Filter>
-    </ClCompile>
     <ClCompile Include="Waiting.cpp">
       <Filter>소스 파일\Player\PlayerState</Filter>
     </ClCompile>
     <ClCompile Include="PlayerState.cpp">
       <Filter>소스 파일\Player\PlayerState\Abstract</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerSkin.cpp">
+      <Filter>소스 파일\Player\PlayerSkin\Abstract</Filter>
+    </ClCompile>
+    <ClCompile Include="Devil.cpp">
+      <Filter>소스 파일\Player\PlayerSkin</Filter>
+    </ClCompile>
+    <ClCompile Include="Basic.cpp">
+      <Filter>소스 파일\Player\PlayerSkin</Filter>
+    </ClCompile>
+    <ClCompile Include="Engel.cpp">
+      <Filter>소스 파일\Player\PlayerSkin</Filter>
+    </ClCompile>
+    <ClCompile Include="Robot.cpp">
+      <Filter>소스 파일\Player\PlayerSkin</Filter>
+    </ClCompile>
+    <ClCompile Include="Spacesuit.cpp">
+      <Filter>소스 파일\Player\PlayerSkin</Filter>
+    </ClCompile>
+    <ClCompile Include="Suit.cpp">
+      <Filter>소스 파일\Player\PlayerSkin</Filter>
+    </ClCompile>
+    <ClCompile Include="JumpProperty.cpp">
+      <Filter>소스 파일\Player\Property</Filter>
+    </ClCompile>
+    <ClCompile Include="Jumping.cpp">
+      <Filter>소스 파일\Player\PlayerState\Jumping</Filter>
+    </ClCompile>
+    <ClCompile Include="RightJump.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="LeftJump.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="FrontJump.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -244,9 +289,6 @@
     </ClInclude>
     <ClInclude Include="Scene.h">
       <Filter>소스 파일\GLFramework\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Matrix.h">
-      <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="FootBoard.h">
       <Filter>소스 파일\Colleague\Road</Filter>
@@ -353,14 +395,50 @@
     <ClInclude Include="FinishJump.h">
       <Filter>소스 파일\Player\PlayerState</Filter>
     </ClInclude>
-    <ClInclude Include="Jumping.h">
-      <Filter>소스 파일\Player\PlayerState</Filter>
-    </ClInclude>
     <ClInclude Include="Waiting.h">
       <Filter>소스 파일\Player\PlayerState</Filter>
     </ClInclude>
     <ClInclude Include="PlayerState.h">
       <Filter>소스 파일\Player\PlayerState\Abstract</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerSkin.h">
+      <Filter>소스 파일\Player\PlayerSkin\Abstract</Filter>
+    </ClInclude>
+    <ClInclude Include="Basic.h">
+      <Filter>소스 파일\Player\PlayerSkin</Filter>
+    </ClInclude>
+    <ClInclude Include="Devil.h">
+      <Filter>소스 파일\Player\PlayerSkin</Filter>
+    </ClInclude>
+    <ClInclude Include="Engel.h">
+      <Filter>소스 파일\Player\PlayerSkin</Filter>
+    </ClInclude>
+    <ClInclude Include="Matrix.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Robot.h">
+      <Filter>소스 파일\Player\PlayerSkin</Filter>
+    </ClInclude>
+    <ClInclude Include="Spacesuit.h">
+      <Filter>소스 파일\Player\PlayerSkin</Filter>
+    </ClInclude>
+    <ClInclude Include="Suit.h">
+      <Filter>소스 파일\Player\PlayerSkin</Filter>
+    </ClInclude>
+    <ClInclude Include="JumpProperty.h">
+      <Filter>소스 파일\Player\Property</Filter>
+    </ClInclude>
+    <ClInclude Include="Jumping.h">
+      <Filter>소스 파일\Player\PlayerState\Jumping</Filter>
+    </ClInclude>
+    <ClInclude Include="RightJump.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="LeftJump.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="FrontJump.h">
+      <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

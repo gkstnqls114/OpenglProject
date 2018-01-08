@@ -10,15 +10,15 @@ CStartJump::~CStartJump()
 {
 }
 
-void CStartJump::Behave()
+void CStartJump::Update()
 {
-	if (rand() % 3 == 0) {
-		IsTumbling = true;
-	}
-	else {
-		IsTumbling = false;
-	}
-	m_pPlayer->ProcessSide(jumpSide);
+	//if (rand() % 3 == 0) {
+	//	IsTumbling = true;
+	//}
+	//else {
+	//	IsTumbling = false;
+	//}
+	//m_pPlayer->ProcessSide(jumpSide);
 }
 
 void CStartJump::Keyboard(const unsigned char & key)

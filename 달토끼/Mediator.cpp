@@ -87,15 +87,15 @@ void CMediator::Init_GameScene()
 void CMediator::Player_JumpStart()
 {
 	PushPlayQueue("JumpEffect", CVector3D<float>());
-
+/*
 	if (m_pPlayer)	m_pPlayer->Player_JumpStart();
 	if (m_pCamera)	m_pCamera->Player_JumpStart();
-	if (m_pRoad)	m_pRoad->Player_JumpStart();
+	if (m_pRoad)	m_pRoad->Player_JumpStart();*/
 }
 
 void CMediator::Player_Jumping()
 {
-	if (m_pPlayer)	m_pPlayer->Player_Jumping();
+	/*if (m_pPlayer)	m_pPlayer->Player_Jumping();
 
 	CVector3D<> jumpmove
 		(
@@ -105,40 +105,35 @@ void CMediator::Player_Jumping()
 		);
 
 	CVector3D<> map_jumpmove(0, 0, m_pPlayer->Get_VectorZ());
-
+*//*
 	if (m_pCamera) m_pCamera->Player_Jumping(jumpmove);
-	if (m_pMapCamera) m_pMapCamera->Player_Jumping(map_jumpmove);
+	if (m_pMapCamera) m_pMapCamera->Player_Jumping(map_jumpmove);*/
 	if (m_pRoad) m_pRoad->Player_Jumping();
 }
 
 void CMediator::Player_JumpFinish()
 {
-	if (m_pPlayer)	m_pPlayer->Player_JumpFinish();
 	if (m_pRoad)	m_pRoad->Player_JumpFinish(m_pPlayer->Get_Side());
 	if (m_pCamera)	m_pCamera->Player_JumpFinish();
 }
 
 void CMediator::Player_Dead()
 {
-	if (m_pPlayer)	m_pPlayer->Player_Dead();
-	if (m_pRoad)	m_pRoad->Player_Dead();
-	if (m_pCamera)	m_pCamera->Player_Dead(m_pPlayer->Get_Sidedegree());
+
 }
 
 void CMediator::Player_Fall()
 {
 	PushPlayQueue("FallEffect", CVector3D<float>());
 
-	if (m_pPlayer)	m_pPlayer->Player_Fall();
 	if (m_pRoad)	m_pRoad->Player_Fall();
 	if (m_pCamera)	m_pCamera->Player_Fall();
 }
 
 void CMediator::Player_Clear()
 {
-	if (m_pPlayer)	m_pPlayer->Player_Clear();
-	if (m_pRoad)	m_pRoad->Player_Clear();
-	if (m_pCamera)	m_pCamera->Player_Clear(m_pPlayer->Get_Sidedegree());
+	if (m_pRoad)	m_pRoad->Player_Clear();/*
+	if (m_pCamera)	m_pCamera->Player_Clear(m_pPlayer->Get_Sidedegree());*/
 }
 
 void CMediator::Init_GameOver()

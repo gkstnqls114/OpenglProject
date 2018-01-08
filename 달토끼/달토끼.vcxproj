@@ -158,19 +158,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Basic.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="ClearObject.cpp" />
     <ClCompile Include="Colleague.cpp" />
     <ClCompile Include="Dead.cpp" />
+    <ClCompile Include="Devil.cpp" />
     <ClCompile Include="Earth.cpp" />
+    <ClCompile Include="Engel.cpp" />
     <ClCompile Include="EXIT_word.cpp" />
     <ClCompile Include="Fall.cpp" />
     <ClCompile Include="FinishJump.cpp" />
+    <ClCompile Include="FrontJump.cpp" />
     <ClCompile Include="GameClear.cpp" />
     <ClCompile Include="GAMECLEAR_word.cpp" />
     <ClCompile Include="Gameover.cpp" />
     <ClCompile Include="GAMEOVER_word.cpp" />
     <ClCompile Include="Jumping.cpp" />
+    <ClCompile Include="JumpProperty.cpp" />
+    <ClCompile Include="LeftJump.cpp" />
     <ClCompile Include="Lighting.cpp" />
     <ClCompile Include="MainScene.cpp" />
     <ClCompile Include="Mediator.cpp" />
@@ -193,36 +199,47 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerSkin.cpp" />
     <ClCompile Include="PlayerState.cpp" />
     <ClCompile Include="PLAY_word.cpp" />
+    <ClCompile Include="RightJump.cpp" />
     <ClCompile Include="Road.cpp" />
+    <ClCompile Include="Robot.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="ObjVertex.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Skybox.cpp" />
     <ClCompile Include="SoundManager.cpp" />
+    <ClCompile Include="Spacesuit.cpp" />
     <ClCompile Include="Star.cpp" />
     <ClCompile Include="StartJump.cpp" />
+    <ClCompile Include="Suit.cpp" />
     <ClCompile Include="TestScene.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TextureStorage.cpp" />
     <ClCompile Include="Waiting.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Basic.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="ClearObject.h" />
     <ClInclude Include="Colleague.h" />
     <ClInclude Include="Dead.h" />
+    <ClInclude Include="Devil.h" />
     <ClInclude Include="Earth.h" />
+    <ClInclude Include="Engel.h" />
     <ClInclude Include="EXIT_word.h" />
     <ClInclude Include="Fall.h" />
     <ClInclude Include="FinishJump.h" />
+    <ClInclude Include="FrontJump.h" />
     <ClInclude Include="GameClear.h" />
     <ClInclude Include="GAMECLEAR_word.h" />
     <ClInclude Include="Gameover.h" />
     <ClInclude Include="GAMEOVER_word.h" />
     <ClInclude Include="Jumping.h" />
+    <ClInclude Include="JumpProperty.h" />
+    <ClInclude Include="LeftJump.h" />
     <ClInclude Include="Lighting.h" />
     <ClInclude Include="MainScene.h" />
     <ClInclude Include="Mediator.h" />
@@ -235,17 +252,22 @@
     <ClInclude Include="ObjModel.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayerSkin.h" />
     <ClInclude Include="PlayerState.h" />
     <ClInclude Include="PLAY_word.h" />
+    <ClInclude Include="RightJump.h" />
     <ClInclude Include="Road.h" />
+    <ClInclude Include="Robot.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="ObjVertex.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Skybox.h" />
     <ClInclude Include="SoundManager.h" />
+    <ClInclude Include="Spacesuit.h" />
     <ClInclude Include="Star.h" />
     <ClInclude Include="StartJump.h" />
+    <ClInclude Include="Suit.h" />
     <ClInclude Include="TestScene.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TextureStorage.h" />

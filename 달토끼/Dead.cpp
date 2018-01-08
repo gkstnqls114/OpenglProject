@@ -11,7 +11,7 @@ CDead::~CDead()
 {
 }
 
-void CDead::Behave()
+void CDead::Update()
 {
 }
 

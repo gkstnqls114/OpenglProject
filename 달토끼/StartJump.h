@@ -4,11 +4,13 @@
 class CStartJump :
 	public CPlayerState
 {
+	CPlayer* m_pPlayer{ nullptr };
+
 public:
 	CStartJump(CPlayer* player);
 	virtual ~CStartJump();
 
-	virtual void Behave() override;
+	virtual void Update() override;
 	virtual void Keyboard(const unsigned char& key) override;
 };
 

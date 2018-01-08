@@ -11,7 +11,7 @@ CFinishJump::~CFinishJump()
 {
 }
 
-void CFinishJump::Behave()
+void CFinishJump::Update()
 {
 }
 
