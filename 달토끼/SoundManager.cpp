@@ -114,8 +114,8 @@ FMOD_RESULT CFMODSystem::update(float fTimeElapsed,
 		Get()->m_ptLast = vPosition;
 	}
 
-	FMOD_VECTOR forward = { vLook[0], vLook[1], vLook[2] };
-	FMOD_VECTOR up = { vUp[0], vUp[1], vUp[2] };
+	FMOD_VECTOR forward = { vLook.x, vLook.y, vLook.z };
+	FMOD_VECTOR up = { vUp.x, vUp.y, vUp.z };
 
 	auto xmfListenPosition = vPosition;
 
@@ -124,8 +124,8 @@ FMOD_RESULT CFMODSystem::update(float fTimeElapsed,
 	//자세히는 잘 모르겠음
 	auto xmfVel = (vPosition - Get()->m_ptLast) * (1.f / fTimeElapsed); 
 
-	auto vel = FMOD_VECTOR{ xmfVel[0], xmfVel[1], xmfVel[2] };
-	auto listenerpos = FMOD_VECTOR{ xmfListenPosition[0], xmfListenPosition[1], xmfListenPosition[2] };
+	auto vel = FMOD_VECTOR{ xmfVel.x, xmfVel.y, xmfVel.z };
+	auto listenerpos = FMOD_VECTOR{ xmfListenPosition.x, xmfListenPosition.y, xmfListenPosition.z };
 
 	Get()->m_ptLast = vPosition;
 
@@ -213,7 +213,7 @@ bool CSoundManager::Play(string key, FMOD_VECTOR pos)
 
 bool CSoundManager::Play(string key, CVector3D<float>& pos)
 {
-	return Play(key, FMOD_VECTOR{ pos[0], pos[1], pos[2] });
+	return Play(key, FMOD_VECTOR{ pos.x, pos.y, pos.z });
 }
 
 void CSoundManager::Stop(string key)

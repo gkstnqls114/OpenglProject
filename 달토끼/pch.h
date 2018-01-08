@@ -11,8 +11,9 @@
 #include <math.h>
 
 //makeDAKF
-#include "Vector3D.h"
+#include "Vector3D - บนป็บป.h"
 #include "SoundManager.h"
+
 
 static CSoundManager SoundManager;
 
@@ -29,4 +30,4 @@ enum side_num
 };
 
 const int Road_Distance_X = 20;
-const CVector3D<float, 3> LIGHTRGB{ 1.f, 0.7f, 0.7f };
+const CVector3D<float> LIGHTRGB{ 1.f, 0.7f, 0.7f };

@@ -4,7 +4,7 @@
 
 CStar::CStar()
 {
-	CVector3D<float, 3> RandStart(
+	CVector3D<float> RandStart(
 		float(rand() % 156 + 100) / 255.f,
 		float(rand() % 156 + 100) / 255.f,
 		float(rand() % 156 + 100) / 255.f
@@ -12,7 +12,7 @@ CStar::CStar()
 
 	m_StartRGB = RandStart;
 		
-	CVector3D<float, 3> RandEnd(
+	CVector3D<float> RandEnd(
 		float(rand() % 156 + 100) / 255.f,
 		float(rand() % 156 + 100) / 255.f,
 		float(rand() % 156 + 100) / 255.f
@@ -39,14 +39,14 @@ void CStar::Initialize()
 
 void CStar::RandomPosZ(const int & z)
 {
-	m_Pos[2] = -(rand() % (abs(z) + 400) - 200);
+	m_Pos.z = -(rand() % (abs(z) + 400) - 200);
 }
 
 void CStar::Render()
 {
-	glColor3f(m_RGB[0], m_RGB[1], m_RGB[2]);
+	glColor3f(m_RGB.x, m_RGB.y, m_RGB.z);
 	glPushMatrix();
-	glTranslated(m_Pos[0], m_Pos[1], m_Pos[2]);
+	glTranslated(m_Pos.x, m_Pos.y, m_Pos.z);
 	glutSolidSphere(1, 5, 5);
 	glPopMatrix();
 }
@@ -57,7 +57,7 @@ void CStar::Update()
 	if (m_Time >= 1.f) {
 		m_Time = 0.f;
 		m_StartRGB = m_EndRGB;
-		CVector3D<float, 3> RandEnd(
+		CVector3D<float> RandEnd(
 			float(rand() % 156 + 100) / 255.f,
 			float(rand() % 156 + 100) / 255.f,
 			float(rand() % 156 + 100) / 255.f
@@ -66,7 +66,7 @@ void CStar::Update()
 		m_EndRGB = RandEnd;
 	}
 
-	m_RGB[0] = Interpolation(m_StartRGB[0], m_EndRGB[0], m_Time);
-	m_RGB[1] = Interpolation(m_StartRGB[1], m_EndRGB[1], m_Time);
-	m_RGB[2] = Interpolation(m_StartRGB[2], m_EndRGB[2], m_Time);
+	m_RGB.x = Interpolation(m_StartRGB.x, m_EndRGB.x, m_Time);
+	m_RGB.y = Interpolation(m_StartRGB.y, m_EndRGB.y, m_Time);
+	m_RGB.z = Interpolation(m_StartRGB.z, m_EndRGB.z, m_Time);
 }

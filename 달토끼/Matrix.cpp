@@ -23,7 +23,7 @@ void CMatrix::Calu_Tranlate(const CVector3D<> & rhs)
 {
 	glPushMatrix();
 	//glLoadIdentity();
-	glTranslated(rhs[0], rhs[1], rhs[2]);
+	glTranslated(rhs.x, rhs.y, rhs.z);
 	glMultMatrixf(m_Translate_Matrix);
 	glGetFloatv(GL_MODELVIEW_MATRIX, m_Translate_Matrix);
 	glPopMatrix();
@@ -33,7 +33,7 @@ void CMatrix::Calu_Tranlate(CVector3D<> && rhs)
 {
 	glPushMatrix();
 	//glLoadIdentity();
-	glTranslated(rhs[0], rhs[1], rhs[2]);
+	glTranslated(rhs.x, rhs.y, rhs.z);
 	glMultMatrixf(m_Translate_Matrix);
 	glGetFloatv(GL_MODELVIEW_MATRIX, m_Translate_Matrix);
 	glPopMatrix();
@@ -43,7 +43,7 @@ void CMatrix::Set_Translate(const CVector3D<GLdouble>& rhs)
 {
 	glPushMatrix();
 	ResetTranslate();
-	glTranslated(rhs[0], rhs[1], rhs[2]);
+	glTranslated(rhs.x, rhs.y, rhs.z);
 	glMultMatrixf(m_Translate_Matrix);
 	glGetFloatv(GL_MODELVIEW_MATRIX, m_Translate_Matrix);
 	glPopMatrix();
@@ -53,7 +53,7 @@ void CMatrix::Set_Translate(CVector3D<GLdouble>&& rhs)
 {
 	glPushMatrix();
 	ResetTranslate();
-	glTranslated(rhs[0], rhs[1], rhs[2]);
+	glTranslated(rhs.x, rhs.y, rhs.z);
 	glMultMatrixf(m_Translate_Matrix);
 	glGetFloatv(GL_MODELVIEW_MATRIX, m_Translate_Matrix);
 	glPopMatrix();

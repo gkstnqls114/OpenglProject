@@ -78,6 +78,7 @@ public:
 
 	const CVector3D<> GetPos() const noexcept { return m_Position; }
 	const bool GetDisappear() const { return IsDisappear; }
+	void Disappear_True() { IsDisappear = true; }
 	const int GetSide() const noexcept { return m_Side; }
 
 	void Init_GameScene();

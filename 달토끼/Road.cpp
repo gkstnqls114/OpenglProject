@@ -12,6 +12,9 @@ void CRoad::InitFootBoardModel()
 
 void CRoad::InitFootBoardPos(const GLdouble& distance)
 {
+	if (distance <= 0) return;
+	JumpReach = distance;
+
 	int prev_Side = 0;
 	m_pFootBoard[0].InitPosition(CVector3D<>(0, -5, 0));
 
@@ -47,8 +50,7 @@ void CRoad::InitFootBoardPos(const GLdouble& distance)
 
 CRoad::CRoad(const GLdouble& distance, CMediator*& mediator)
 {
-	//m_boardNum = 100;
-	m_boardNum = 10;
+	m_boardNum = 100;
 
 	InitFootBoardModel();
 	InitFootBoardPos(distance);
@@ -80,7 +82,8 @@ void CRoad::Render()
 
 void CRoad::AllRender()
 {
-	for (int x = 0; x < m_boardNum; ++x) {
+	int MaxNum = min(m_boardNum, m_PlayerPosNum + 8);
+	for (int x = m_DisappearBoardNum; x < MaxNum; ++x) {
 		m_pFootBoard[x].Render();
 	}
 }
@@ -125,9 +128,9 @@ const CVector3D<> CRoad::GetCenterPos() const noexcept
 		CVector3D<> Next = m_pFootBoard[center_num_2].GetPos();
 
 		Center = CVector3D<>(
-			(Prev[0] + Next[0]) / 2
-			, (Prev[1] + Next[1]) / 2
-			, (Prev[2] + Next[2]) / 2
+			  (Prev.x + Next.x) / 2
+			, (Prev.y + Next.y) / 2
+			, (Prev.z + Next.z) / 2
 			);
 	}
 	else {
@@ -143,6 +146,8 @@ void CRoad::Init_GameScene()
 		m_pFootBoard[index].Init_GameScene();
 	}
 	m_pFootBoard[m_boardNum - 1].IsLight();
+	InitFootBoardPos(JumpReach);
+
 	m_PlayerPosNum = 0;
 	m_DisappearBoardNum = 0;
 	isPlayerDead = false;

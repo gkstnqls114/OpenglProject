@@ -13,10 +13,10 @@ CLighting::~CLighting()
 }
 
 void CLighting::Initilaize(
-	const CVector3D<GLfloat, 3> & ambient,
-	const CVector3D<GLfloat, 3> & diffuse,
-	const CVector3D<GLfloat, 3> & specular,
-	const CVector3D<GLfloat, 3> & specref)
+	const CVector3D<GLfloat> & ambient,
+	const CVector3D<GLfloat> & diffuse,
+	const CVector3D<GLfloat> & specular,
+	const CVector3D<GLfloat> & specref)
 {
 	m_AmbientLight = ambient;
 	m_DiffuseLight = diffuse;

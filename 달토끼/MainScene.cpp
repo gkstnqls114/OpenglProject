@@ -32,7 +32,7 @@ void CMainScene::SelectCursor()
 {
 	if (m_Cursor == k_PLAY) {
 		m_CursorPos = m_PLAY->GetPos();
-		m_CursorPos[1] += 100;
+		m_CursorPos.y += 100;
 		m_pMediator->Cursor_PLAY();
 
 		if (Nowdegree < 360 && Nowdegree >= 180) {
@@ -44,7 +44,7 @@ void CMainScene::SelectCursor()
 	}
 	else if (m_Cursor == k_EXIT) {
 		m_CursorPos = m_EXIT->GetPos();
-		m_CursorPos[1] += 100;
+		m_CursorPos.y += 100;
 		m_pMediator->Cursor_EXIT();
 
 		if (Nowdegree < 180 && Nowdegree >= 0) {
@@ -125,7 +125,7 @@ void CMainScene::WordRender()
 	//Ä¿¼­
 	glColor3f(1.f, 1.f, 1.f);
 	glPushMatrix();
-	glTranslated(m_CursorPos[0], m_CursorPos[1], m_CursorPos[2]);
+	glTranslated(m_CursorPos.x, m_CursorPos.y, m_CursorPos.z);
 	glRotated(90, 1, 0, 0);
 	glutSolidCone(10, 15, 10, 10);
 	glPopMatrix();

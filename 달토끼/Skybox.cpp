@@ -5,7 +5,7 @@
 
 CSkybox::CSkybox(const int& z)
 {
-	m_StarNum = 1000;
+	m_StarNum = 3000;
 
 	m_Stars = new CStar[m_StarNum];
 
@@ -37,7 +37,7 @@ void CSkybox::Render()
 
 void CSkybox::Update()
 {
-	for (int index = 0; index < m_StarNum; ++index) {
+	/*for (int index = 0; index < m_StarNum; ++index) {
 		m_Stars[index].Update();
-	}
+	}*/
 }

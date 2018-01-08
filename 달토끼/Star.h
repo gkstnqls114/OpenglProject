@@ -1,9 +1,9 @@
 #pragma once
 class CStar
 {
-	CVector3D<float, 3> m_RGB;
-	CVector3D<float, 3> m_StartRGB;
-	CVector3D<float, 3> m_EndRGB;
+	CVector3D<float> m_RGB;
+	CVector3D<float> m_StartRGB;
+	CVector3D<float> m_EndRGB;
 
 	CVector3D<> m_Pos;
 

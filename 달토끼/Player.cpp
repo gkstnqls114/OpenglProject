@@ -2,6 +2,7 @@
 #include "ObjModel.h"
 #include "Mediator.h"
 #include "Matrix.h"
+#include "PlayerState.h"
 #include "Player.h"
 
 CObjModel* CPlayer::m_Rabit_Body = nullptr;
@@ -95,26 +96,13 @@ void CPlayer::SpecialKeys(const int & key, const int & x, const int & y)
 
 void CPlayer::Update()
 {
-	if (IsGameClear) return;
-	if (IsFall) {
-		m_Matrix->Calu_Rotate(10, 0, 1, 0);
-		m_Matrix->Calu_Tranlate(CVector3D<>(0, -3, 0));
+	if (m_PlayerState) m_PlayerState->Behave();
 
-		if (m_Matrix->Get_Tranlate_Y() <= -200) {
-			m_pMediator->GameOver();
-		}
-		return;
-	}
-	if (IsDead) return;
-
-	
-
-	Jump();
 }
 
 void CPlayer::Render()
 {
-	glColor3f(LIGHTRGB[0], LIGHTRGB[1], LIGHTRGB[2]);
+	glColor3f(LIGHTRGB.x, LIGHTRGB.y, LIGHTRGB.z);
 	glPushMatrix();
 		m_Matrix->MultiMatrix();
 	glPushMatrix();
@@ -127,13 +115,22 @@ void CPlayer::Render()
 	glPopMatrix();
 }
 
+void CPlayer::ChangeState(CPlayerState * state)
+{
+	if (m_PlayerState) {
+		delete m_PlayerState;
+		m_PlayerState = nullptr;
+	}
+
+	m_PlayerState = state;
+}
+
 void CPlayer::Init_GameScene()
 {
 	//ÃÊ±âÈ­
 	m_Rabit_Body->SetTextuerIDindex(0);
 	Find_JumpProperty();
 
-	
 	m_Rabit_LeftFoot->Reset();
 	m_Rabit_RightFoot->Reset();
 	m_Rabit_Body->Reset();
@@ -145,25 +142,9 @@ void CPlayer::Init_GameScene()
 
 	prevSide = 0;
 	jumpSide = 0;
-	IsJump = false;
-	IsRight = false;
-	IsLeft = false;
-	IsDead = false;
-	IsFall = false;
 	IsGameClear = false;
 	m_BoardNum = 0;
 	m_MySide = 0;
-}
-
-void CPlayer::Player_JumpStart()
-{
-	if (rand() % 3 == 0) {
-		IsTumbling = true;
-	}
-	else {
-		IsTumbling = false;
-	}
-	ProcessSide(jumpSide);
 }
 
 void CPlayer::Player_Jumping()
@@ -380,9 +361,9 @@ void CPlayer::Calculate_JumpVector()
 		m_vector_x = -20.f / m_FinishJumpTime;
 	}
 
-	m_Pos[0] += m_vector_x;
-	m_Pos[1] += m_vector_y;
-	m_Pos[2] += m_vector_z;
+	m_Pos.x += m_vector_x;
+	m_Pos.y += m_vector_y;
+	m_Pos.z += m_vector_z;
 }
 
 
@@ -404,7 +385,7 @@ void CPlayer::Finish_Jump()
 	if (m_Matrix->Get_Tranlate_Y() >= 0) return;
 
 	m_Matrix->Set_Translate_13(0);
-	m_Pos[1] = 0;
+	m_Pos.y = 0;
 
 	ProcessSide(prevSide);
 

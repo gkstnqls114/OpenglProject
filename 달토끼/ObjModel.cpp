@@ -22,12 +22,12 @@ void CObjModel::ModelRender()
 			int texture_index = m_pFace[Face_index].GetTextureIndex(Vertex_Num);
 			int normal_index = m_pFace[Face_index].GetNormalIndex(Vertex_Num);
 
-			glNormal3d(m_pNormal[normal_index - 1][0], m_pNormal[normal_index - 1][1], m_pNormal[normal_index - 1][2]);
-			glTexCoord2d(m_pTexture[texture_index - 1][0], m_pTexture[texture_index - 1][1]);
+			glNormal3d(m_pNormal[normal_index - 1].x, m_pNormal[normal_index - 1].y, m_pNormal[normal_index - 1].z);
+			glTexCoord2d(m_pTexture[texture_index - 1].x, m_pTexture[texture_index - 1].y);
 			
-			GLdouble x = m_pVertex[vertex_index - 1][0];
-			GLdouble y = m_pVertex[vertex_index - 1][1];
-			GLdouble z = m_pVertex[vertex_index - 1][2];
+			GLdouble x = m_pVertex[vertex_index - 1].x;
+			GLdouble y = m_pVertex[vertex_index - 1].y;
+			GLdouble z = m_pVertex[vertex_index - 1].z;
 
 			glVertex3f(x, y, z);
 		}
@@ -128,9 +128,9 @@ void CObjModel::Save_Information(const char*& filename)
 
 			fscanf_s(fp, "%f %f %f\n", &x, &y, &z);
 
-			m_pVertex[VertexIndex][0] = x;
-			m_pVertex[VertexIndex][1] = y;
-			m_pVertex[VertexIndex][2] = z;
+			m_pVertex[VertexIndex].x = x;
+			m_pVertex[VertexIndex].y = y;
+			m_pVertex[VertexIndex].z = z;
 
 			VertexIndex += 1;
 		}
@@ -142,9 +142,9 @@ void CObjModel::Save_Information(const char*& filename)
 
 			fscanf_s(fp, "%f %f %f\n", &x, &y, &z);
 
-			m_pTexture[TextureIndex][0] = x;
-			m_pTexture[TextureIndex][1] = y;
-			m_pTexture[TextureIndex][2] = z;
+			m_pTexture[TextureIndex].x = x;
+			m_pTexture[TextureIndex].y = y;
+			m_pTexture[TextureIndex].z = z;
 
 			TextureIndex += 1;
 		}
@@ -156,9 +156,9 @@ void CObjModel::Save_Information(const char*& filename)
 
 			fscanf_s(fp, "%f %f %f\n", &x, &y, &z);
 
-			m_pNormal[NormalIndex][0] = x;
-			m_pNormal[NormalIndex][1] = y;
-			m_pNormal[NormalIndex][2] = z;
+			m_pNormal[NormalIndex].x = x;
+			m_pNormal[NormalIndex].y = y;
+			m_pNormal[NormalIndex].z = z;
 
 			NormalIndex += 1;
 		}
@@ -325,7 +325,7 @@ void CObjModel::MovePivot(const CVector3D<> & Pos)
 	m_PivotMove_Matrix->Calu_Tranlate(Pos);
 	//나중에 단항연산자 오버로딩 찾아보기
 	//지금은 일단 .. 쓰자 ㅠ
-	m_PivotReturn_Matrix->Calu_Tranlate(CVector3D<>(-Pos[0], -Pos[1], -Pos[2]));
+	m_PivotReturn_Matrix->Calu_Tranlate(CVector3D<>(-Pos.x, -Pos.y, -Pos.z));
 }
 
 void CObjModel::MovePivot(CVector3D<>&& Pos)
@@ -333,7 +333,7 @@ void CObjModel::MovePivot(CVector3D<>&& Pos)
 	m_PivotMove_Matrix->Calu_Tranlate(Pos);
 	//나중에 단항연산자 오버로딩 찾아보기
 	//지금은 일단 .. 쓰자 ㅠ
-	m_PivotReturn_Matrix->Calu_Tranlate(CVector3D<>(-Pos[0], -Pos[1], -Pos[2]));
+	m_PivotReturn_Matrix->Calu_Tranlate(CVector3D<>(-Pos.x, -Pos.y, -Pos.z));
 }
 
 void CObjModel::Rotate(const int & Nowdegree, const int & x, const int & y, const int & z)

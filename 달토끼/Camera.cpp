@@ -133,9 +133,9 @@ void CCamera::LookAt() const
 	gluPerspective(m_fovy, m_aspect, m_near, m_far);
 	
 	gluLookAt(
-		vEye[0], vEye[1], vEye[2],
-		m_at[0], m_at[1], m_at[2],
-		m_up[0], m_up[1], m_up[2]
+		vEye.x, vEye.y, vEye.z,
+		m_at.x, m_at.y, m_at.z,
+		m_up.x, m_up.y, m_up.z
 	);
 
 	glMatrixMode(GL_MODELVIEW);

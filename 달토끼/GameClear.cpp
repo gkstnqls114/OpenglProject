@@ -72,7 +72,7 @@ void CGameClear::Render()
 	glOrtho(Left, Right, Bottom, Top, -600.f, 300);
 	glMatrixMode(GL_MODELVIEW);
 
-	glColor3f(LIGHTRGB[0], LIGHTRGB[1], LIGHTRGB[2]);
+	glColor3f(LIGHTRGB.x, LIGHTRGB.y, LIGHTRGB.z);
 	glBindTexture(GL_TEXTURE_2D, m_BackgroundTextureID);
 	glBegin(GL_QUADS);
 	glTexCoord2f(0.f, 1.f);

@@ -19,13 +19,12 @@ void CFootBoard::Disappear()
 
 void CFootBoard::RenderModel()
 {
-	if (IsDisappear) return;
 
-	glColor4f(LIGHTRGB[0], LIGHTRGB[1], LIGHTRGB[2], m_TextureAlpha);
+	glColor4f(LIGHTRGB.x, LIGHTRGB.y, LIGHTRGB.z, m_TextureAlpha);
 	m_obj->Render();
 
 	if (IsLast) {
-		glColor4f(LIGHTRGB[0], LIGHTRGB[1], LIGHTRGB[2], m_LightAlpha);
+		glColor4f(LIGHTRGB.x, LIGHTRGB.y, LIGHTRGB.z, m_LightAlpha);
 		m_Light_obj->Render();
 	}
 }
@@ -65,8 +64,10 @@ void CFootBoard::DeleteModel()
 
 void CFootBoard::Render()
 {
+	if (IsDisappear) return;
+
 	glPushMatrix();
-	glMultMatrixf(m_Translate_Matrix);
+	glTranslatef(m_Position.x, m_Position.y, m_Position.z);
 	glMultMatrixf(m_Rotate_Matrix);
 	glMultMatrixf(m_Scale_Matrix);
 	
@@ -102,63 +103,43 @@ void CFootBoard::InitPosition(const int & x, const int & y, const int & z)
 		m_Side = 0;
 	}
 
-	glPushMatrix();
-	glLoadIdentity();
-	glTranslatef(x, y, z);
-	glMultMatrixf(m_Translate_Matrix);
-	glGetFloatv(GL_MODELVIEW_MATRIX, m_Translate_Matrix);
-	glPopMatrix();
 }
 
 void CFootBoard::InitPosition(const CVector3D<> & rhs)
 {
-	if (rhs[0] < 0) {
+	if (rhs.x < 0) {
 		m_Side = -1;
 	}
-	else if (rhs[0] > 0) {
+	else if (rhs.x > 0) {
 		m_Side = 1;
 	}
 	else {
 		m_Side = 0;
 	}
 
-	m_Position[0] = rhs[0];
-	m_Position[1] = rhs[1];
-	m_Position[2] = rhs[2];
-	m_Position[3] = rhs[3];
+	m_Position.x  = rhs.x;
+	m_Position.y  = rhs.y;
+	m_Position.z  = rhs.z;
 
-	glPushMatrix();
-	glLoadIdentity();
-	glTranslatef(m_Position[0], m_Position[1], m_Position[2]);
-	glMultMatrixf(m_Translate_Matrix);
-	glGetFloatv(GL_MODELVIEW_MATRIX, m_Translate_Matrix);
-	glPopMatrix();
 }
 
 void CFootBoard::InitPosition(CVector3D<>&& rhs)
 {
 
-	if (rhs[0] < 0) {
+	if (rhs.x < 0) {
 		m_Side = -1;
 	}
-	else if (rhs[0] > 0) {
+	else if (rhs.x > 0) {
 		m_Side = 1;
 	}
 	else {
 		m_Side = 0;
 	}
 
-	m_Position[0] = rhs[0];
-	m_Position[1] = rhs[1];
-	m_Position[2] = rhs[2];
-	m_Position[3] = rhs[3];
+	m_Position.x = rhs.x;
+	m_Position.y = rhs.y;
+	m_Position.z = rhs.z;
 
-	glPushMatrix();
-	glLoadIdentity();
-	glTranslatef(m_Position[0], m_Position[1], m_Position[2]);
-	glMultMatrixf(m_Translate_Matrix);
-	glGetFloatv(GL_MODELVIEW_MATRIX, m_Translate_Matrix);
-	glPopMatrix();
 }
 
 void CFootBoard::IsLight()

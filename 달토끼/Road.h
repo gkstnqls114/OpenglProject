@@ -12,6 +12,8 @@ class CRoad : public CColleague
 	int m_PlayerPosNum{ 0 };
 	int m_DisappearBoardNum{ 0 };
 
+	GLdouble JumpReach{ -1 };
+
 	CMediator* m_pMediator{ nullptr };
 
 	bool isPlayerDead{ false };

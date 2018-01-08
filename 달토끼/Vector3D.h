@@ -10,7 +10,7 @@ template <typename T = GLdouble, int NUM = 4>
 class CVector3D
 {
 public:
-	T* vector{ nullptr };
+	T* V3{ nullptr };
 
 private:
 
@@ -26,15 +26,15 @@ public:
 	double Get_Length() const noexcept;
 	void Normalize();
 	void Reset();
-	const T* GetVector() const noexcept { return vector; }
+	const T* GetVector() const noexcept { return V3; }
 
 	template <typename COUNT>
 	CVector3D<T, NUM> operator*(const COUNT& val)
 	{
 		return CVector3D(
-			vector[0] * val,
-			vector[1] * val,
-			vector[2] * val
+			V3[0] * val,
+			V3[1] * val,
+			V3[2] * val
 			);
 	}
 
@@ -45,7 +45,7 @@ public:
 	CVector3D<T, NUM> operator-(CVector3D<T, NUM>&& rhs);
 
 	CVector3D<T, NUM>& operator=(const CVector3D<T, NUM>& rhs);
-	CVector3D<T, NUM>& operator=(CVector3D<T, NUM>&& rhs);
+
 	
 	T& operator[](const int& num) const;
 

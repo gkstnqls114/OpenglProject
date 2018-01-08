@@ -28,13 +28,17 @@ class CGameScene :
 
 	CSkybox*			m_Skybox		{ nullptr };
 
+	GLuint				m_ExplainTextureID;
 	GLuint				m_BackgroundTextureID;
 	CTextureStorage*	m_textureStroage{ nullptr };
 
+	bool				Explain			{ false };
 	bool				Start			{ false };
+	bool				Perspective		{ false };
 
 private:
 	void RenderBack();
+	void RenderExplain();
 
 public:
 	CGameScene(CSceneManager* const changer);

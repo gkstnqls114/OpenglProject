@@ -34,7 +34,7 @@ CClearObject::~CClearObject()
 void CClearObject::Render()
 {
 	glPushMatrix();
-	glTranslated(m_Position[0], m_Position[1], m_Position[2]);
+	glTranslated(m_Position.x, m_Position.y, m_Position.z);
 	m_ClearMoon->Render();
 	m_ClearRabbit->Render();
 	m_ClearRabbitEar->Render();

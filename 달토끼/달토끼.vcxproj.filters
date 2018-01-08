@@ -33,9 +33,6 @@
     <Filter Include="소스 파일\Colleague\Camera">
       <UniqueIdentifier>{05189fed-5f1b-4f04-aa51-19db54497a0e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\Colleague\Player">
-      <UniqueIdentifier>{f40500c5-b1a2-4703-9248-12520fe80484}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\Obj">
       <UniqueIdentifier>{b11b9882-ac81-4f59-a0f5-e4bf18e6de5a}</UniqueIdentifier>
     </Filter>
@@ -103,6 +100,15 @@
     <Filter Include="소스 파일\Colleague\ClearObj">
       <UniqueIdentifier>{efdb6548-ecd7-46ba-9730-41b18310fdf9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Player">
+      <UniqueIdentifier>{f40500c5-b1a2-4703-9248-12520fe80484}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Player\PlayerState">
+      <UniqueIdentifier>{48e91b78-669e-4f42-8dac-1483ee636abb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Player\PlayerState\Abstract">
+      <UniqueIdentifier>{c01faf57-992a-43ee-aba7-7325b36896da}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GLFramework.cpp">
@@ -136,7 +142,7 @@
       <Filter>소스 파일\Mediator</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
-      <Filter>소스 파일\Colleague\Player</Filter>
+      <Filter>소스 파일\Player</Filter>
     </ClCompile>
     <ClCompile Include="ObjFace.cpp">
       <Filter>소스 파일\Obj\ObjFace</Filter>
@@ -198,9 +204,6 @@
     <ClCompile Include="GAMEOVER_word.cpp">
       <Filter>소스 파일\Colleague\Word\GAMEOVER</Filter>
     </ClCompile>
-    <ClCompile Include="Vector3D.hpp">
-      <Filter>소스 파일\Vector3D</Filter>
-    </ClCompile>
     <ClCompile Include="GAMECLEAR_word.cpp">
       <Filter>소스 파일\Colleague\Word\GAMECLEAR</Filter>
     </ClCompile>
@@ -209,6 +212,27 @@
     </ClCompile>
     <ClCompile Include="ClearObject.cpp">
       <Filter>소스 파일\Colleague\ClearObj</Filter>
+    </ClCompile>
+    <ClCompile Include="StartJump.cpp">
+      <Filter>소스 파일\Player\PlayerState</Filter>
+    </ClCompile>
+    <ClCompile Include="FinishJump.cpp">
+      <Filter>소스 파일\Player\PlayerState</Filter>
+    </ClCompile>
+    <ClCompile Include="Fall.cpp">
+      <Filter>소스 파일\Player\PlayerState</Filter>
+    </ClCompile>
+    <ClCompile Include="Dead.cpp">
+      <Filter>소스 파일\Player\PlayerState</Filter>
+    </ClCompile>
+    <ClCompile Include="Jumping.cpp">
+      <Filter>소스 파일\Player\PlayerState</Filter>
+    </ClCompile>
+    <ClCompile Include="Waiting.cpp">
+      <Filter>소스 파일\Player\PlayerState</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerState.cpp">
+      <Filter>소스 파일\Player\PlayerState\Abstract</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -223,9 +247,6 @@
     </ClInclude>
     <ClInclude Include="Matrix.h">
       <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Vector3D.h">
-      <Filter>소스 파일\Vector3D</Filter>
     </ClInclude>
     <ClInclude Include="FootBoard.h">
       <Filter>소스 파일\Colleague\Road</Filter>
@@ -243,7 +264,7 @@
       <Filter>소스 파일\Mediator</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
-      <Filter>소스 파일\Colleague\Player</Filter>
+      <Filter>소스 파일\Player</Filter>
     </ClInclude>
     <ClInclude Include="ObjFace.h">
       <Filter>소스 파일\Obj\ObjFace</Filter>
@@ -313,6 +334,33 @@
     </ClInclude>
     <ClInclude Include="ClearObject.h">
       <Filter>소스 파일\Colleague\ClearObj</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector3D - 복사본.hpp">
+      <Filter>소스 파일\Vector3D</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector3D - 복사본.h">
+      <Filter>소스 파일\Vector3D</Filter>
+    </ClInclude>
+    <ClInclude Include="StartJump.h">
+      <Filter>소스 파일\Player\PlayerState</Filter>
+    </ClInclude>
+    <ClInclude Include="Dead.h">
+      <Filter>소스 파일\Player\PlayerState</Filter>
+    </ClInclude>
+    <ClInclude Include="Fall.h">
+      <Filter>소스 파일\Player\PlayerState</Filter>
+    </ClInclude>
+    <ClInclude Include="FinishJump.h">
+      <Filter>소스 파일\Player\PlayerState</Filter>
+    </ClInclude>
+    <ClInclude Include="Jumping.h">
+      <Filter>소스 파일\Player\PlayerState</Filter>
+    </ClInclude>
+    <ClInclude Include="Waiting.h">
+      <Filter>소스 파일\Player\PlayerState</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerState.h">
+      <Filter>소스 파일\Player\PlayerState\Abstract</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -161,12 +161,16 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="ClearObject.cpp" />
     <ClCompile Include="Colleague.cpp" />
+    <ClCompile Include="Dead.cpp" />
     <ClCompile Include="Earth.cpp" />
     <ClCompile Include="EXIT_word.cpp" />
+    <ClCompile Include="Fall.cpp" />
+    <ClCompile Include="FinishJump.cpp" />
     <ClCompile Include="GameClear.cpp" />
     <ClCompile Include="GAMECLEAR_word.cpp" />
     <ClCompile Include="Gameover.cpp" />
     <ClCompile Include="GAMEOVER_word.cpp" />
+    <ClCompile Include="Jumping.cpp" />
     <ClCompile Include="Lighting.cpp" />
     <ClCompile Include="MainScene.cpp" />
     <ClCompile Include="Mediator.cpp" />
@@ -189,6 +193,7 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerState.cpp" />
     <ClCompile Include="PLAY_word.cpp" />
     <ClCompile Include="Road.cpp" />
     <ClCompile Include="Scene.cpp" />
@@ -198,21 +203,26 @@
     <ClCompile Include="Skybox.cpp" />
     <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="Star.cpp" />
+    <ClCompile Include="StartJump.cpp" />
     <ClCompile Include="TestScene.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TextureStorage.cpp" />
-    <ClCompile Include="Vector3D.hpp" />
+    <ClCompile Include="Waiting.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
     <ClInclude Include="ClearObject.h" />
     <ClInclude Include="Colleague.h" />
+    <ClInclude Include="Dead.h" />
     <ClInclude Include="Earth.h" />
     <ClInclude Include="EXIT_word.h" />
+    <ClInclude Include="Fall.h" />
+    <ClInclude Include="FinishJump.h" />
     <ClInclude Include="GameClear.h" />
     <ClInclude Include="GAMECLEAR_word.h" />
     <ClInclude Include="Gameover.h" />
     <ClInclude Include="GAMEOVER_word.h" />
+    <ClInclude Include="Jumping.h" />
     <ClInclude Include="Lighting.h" />
     <ClInclude Include="MainScene.h" />
     <ClInclude Include="Mediator.h" />
@@ -225,6 +235,7 @@
     <ClInclude Include="ObjModel.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayerState.h" />
     <ClInclude Include="PLAY_word.h" />
     <ClInclude Include="Road.h" />
     <ClInclude Include="Scene.h" />
@@ -234,10 +245,13 @@
     <ClInclude Include="Skybox.h" />
     <ClInclude Include="SoundManager.h" />
     <ClInclude Include="Star.h" />
+    <ClInclude Include="StartJump.h" />
     <ClInclude Include="TestScene.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TextureStorage.h" />
-    <ClInclude Include="Vector3D.h" />
+    <ClInclude Include="Vector3D - 복사본.h" />
+    <ClInclude Include="Vector3D - 복사본.hpp" />
+    <ClInclude Include="Waiting.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
