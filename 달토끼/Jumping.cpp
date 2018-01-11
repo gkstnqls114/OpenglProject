@@ -15,6 +15,7 @@ void CJumping::Update()
 {
 }
 
-void CJumping::Keyboard(const unsigned char & key)
+void CJumping::SpecialKeys(const unsigned char & key)
 {
 }
+

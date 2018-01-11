@@ -6,5 +6,8 @@ class CFrontJump :
 public:
 	CFrontJump();
 	virtual ~CFrontJump();
+
+	virtual void Update() override;
+	virtual void SpecialKeys(const unsigned char& key) override;
 };
 

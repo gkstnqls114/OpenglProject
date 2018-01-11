@@ -15,6 +15,6 @@ void CFinishJump::Update()
 {
 }
 
-void CFinishJump::Keyboard(const unsigned char & key)
+void CFinishJump::SpecialKeys(const unsigned char & key)
 {
 }

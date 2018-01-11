@@ -21,6 +21,6 @@ void CStartJump::Update()
 	//m_pPlayer->ProcessSide(jumpSide);
 }
 
-void CStartJump::Keyboard(const unsigned char & key)
+void CStartJump::SpecialKeys(const unsigned char & key)
 {
 }

@@ -264,9 +264,6 @@
     <ClCompile Include="Jumping.cpp">
       <Filter>소스 파일\Player\PlayerState\Jump</Filter>
     </ClCompile>
-    <ClCompile Include="RightJump.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Dead.cpp">
       <Filter>소스 파일\Player\PlayerState\Dead</Filter>
     </ClCompile>
@@ -286,6 +283,9 @@
       <Filter>소스 파일\Player\PlayerState\Jump</Filter>
     </ClCompile>
     <ClCompile Include="LeftJump.cpp">
+      <Filter>소스 파일\Player\PlayerState\Jump</Filter>
+    </ClCompile>
+    <ClCompile Include="RightJump.cpp">
       <Filter>소스 파일\Player\PlayerState\Jump</Filter>
     </ClCompile>
   </ItemGroup>
@@ -425,15 +425,6 @@
     <ClInclude Include="Jumping.h">
       <Filter>소스 파일\Player\PlayerState\Jump</Filter>
     </ClInclude>
-    <ClInclude Include="RightJump.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="LeftJump.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="FrontJump.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="Dead.h">
       <Filter>소스 파일\Player\PlayerState\Dead</Filter>
     </ClInclude>
@@ -447,6 +438,15 @@
       <Filter>소스 파일\Player\PlayerState\Jump</Filter>
     </ClInclude>
     <ClInclude Include="StartJump.h">
+      <Filter>소스 파일\Player\PlayerState\Jump</Filter>
+    </ClInclude>
+    <ClInclude Include="FrontJump.h">
+      <Filter>소스 파일\Player\PlayerState\Jump</Filter>
+    </ClInclude>
+    <ClInclude Include="LeftJump.h">
+      <Filter>소스 파일\Player\PlayerState\Jump</Filter>
+    </ClInclude>
+    <ClInclude Include="RightJump.h">
       <Filter>소스 파일\Player\PlayerState\Jump</Filter>
     </ClInclude>
   </ItemGroup>

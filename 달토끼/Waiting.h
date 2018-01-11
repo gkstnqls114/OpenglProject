@@ -11,6 +11,7 @@ public:
 	virtual ~CWaiting();
 
 	virtual void Update() override;
-	virtual void Keyboard(const unsigned char& key) override;
+	virtual void SpecialKeys(const unsigned char& key) override;
+
 };
 

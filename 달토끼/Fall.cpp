@@ -22,6 +22,6 @@ void CFall::Update()
 	//return;
 }
 
-void CFall::Keyboard(const unsigned char & key)
+void CFall::SpecialKeys(const unsigned char & key)
 {
 }

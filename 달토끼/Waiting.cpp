@@ -16,6 +16,6 @@ void CWaiting::Update()
 {
 }
 
-void CWaiting::Keyboard(const unsigned char & key)
+void CWaiting::SpecialKeys(const unsigned char & key)
 {
 }

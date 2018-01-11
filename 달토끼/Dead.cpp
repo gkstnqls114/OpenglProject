@@ -15,6 +15,7 @@ void CDead::Update()
 {
 }
 
-void CDead::Keyboard(const unsigned char & key)
+void CDead::SpecialKeys(const unsigned char & key)
 {
 }
+
