@@ -62,7 +62,6 @@ void CPlayer::SpecialKeys(const int & key, const int & x, const int & y)
 
 	if (m_PlayerState) {
 		m_PlayerState->SpecialKeys(this, key);
-		//m_BoardNum += 1;
 	}
 
 }
@@ -274,15 +273,26 @@ void CPlayer::LeftJump()
 
 void CPlayer::StateChange_FrontJump()
 {
+	m_BoardNum += 1;
+	m_prevSide = m_MySide;
+	m_MySide = k_front;
 	m_PlayerState = &FrontJumpState;
 }
 
 void CPlayer::StateChange_RightJump()
 {
+	m_BoardNum += 1;
+	m_prevSide = m_MySide;
+	m_MySide = k_right;
+	m_PlayerState = &RightJumpState;
 }
 
 void CPlayer::StateChange_LeftJump()
 {
+	m_BoardNum += 1;
+	m_prevSide = m_MySide;
+	m_MySide = k_left;
+	m_PlayerState = &LeftJumpState;
 }
 
 void CPlayer::StateChange_Wait()

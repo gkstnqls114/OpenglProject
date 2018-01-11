@@ -198,6 +198,7 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerNotification.cpp" />
     <ClCompile Include="PlayerSkin.cpp" />
     <ClCompile Include="PlayerState.cpp" />
     <ClCompile Include="PLAY_word.cpp" />
@@ -249,6 +250,7 @@
     <ClInclude Include="ObjModel.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayerNotification.h" />
     <ClInclude Include="PlayerSkin.h" />
     <ClInclude Include="PlayerState.h" />
     <ClInclude Include="PLAY_word.h" />

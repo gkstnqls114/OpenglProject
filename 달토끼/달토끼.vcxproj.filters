@@ -294,6 +294,9 @@
     <ClCompile Include="Jump.cpp">
       <Filter>소스 파일\Player\PlayerState\Jump\Abstract</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerNotification.cpp">
+      <Filter>소스 파일\Mediator</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GLFramework.h">
@@ -448,6 +451,9 @@
     </ClInclude>
     <ClInclude Include="Jump.h">
       <Filter>소스 파일\Player\PlayerState\Jump\Abstract</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerNotification.h">
+      <Filter>소스 파일\Mediator</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

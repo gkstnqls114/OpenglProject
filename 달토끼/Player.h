@@ -1,6 +1,8 @@
 #pragma once
 #include "Waiting.h"
 #include "FrontJump.h"
+#include "RightJump.h"
+#include "LeftJump.h"
 #include "JumpProperty.h"
 
 
@@ -32,8 +34,10 @@ class CPlayer
 	
 	CWaiting WaitingState;
 	CFrontJump FrontJumpState;
+	CRightJump RightJumpState;
+	CLeftJump LeftJumpState;
 
-	//현재 발판 넘버
+	//현재 넘어간 발판 개수
 	int m_BoardNum{ 0 };
 	int m_prevSide{ 0 };
 	int m_MySide{ 0 };
@@ -88,7 +92,7 @@ public:
 	const GLdouble Get_JumpReach() const noexcept { return m_JumpProperty.Get_JumpReach(); }
 	const int Get_BoardNum() const noexcept { return m_BoardNum; }
 	const int Get_Side() const noexcept { return m_MySide; }
-	CVector3D<> GetPos() const noexcept { return m_Pos; }
+	const CVector3D<> GetPos() const noexcept { return m_Pos; }
 	/////////////////////////////////GET
 
 	/////////////////////////////////SET
