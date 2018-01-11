@@ -118,7 +118,16 @@
     <Filter Include="소스 파일\Player\Property">
       <UniqueIdentifier>{36eacb1d-0e9c-4a89-9607-24a733b3cae3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\Player\PlayerState\Jumping">
+    <Filter Include="소스 파일\Player\PlayerState\Dead">
+      <UniqueIdentifier>{730cf5df-3bca-4611-b3dd-d84a263dace0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Player\PlayerState\Fall">
+      <UniqueIdentifier>{f7142721-7038-4333-8b8a-b74de6eaccba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Player\PlayerState\Waiting">
+      <UniqueIdentifier>{43510c29-29ae-4179-ada3-bf15dc12dbba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Player\PlayerState\Jump">
       <UniqueIdentifier>{b3b1f6ec-608d-4752-bf16-0be0efd1fe05}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -225,21 +234,6 @@
     <ClCompile Include="ClearObject.cpp">
       <Filter>소스 파일\Colleague\ClearObj</Filter>
     </ClCompile>
-    <ClCompile Include="StartJump.cpp">
-      <Filter>소스 파일\Player\PlayerState</Filter>
-    </ClCompile>
-    <ClCompile Include="FinishJump.cpp">
-      <Filter>소스 파일\Player\PlayerState</Filter>
-    </ClCompile>
-    <ClCompile Include="Fall.cpp">
-      <Filter>소스 파일\Player\PlayerState</Filter>
-    </ClCompile>
-    <ClCompile Include="Dead.cpp">
-      <Filter>소스 파일\Player\PlayerState</Filter>
-    </ClCompile>
-    <ClCompile Include="Waiting.cpp">
-      <Filter>소스 파일\Player\PlayerState</Filter>
-    </ClCompile>
     <ClCompile Include="PlayerState.cpp">
       <Filter>소스 파일\Player\PlayerState\Abstract</Filter>
     </ClCompile>
@@ -268,16 +262,31 @@
       <Filter>소스 파일\Player\Property</Filter>
     </ClCompile>
     <ClCompile Include="Jumping.cpp">
-      <Filter>소스 파일\Player\PlayerState\Jumping</Filter>
+      <Filter>소스 파일\Player\PlayerState\Jump</Filter>
     </ClCompile>
     <ClCompile Include="RightJump.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="LeftJump.cpp">
-      <Filter>소스 파일</Filter>
+    <ClCompile Include="Dead.cpp">
+      <Filter>소스 파일\Player\PlayerState\Dead</Filter>
+    </ClCompile>
+    <ClCompile Include="Fall.cpp">
+      <Filter>소스 파일\Player\PlayerState\Fall</Filter>
+    </ClCompile>
+    <ClCompile Include="Waiting.cpp">
+      <Filter>소스 파일\Player\PlayerState\Waiting</Filter>
+    </ClCompile>
+    <ClCompile Include="FinishJump.cpp">
+      <Filter>소스 파일\Player\PlayerState\Jump</Filter>
+    </ClCompile>
+    <ClCompile Include="StartJump.cpp">
+      <Filter>소스 파일\Player\PlayerState\Jump</Filter>
     </ClCompile>
     <ClCompile Include="FrontJump.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\Player\PlayerState\Jump</Filter>
+    </ClCompile>
+    <ClCompile Include="LeftJump.cpp">
+      <Filter>소스 파일\Player\PlayerState\Jump</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -383,21 +392,6 @@
     <ClInclude Include="Vector3D - 복사본.h">
       <Filter>소스 파일\Vector3D</Filter>
     </ClInclude>
-    <ClInclude Include="StartJump.h">
-      <Filter>소스 파일\Player\PlayerState</Filter>
-    </ClInclude>
-    <ClInclude Include="Dead.h">
-      <Filter>소스 파일\Player\PlayerState</Filter>
-    </ClInclude>
-    <ClInclude Include="Fall.h">
-      <Filter>소스 파일\Player\PlayerState</Filter>
-    </ClInclude>
-    <ClInclude Include="FinishJump.h">
-      <Filter>소스 파일\Player\PlayerState</Filter>
-    </ClInclude>
-    <ClInclude Include="Waiting.h">
-      <Filter>소스 파일\Player\PlayerState</Filter>
-    </ClInclude>
     <ClInclude Include="PlayerState.h">
       <Filter>소스 파일\Player\PlayerState\Abstract</Filter>
     </ClInclude>
@@ -429,7 +423,7 @@
       <Filter>소스 파일\Player\Property</Filter>
     </ClInclude>
     <ClInclude Include="Jumping.h">
-      <Filter>소스 파일\Player\PlayerState\Jumping</Filter>
+      <Filter>소스 파일\Player\PlayerState\Jump</Filter>
     </ClInclude>
     <ClInclude Include="RightJump.h">
       <Filter>헤더 파일</Filter>
@@ -439,6 +433,21 @@
     </ClInclude>
     <ClInclude Include="FrontJump.h">
       <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Dead.h">
+      <Filter>소스 파일\Player\PlayerState\Dead</Filter>
+    </ClInclude>
+    <ClInclude Include="Fall.h">
+      <Filter>소스 파일\Player\PlayerState\Fall</Filter>
+    </ClInclude>
+    <ClInclude Include="Waiting.h">
+      <Filter>소스 파일\Player\PlayerState\Waiting</Filter>
+    </ClInclude>
+    <ClInclude Include="FinishJump.h">
+      <Filter>소스 파일\Player\PlayerState\Jump</Filter>
+    </ClInclude>
+    <ClInclude Include="StartJump.h">
+      <Filter>소스 파일\Player\PlayerState\Jump</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -18,7 +18,6 @@ CTestScene::CTestScene(CSceneManager* const changer)
 	m_Camera->Rotate(25, 20);
 
 	m_Player = new CPlayer(m_pMediator);
-
 }
 
 
@@ -29,7 +28,7 @@ CTestScene::~CTestScene()
 
 void CTestScene::Initialize()
 {
-
+	m_Player->Init_GameScene();
 }
 
 void CTestScene::SoundStop()
@@ -70,7 +69,7 @@ void CTestScene::Timer(const int & value)
 
 void CTestScene::Update()
 {
-
+	m_Player->Update();
 }
 
 void CTestScene::Keyboard(const unsigned char & key, const int & x, const int & y)
@@ -101,5 +100,5 @@ void CTestScene::Keyboard(const unsigned char & key, const int & x, const int & 
 
 void CTestScene::SpecialKeys(const int & key, const int & x, const int & y)
 {
-
+	m_Player->SpecialKeys(key, x, y);
 }

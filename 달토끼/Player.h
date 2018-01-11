@@ -62,6 +62,10 @@ public:
 	static void DeleteModel();
 	void Initialize();
 
+	//Mediator
+	virtual void Init_GameScene();
+	virtual void Init_GameOver();
+
 	CVector3D<> GetPos() const noexcept { return m_Pos; }
 
 	void Keyboard(const unsigned char& key, const int& x, const int& y);
@@ -75,16 +79,7 @@ public:
 	/*const float Get_Sidedegree() const noexcept{ return Sidedegree; };
 */
 
-	//Mediator
-	virtual void Init_GameScene();
-	virtual void Init_GameOver();
 	
-	//virtual void Player_Jumping();
-	//virtual void Player_JumpFinish();
-	//virtual void Player_Dead();
-	//virtual void Player_Fall();
-
-	//virtual void Player_Clear();
 
 };
 
