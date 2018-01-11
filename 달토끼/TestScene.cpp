@@ -41,12 +41,12 @@ void CTestScene::Render()
 
 	//¹Ù´Ú
 	//glColor3f(0.7f, 0.7f, 0.7f);
-	glBegin(GL_QUADS);
-	glVertex3d(50, 0, 50);
-	glVertex3d(-50, 0, 50);
-	glVertex3d(-50, 0, -50);
-	glVertex3d(50, 0, -50);
-	glEnd();
+	//glBegin(GL_QUADS);
+	//glVertex3d(50, 0, 50);
+	//glVertex3d(-50, 0, 50);
+	//glVertex3d(-50, 0, -50);
+	//glVertex3d(50, 0, -50);
+	//glEnd();
 
 	m_Player->Render();
 }

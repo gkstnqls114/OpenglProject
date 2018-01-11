@@ -139,6 +139,9 @@
     <Filter Include="소스 파일\Player\PlayerState\Jump\Abstract">
       <UniqueIdentifier>{daecdb01-9f08-4011-b64c-64fc6c68afaf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Colleague\Item">
+      <UniqueIdentifier>{65dc07d0-4ca3-440a-9c34-44873a7cb74d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GLFramework.cpp">

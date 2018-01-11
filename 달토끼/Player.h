@@ -11,11 +11,7 @@ class CRoad;
 class CCamera;
 
 class CPlayerState;
-class CFall;
-class CDead;
-class CFrontJump;
 
-//class CJumpProperty;
 
 class CPlayer
 {
@@ -34,9 +30,8 @@ class CPlayer
 	CJumpProperty m_JumpProperty;
 	CPlayerState* m_PlayerState{ nullptr };
 	
-	static CWaiting WaitingState;
-	static CDead DeadState;
-	static CFrontJump FrontJumpState;
+	CWaiting WaitingState;
+	CFrontJump FrontJumpState;
 
 	//현재 발판 넘버
 	int m_BoardNum{ 0 };
@@ -45,7 +40,7 @@ class CPlayer
 
 private:
 	void ProcessSide(int& lhs);
-	//void Jump_BodyRotate();
+	void Jump_BodyRotate();
 	//void Jump();
 	void Calculate_JumpVector();
 	void Finish_Jump();
@@ -58,7 +53,7 @@ private:
 	static void DeleteEar();
 	static void DeleteLeftFoot();
 	static void DeleteRightFoot();
-	
+
 
 public:
 	CPlayer(CMediator*& mediator);
@@ -72,8 +67,17 @@ public:
 	void Update();
 	void Render();
 
-	void Jump();
-	void Wait();
+	void FrontJump();
+	void RightJump();
+	void LeftJump();
+
+	/////////////////////////////////State Change
+	void StateChange_FrontJump();
+	void StateChange_RightJump();
+	void StateChange_LeftJump();
+	void StateChange_Wait();
+	void StateChange_Fall();
+	/////////////////////////////////State Change
 
 	/////////////////////////////////Mediator
 	virtual void Init_GameScene();

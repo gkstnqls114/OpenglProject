@@ -29,3 +29,8 @@ void CJumpProperty::Initialize()
 	Rotatedegree = atan(float(m_JumpReach) / float(Road_Distance_X)) * 180 / k_PI;
 	Rotatedegree = 90 - Rotatedegree;
 }
+
+void CJumpProperty::Reset()
+{
+	m_JumpTime = 0;
+}

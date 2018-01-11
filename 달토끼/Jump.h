@@ -3,6 +3,7 @@
 class CJump :
 	public CPlayerState
 {
+
 public:
 	CJump();
 	virtual ~CJump();
