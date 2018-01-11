@@ -3,6 +3,7 @@
 #include "Mediator.h"
 #include "Matrix.h"
 #include "PlayerState.h"
+#include "Waiting.h"
 #include "Player.h"
 
 CObjModel* CPlayer::m_Rabit_Body = nullptr;
@@ -58,32 +59,13 @@ void CPlayer::Keyboard(const unsigned char & key, const int & x, const int & y)
 void CPlayer::SpecialKeys(const int & key, const int & x, const int & y)
 {
 	if (key != GLUT_KEY_UP && key != GLUT_KEY_LEFT && key != GLUT_KEY_RIGHT) return;
-	//
-	//if (key == GLUT_KEY_UP) {
-	//	Sidedegree = 0;
-	//	IsJump = true;
-	//}
-	//else if (key == GLUT_KEY_RIGHT) {
-	//	Sidedegree = - Rotatedegree;
-	//	IsJump = true;
-	//	IsRight = true;
-	//}
-	//else if (key == GLUT_KEY_LEFT) {
-	//	Sidedegree = Rotatedegree;
-	//	IsJump = true;
-	//	IsLeft = true;
-	//}		
 
-	//if (IsRight) {
-	//	m_MySide += 1;
-	//}
-	//else if (IsLeft) {
-	//	m_MySide -= 1;
-	//}
+	if (m_PlayerState) {
+		m_PlayerState->SpecialKeys(key);
+		m_BoardNum += 1;
+		m_pMediator->Player_JumpStart();
+	}
 
-	m_BoardNum += 1;
-
-	m_pMediator->Player_JumpStart();
 }
 
 void CPlayer::Update()
@@ -107,24 +89,38 @@ void CPlayer::Render()
 	glPopMatrix();
 }
 
+void CPlayer::RotateX(int degree)
+{
+	m_Matrix->Calu_Rotate(degree, 1, 0, 0);
+}
+
+void CPlayer::RotateY(int degree)
+{
+	m_Matrix->Calu_Rotate(degree, 0, 1, 0);
+}
+
+void CPlayer::RotateZ(int degree)
+{
+	m_Matrix->Calu_Rotate(degree, 0, 0, 1);
+}
+
 void CPlayer::Init_GameScene()
 {
 	//ÃÊ±âÈ­
 	m_Rabit_Body->SetTextuerIDindex(0);
-	
 	m_JumpProperty.Initialize();
-
 	m_Rabit_LeftFoot->Reset();
 	m_Rabit_RightFoot->Reset();
 	m_Rabit_Body->Reset();
 	m_Rabit_Ear->Reset();
 
+	m_PlayerState = new CWaiting(this);
+	
 	m_Matrix->Set_Rotate(180, 0, 1, 0);
 	m_Matrix->Set_Scale(0.3);
 	m_Matrix->ResetTranslate();
 
 	m_prevSide = 0;
-
 	m_BoardNum = 0;
 	m_MySide = 0;
 }

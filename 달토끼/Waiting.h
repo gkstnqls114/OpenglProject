@@ -10,8 +10,8 @@ public:
 	CWaiting(CPlayer* player);
 	virtual ~CWaiting();
 
+	virtual void Initialize() override;
 	virtual void Update() override;
 	virtual void SpecialKeys(const unsigned char& key) override;
-
 };
 

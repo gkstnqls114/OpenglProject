@@ -1,6 +1,7 @@
 #pragma once
 #include "JumpProperty.h"
 
+
 class CObjModel;
 class CMatrix;
 class CMediator;
@@ -9,7 +10,6 @@ class CCamera;
 
 class CPlayerState;
 class CWaiting;
-class CJumping;
 class CFall;
 class CDead;
 
@@ -32,12 +32,14 @@ class CPlayer
 	CJumpProperty m_JumpProperty;
 	CPlayerState* m_PlayerState{ nullptr };
 	
+	static CWaiting WaitingState;
+	static CDead DeadState;
+
 	//현재 발판 넘버
 	int m_BoardNum{ 0 };
 	int m_prevSide{ 0 };
 	int m_MySide{ 0 };
 
-	
 private:
 	void ProcessSide(int& lhs);
 	void Jump_BodyRotate();
@@ -62,24 +64,28 @@ public:
 	static void DeleteModel();
 	void Initialize();
 
-	//Mediator
+	/////////////////////////////////Mediator
 	virtual void Init_GameScene();
 	virtual void Init_GameOver();
-
-	CVector3D<> GetPos() const noexcept { return m_Pos; }
+	/////////////////////////////////Mediator
 
 	void Keyboard(const unsigned char& key, const int& x, const int& y);
 	void SpecialKeys(const int& key, const int& x, const int& y);
 	void Update();
 	void Render();
 
+	/////////////////////////////////GET
 	const GLdouble Get_JumpReach() const noexcept { return m_JumpProperty.Get_JumpReach(); }
 	const int Get_BoardNum() const noexcept { return m_BoardNum; }
 	const int Get_Side() const noexcept { return m_MySide; }
-	/*const float Get_Sidedegree() const noexcept{ return Sidedegree; };
-*/
+	CVector3D<> GetPos() const noexcept { return m_Pos; }
+	/////////////////////////////////GET
 
-	
+	/////////////////////////////////SET
+	void RotateX(const int degree);
+	void RotateY(const int degree);
+	void RotateZ(const int degree);
+	/////////////////////////////////SET
 
 };
 
