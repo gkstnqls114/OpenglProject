@@ -11,10 +11,14 @@ CRightJump::~CRightJump()
 {
 }
 
-void CRightJump::Update()
+void CRightJump::Initialize()
 {
 }
 
-void CRightJump::SpecialKeys(const unsigned char & key)
+void CRightJump::Update(CPlayer * player)
+{
+}
+
+void CRightJump::SpecialKeys(CPlayer * player, const int & key)
 {
 }

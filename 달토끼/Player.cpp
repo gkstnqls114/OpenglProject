@@ -2,14 +2,17 @@
 #include "ObjModel.h"
 #include "Mediator.h"
 #include "Matrix.h"
+
 #include "PlayerState.h"
-#include "Waiting.h"
+
 #include "Player.h"
 
 CObjModel* CPlayer::m_Rabit_Body = nullptr;
 CObjModel* CPlayer::m_Rabit_Ear = nullptr;
 CObjModel* CPlayer::m_Rabit_LeftFoot = nullptr;
 CObjModel* CPlayer::m_Rabit_RightFoot = nullptr;
+CWaiting   CPlayer::WaitingState;
+CFrontJump CPlayer::FrontJumpState;
 
 CPlayer::CPlayer(CMediator*& mediator)
 {
@@ -58,19 +61,19 @@ void CPlayer::Keyboard(const unsigned char & key, const int & x, const int & y)
 
 void CPlayer::SpecialKeys(const int & key, const int & x, const int & y)
 {
-	if (key != GLUT_KEY_UP && key != GLUT_KEY_LEFT && key != GLUT_KEY_RIGHT) return;
+	//if (key != GLUT_KEY_UP && key != GLUT_KEY_LEFT && key != GLUT_KEY_RIGHT) return;
 
 	if (m_PlayerState) {
-		m_PlayerState->SpecialKeys(key);
-		m_BoardNum += 1;
-		m_pMediator->Player_JumpStart();
+		m_PlayerState->SpecialKeys(this, key);
+		//m_BoardNum += 1;
+		//m_pMediator->Player_JumpStart();
 	}
 
 }
 
 void CPlayer::Update()
 {
-	if (m_PlayerState) m_PlayerState->Update();
+	if (m_PlayerState) m_PlayerState->Update(this);
 
 }
 
@@ -114,7 +117,8 @@ void CPlayer::Init_GameScene()
 	m_Rabit_Body->Reset();
 	m_Rabit_Ear->Reset();
 
-	m_PlayerState = new CWaiting(this);
+	//m_PlayerState = new CWaiting(this);
+	m_PlayerState = &WaitingState;
 	
 	m_Matrix->Set_Rotate(180, 0, 1, 0);
 	m_Matrix->Set_Scale(0.3);
@@ -218,47 +222,47 @@ void CPlayer::ProcessSide(int & lhs)
 	//	lhs = k_front;
 	//}
 }
-
-void CPlayer::Jump_BodyRotate()
-{
-	int Rotate = abs(m_prevSide - m_MySide);
-	
-	bool Rotate_degree_0 = Rotate == 0;
-	if (Rotate_degree_0) return;
-	
-	bool Rotate_degree_45 = Rotate == 1;
-	bool Rotate_degree_90 = Rotate == 2;
-	float frame_degree = 0;
-	float Nowdegree = 0;
-
-	//if (Rotate_degree_45) {
-	//	Nowdegree = Rotatedegree;
-	//	frame_degree = Nowdegree / float(m_FinishJumpTime);
-	//}
-	//else if (Rotate_degree_90) {
-	//	Nowdegree = Rotatedegree * 2;
-	//	frame_degree = Nowdegree / float(m_FinishJumpTime);
-	//}
-
-
-	////나중에 수정
-	//// 굳이 4개면 안에 이프문 만들 필요가 없지..
-	//if (IsRight) {
-	//	m_Matrix->Calu_Rotate(-frame_degree, 0, 1, 0);
-	//}
-	//else if (IsLeft) {
-	//	m_Matrix->Calu_Rotate(frame_degree, 0, 1, 0);
-	//}
-	//else {
-	//	//앞으로 향함
-	//	if (prevSide == k_right) {
-	//		m_Matrix->Calu_Rotate(frame_degree, 0, 1, 0);
-	//	}
-	//	else if (prevSide == k_left) {
-	//		m_Matrix->Calu_Rotate(-frame_degree, 0, 1, 0);
-	//	}
-	//}
-}
+//
+//void CPlayer::Jump_BodyRotate()
+//{
+//	int Rotate = abs(m_prevSide - m_MySide);
+//	
+//	bool Rotate_degree_0 = Rotate == 0;
+//	if (Rotate_degree_0) return;
+//	
+//	bool Rotate_degree_45 = Rotate == 1;
+//	bool Rotate_degree_90 = Rotate == 2;
+//	float frame_degree = 0;
+//	float Nowdegree = 0;
+//
+//	//if (Rotate_degree_45) {
+//	//	Nowdegree = Rotatedegree;
+//	//	frame_degree = Nowdegree / float(m_FinishJumpTime);
+//	//}
+//	//else if (Rotate_degree_90) {
+//	//	Nowdegree = Rotatedegree * 2;
+//	//	frame_degree = Nowdegree / float(m_FinishJumpTime);
+//	//}
+//
+//
+//	////나중에 수정
+//	//// 굳이 4개면 안에 이프문 만들 필요가 없지..
+//	//if (IsRight) {
+//	//	m_Matrix->Calu_Rotate(-frame_degree, 0, 1, 0);
+//	//}
+//	//else if (IsLeft) {
+//	//	m_Matrix->Calu_Rotate(frame_degree, 0, 1, 0);
+//	//}
+//	//else {
+//	//	//앞으로 향함
+//	//	if (prevSide == k_right) {
+//	//		m_Matrix->Calu_Rotate(frame_degree, 0, 1, 0);
+//	//	}
+//	//	else if (prevSide == k_left) {
+//	//		m_Matrix->Calu_Rotate(-frame_degree, 0, 1, 0);
+//	//	}
+//	//}
+//}
 
 
 void CPlayer::Jump()
@@ -272,6 +276,12 @@ void CPlayer::Jump()
 	//m_pMediator->Player_Jumping();
 
 	//Finish_Jump();
+	m_PlayerState = &FrontJumpState;
+}
+
+void CPlayer::Wait()
+{
+	m_PlayerState = &WaitingState;
 }
 
 void CPlayer::Calculate_JumpVector()

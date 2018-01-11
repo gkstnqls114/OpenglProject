@@ -168,13 +168,12 @@
     <ClCompile Include="Engel.cpp" />
     <ClCompile Include="EXIT_word.cpp" />
     <ClCompile Include="Fall.cpp" />
-    <ClCompile Include="FinishJump.cpp" />
     <ClCompile Include="FrontJump.cpp" />
     <ClCompile Include="GameClear.cpp" />
     <ClCompile Include="GAMECLEAR_word.cpp" />
     <ClCompile Include="Gameover.cpp" />
     <ClCompile Include="GAMEOVER_word.cpp" />
-    <ClCompile Include="Jumping.cpp" />
+    <ClCompile Include="Jump.cpp" />
     <ClCompile Include="JumpProperty.cpp" />
     <ClCompile Include="LeftJump.cpp" />
     <ClCompile Include="Lighting.cpp" />
@@ -213,7 +212,6 @@
     <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="Spacesuit.cpp" />
     <ClCompile Include="Star.cpp" />
-    <ClCompile Include="StartJump.cpp" />
     <ClCompile Include="Suit.cpp" />
     <ClCompile Include="TestScene.cpp" />
     <ClCompile Include="Texture.cpp" />
@@ -231,13 +229,12 @@
     <ClInclude Include="Engel.h" />
     <ClInclude Include="EXIT_word.h" />
     <ClInclude Include="Fall.h" />
-    <ClInclude Include="FinishJump.h" />
     <ClInclude Include="FrontJump.h" />
     <ClInclude Include="GameClear.h" />
     <ClInclude Include="GAMECLEAR_word.h" />
     <ClInclude Include="Gameover.h" />
     <ClInclude Include="GAMEOVER_word.h" />
-    <ClInclude Include="Jumping.h" />
+    <ClInclude Include="Jump.h" />
     <ClInclude Include="JumpProperty.h" />
     <ClInclude Include="LeftJump.h" />
     <ClInclude Include="Lighting.h" />
@@ -266,7 +263,6 @@
     <ClInclude Include="SoundManager.h" />
     <ClInclude Include="Spacesuit.h" />
     <ClInclude Include="Star.h" />
-    <ClInclude Include="StartJump.h" />
     <ClInclude Include="Suit.h" />
     <ClInclude Include="TestScene.h" />
     <ClInclude Include="Texture.h" />

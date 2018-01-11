@@ -11,11 +11,14 @@ CDead::~CDead()
 {
 }
 
-void CDead::Update()
+void CDead::Initialize()
 {
 }
 
-void CDead::SpecialKeys(const unsigned char & key)
+void CDead::Update(CPlayer * player)
 {
 }
 
+void CDead::SpecialKeys(CPlayer * player, const int & key)
+{
+}

@@ -1,14 +1,11 @@
 #pragma once
-
-class CPlayer;
-
-
-class CPlayerState
+#include "PlayerState.h"
+class CJump :
+	public CPlayerState
 {
-
 public:
-	CPlayerState();
-	virtual ~CPlayerState();
+	CJump();
+	virtual ~CJump();
 
 	virtual void Initialize() = 0;
 	virtual void Update(CPlayer* player) = 0;

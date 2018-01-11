@@ -1,13 +1,15 @@
 #pragma once
-#include "Jumping.h"
+#include "Jump.h"
+
 class CFrontJump :
-	public CJumping
+	public CJump
 {
 public:
 	CFrontJump();
 	virtual ~CFrontJump();
 
-	virtual void Update() override;
-	virtual void SpecialKeys(const unsigned char& key) override;
+	virtual void Initialize() override;
+	virtual void Update(CPlayer* player) override;
+	virtual void SpecialKeys(CPlayer* player, const int& key) override;
 };
 

@@ -1,4 +1,6 @@
 #pragma once
+#include "Waiting.h"
+#include "FrontJump.h"
 #include "JumpProperty.h"
 
 
@@ -9,9 +11,9 @@ class CRoad;
 class CCamera;
 
 class CPlayerState;
-class CWaiting;
 class CFall;
 class CDead;
+class CFrontJump;
 
 //class CJumpProperty;
 
@@ -34,6 +36,7 @@ class CPlayer
 	
 	static CWaiting WaitingState;
 	static CDead DeadState;
+	static CFrontJump FrontJumpState;
 
 	//현재 발판 넘버
 	int m_BoardNum{ 0 };
@@ -42,8 +45,8 @@ class CPlayer
 
 private:
 	void ProcessSide(int& lhs);
-	void Jump_BodyRotate();
-	void Jump();
+	//void Jump_BodyRotate();
+	//void Jump();
 	void Calculate_JumpVector();
 	void Finish_Jump();
 
@@ -64,15 +67,18 @@ public:
 	static void DeleteModel();
 	void Initialize();
 
-	/////////////////////////////////Mediator
-	virtual void Init_GameScene();
-	virtual void Init_GameOver();
-	/////////////////////////////////Mediator
-
 	void Keyboard(const unsigned char& key, const int& x, const int& y);
 	void SpecialKeys(const int& key, const int& x, const int& y);
 	void Update();
 	void Render();
+
+	void Jump();
+	void Wait();
+
+	/////////////////////////////////Mediator
+	virtual void Init_GameScene();
+	virtual void Init_GameOver();
+	/////////////////////////////////Mediator
 
 	/////////////////////////////////GET
 	const GLdouble Get_JumpReach() const noexcept { return m_JumpProperty.Get_JumpReach(); }

@@ -11,7 +11,11 @@ CFall::~CFall()
 {
 }
 
-void CFall::Update()
+void CFall::Initialize()
+{
+}
+
+void CFall::Update(CPlayer * player)
 {
 	//m_Matrix->Calu_Rotate(10, 0, 1, 0);
 	//m_Matrix->Calu_Tranlate(CVector3D<>(0, -3, 0));
@@ -22,6 +26,6 @@ void CFall::Update()
 	//return;
 }
 
-void CFall::SpecialKeys(const unsigned char & key)
+void CFall::SpecialKeys(CPlayer * player, const int & key)
 {
 }

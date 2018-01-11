@@ -11,10 +11,14 @@ CLeftJump::~CLeftJump()
 {
 }
 
-void CLeftJump::Update()
+void CLeftJump::Initialize()
 {
 }
 
-void CLeftJump::SpecialKeys(const unsigned char & key)
+void CLeftJump::Update(CPlayer * player)
+{
+}
+
+void CLeftJump::SpecialKeys(CPlayer * player, const int & key)
 {
 }

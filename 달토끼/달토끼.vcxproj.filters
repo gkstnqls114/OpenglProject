@@ -130,6 +130,15 @@
     <Filter Include="소스 파일\Player\PlayerState\Jump">
       <UniqueIdentifier>{b3b1f6ec-608d-4752-bf16-0be0efd1fe05}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\GLFramework\Scene\Abstract">
+      <UniqueIdentifier>{f89d5557-95ae-42c3-9760-00dcf6877987}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\GLFramework\Scene\Loading">
+      <UniqueIdentifier>{3bfab06f-f278-40ae-87a2-e384a53bb837}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Player\PlayerState\Jump\Abstract">
+      <UniqueIdentifier>{daecdb01-9f08-4011-b64c-64fc6c68afaf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GLFramework.cpp">
@@ -140,9 +149,6 @@
     </ClCompile>
     <ClCompile Include="pch.cpp">
       <Filter>소스 파일\main</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene.cpp">
-      <Filter>소스 파일\GLFramework\Scene</Filter>
     </ClCompile>
     <ClCompile Include="Matrix.cpp">
       <Filter>소스 파일</Filter>
@@ -261,9 +267,6 @@
     <ClCompile Include="JumpProperty.cpp">
       <Filter>소스 파일\Player\Property</Filter>
     </ClCompile>
-    <ClCompile Include="Jumping.cpp">
-      <Filter>소스 파일\Player\PlayerState\Jump</Filter>
-    </ClCompile>
     <ClCompile Include="Dead.cpp">
       <Filter>소스 파일\Player\PlayerState\Dead</Filter>
     </ClCompile>
@@ -272,12 +275,6 @@
     </ClCompile>
     <ClCompile Include="Waiting.cpp">
       <Filter>소스 파일\Player\PlayerState\Waiting</Filter>
-    </ClCompile>
-    <ClCompile Include="FinishJump.cpp">
-      <Filter>소스 파일\Player\PlayerState\Jump</Filter>
-    </ClCompile>
-    <ClCompile Include="StartJump.cpp">
-      <Filter>소스 파일\Player\PlayerState\Jump</Filter>
     </ClCompile>
     <ClCompile Include="FrontJump.cpp">
       <Filter>소스 파일\Player\PlayerState\Jump</Filter>
@@ -288,6 +285,12 @@
     <ClCompile Include="RightJump.cpp">
       <Filter>소스 파일\Player\PlayerState\Jump</Filter>
     </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>소스 파일\GLFramework\Scene\Abstract</Filter>
+    </ClCompile>
+    <ClCompile Include="Jump.cpp">
+      <Filter>소스 파일\Player\PlayerState\Jump\Abstract</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GLFramework.h">
@@ -295,9 +298,6 @@
     </ClInclude>
     <ClInclude Include="pch.h">
       <Filter>소스 파일\main</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene.h">
-      <Filter>소스 파일\GLFramework\Scene</Filter>
     </ClInclude>
     <ClInclude Include="FootBoard.h">
       <Filter>소스 파일\Colleague\Road</Filter>
@@ -422,9 +422,6 @@
     <ClInclude Include="JumpProperty.h">
       <Filter>소스 파일\Player\Property</Filter>
     </ClInclude>
-    <ClInclude Include="Jumping.h">
-      <Filter>소스 파일\Player\PlayerState\Jump</Filter>
-    </ClInclude>
     <ClInclude Include="Dead.h">
       <Filter>소스 파일\Player\PlayerState\Dead</Filter>
     </ClInclude>
@@ -434,12 +431,6 @@
     <ClInclude Include="Waiting.h">
       <Filter>소스 파일\Player\PlayerState\Waiting</Filter>
     </ClInclude>
-    <ClInclude Include="FinishJump.h">
-      <Filter>소스 파일\Player\PlayerState\Jump</Filter>
-    </ClInclude>
-    <ClInclude Include="StartJump.h">
-      <Filter>소스 파일\Player\PlayerState\Jump</Filter>
-    </ClInclude>
     <ClInclude Include="FrontJump.h">
       <Filter>소스 파일\Player\PlayerState\Jump</Filter>
     </ClInclude>
@@ -448,6 +439,12 @@
     </ClInclude>
     <ClInclude Include="RightJump.h">
       <Filter>소스 파일\Player\PlayerState\Jump</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>소스 파일\GLFramework\Scene\Abstract</Filter>
+    </ClInclude>
+    <ClInclude Include="Jump.h">
+      <Filter>소스 파일\Player\PlayerState\Jump\Abstract</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

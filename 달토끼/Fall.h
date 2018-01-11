@@ -4,14 +4,12 @@
 class CFall :
 	public CPlayerState
 {
-	CPlayer* m_pPlayer{ nullptr };
-
 public:
 	CFall();
 	virtual ~CFall();
 
-	virtual void Update() override;
-	virtual void SpecialKeys(const unsigned char& key) override;
-
+	virtual void Initialize() override;
+	virtual void Update(CPlayer* player) override;
+	virtual void SpecialKeys(CPlayer* player, const int& key) override;
 };
 

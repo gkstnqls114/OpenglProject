@@ -4,9 +4,9 @@
 
 
 
-CWaiting::CWaiting(CPlayer * player)
+CWaiting::CWaiting()
 {
-	m_pPlayer = player;
+
 }
 
 CWaiting::~CWaiting()
@@ -15,14 +15,16 @@ CWaiting::~CWaiting()
 
 void CWaiting::Initialize()
 {
-
 }
 
-void CWaiting::Update()
+void CWaiting::Update(CPlayer * player)
 {
-	m_pPlayer->RotateY(1);
+	player->RotateY(1);
 }
 
-void CWaiting::SpecialKeys(const unsigned char & key)
+void CWaiting::SpecialKeys(CPlayer * player, const int & key)
 {
+	if (key == GLUT_KEY_DOWN) {
+		player->Jump();
+	}
 }

@@ -4,14 +4,13 @@
 class CWaiting :
 	public CPlayerState
 {
-	CPlayer* m_pPlayer{ nullptr };
 
 public:
-	CWaiting(CPlayer* player);
+	CWaiting();
 	virtual ~CWaiting();
 
 	virtual void Initialize() override;
-	virtual void Update() override;
-	virtual void SpecialKeys(const unsigned char& key) override;
+	virtual void Update(CPlayer* player) override;
+	virtual void SpecialKeys(CPlayer* player, const int& key) override;
 };
 
