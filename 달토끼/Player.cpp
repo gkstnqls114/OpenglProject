@@ -145,10 +145,10 @@ void CPlayer::Init_GameOver()
 
 void CPlayer::CheckDead()
 {
-	bool InRange = m_MySide <= 1 && m_MySide >= -1;
+	bool InRange = m_MySide <= k_right && m_MySide >= k_left;
 	if (InRange) return;
 
-	stateChange_Dead();
+	StateChange_Fall();
 }
 
 float CPlayer::BodyRotateDegree()
@@ -221,7 +221,7 @@ void CPlayer::StateChange_FrontJump()
 {
 	m_BoardNum += 1;
 	m_prevSide = m_MySide;
-	m_MySide = k_front;
+	m_MySide = m_MySide;
 	m_PlayerState = &FrontJumpState;
 }
 
@@ -229,7 +229,7 @@ void CPlayer::StateChange_RightJump()
 {
 	m_BoardNum += 1;
 	m_prevSide = m_MySide;
-	m_MySide = k_right;
+	m_MySide = m_MySide + k_right;
 	m_PlayerState = &RightJumpState;
 }
 
@@ -237,13 +237,12 @@ void CPlayer::StateChange_LeftJump()
 {
 	m_BoardNum += 1;
 	m_prevSide = m_MySide;
-	m_MySide = k_left;
+	m_MySide = m_MySide + k_left;
 	m_PlayerState = &LeftJumpState;
 }
 
 void CPlayer::StateChange_Wait()
 {
-	//모든 회전을 리셋시킨다.
 	m_Rabit_Body->Scale(1.f, 1.f, 1.f);
 	m_Rabit_LeftFoot->ResetRotate();
 	m_Rabit_RightFoot->ResetRotate();
@@ -260,7 +259,7 @@ void CPlayer::StateChange_Fall()
 	m_PlayerState = &FallingState;
 }
 
-void CPlayer::stateChange_Dead()
+void CPlayer::StateChange_Dead()
 {
 	m_PlayerState = &DeadState;
 }

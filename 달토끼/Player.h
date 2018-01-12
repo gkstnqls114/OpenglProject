@@ -85,7 +85,7 @@ public:
 	void StateChange_LeftJump();
 	void StateChange_Wait();
 	void StateChange_Fall();
-	void stateChange_Dead();
+	void StateChange_Dead();
 	/////////////////////////////////State Change
 
 	/////////////////////////////////Mediator
