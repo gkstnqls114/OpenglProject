@@ -244,6 +244,7 @@ void CPlayer::StateChange_LeftJump()
 void CPlayer::StateChange_Wait()
 {
 	//모든 회전을 리셋시킨다.
+	m_Rabit_Body->Scale(1.f, 1.f, 1.f);
 	m_Rabit_LeftFoot->ResetRotate();
 	m_Rabit_RightFoot->ResetRotate();
 	m_JumpProperty.Reset();
@@ -332,6 +333,7 @@ void CPlayer::JumpRotate()
 		m_Rabit_LeftFoot->Rotate(Foot_befor_reach_degree, 1, 0, 0);
 		m_Rabit_RightFoot->Rotate(Foot_befor_reach_degree, 1, 0, 0);
 	}
+
 	if (Unitll_Last) {
 		StateChange_Wait();
 	}

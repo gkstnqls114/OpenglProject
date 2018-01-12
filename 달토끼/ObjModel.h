@@ -54,5 +54,6 @@ public:
 	void ResetRotate();
 	
 	void Scale(const float& x, const float& y, const float& z);
+	void Set_Scale(const float& x, const float& y, const float& z);
 };
 

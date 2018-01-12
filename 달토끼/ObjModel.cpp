@@ -365,3 +365,8 @@ void CObjModel::Scale(const float & x, const float & y, const float & z)
 {
 	m_Matrix->Calu_Scale(x, y, z);
 }
+
+void CObjModel::Set_Scale(const float & x, const float & y, const float & z)
+{
+	m_Matrix->Set_Scale(x, y, z);
+}
