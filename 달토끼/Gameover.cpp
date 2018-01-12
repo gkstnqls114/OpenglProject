@@ -19,8 +19,8 @@ CGameOver::CGameOver(CSceneManager* const changer)
 	m_pSceneManager = changer;
 	m_pMediator = new CMediator(m_pSceneManager);
 
-	m_Player = new CPlayer(m_pMediator);
-	m_Camera = new CCamera(m_pMediator);
+	m_Player = new CPlayer();
+	m_Camera = new CCamera();
 	m_GAMEOVER = new CGAMEOVER_word(CVector3D<>(0, -200, 0));
 	
 	m_pMediator->SetPlayer(m_Player);

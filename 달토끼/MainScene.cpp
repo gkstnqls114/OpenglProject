@@ -31,7 +31,7 @@ void CMainScene::ConfirmCursor()
 void CMainScene::SelectCursor()
 {
 	if (m_Cursor == k_PLAY) {
-		m_CursorPos = m_PLAY->GetPos();
+		m_CursorPos = m_PLAY->Get_Pos();
 		m_CursorPos.y += 100;
 		m_pMediator->Cursor_PLAY();
 
@@ -43,7 +43,7 @@ void CMainScene::SelectCursor()
 		}
 	}
 	else if (m_Cursor == k_EXIT) {
-		m_CursorPos = m_EXIT->GetPos();
+		m_CursorPos = m_EXIT->Get_Pos();
 		m_CursorPos.y += 100;
 		m_pMediator->Cursor_EXIT();
 
@@ -147,7 +147,7 @@ CMainScene::CMainScene(CSceneManager* const changer)
 
 	m_pMediator = new CMediator(m_pSceneManager);
 
-	m_Camera = new CCamera(m_pMediator);
+	m_Camera = new CCamera();
 	m_Moon = new CMoon(m_pMediator);
 	m_Earth = new CEarth(m_pMediator);
 	m_PLAY = new CPLAY_word(CVector3D<>(- 150, -300, 0));

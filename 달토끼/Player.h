@@ -3,6 +3,8 @@
 #include "FrontJump.h"
 #include "RightJump.h"
 #include "LeftJump.h"
+#include "Fall.h"
+#include "Dead.h"
 #include "JumpProperty.h"
 
 
@@ -13,6 +15,7 @@ class CRoad;
 class CCamera;
 
 class CPlayerState;
+class CPlayerNotification;
 
 
 class CPlayer
@@ -22,7 +25,7 @@ class CPlayer
 	static CObjModel* m_Rabit_LeftFoot	;
 	static CObjModel* m_Rabit_RightFoot	;
 
-	CMediator* m_pMediator{ nullptr };
+	CPlayerNotification* m_pPlayerNotification{ nullptr };
 
 	//플레이어 위치
 	CVector3D<> m_Pos;
@@ -32,10 +35,12 @@ class CPlayer
 	CJumpProperty m_JumpProperty;
 	CPlayerState* m_PlayerState{ nullptr };
 	
-	CWaiting WaitingState;
-	CFrontJump FrontJumpState;
-	CRightJump RightJumpState;
-	CLeftJump LeftJumpState;
+	CDead		DeadState;
+	CWaiting	WaitingState;
+	CFalling	FallingState;
+	CFrontJump	FrontJumpState;
+	CRightJump	RightJumpState;
+	CLeftJump	LeftJumpState;
 
 	//현재 넘어간 발판 개수
 	int m_BoardNum{ 0 };
@@ -43,11 +48,10 @@ class CPlayer
 	int m_MySide{ 0 };
 
 private:
-	void ProcessSide(int& lhs);
-	void Jump_BodyRotate();
-	//void Jump();
+	void CheckDead();
+	float BodyRotateDegree();
 	void Calculate_JumpVector();
-	void Finish_Jump();
+	void JumpRotate();
 
 	static void InitBody();
 	static void InitEar();
@@ -60,7 +64,7 @@ private:
 
 
 public:
-	CPlayer(CMediator*& mediator);
+	CPlayer();
 	~CPlayer();
 	static void InitModel();
 	static void DeleteModel();
@@ -81,6 +85,7 @@ public:
 	void StateChange_LeftJump();
 	void StateChange_Wait();
 	void StateChange_Fall();
+	void stateChange_Dead();
 	/////////////////////////////////State Change
 
 	/////////////////////////////////Mediator
@@ -92,13 +97,14 @@ public:
 	const GLdouble Get_JumpReach() const noexcept { return m_JumpProperty.Get_JumpReach(); }
 	const int Get_BoardNum() const noexcept { return m_BoardNum; }
 	const int Get_Side() const noexcept { return m_MySide; }
-	const CVector3D<> GetPos() const noexcept { return m_Pos; }
+	const CVector3D<> Get_Pos() const noexcept { return m_Pos; }
 	/////////////////////////////////GET
 
 	/////////////////////////////////SET
 	void RotateX(const int degree);
 	void RotateY(const int degree);
 	void RotateZ(const int degree);
+	void SetPlayerNotification(CPlayerNotification* notification) noexcept { m_pPlayerNotification = notification; };
 	/////////////////////////////////SET
 
 };

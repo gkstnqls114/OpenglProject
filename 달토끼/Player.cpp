@@ -3,6 +3,7 @@
 #include "Mediator.h"
 #include "Matrix.h"
 
+#include "PlayerNotification.h"
 #include "PlayerState.h"
 
 #include "Player.h"
@@ -12,11 +13,9 @@ CObjModel* CPlayer::m_Rabit_Ear = nullptr;
 CObjModel* CPlayer::m_Rabit_LeftFoot = nullptr;
 CObjModel* CPlayer::m_Rabit_RightFoot = nullptr;
 
-CPlayer::CPlayer(CMediator*& mediator)
+CPlayer::CPlayer()
 {
 	CPlayer::InitModel();
-	m_pMediator = mediator;
-
 	m_Matrix = new CMatrix();
 
 	Init_GameScene();
@@ -58,12 +57,11 @@ void CPlayer::Keyboard(const unsigned char & key, const int & x, const int & y)
 
 void CPlayer::SpecialKeys(const int & key, const int & x, const int & y)
 {
-	//if (key != GLUT_KEY_UP && key != GLUT_KEY_LEFT && key != GLUT_KEY_RIGHT) return;
+	if (key != GLUT_KEY_UP && key != GLUT_KEY_LEFT && key != GLUT_KEY_RIGHT) return;
 
 	if (m_PlayerState) {
 		m_PlayerState->SpecialKeys(this, key);
 	}
-
 }
 
 void CPlayer::Update()
@@ -145,27 +143,20 @@ void CPlayer::Init_GameOver()
 	m_Rabit_Ear->Rotate(70, 1, 0, 0);
 }
 
-void CPlayer::ProcessSide(int & lhs)
+void CPlayer::CheckDead()
 {
-	//if (IsRight) {
-	//	lhs = k_right;
-	//}
-	//else if (IsLeft) {
-	//	lhs = k_left;
-	//}
-	//else {
-	//	lhs = k_front;
-	//}
+	bool InRange = m_MySide <= 1 && m_MySide >= -1;
+	if (InRange) return;
+
+	stateChange_Dead();
 }
 
-
-
-void CPlayer::Jump_BodyRotate()
+float CPlayer::BodyRotateDegree()
 {
 	int Rotate = abs(m_prevSide - m_MySide);
 
 	bool Rotate_degree_0 = Rotate == 0;
-	if (Rotate_degree_0) return;
+	if (Rotate_degree_0) return 0;
 
 	bool Rotate_degree_45 = Rotate == 1;
 	bool Rotate_degree_90 = Rotate == 2;
@@ -181,34 +172,119 @@ void CPlayer::Jump_BodyRotate()
 		frame_degree = Nowdegree / float(m_JumpProperty.m_FinishJumpTime);
 	}
 
-	//나중에 수정
-	// 굳이 4개면 안에 이프문 만들 필요가 없지..
-	//if (IsRight) {
-	//	m_Matrix->Calu_Rotate(-frame_degree, 0, 1, 0);
-	//}
-	//else if (IsLeft) {
-	//	m_Matrix->Calu_Rotate(frame_degree, 0, 1, 0);
-	//}
-	//else {
-	//	//앞으로 향함
-	//	if (prevSide == k_right) {
-	//		m_Matrix->Calu_Rotate(frame_degree, 0, 1, 0);
-	//	}
-	//	else if (prevSide == k_left) {
-	//		m_Matrix->Calu_Rotate(-frame_degree, 0, 1, 0);
-	//	}
-	//}
+	return frame_degree;
 }
 
 void CPlayer::FrontJump()
 {
 	Calculate_JumpVector();
+	float rotatedegree = BodyRotateDegree();
+	if (m_prevSide == k_right) {
+		m_Matrix->Calu_Rotate(rotatedegree, 0, 1, 0);
+	}
+	else if (m_prevSide == k_left) {
+		m_Matrix->Calu_Rotate(-rotatedegree, 0, 1, 0);
+	}
 
-	Jump_BodyRotate();
+	JumpRotate();
 
-	//아 점프 나중에 수정할래 ㅡ0ㅡ;;
-	//홀수는 제일 높은 지점을 계산하지 않는다.
-	if (m_JumpProperty.m_FinishJumpTime % 2 == 1 && m_JumpProperty.m_JumpTime 
+	if(m_pPlayerNotification) m_pPlayerNotification->Notify(this);
+}
+
+void CPlayer::RightJump()
+{
+	Calculate_JumpVector();
+	float rotatedegree = BodyRotateDegree();
+	m_Matrix->Calu_Rotate(-rotatedegree, 0, 1, 0);
+
+	JumpRotate();
+
+	if (m_pPlayerNotification) m_pPlayerNotification->Notify(this);
+}
+
+void CPlayer::LeftJump()
+{
+	Calculate_JumpVector();
+	float rotatedegree = BodyRotateDegree();
+	m_Matrix->Calu_Rotate(rotatedegree, 0, 1, 0);
+
+	JumpRotate();
+
+	if (m_pPlayerNotification) m_pPlayerNotification->Notify(this);
+}
+
+void CPlayer::StateChange_FrontJump()
+{
+	m_BoardNum += 1;
+	m_prevSide = m_MySide;
+	m_MySide = k_front;
+	m_PlayerState = &FrontJumpState;
+}
+
+void CPlayer::StateChange_RightJump()
+{
+	m_BoardNum += 1;
+	m_prevSide = m_MySide;
+	m_MySide = k_right;
+	m_PlayerState = &RightJumpState;
+}
+
+void CPlayer::StateChange_LeftJump()
+{
+	m_BoardNum += 1;
+	m_prevSide = m_MySide;
+	m_MySide = k_left;
+	m_PlayerState = &LeftJumpState;
+}
+
+void CPlayer::StateChange_Wait()
+{
+	//모든 회전을 리셋시킨다.
+	m_Rabit_LeftFoot->ResetRotate();
+	m_Rabit_RightFoot->ResetRotate();
+	m_JumpProperty.Reset();
+	m_Pos.y = 0;
+
+	m_PlayerState = &WaitingState;
+	
+	CheckDead();
+}
+
+void CPlayer::StateChange_Fall()
+{
+	m_PlayerState = &FallingState;
+}
+
+void CPlayer::stateChange_Dead()
+{
+	m_PlayerState = &DeadState;
+}
+
+void CPlayer::Calculate_JumpVector()
+{
+	m_JumpProperty.m_JumpTime += 1;
+
+	float radian = m_JumpProperty.m_JumpDegree * m_JumpProperty.k_PI / 180;
+	
+	CVector3D<> tempVector;
+	tempVector.z = - m_JumpProperty.m_power * cos(radian);
+	tempVector.y = m_JumpProperty.m_power * sin(radian)
+		- m_JumpProperty.k_gravity * m_JumpProperty.m_JumpTime;
+	//if (IsRight) {
+	//	m_vector_x = 20.f / m_FinishJumpTime;
+	//}
+	//else if (IsLeft) {
+	//	m_vector_x = -20.f / m_FinishJumpTime;
+	//}
+
+	m_Pos.x += tempVector.x;
+	m_Pos.y += tempVector.y;
+	m_Pos.z += tempVector.z;
+}
+
+void CPlayer::JumpRotate()
+{
+	if (m_JumpProperty.m_FinishJumpTime % 2 == 1 && m_JumpProperty.m_JumpTime
 		== (m_JumpProperty.m_FinishJumpTime / 2 + 1)) return;
 
 	float TimeSection = float(m_JumpProperty.m_FinishJumpTime) / 4.f;
@@ -257,102 +333,11 @@ void CPlayer::FrontJump()
 		m_Rabit_LeftFoot->Rotate(Foot_befor_reach_degree, 1, 0, 0);
 		m_Rabit_RightFoot->Rotate(Foot_befor_reach_degree, 1, 0, 0);
 	}
-
 	if (Unitll_Last) {
 		StateChange_Wait();
 	}
 }
 
-void CPlayer::RightJump()
-{
-}
-
-void CPlayer::LeftJump()
-{
-}
-
-void CPlayer::StateChange_FrontJump()
-{
-	m_BoardNum += 1;
-	m_prevSide = m_MySide;
-	m_MySide = k_front;
-	m_PlayerState = &FrontJumpState;
-}
-
-void CPlayer::StateChange_RightJump()
-{
-	m_BoardNum += 1;
-	m_prevSide = m_MySide;
-	m_MySide = k_right;
-	m_PlayerState = &RightJumpState;
-}
-
-void CPlayer::StateChange_LeftJump()
-{
-	m_BoardNum += 1;
-	m_prevSide = m_MySide;
-	m_MySide = k_left;
-	m_PlayerState = &LeftJumpState;
-}
-
-void CPlayer::StateChange_Wait()
-{
-	//모든 회전을 리셋시킨다.
-	m_Rabit_LeftFoot->ResetRotate();
-	m_Rabit_RightFoot->ResetRotate();
-
-	m_Pos.y = 0;
-
-	m_JumpProperty.Reset();
-	m_PlayerState = &WaitingState;
-}
-
-void CPlayer::StateChange_Fall()
-{
-}
-
-void CPlayer::Calculate_JumpVector()
-{
-	m_JumpProperty.m_JumpTime += 1;
-
-	float radian = m_JumpProperty.m_JumpDegree * m_JumpProperty.k_PI / 180;
-	
-	CVector3D<> tmp_vector;
-	tmp_vector.z = -m_JumpProperty.m_power * cos(radian);
-	tmp_vector.y = m_JumpProperty.m_power * sin(radian) 
-		- m_JumpProperty.k_gravity * m_JumpProperty.m_JumpTime;
-	//if (IsRight) {
-	//	m_vector_x = 20.f / m_FinishJumpTime;
-	//}
-	//else if (IsLeft) {
-	//	m_vector_x = -20.f / m_FinishJumpTime;
-	//}
-
-	m_Pos.x += tmp_vector.x;
-	m_Pos.y += tmp_vector.y;
-	m_Pos.z += tmp_vector.z;
-}
-
-void CPlayer::Finish_Jump()
-{
-	//if (!IsJump) return;
-	//if (m_Matrix->Get_Tranlate_Y() >= 0) return;
-
-	//m_Matrix->Set_Translate_13(0);
-	//m_Pos.y = 0;
-
-	//ProcessSide(prevSide);
-
-	//Reset_JumpProperty();
-
-	//bool InRange = m_MySide <= 1 && m_MySide >= -1;
-	//if (InRange) {
-	//	m_pMediator->Player_JumpFinish();
-	//}
-	//else {
-	//	m_pMediator->Player_Dead();
-	//}
-}
 
 void CPlayer::InitBody()
 {

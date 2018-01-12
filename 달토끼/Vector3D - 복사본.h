@@ -30,7 +30,8 @@ public:
 		y = b;
 		z = c;
 	}
-	float Get_Length() {
+	
+	float GetLength() {
 		return sqrt(
 			x * x +
 			y * y +
@@ -39,8 +40,8 @@ public:
 	}
 
 	void Normalize() {
-		float length = Get_Length();
-		if (length == 0) {
+		float length = GetLength();
+		if (length <= 0) {
 			x = 0; y = 0; z = 0;
 			return;
 		}

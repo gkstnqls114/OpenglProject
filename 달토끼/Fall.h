@@ -1,12 +1,12 @@
 #pragma once
 #include "PlayerState.h"
 
-class CFall :
+class CFalling :
 	public CPlayerState
 {
 public:
-	CFall();
-	virtual ~CFall();
+	CFalling();
+	virtual ~CFalling();
 
 	virtual void Initialize() override;
 	virtual void Update(CPlayer* player) override;

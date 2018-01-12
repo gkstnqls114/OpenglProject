@@ -23,7 +23,7 @@ CGameClear::CGameClear(CSceneManager* const changer)
 	m_pSceneManager = changer;
 	m_pMediator = new CMediator(m_pSceneManager);
 
-	m_Camera = new CCamera(m_pMediator);
+	m_Camera = new CCamera();
 	m_GAMECLEAR = new CGAMECLEAR_word(CVector3D<>(0, 200, -100));
 
 	m_earth = new CEarth(m_pMediator);

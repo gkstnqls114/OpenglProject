@@ -19,6 +19,7 @@ void CFrontJump::Initialize()
 void CFrontJump::Update(CPlayer * player)
 {
 	player->FrontJump();
+	
 
 	//if (!IsJump) return;
 
@@ -34,7 +35,5 @@ void CFrontJump::Update(CPlayer * player)
 
 void CFrontJump::SpecialKeys(CPlayer * player, const int & key)
 {
-	if (key == GLUT_KEY_DOWN) {
-		player->StateChange_Wait();
-	}
+
 }

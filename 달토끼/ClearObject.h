@@ -24,7 +24,7 @@ public:
 	void Render();
 	void Update();
 
-	const CVector3D<> GetPos() const noexcept { return m_Position; }
+	const CVector3D<> Get_Pos() const noexcept { return m_Position; }
 	void SetPos(const CVector3D<>& pos);
 	void SetPos(CVector3D<>&& pos);
 };

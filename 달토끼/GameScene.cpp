@@ -101,9 +101,9 @@ CGameScene::CGameScene(CSceneManager* const changer)
 	m_textureStroage = new CTextureStorage;
 	m_textureStroage->StoreBitmap("Explain.bmp", m_ExplainTextureID);
 
-	m_MapCamera = new CCamera(m_pMediator);
-	m_Camera = new CCamera(m_pMediator);
-	m_Player = new CPlayer(m_pMediator);
+	m_MapCamera = new CCamera();
+	m_Camera = new CCamera();
+	m_Player = new CPlayer();
 
 	double distance = m_Player->Get_JumpReach();
 	m_Road = new CRoad(distance, m_pMediator);

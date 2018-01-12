@@ -110,12 +110,12 @@ void CRoad::Update()
 
 const CVector3D<> CRoad::GetLastPos() const noexcept
 {
-	return m_pFootBoard[m_boardNum - 1].GetPos();
+	return m_pFootBoard[m_boardNum - 1].Get_Pos();
 }
 
 const CVector3D<> CRoad::GetFirstPos() const noexcept
 {
-	return m_pFootBoard[0].GetPos();
+	return m_pFootBoard[0].Get_Pos();
 }
 
 const CVector3D<> CRoad::GetCenterPos() const noexcept
@@ -124,8 +124,8 @@ const CVector3D<> CRoad::GetCenterPos() const noexcept
 	if (m_boardNum % 2 == 0) {
 		int center_num_1 = m_boardNum / 2;
 		int center_num_2 = center_num_1 + 1;
-		CVector3D<> Prev = m_pFootBoard[center_num_1].GetPos();
-		CVector3D<> Next = m_pFootBoard[center_num_2].GetPos();
+		CVector3D<> Prev = m_pFootBoard[center_num_1].Get_Pos();
+		CVector3D<> Next = m_pFootBoard[center_num_2].Get_Pos();
 
 		Center = CVector3D<>(
 			  (Prev.x + Next.x) / 2
@@ -135,7 +135,7 @@ const CVector3D<> CRoad::GetCenterPos() const noexcept
 	}
 	else {
 		int center_num = float(m_boardNum) / 2.f + 0.5;
-		Center = m_pFootBoard[center_num].GetPos();
+		Center = m_pFootBoard[center_num].Get_Pos();
 	}
 	return Center;
 }

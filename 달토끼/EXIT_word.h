@@ -29,7 +29,7 @@ public:
 	void Scale(const float& NowSize);
 	void Selected() { IsSelected = true; }
 	void NotSelected();
-	const CVector3D<> GetPos() const noexcept { return m_Position; }
+	const CVector3D<> Get_Pos() const noexcept { return m_Position; }
 
 
 	//메인화면

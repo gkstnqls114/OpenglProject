@@ -2,6 +2,7 @@
 #include "Colleague.h"
 
 class CMediator;
+class CPlayer;
 
 class CCamera : public CColleague
 {
@@ -35,8 +36,8 @@ private:
 	void Animation_GameClear();
 
 public:
-	CCamera(CMediator*& mediator);
-		// 카메라 생성 시 최초 1회는 aspect를 자동으로 설정한다.
+	// 카메라 생성 시 최초 1회는 aspect를 자동으로 설정한다.
+	CCamera();
 
 	~CCamera() = default;
 
@@ -70,16 +71,14 @@ public:
 
 	//Mediator
 	void Update();
-
-
+	virtual void Notify(const CPlayer* player) override;
+	
 	virtual void Init_MainScene();
 	virtual void Init_GameOver();
 	virtual void Init_GameClear();
 
 	virtual void Init_GameScene();
 	virtual void Player_JumpStart();
-	virtual void Player_Jumping(const CVector3D<>& move);
-	virtual void Player_Jumping(CVector3D<>&& move);
 	virtual void Player_JumpFinish();
 	virtual void Player_Dead(const float& rotatedegree);
 	virtual void Player_Fall();

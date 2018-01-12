@@ -3,13 +3,14 @@
 
 class CSceneManager;
 class CTextureStorage;
+class CPlayerNotification;
 
 class CTestScene :
 	public CScene
 {
 	CSceneManager*		m_pSceneManager		{ nullptr };
 
-	CMediator*			m_pMediator			{ nullptr };
+	CPlayerNotification*m_Notification		{ nullptr };
 	CPlayer *			m_Player			{ nullptr };
 	CCamera*			m_Camera			{ nullptr };
 	

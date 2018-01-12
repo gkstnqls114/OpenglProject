@@ -2,20 +2,20 @@
 #include "Fall.h"
 
 
-CFall::CFall()
+CFalling::CFalling()
 {
 }
 
 
-CFall::~CFall()
+CFalling::~CFalling()
 {
 }
 
-void CFall::Initialize()
+void CFalling::Initialize()
 {
 }
 
-void CFall::Update(CPlayer * player)
+void CFalling::Update(CPlayer * player)
 {
 	//m_Matrix->Calu_Rotate(10, 0, 1, 0);
 	//m_Matrix->Calu_Tranlate(CVector3D<>(0, -3, 0));
@@ -26,6 +26,6 @@ void CFall::Update(CPlayer * player)
 	//return;
 }
 
-void CFall::SpecialKeys(CPlayer * player, const int & key)
+void CFalling::SpecialKeys(CPlayer * player, const int & key)
 {
 }

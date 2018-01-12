@@ -1,4 +1,5 @@
 #include "pch.h"
+#include "Player.h"
 #include "Mediator.h"
 #include "Camera.h"
 
@@ -65,10 +66,9 @@ void CCamera::Animation_GameClear()
 	}
 }
 
-CCamera::CCamera(CMediator *& mediator)
+CCamera::CCamera()
 {
 	m_aspect = glutGet(GLUT_WINDOW_WIDTH) / static_cast<float>(glutGet(GLUT_WINDOW_HEIGHT));
-	m_pMediator = mediator;
 }
 
 void CCamera::Initialize(const CVector3D<> & at, float distance, float zNear, float zFar, float fov)
@@ -169,6 +169,13 @@ void CCamera::Update()
 	Animation_GameClear();
 }
 
+void CCamera::Notify(const CPlayer * player)
+{
+	CVector3D<> Move = player->Get_Pos();
+	Move.y = 0;
+	SetPosition(Move);
+}
+
 void CCamera::Init_MainScene()
 {
 	Initialize(CVector3D<>(0.f, 0.f, 0.f), 500, 0.1f, 1000.f, 60);
@@ -203,16 +210,6 @@ void CCamera::Init_GameScene()
 void CCamera::Player_JumpStart()
 {
 
-}
-
-void CCamera::Player_Jumping(const CVector3D<>& move)
-{
-	Move(move);
-}
-
-void CCamera::Player_Jumping(CVector3D<>&& move)
-{
-	Move(move);
 }
 
 void CCamera::Player_JumpFinish()

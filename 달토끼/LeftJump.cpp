@@ -1,4 +1,5 @@
 #include "pch.h"
+#include "Player.h"
 #include "LeftJump.h"
 
 
@@ -17,6 +18,7 @@ void CLeftJump::Initialize()
 
 void CLeftJump::Update(CPlayer * player)
 {
+	player->LeftJump();
 }
 
 void CLeftJump::SpecialKeys(CPlayer * player, const int & key)
