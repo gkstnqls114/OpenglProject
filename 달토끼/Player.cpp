@@ -196,6 +196,8 @@ void CPlayer::RightJump()
 	Calculate_JumpVector();
 	float rotatedegree = BodyRotateDegree();
 	m_Matrix->Calu_Rotate(-rotatedegree, 0, 1, 0);
+	float tmp_vector_x = float(Road_Distance_X) / m_JumpProperty.m_FinishJumpTime;
+	m_Pos.x += tmp_vector_x;
 
 	JumpRotate();
 
@@ -207,6 +209,8 @@ void CPlayer::LeftJump()
 	Calculate_JumpVector();
 	float rotatedegree = BodyRotateDegree();
 	m_Matrix->Calu_Rotate(rotatedegree, 0, 1, 0);
+	float tmp_vector_x = - float(Road_Distance_X) / m_JumpProperty.m_FinishJumpTime;
+	m_Pos.x += tmp_vector_x;
 
 	JumpRotate();
 
@@ -298,11 +302,6 @@ void CPlayer::JumpRotate()
 	float Foot_befor_reach_degree = -90.f / float(FrameSection);
 	float Foot_reach_degree = 50.f / float(FrameSection);
 
-	//if (IsTumbling) {
-	//	float tumblig = (360.f / float(m_FinishJumpTime));
-	//	Tumblingdegree += tumblig;
-	//}
-
 	bool Untill_Top = m_JumpProperty.m_JumpTime <= TimeSection * 2;
 	if (Untill_Top) {
 		m_Rabit_LeftFoot->Rotate(Foot_top_degree, 1, 0, 0);
@@ -337,7 +336,6 @@ void CPlayer::JumpRotate()
 		StateChange_Wait();
 	}
 }
-
 
 void CPlayer::InitBody()
 {
