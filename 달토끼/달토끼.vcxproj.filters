@@ -103,12 +103,6 @@
     <Filter Include="소스 파일\Player">
       <UniqueIdentifier>{f40500c5-b1a2-4703-9248-12520fe80484}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\Player\PlayerState">
-      <UniqueIdentifier>{48e91b78-669e-4f42-8dac-1483ee636abb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Player\PlayerState\Abstract">
-      <UniqueIdentifier>{c01faf57-992a-43ee-aba7-7325b36896da}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\Player\PlayerSkin">
       <UniqueIdentifier>{bb3acb73-d47c-4d5b-b4eb-40aff7849bf8}</UniqueIdentifier>
     </Filter>
@@ -117,6 +111,39 @@
     </Filter>
     <Filter Include="소스 파일\Player\Property">
       <UniqueIdentifier>{36eacb1d-0e9c-4a89-9607-24a733b3cae3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\GLFramework\Scene\Abstract">
+      <UniqueIdentifier>{f89d5557-95ae-42c3-9760-00dcf6877987}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\GLFramework\Scene\Loading">
+      <UniqueIdentifier>{3bfab06f-f278-40ae-87a2-e384a53bb837}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Colleague\Item">
+      <UniqueIdentifier>{65dc07d0-4ca3-440a-9c34-44873a7cb74d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Player\PlayerSkin\Basic">
+      <UniqueIdentifier>{b7663889-d83a-420c-a833-c77b8467cee8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Player\PlayerSkin\Devil">
+      <UniqueIdentifier>{3ae9a597-9f29-4e61-8f5a-ac71aa8904b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Player\PlayerSkin\Engel">
+      <UniqueIdentifier>{bb488e51-4a6c-4eb4-986b-13f6469e207a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Player\PlayerSkin\Robot">
+      <UniqueIdentifier>{96dc2103-55db-496f-a7bb-996d01a2bcd5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Player\PlayerSkin\Spacesuit">
+      <UniqueIdentifier>{68526a74-fbe2-42c0-99f0-4c5753f063e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Player\PlayerSkin\Suit">
+      <UniqueIdentifier>{6e687f2d-8860-45eb-922b-22b893374723}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Player\PlayerState">
+      <UniqueIdentifier>{48e91b78-669e-4f42-8dac-1483ee636abb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Player\PlayerState\Abstract">
+      <UniqueIdentifier>{c01faf57-992a-43ee-aba7-7325b36896da}</UniqueIdentifier>
     </Filter>
     <Filter Include="소스 파일\Player\PlayerState\Dead">
       <UniqueIdentifier>{730cf5df-3bca-4611-b3dd-d84a263dace0}</UniqueIdentifier>
@@ -130,17 +157,8 @@
     <Filter Include="소스 파일\Player\PlayerState\Jump">
       <UniqueIdentifier>{b3b1f6ec-608d-4752-bf16-0be0efd1fe05}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\GLFramework\Scene\Abstract">
-      <UniqueIdentifier>{f89d5557-95ae-42c3-9760-00dcf6877987}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\GLFramework\Scene\Loading">
-      <UniqueIdentifier>{3bfab06f-f278-40ae-87a2-e384a53bb837}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\Player\PlayerState\Jump\Abstract">
       <UniqueIdentifier>{daecdb01-9f08-4011-b64c-64fc6c68afaf}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Colleague\Item">
-      <UniqueIdentifier>{65dc07d0-4ca3-440a-9c34-44873a7cb74d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -249,24 +267,6 @@
     <ClCompile Include="PlayerSkin.cpp">
       <Filter>소스 파일\Player\PlayerSkin\Abstract</Filter>
     </ClCompile>
-    <ClCompile Include="Devil.cpp">
-      <Filter>소스 파일\Player\PlayerSkin</Filter>
-    </ClCompile>
-    <ClCompile Include="Basic.cpp">
-      <Filter>소스 파일\Player\PlayerSkin</Filter>
-    </ClCompile>
-    <ClCompile Include="Engel.cpp">
-      <Filter>소스 파일\Player\PlayerSkin</Filter>
-    </ClCompile>
-    <ClCompile Include="Robot.cpp">
-      <Filter>소스 파일\Player\PlayerSkin</Filter>
-    </ClCompile>
-    <ClCompile Include="Spacesuit.cpp">
-      <Filter>소스 파일\Player\PlayerSkin</Filter>
-    </ClCompile>
-    <ClCompile Include="Suit.cpp">
-      <Filter>소스 파일\Player\PlayerSkin</Filter>
-    </ClCompile>
     <ClCompile Include="JumpProperty.cpp">
       <Filter>소스 파일\Player\Property</Filter>
     </ClCompile>
@@ -296,6 +296,24 @@
     </ClCompile>
     <ClCompile Include="PlayerNotification.cpp">
       <Filter>소스 파일\Mediator</Filter>
+    </ClCompile>
+    <ClCompile Include="Basic.cpp">
+      <Filter>소스 파일\Player\PlayerSkin\Basic</Filter>
+    </ClCompile>
+    <ClCompile Include="Devil.cpp">
+      <Filter>소스 파일\Player\PlayerSkin\Devil</Filter>
+    </ClCompile>
+    <ClCompile Include="Engel.cpp">
+      <Filter>소스 파일\Player\PlayerSkin\Engel</Filter>
+    </ClCompile>
+    <ClCompile Include="Robot.cpp">
+      <Filter>소스 파일\Player\PlayerSkin\Robot</Filter>
+    </ClCompile>
+    <ClCompile Include="Spacesuit.cpp">
+      <Filter>소스 파일\Player\PlayerSkin\Spacesuit</Filter>
+    </ClCompile>
+    <ClCompile Include="Suit.cpp">
+      <Filter>소스 파일\Player\PlayerSkin\Suit</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -404,26 +422,8 @@
     <ClInclude Include="PlayerSkin.h">
       <Filter>소스 파일\Player\PlayerSkin\Abstract</Filter>
     </ClInclude>
-    <ClInclude Include="Basic.h">
-      <Filter>소스 파일\Player\PlayerSkin</Filter>
-    </ClInclude>
-    <ClInclude Include="Devil.h">
-      <Filter>소스 파일\Player\PlayerSkin</Filter>
-    </ClInclude>
-    <ClInclude Include="Engel.h">
-      <Filter>소스 파일\Player\PlayerSkin</Filter>
-    </ClInclude>
     <ClInclude Include="Matrix.h">
       <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Robot.h">
-      <Filter>소스 파일\Player\PlayerSkin</Filter>
-    </ClInclude>
-    <ClInclude Include="Spacesuit.h">
-      <Filter>소스 파일\Player\PlayerSkin</Filter>
-    </ClInclude>
-    <ClInclude Include="Suit.h">
-      <Filter>소스 파일\Player\PlayerSkin</Filter>
     </ClInclude>
     <ClInclude Include="JumpProperty.h">
       <Filter>소스 파일\Player\Property</Filter>
@@ -454,6 +454,24 @@
     </ClInclude>
     <ClInclude Include="PlayerNotification.h">
       <Filter>소스 파일\Mediator</Filter>
+    </ClInclude>
+    <ClInclude Include="Basic.h">
+      <Filter>소스 파일\Player\PlayerSkin\Basic</Filter>
+    </ClInclude>
+    <ClInclude Include="Devil.h">
+      <Filter>소스 파일\Player\PlayerSkin\Devil</Filter>
+    </ClInclude>
+    <ClInclude Include="Engel.h">
+      <Filter>소스 파일\Player\PlayerSkin\Engel</Filter>
+    </ClInclude>
+    <ClInclude Include="Robot.h">
+      <Filter>소스 파일\Player\PlayerSkin\Robot</Filter>
+    </ClInclude>
+    <ClInclude Include="Spacesuit.h">
+      <Filter>소스 파일\Player\PlayerSkin\Spacesuit</Filter>
+    </ClInclude>
+    <ClInclude Include="Suit.h">
+      <Filter>소스 파일\Player\PlayerSkin\Suit</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

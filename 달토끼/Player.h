@@ -48,10 +48,10 @@ class CPlayer
 	int m_MySide{ 0 };
 
 private:
-	void CheckDead();
-	float BodyRotateDegree();
+	float BodyRotateDegree(); //함수이름 나중에 수정
+	void JumpRotate(); //함수이름 나중에 수정
 	void Calculate_JumpVector();
-	void JumpRotate();
+	void CheckDead();
 
 	static void InitBody();
 	static void InitEar();
@@ -78,7 +78,8 @@ public:
 	void FrontJump();
 	void RightJump();
 	void LeftJump();
-
+	void Fall();
+	
 	/////////////////////////////////State Change
 	void StateChange_FrontJump();
 	void StateChange_RightJump();

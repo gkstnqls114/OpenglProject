@@ -217,6 +217,16 @@ void CPlayer::LeftJump()
 	if (m_pPlayerNotification) m_pPlayerNotification->Notify(this);
 }
 
+void CPlayer::Fall()
+{
+	m_Matrix->Calu_Rotate(10, 0, 1, 0);
+	m_Pos.y -= 3;
+
+	if (m_Pos.y <= -200) {
+		StateChange_Dead();
+	}
+}
+
 void CPlayer::StateChange_FrontJump()
 {
 	m_BoardNum += 1;
@@ -261,6 +271,7 @@ void CPlayer::StateChange_Fall()
 
 void CPlayer::StateChange_Dead()
 {
+	Init_GameOver();
 	m_PlayerState = &DeadState;
 }
 
@@ -274,13 +285,7 @@ void CPlayer::Calculate_JumpVector()
 	tempVector.z = - m_JumpProperty.m_power * cos(radian);
 	tempVector.y = m_JumpProperty.m_power * sin(radian)
 		- m_JumpProperty.k_gravity * m_JumpProperty.m_JumpTime;
-	//if (IsRight) {
-	//	m_vector_x = 20.f / m_FinishJumpTime;
-	//}
-	//else if (IsLeft) {
-	//	m_vector_x = -20.f / m_FinishJumpTime;
-	//}
-
+	
 	m_Pos.x += tempVector.x;
 	m_Pos.y += tempVector.y;
 	m_Pos.z += tempVector.z;
