@@ -136,9 +136,6 @@
     <Filter Include="소스 파일\Observer">
       <UniqueIdentifier>{9221adbf-0844-4308-9adc-6686e31f2c4a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\Observer\Road">
-      <UniqueIdentifier>{4b31c3d6-ebb1-4d12-85cc-85027509c872}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\Observer\Camera">
       <UniqueIdentifier>{05189fed-5f1b-4f04-aa51-19db54497a0e}</UniqueIdentifier>
     </Filter>
@@ -169,6 +166,27 @@
     <Filter Include="소스 파일\Observer\Item">
       <UniqueIdentifier>{65dc07d0-4ca3-440a-9c34-44873a7cb74d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Road">
+      <UniqueIdentifier>{578427ee-78f8-4782-a051-0331483d9f88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Road\FootBoard">
+      <UniqueIdentifier>{988bad74-8a61-4eec-80f3-612ed0a76efa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Road\Road">
+      <UniqueIdentifier>{bf362806-b361-40b7-9cbf-b9fa38ea6f94}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Road\RoadState">
+      <UniqueIdentifier>{424f4b81-7c38-4a25-acd6-d0653ee39c62}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Road\RoadState\Abstract">
+      <UniqueIdentifier>{a03fb4df-9107-4430-9043-2d1ffcc3247f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Road\RoadState\Disappear">
+      <UniqueIdentifier>{58e29025-f105-4bc2-a867-a3f3d4675e96}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Road\RoadState\Stop">
+      <UniqueIdentifier>{3d882605-7441-49e0-8788-6f3e1896b855}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GLFramework.cpp">
@@ -182,12 +200,6 @@
     </ClCompile>
     <ClCompile Include="Matrix.cpp">
       <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="FootBoard.cpp">
-      <Filter>소스 파일\Observer\Road</Filter>
-    </ClCompile>
-    <ClCompile Include="Road.cpp">
-      <Filter>소스 파일\Observer\Road</Filter>
     </ClCompile>
     <ClCompile Include="Camera.cpp">
       <Filter>소스 파일\Observer\Camera</Filter>
@@ -330,6 +342,21 @@
     <ClCompile Include="RoadObserver.cpp">
       <Filter>소스 파일\ObserverSystem\RoadObserver</Filter>
     </ClCompile>
+    <ClCompile Include="FootBoard.cpp">
+      <Filter>소스 파일\Road\FootBoard</Filter>
+    </ClCompile>
+    <ClCompile Include="Road.cpp">
+      <Filter>소스 파일\Road\Road</Filter>
+    </ClCompile>
+    <ClCompile Include="RoadState.cpp">
+      <Filter>소스 파일\Road\RoadState\Abstract</Filter>
+    </ClCompile>
+    <ClCompile Include="Disappear.cpp">
+      <Filter>소스 파일\Road\RoadState\Disappear</Filter>
+    </ClCompile>
+    <ClCompile Include="Stop.cpp">
+      <Filter>소스 파일\Road\RoadState\Stop</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GLFramework.h">
@@ -337,12 +364,6 @@
     </ClInclude>
     <ClInclude Include="pch.h">
       <Filter>소스 파일\main</Filter>
-    </ClInclude>
-    <ClInclude Include="FootBoard.h">
-      <Filter>소스 파일\Observer\Road</Filter>
-    </ClInclude>
-    <ClInclude Include="Road.h">
-      <Filter>소스 파일\Observer\Road</Filter>
     </ClInclude>
     <ClInclude Include="Camera.h">
       <Filter>소스 파일\Observer\Camera</Filter>
@@ -493,6 +514,21 @@
     </ClInclude>
     <ClInclude Include="RoadObserver.h">
       <Filter>소스 파일\ObserverSystem\RoadObserver</Filter>
+    </ClInclude>
+    <ClInclude Include="FootBoard.h">
+      <Filter>소스 파일\Road\FootBoard</Filter>
+    </ClInclude>
+    <ClInclude Include="Road.h">
+      <Filter>소스 파일\Road\Road</Filter>
+    </ClInclude>
+    <ClInclude Include="RoadState.h">
+      <Filter>소스 파일\Road\RoadState\Abstract</Filter>
+    </ClInclude>
+    <ClInclude Include="Disappear.h">
+      <Filter>소스 파일\Road\RoadState\Disappear</Filter>
+    </ClInclude>
+    <ClInclude Include="Stop.h">
+      <Filter>소스 파일\Road\RoadState\Stop</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

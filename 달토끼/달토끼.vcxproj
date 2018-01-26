@@ -159,6 +159,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Basic.cpp" />
+    <ClCompile Include="Disappear.cpp" />
+    <ClCompile Include="RoadState.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="ClearObject.cpp" />
     <ClCompile Include="CLoadingScene.cpp" />
@@ -215,6 +217,7 @@
     <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="Spacesuit.cpp" />
     <ClCompile Include="Star.cpp" />
+    <ClCompile Include="Stop.cpp" />
     <ClCompile Include="Suit.cpp" />
     <ClCompile Include="TestScene.cpp" />
     <ClCompile Include="Texture.cpp" />
@@ -223,6 +226,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Basic.h" />
+    <ClInclude Include="Disappear.h" />
+    <ClInclude Include="RoadState.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="ClearObject.h" />
     <ClInclude Include="CLoadingScene.h" />
@@ -269,6 +274,7 @@
     <ClInclude Include="SoundManager.h" />
     <ClInclude Include="Spacesuit.h" />
     <ClInclude Include="Star.h" />
+    <ClInclude Include="Stop.h" />
     <ClInclude Include="Suit.h" />
     <ClInclude Include="TestScene.h" />
     <ClInclude Include="Texture.h" />

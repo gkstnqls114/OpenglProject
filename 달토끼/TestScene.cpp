@@ -22,7 +22,7 @@ CTestScene::CTestScene()
 	m_Camera->Rotate(25, 20);
 
 	m_Player->SetPlayerObserver(m_PlayerObserver);
-	m_Road->SetRoadObserver(m_RoadObserver);
+	m_Road->Set_RoadObserver(m_RoadObserver);
 	m_PlayerObserver->Add_Observer(m_Camera);
 	m_RoadObserver->Add_Observer(m_Player);
 }

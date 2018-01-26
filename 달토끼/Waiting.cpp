@@ -34,3 +34,13 @@ void CWaiting::SpecialKeys(CPlayer * player, const int & key)
 		player->StateChange_LeftJump();
 	}
 }
+
+
+Waiting::Waiting()
+{
+}
+
+
+Waiting::~Waiting()
+{
+}

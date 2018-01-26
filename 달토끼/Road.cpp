@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "Mediator.h"
 #include "FootBoard.h"
+#include "RoadState.h"
 #include "Road.h"
 
 
@@ -75,13 +76,12 @@ CRoad::~CRoad()
 
 void CRoad::Render()
 {
-	if (isPlayerDead) return;
-
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-	int MaxNum = min(m_boardNum - 1, m_PlayerPosNum + 5);
-	for (int x = m_DisappearBoardNum; x < MaxNum; ++x) {
+	//플레이어 위치 기준으로 다섯개까지 렌더한다.
+	int MaxNum = min(m_boardNum - 1, m_PlayerBoardIndex + 5);
+	for (int x = m_DisappearingBoardIndex; x < MaxNum; ++x) {
 		m_pFootBoard[x].Render();
 	}
 	m_pFootBoard[m_boardNum - 1].Render();
@@ -90,30 +90,29 @@ void CRoad::Render()
 
 void CRoad::AllRender()
 {
-	int MaxNum = min(m_boardNum, m_PlayerPosNum + 8);
-	for (int x = m_DisappearBoardNum; x < MaxNum; ++x) {
+	//int MaxNum = min(m_boardNum, m_PlayerBoardIndex + 8);
+	for (int x = m_DisappearingBoardIndex; x < m_boardNum; ++x) {
 		m_pFootBoard[x].Render();
 	}
 }
 
 void CRoad::Update()
 {
-	if (isGameClear) {
-		m_pFootBoard[m_boardNum - 1].LightDisappear();
-		return;
-	}
-	if (isPlayerDead) return;
+	if (m_RoadState) m_RoadState->Update(this);
 
-	m_pFootBoard[m_DisappearBoardNum].Update();
+	//if (isGameClear) {
+	//	m_pFootBoard[m_boardNum - 1].LightDisappear();
+	//	return;
+	//}
 
-	if (m_pFootBoard[m_PlayerPosNum].GetDisappear()) {
-		m_pMediator->Player_Dead();
-	}
+	//if (m_pFootBoard[m_PlayerBoardIndex].GetDisappear()) {
+	//	m_pMediator->Player_Dead();
+	//}
 
 	//위 if문과 순서 중요!
-	if (m_pFootBoard[m_DisappearBoardNum].GetDisappear()) {
-		m_DisappearBoardNum += 1;
-	}
+	//if (m_pFootBoard[m_DisappearingBoardIndex].GetDisappear()) {
+	//	m_DisappearingBoardIndex += 1;
+	//}
 }
 
 const CVector3D<> CRoad::GetLastPos() const noexcept
@@ -148,6 +147,25 @@ const CVector3D<> CRoad::GetCenterPos() const noexcept
 	return Center;
 }
 
+void CRoad::Disappear()
+{
+	m_pFootBoard[m_DisappearingBoardIndex].Update();
+}
+
+void CRoad::Stop()
+{
+	//아무 행동도 하지 않는다.
+	//doing nothing
+}
+
+void CRoad::StateChange_Disappear()
+{
+}
+
+void CRoad::StateChange_Stop()
+{
+}
+
 void CRoad::Init_GameScene()
 {
 	for (int index = 0; index < m_boardNum; ++index) {
@@ -156,15 +174,13 @@ void CRoad::Init_GameScene()
 	m_pFootBoard[m_boardNum - 1].IsLight();
 	InitFootBoardPos(JumpReach);
 
-	m_PlayerPosNum = 0;
-	m_DisappearBoardNum = 0;
-	isPlayerDead = false;
-	isGameClear = false;
+	m_PlayerBoardIndex = 0;
+	m_DisappearingBoardIndex = 0;
 }
 
 void CRoad::Player_JumpStart()
 {
-	m_PlayerPosNum += 1;
+	m_PlayerBoardIndex += 1;
 }
 
 void CRoad::Player_Jumping()
@@ -175,36 +191,22 @@ void CRoad::Player_Jumping()
 void CRoad::Player_JumpFinish(int playerside)
 {
 	//플레이어 위치가 올바른 곳인지 확인
-	bool IsWrongPos = m_pFootBoard[m_PlayerPosNum].GetSide() != playerside;
+	bool IsWrongPos = m_pFootBoard[m_PlayerBoardIndex].GetSide() != playerside;
 	if (IsWrongPos) {
 		m_pMediator->Player_Dead();
 		return;
 	}
-	bool IsGameClear = m_PlayerPosNum == (m_boardNum - 1);
+	bool IsGameClear = m_PlayerBoardIndex == (m_boardNum - 1);
 	if (IsGameClear) {
 		m_pFootBoard[m_boardNum - 1].IsNotLight();
 		m_pMediator->Player_Clear();
 		return;
 	}
 
-	if (m_PlayerPosNum - 2 < 0) {
-		m_DisappearBoardNum = 0;
+	if (m_PlayerBoardIndex - 2 < 0) {
+		m_DisappearingBoardIndex = 0;
 	}
 	else {
-		m_DisappearBoardNum = m_PlayerPosNum - 2;
+		m_DisappearingBoardIndex = m_PlayerBoardIndex - 2;
 	}
-}
-
-void CRoad::Player_Dead()
-{
-	isPlayerDead = true;
-}
-
-void CRoad::Player_Fall()
-{
-}
-
-void CRoad::Player_Clear()
-{
-	isGameClear = true;
 }

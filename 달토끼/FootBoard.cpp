@@ -78,8 +78,6 @@ void CFootBoard::Render()
 
 void CFootBoard::Update()
 {
-	
-
 	if (IsDisappear) return;
 	Disappear();
 }

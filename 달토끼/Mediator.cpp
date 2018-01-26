@@ -126,14 +126,12 @@ void CMediator::Player_Fall()
 {
 	PushPlayQueue("FallEffect", CVector3D<float>());
 
-	if (m_pRoad)	m_pRoad->Player_Fall();
 	if (m_pCamera)	m_pCamera->Player_Fall();
 }
 
 void CMediator::Player_Clear()
 {
-	if (m_pRoad)	m_pRoad->Player_Clear();/*
-	if (m_pCamera)	m_pCamera->Player_Clear(m_pPlayer->Get_Sidedegree());*/
+	//if (m_pCamera)	m_pCamera->Player_Clear(m_pPlayer->Get_Sidedegree());*/
 }
 
 void CMediator::Init_GameOver()
