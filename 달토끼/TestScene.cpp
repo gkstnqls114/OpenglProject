@@ -25,6 +25,7 @@ CTestScene::CTestScene()
 	m_Road->Set_RoadObserver(m_RoadObserver);
 	m_PlayerObserver->Add_Observer(m_Camera);
 	m_RoadObserver->Add_Observer(m_Player);
+
 }
 
 
@@ -78,6 +79,7 @@ void CTestScene::Timer(const int & value)
 void CTestScene::Update()
 {
 	m_Player->Update();
+	m_Road->Update();
 }
 
 void CTestScene::Keyboard(const unsigned char & key, const int & x, const int & y)

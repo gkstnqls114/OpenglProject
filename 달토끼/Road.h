@@ -1,4 +1,6 @@
 #pragma once
+#include "Disappear.h"
+#include "Stop.h"
 #include "Observer.h"
 
 class RoadState;
@@ -15,6 +17,10 @@ class CRoad : public Observer
 	int				m_DisappearingBoardIndex{ 0 };
 
 	RoadState*		m_RoadState{ nullptr };
+	
+	Stop		StopState;
+	Disappear	DisappearState;
+	
 
 	GLdouble		JumpReach{ -1 };
 
@@ -36,10 +42,7 @@ public:
 	void AllRender();
 	void Update();
 
-	const CVector3D<> GetLastPos() const noexcept;
-	const CVector3D<> GetFirstPos() const noexcept;
-	const CVector3D<> GetCenterPos() const noexcept;
-	
+
 	void Disappear();
 	void Stop();
 
@@ -47,6 +50,13 @@ public:
 	void StateChange_Disappear();
 	void StateChange_Stop();
 	/////////////////////////////////State Change
+
+	/////////////////////////////////Get
+	const CVector3D<> GetLastPos() const noexcept;
+	const CVector3D<> GetFirstPos() const noexcept;
+	const CVector3D<> GetCenterPos() const noexcept;
+	const int Get_DisappearingBoardIndex() const noexcept { return m_DisappearingBoardIndex; }
+	/////////////////////////////////Get
 
 	/////////////////////////////////Set
 	void Set_PlayerBoardIndex(const int& playerboardindex) noexcept { m_PlayerBoardIndex = playerboardindex; }

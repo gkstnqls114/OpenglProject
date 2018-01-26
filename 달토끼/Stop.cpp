@@ -12,6 +12,10 @@ Stop::~Stop()
 {
 }
 
+void Stop::Initialize()
+{
+}
+
 void Stop::Update(CRoad * road)
 {
 	road->Stop();

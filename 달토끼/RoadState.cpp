@@ -11,3 +11,7 @@ RoadState::~RoadState()
 {
 
 }
+
+void RoadState::Initialize()
+{
+}

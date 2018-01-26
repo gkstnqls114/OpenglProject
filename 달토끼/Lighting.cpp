@@ -34,7 +34,8 @@ void CLighting::SettingLight()
 
 void CLighting::Enable()
 {
-	glEnable(GL_LIGHTx);
+	
+	(GL_LIGHTx);
 }
 
 void CLighting::Disable()

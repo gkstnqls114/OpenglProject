@@ -55,6 +55,8 @@ CRoad::CRoad(const GLdouble & distance)
 
 	InitFootBoardModel();
 	InitFootBoardPos(distance);
+
+	StateChange_Disappear();
 }
 
 CRoad::CRoad(const GLdouble& distance, CMediator*& mediator)
@@ -99,20 +101,6 @@ void CRoad::AllRender()
 void CRoad::Update()
 {
 	if (m_RoadState) m_RoadState->Update(this);
-
-	//if (isGameClear) {
-	//	m_pFootBoard[m_boardNum - 1].LightDisappear();
-	//	return;
-	//}
-
-	//if (m_pFootBoard[m_PlayerBoardIndex].GetDisappear()) {
-	//	m_pMediator->Player_Dead();
-	//}
-
-	//위 if문과 순서 중요!
-	//if (m_pFootBoard[m_DisappearingBoardIndex].GetDisappear()) {
-	//	m_DisappearingBoardIndex += 1;
-	//}
 }
 
 const CVector3D<> CRoad::GetLastPos() const noexcept
@@ -150,6 +138,15 @@ const CVector3D<> CRoad::GetCenterPos() const noexcept
 void CRoad::Disappear()
 {
 	m_pFootBoard[m_DisappearingBoardIndex].Update();
+	
+	//if (m_pFootBoard[m_PlayerBoardIndex].GetDisappear()) {
+	//	m_pMediator->Player_Dead();
+	//}
+
+	//위 if문과 순서 중요!
+	if (m_pFootBoard[m_DisappearingBoardIndex].GetDisappear()) {
+		m_DisappearingBoardIndex += 1;
+	}
 }
 
 void CRoad::Stop()
@@ -160,10 +157,12 @@ void CRoad::Stop()
 
 void CRoad::StateChange_Disappear()
 {
+	m_RoadState = &DisappearState;
 }
 
 void CRoad::StateChange_Stop()
 {
+	m_RoadState = &StopState;
 }
 
 void CRoad::Init_GameScene()

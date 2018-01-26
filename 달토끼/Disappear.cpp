@@ -14,6 +14,10 @@ Disappear::~Disappear()
 
 }
 
+void Disappear::Initialize()
+{
+}
+
 void Disappear::Update(CRoad * road)
 {
 	road->Disappear();

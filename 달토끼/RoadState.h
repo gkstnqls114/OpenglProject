@@ -8,6 +8,6 @@ public:
 	RoadState();
 	virtual ~RoadState();
 
-	virtual void Initialize() = 0;
+	virtual void Initialize();
 	virtual void Update(CRoad* road) = 0;
 };
