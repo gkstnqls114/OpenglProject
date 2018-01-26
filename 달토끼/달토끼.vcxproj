@@ -161,7 +161,8 @@
     <ClCompile Include="Basic.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="ClearObject.cpp" />
-    <ClCompile Include="Colleague.cpp" />
+    <ClCompile Include="CLoadingScene.cpp" />
+    <ClCompile Include="Observer.cpp" />
     <ClCompile Include="Dead.cpp" />
     <ClCompile Include="Devil.cpp" />
     <ClCompile Include="Earth.cpp" />
@@ -198,12 +199,13 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <ClCompile Include="Player.cpp" />
-    <ClCompile Include="PlayerNotification.cpp" />
+    <ClCompile Include="PlayerObserver.cpp" />
     <ClCompile Include="PlayerSkin.cpp" />
     <ClCompile Include="PlayerState.cpp" />
     <ClCompile Include="PLAY_word.cpp" />
     <ClCompile Include="RightJump.cpp" />
     <ClCompile Include="Road.cpp" />
+    <ClCompile Include="RoadObserver.cpp" />
     <ClCompile Include="Robot.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="GameScene.cpp" />
@@ -223,7 +225,8 @@
     <ClInclude Include="Basic.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="ClearObject.h" />
-    <ClInclude Include="Colleague.h" />
+    <ClInclude Include="CLoadingScene.h" />
+    <ClInclude Include="Observer.h" />
     <ClInclude Include="Dead.h" />
     <ClInclude Include="Devil.h" />
     <ClInclude Include="Earth.h" />
@@ -250,12 +253,13 @@
     <ClInclude Include="ObjModel.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Player.h" />
-    <ClInclude Include="PlayerNotification.h" />
+    <ClInclude Include="PlayerObserver.h" />
     <ClInclude Include="PlayerSkin.h" />
     <ClInclude Include="PlayerState.h" />
     <ClInclude Include="PLAY_word.h" />
     <ClInclude Include="RightJump.h" />
     <ClInclude Include="Road.h" />
+    <ClInclude Include="RoadObserver.h" />
     <ClInclude Include="Robot.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="GameScene.h" />

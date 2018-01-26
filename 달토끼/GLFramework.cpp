@@ -148,7 +148,7 @@ void CGLFramework::Bind()
 	glutTimerFunc(m_fps, fnTimer, 1);
 }
 
-void CGLFramework::ChangeScene(CScene * newScene)
+void CGLFramework::ChangeScene(Scene * newScene)
 {
 	//auto old = m_CurrScene;
 	//m_CurrScene = newScene;

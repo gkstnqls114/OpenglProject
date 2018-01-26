@@ -8,7 +8,7 @@ class CCamera;
 class CGAMEOVER_word;
 
 class CGameOver:
-	public CScene
+	public Scene
 {
 	CSceneManager*		m_pSceneManager{ nullptr };
 

@@ -1,10 +1,11 @@
 #pragma once
-#include "Colleague.h"
+#include "Observer.h"
 
 class CMediator;
 class CPlayer;
 
-class CCamera : public CColleague
+class CCamera 
+	: public Observer
 {
 	CVector3D<> m_at{ 0.f, 0.f, 0.f };
 	CVector3D<> m_up{ 0.f, 1.f,0.f };

@@ -1,16 +1,16 @@
 #pragma once
 
-class CScene;
+class Scene;
 
 class CSceneManager
 {
-	CScene* m_pCurrScene{ nullptr };
+	Scene* m_pCurrScene{ nullptr };
 
-	CScene* m_GameScene	{ nullptr };
-	CScene* m_MainScene	{ nullptr };
-	CScene* m_GameOverScene{ nullptr };
-	CScene* m_GameClearScene{ nullptr };
-	CScene* m_TestScene	{ nullptr };
+	Scene* m_GameScene	{ nullptr };
+	Scene* m_MainScene	{ nullptr };
+	Scene* m_GameOverScene{ nullptr };
+	Scene* m_GameClearScene{ nullptr };
+	Scene* m_TestScene	{ nullptr };
 
 public:
 	CSceneManager();

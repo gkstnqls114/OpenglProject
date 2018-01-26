@@ -1,29 +1,32 @@
 #pragma once
-#include "Colleague.h"
+#include "Observer.h"
 
 class CFootBoard;
 class CMediator;
+class RoadObserver;
 
-class CRoad : public CColleague
+class CRoad : public Observer
 {
-	const int k_side[3] = { k_left, k_front, k_right };
-	CFootBoard* m_pFootBoard;
-	int m_boardNum{ 5 };
-	int m_PlayerPosNum{ 0 };
-	int m_DisappearBoardNum{ 0 };
+	const int		k_side[3] = { k_left, k_front, k_right };
+	CFootBoard*		m_pFootBoard;
+	int				m_boardNum{ 5 };
+	int				m_PlayerPosNum{ 0 };
+	int				m_DisappearBoardNum{ 0 };
 
-	GLdouble JumpReach{ -1 };
+	GLdouble		JumpReach{ -1 };
 
-	CMediator* m_pMediator{ nullptr };
+	CMediator*		m_pMediator{ nullptr };
+	RoadObserver*	m_pRoadObserver{ nullptr };
 
-	bool isPlayerDead{ false };
-	bool isGameClear{ false };
+	bool			isPlayerDead{ false };
+	bool			isGameClear{ false };
 
 private:
 	void InitFootBoardModel();
 	void InitFootBoardPos(const GLdouble& distance);
 
 public:
+	CRoad(const GLdouble& distance);
 	CRoad(const GLdouble& distance, CMediator*& mediator);
 	~CRoad();
 
@@ -44,5 +47,7 @@ public:
 	virtual void Player_Fall();
 
 	virtual void Player_Clear();
+	
+	void SetRoadObserver(RoadObserver* notification) noexcept { m_pRoadObserver = notification; };
 
 };

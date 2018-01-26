@@ -2,7 +2,7 @@
 #include "Scene.h"
 
 
-void CScene::RenderAxis()
+void Scene::RenderAxis()
 {
 	//좌표축 중심선을 그린다.
 
@@ -45,11 +45,11 @@ void CScene::RenderAxis()
 	glPointSize(1);
 }
 
-CScene::CScene()
+Scene::Scene()
 {
 }
 
 
-CScene::~CScene()
+Scene::~Scene()
 {
 }

@@ -54,6 +54,9 @@ void CTextureStorage::StoreBitmap(const char * filename, GLuint& ID)
 
 GLubyte * CTextureStorage::LoadMyBitmap(const char * filename, BITMAPINFO*& info)
 {
+	// filename: 
+	//
+	//
 	FILE *fp = NULL;
 	
 	GLubyte * pbit;

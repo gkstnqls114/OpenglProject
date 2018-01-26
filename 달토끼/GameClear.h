@@ -10,7 +10,7 @@ class CGAMECLEAR_word;
 class CTextureStorage;
 
 class CGameClear :
-	public CScene
+	public Scene
 {
 	CSceneManager*		m_pSceneManager{ nullptr };
 

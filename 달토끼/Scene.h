@@ -1,13 +1,13 @@
 #pragma once
 
-class CScene
+class Scene
 {
 protected:
 	void RenderAxis();
 
 public:
-	CScene();
-	virtual ~CScene();
+	Scene();
+	virtual ~Scene();
 
 	virtual void Initialize() {}
 	virtual void SoundStop() {}

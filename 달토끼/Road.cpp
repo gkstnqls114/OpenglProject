@@ -48,6 +48,14 @@ void CRoad::InitFootBoardPos(const GLdouble& distance)
 	m_pFootBoard[m_boardNum - 1].IsLight();
 }
 
+CRoad::CRoad(const GLdouble & distance)
+{
+	m_boardNum = 100;
+
+	InitFootBoardModel();
+	InitFootBoardPos(distance);
+}
+
 CRoad::CRoad(const GLdouble& distance, CMediator*& mediator)
 {
 	m_boardNum = 100;

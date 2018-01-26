@@ -1,4 +1,5 @@
 #pragma once
+#include "Observer.h"
 #include "Waiting.h"
 #include "FrontJump.h"
 #include "RightJump.h"
@@ -15,17 +16,18 @@ class CRoad;
 class CCamera;
 
 class CPlayerState;
-class CPlayerNotification;
+class PlayerObserver;
 
 
 class CPlayer
+	: public Observer
 {
 	static CObjModel* m_Rabit_Body		;
 	static CObjModel* m_Rabit_Ear		;
 	static CObjModel* m_Rabit_LeftFoot	;
 	static CObjModel* m_Rabit_RightFoot	;
 
-	CPlayerNotification* m_pPlayerNotification{ nullptr };
+	PlayerObserver* m_pPlayerObserver{ nullptr };
 
 	//플레이어 위치
 	CVector3D<> m_Pos;
@@ -92,6 +94,8 @@ public:
 	/////////////////////////////////Mediator
 	virtual void Init_GameScene();
 	virtual void Init_GameOver();
+	virtual void Notify(CPlayer* player) {};
+	virtual void Notify(CRoad* road);
 	/////////////////////////////////Mediator
 
 	/////////////////////////////////GET
@@ -105,8 +109,7 @@ public:
 	void RotateX(const int degree);
 	void RotateY(const int degree);
 	void RotateZ(const int degree);
-	void SetPlayerNotification(CPlayerNotification* notification) noexcept { m_pPlayerNotification = notification; };
+	void SetPlayerObserver(PlayerObserver* notification) noexcept { m_pPlayerObserver = notification; };
 	/////////////////////////////////SET
 
 };
-

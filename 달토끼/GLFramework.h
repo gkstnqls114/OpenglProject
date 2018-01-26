@@ -1,6 +1,6 @@
 #pragma once
 
-class CScene;
+class Scene;
 class CGameScene;
 class CSceneManager;
 //class CSoundManager;
@@ -47,7 +47,7 @@ public:
 
 	void Bind();
 
-	void ChangeScene(CScene* newScene);
+	void ChangeScene(Scene* newScene);
 private:
 
 	TimerFunc	fnTimer{ nullptr };
@@ -58,7 +58,7 @@ private:
 	
 	int m_fps = 16;
 
-	//CScene *		m_CurrScene{ nullptr };
+	//Scene *		m_CurrScene{ nullptr };
 	CSceneManager*	m_SceneChager{ nullptr };
 };
 

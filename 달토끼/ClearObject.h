@@ -1,11 +1,11 @@
 #pragma once
-#include "Colleague.h"
+#include "Observer.h"
 
 class CObjModel;
 class CMatrix;
 
 class CClearObject :
-	public CColleague
+	public Observer
 {
 	CVector3D<> m_Position;
 

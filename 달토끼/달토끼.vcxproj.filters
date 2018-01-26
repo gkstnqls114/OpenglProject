@@ -21,18 +21,6 @@
     <Filter Include="소스 파일\Vector3D">
       <UniqueIdentifier>{fce4f147-7546-4645-999d-2424d9e5ef4f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\Mediator">
-      <UniqueIdentifier>{caf245db-854e-46f8-8e7d-a90c57fd5116}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Colleague">
-      <UniqueIdentifier>{9221adbf-0844-4308-9adc-6686e31f2c4a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Colleague\Road">
-      <UniqueIdentifier>{4b31c3d6-ebb1-4d12-85cc-85027509c872}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Colleague\Camera">
-      <UniqueIdentifier>{05189fed-5f1b-4f04-aa51-19db54497a0e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\Obj">
       <UniqueIdentifier>{b11b9882-ac81-4f59-a0f5-e4bf18e6de5a}</UniqueIdentifier>
     </Filter>
@@ -44,15 +32,6 @@
     </Filter>
     <Filter Include="소스 파일\Obj\ObjModel">
       <UniqueIdentifier>{693889c6-6244-457a-90da-42147949f26e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Colleague\Earth">
-      <UniqueIdentifier>{c8e6adc9-4bdb-4c67-8f61-df72d5aff937}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Colleague\Moon">
-      <UniqueIdentifier>{94a5306b-6b55-4878-91c4-9ad086f20612}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\SoundManager">
-      <UniqueIdentifier>{7f80c40f-4838-4681-8c49-425d46b99e81}</UniqueIdentifier>
     </Filter>
     <Filter Include="소스 파일\Obj\Texture">
       <UniqueIdentifier>{4b807b19-bb2f-4ffc-92b9-2a86523c2bdc}</UniqueIdentifier>
@@ -69,15 +48,6 @@
     <Filter Include="소스 파일\GLFramework\Scene\Test">
       <UniqueIdentifier>{f47d3332-19e9-4669-a7e9-67a30a62a640}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\Colleague\Word">
-      <UniqueIdentifier>{c284c672-0942-4f79-8326-02161871e0d3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Colleague\Word\PLAY">
-      <UniqueIdentifier>{e0c183f0-f991-4b13-b715-70317c9fc473}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Colleague\Word\EXIT">
-      <UniqueIdentifier>{2170e337-faf2-4d22-8226-5e81e8713e38}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\GLFramework\Scene\Gameover">
       <UniqueIdentifier>{5055bdde-f01b-45e7-b1fb-b99378f7a5c3}</UniqueIdentifier>
     </Filter>
@@ -90,15 +60,6 @@
     <Filter Include="헤더 파일">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
-    <Filter Include="소스 파일\Colleague\Word\GAMEOVER">
-      <UniqueIdentifier>{07ed6f2a-6d72-4c5d-9e13-0561fe7d13a1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Colleague\Word\GAMECLEAR">
-      <UniqueIdentifier>{29190dd2-b037-4b5d-aea3-d5f7e0339f96}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Colleague\ClearObj">
-      <UniqueIdentifier>{efdb6548-ecd7-46ba-9730-41b18310fdf9}</UniqueIdentifier>
     </Filter>
     <Filter Include="소스 파일\Player">
       <UniqueIdentifier>{f40500c5-b1a2-4703-9248-12520fe80484}</UniqueIdentifier>
@@ -117,9 +78,6 @@
     </Filter>
     <Filter Include="소스 파일\GLFramework\Scene\Loading">
       <UniqueIdentifier>{3bfab06f-f278-40ae-87a2-e384a53bb837}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Colleague\Item">
-      <UniqueIdentifier>{65dc07d0-4ca3-440a-9c34-44873a7cb74d}</UniqueIdentifier>
     </Filter>
     <Filter Include="소스 파일\Player\PlayerSkin\Basic">
       <UniqueIdentifier>{b7663889-d83a-420c-a833-c77b8467cee8}</UniqueIdentifier>
@@ -160,6 +118,57 @@
     <Filter Include="소스 파일\Player\PlayerState\Jump\Abstract">
       <UniqueIdentifier>{daecdb01-9f08-4011-b64c-64fc6c68afaf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Manager">
+      <UniqueIdentifier>{caf245db-854e-46f8-8e7d-a90c57fd5116}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Manager\SoundManager">
+      <UniqueIdentifier>{7f80c40f-4838-4681-8c49-425d46b99e81}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\ObserverSystem">
+      <UniqueIdentifier>{38b62163-7444-455e-ab14-11be1842dd99}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\ObserverSystem\PlayerObserver">
+      <UniqueIdentifier>{b5373b98-2ef4-4219-a5fb-d5fd73e61b50}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\ObserverSystem\RoadObserver">
+      <UniqueIdentifier>{3e906a19-135c-4043-baa3-86cdf2f7dd46}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Observer">
+      <UniqueIdentifier>{9221adbf-0844-4308-9adc-6686e31f2c4a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Observer\Road">
+      <UniqueIdentifier>{4b31c3d6-ebb1-4d12-85cc-85027509c872}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Observer\Camera">
+      <UniqueIdentifier>{05189fed-5f1b-4f04-aa51-19db54497a0e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Observer\Earth">
+      <UniqueIdentifier>{c8e6adc9-4bdb-4c67-8f61-df72d5aff937}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Observer\Moon">
+      <UniqueIdentifier>{94a5306b-6b55-4878-91c4-9ad086f20612}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Observer\Word">
+      <UniqueIdentifier>{c284c672-0942-4f79-8326-02161871e0d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Observer\Word\PLAY">
+      <UniqueIdentifier>{e0c183f0-f991-4b13-b715-70317c9fc473}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Observer\Word\EXIT">
+      <UniqueIdentifier>{2170e337-faf2-4d22-8226-5e81e8713e38}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Observer\Word\GAMEOVER">
+      <UniqueIdentifier>{07ed6f2a-6d72-4c5d-9e13-0561fe7d13a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Observer\Word\GAMECLEAR">
+      <UniqueIdentifier>{29190dd2-b037-4b5d-aea3-d5f7e0339f96}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Observer\ClearObj">
+      <UniqueIdentifier>{efdb6548-ecd7-46ba-9730-41b18310fdf9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Observer\Item">
+      <UniqueIdentifier>{65dc07d0-4ca3-440a-9c34-44873a7cb74d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GLFramework.cpp">
@@ -175,19 +184,19 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="FootBoard.cpp">
-      <Filter>소스 파일\Colleague\Road</Filter>
+      <Filter>소스 파일\Observer\Road</Filter>
     </ClCompile>
     <ClCompile Include="Road.cpp">
-      <Filter>소스 파일\Colleague\Road</Filter>
+      <Filter>소스 파일\Observer\Road</Filter>
     </ClCompile>
     <ClCompile Include="Camera.cpp">
-      <Filter>소스 파일\Colleague\Camera</Filter>
+      <Filter>소스 파일\Observer\Camera</Filter>
     </ClCompile>
     <ClCompile Include="MyRGB.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Mediator.cpp">
-      <Filter>소스 파일\Mediator</Filter>
+      <Filter>소스 파일\Manager</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>소스 파일\Player</Filter>
@@ -201,20 +210,17 @@
     <ClCompile Include="ObjModel.cpp">
       <Filter>소스 파일\Obj\ObjModel</Filter>
     </ClCompile>
-    <ClCompile Include="Colleague.cpp">
-      <Filter>소스 파일\Colleague</Filter>
-    </ClCompile>
     <ClCompile Include="Moon.cpp">
-      <Filter>소스 파일\Colleague\Moon</Filter>
+      <Filter>소스 파일\Observer\Moon</Filter>
     </ClCompile>
     <ClCompile Include="Earth.cpp">
-      <Filter>소스 파일\Colleague\Earth</Filter>
+      <Filter>소스 파일\Observer\Earth</Filter>
     </ClCompile>
     <ClCompile Include="PLAY_word.cpp">
-      <Filter>소스 파일\Colleague\Word\PLAY</Filter>
+      <Filter>소스 파일\Observer\Word\PLAY</Filter>
     </ClCompile>
     <ClCompile Include="EXIT_word.cpp">
-      <Filter>소스 파일\Colleague\Word\EXIT</Filter>
+      <Filter>소스 파일\Observer\Word\EXIT</Filter>
     </ClCompile>
     <ClCompile Include="Lighting.cpp">
       <Filter>소스 파일\Lighting</Filter>
@@ -235,7 +241,7 @@
       <Filter>소스 파일\GLFramework\Scene\Test</Filter>
     </ClCompile>
     <ClCompile Include="SceneManager.cpp">
-      <Filter>소스 파일\Mediator</Filter>
+      <Filter>소스 파일\Manager</Filter>
     </ClCompile>
     <ClCompile Include="GameClear.cpp">
       <Filter>소스 파일\GLFramework\Scene\GameClear</Filter>
@@ -250,16 +256,16 @@
       <Filter>소스 파일\Skybox</Filter>
     </ClCompile>
     <ClCompile Include="GAMEOVER_word.cpp">
-      <Filter>소스 파일\Colleague\Word\GAMEOVER</Filter>
+      <Filter>소스 파일\Observer\Word\GAMEOVER</Filter>
     </ClCompile>
     <ClCompile Include="GAMECLEAR_word.cpp">
-      <Filter>소스 파일\Colleague\Word\GAMECLEAR</Filter>
+      <Filter>소스 파일\Observer\Word\GAMECLEAR</Filter>
     </ClCompile>
     <ClCompile Include="SoundManager.cpp">
-      <Filter>소스 파일\SoundManager</Filter>
+      <Filter>소스 파일\Manager\SoundManager</Filter>
     </ClCompile>
     <ClCompile Include="ClearObject.cpp">
-      <Filter>소스 파일\Colleague\ClearObj</Filter>
+      <Filter>소스 파일\Observer\ClearObj</Filter>
     </ClCompile>
     <ClCompile Include="PlayerState.cpp">
       <Filter>소스 파일\Player\PlayerState\Abstract</Filter>
@@ -294,9 +300,6 @@
     <ClCompile Include="Jump.cpp">
       <Filter>소스 파일\Player\PlayerState\Jump\Abstract</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerNotification.cpp">
-      <Filter>소스 파일\Mediator</Filter>
-    </ClCompile>
     <ClCompile Include="Basic.cpp">
       <Filter>소스 파일\Player\PlayerSkin\Basic</Filter>
     </ClCompile>
@@ -315,6 +318,18 @@
     <ClCompile Include="Suit.cpp">
       <Filter>소스 파일\Player\PlayerSkin\Suit</Filter>
     </ClCompile>
+    <ClCompile Include="CLoadingScene.cpp">
+      <Filter>소스 파일\GLFramework\Scene\Loading</Filter>
+    </ClCompile>
+    <ClCompile Include="Observer.cpp">
+      <Filter>소스 파일\Observer</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerObserver.cpp">
+      <Filter>소스 파일\ObserverSystem\PlayerObserver</Filter>
+    </ClCompile>
+    <ClCompile Include="RoadObserver.cpp">
+      <Filter>소스 파일\ObserverSystem\RoadObserver</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GLFramework.h">
@@ -324,19 +339,19 @@
       <Filter>소스 파일\main</Filter>
     </ClInclude>
     <ClInclude Include="FootBoard.h">
-      <Filter>소스 파일\Colleague\Road</Filter>
+      <Filter>소스 파일\Observer\Road</Filter>
     </ClInclude>
     <ClInclude Include="Road.h">
-      <Filter>소스 파일\Colleague\Road</Filter>
+      <Filter>소스 파일\Observer\Road</Filter>
     </ClInclude>
     <ClInclude Include="Camera.h">
-      <Filter>소스 파일\Colleague\Camera</Filter>
+      <Filter>소스 파일\Observer\Camera</Filter>
     </ClInclude>
     <ClInclude Include="MyRGB.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Mediator.h">
-      <Filter>소스 파일\Mediator</Filter>
+      <Filter>소스 파일\Manager</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>소스 파일\Player</Filter>
@@ -350,20 +365,17 @@
     <ClInclude Include="ObjModel.h">
       <Filter>소스 파일\Obj\ObjModel</Filter>
     </ClInclude>
-    <ClInclude Include="Colleague.h">
-      <Filter>소스 파일\Colleague</Filter>
-    </ClInclude>
     <ClInclude Include="Moon.h">
-      <Filter>소스 파일\Colleague\Moon</Filter>
+      <Filter>소스 파일\Observer\Moon</Filter>
     </ClInclude>
     <ClInclude Include="Earth.h">
-      <Filter>소스 파일\Colleague\Earth</Filter>
+      <Filter>소스 파일\Observer\Earth</Filter>
     </ClInclude>
     <ClInclude Include="PLAY_word.h">
-      <Filter>소스 파일\Colleague\Word\PLAY</Filter>
+      <Filter>소스 파일\Observer\Word\PLAY</Filter>
     </ClInclude>
     <ClInclude Include="EXIT_word.h">
-      <Filter>소스 파일\Colleague\Word\EXIT</Filter>
+      <Filter>소스 파일\Observer\Word\EXIT</Filter>
     </ClInclude>
     <ClInclude Include="Lighting.h">
       <Filter>소스 파일\Lighting</Filter>
@@ -384,7 +396,7 @@
       <Filter>소스 파일\GLFramework\Scene\Test</Filter>
     </ClInclude>
     <ClInclude Include="SceneManager.h">
-      <Filter>소스 파일\Mediator</Filter>
+      <Filter>소스 파일\Manager</Filter>
     </ClInclude>
     <ClInclude Include="Gameover.h">
       <Filter>소스 파일\GLFramework\Scene\Gameover</Filter>
@@ -399,16 +411,16 @@
       <Filter>소스 파일\Skybox</Filter>
     </ClInclude>
     <ClInclude Include="GAMEOVER_word.h">
-      <Filter>소스 파일\Colleague\Word\GAMEOVER</Filter>
+      <Filter>소스 파일\Observer\Word\GAMEOVER</Filter>
     </ClInclude>
     <ClInclude Include="GAMECLEAR_word.h">
-      <Filter>소스 파일\Colleague\Word\GAMECLEAR</Filter>
+      <Filter>소스 파일\Observer\Word\GAMECLEAR</Filter>
     </ClInclude>
     <ClInclude Include="SoundManager.h">
-      <Filter>소스 파일\SoundManager</Filter>
+      <Filter>소스 파일\Manager\SoundManager</Filter>
     </ClInclude>
     <ClInclude Include="ClearObject.h">
-      <Filter>소스 파일\Colleague\ClearObj</Filter>
+      <Filter>소스 파일\Observer\ClearObj</Filter>
     </ClInclude>
     <ClInclude Include="Vector3D - 복사본.hpp">
       <Filter>소스 파일\Vector3D</Filter>
@@ -452,9 +464,6 @@
     <ClInclude Include="Jump.h">
       <Filter>소스 파일\Player\PlayerState\Jump\Abstract</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerNotification.h">
-      <Filter>소스 파일\Mediator</Filter>
-    </ClInclude>
     <ClInclude Include="Basic.h">
       <Filter>소스 파일\Player\PlayerSkin\Basic</Filter>
     </ClInclude>
@@ -472,6 +481,18 @@
     </ClInclude>
     <ClInclude Include="Suit.h">
       <Filter>소스 파일\Player\PlayerSkin\Suit</Filter>
+    </ClInclude>
+    <ClInclude Include="CLoadingScene.h">
+      <Filter>소스 파일\GLFramework\Scene\Loading</Filter>
+    </ClInclude>
+    <ClInclude Include="Observer.h">
+      <Filter>소스 파일\Observer</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerObserver.h">
+      <Filter>소스 파일\ObserverSystem\PlayerObserver</Filter>
+    </ClInclude>
+    <ClInclude Include="RoadObserver.h">
+      <Filter>소스 파일\ObserverSystem\RoadObserver</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

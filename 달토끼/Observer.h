@@ -1,16 +1,18 @@
 #pragma once
 
 class CPlayer;
+class CRoad;
 
-class CColleague
+class Observer
 {
 
 public:
-	CColleague();
-	~CColleague();
+	Observer();
+	~Observer();
 
 	virtual void Render() {};
 	virtual void Update() {};
 
 	virtual void Notify(const CPlayer* player) {};
+	virtual void Notify(const CRoad* road) {};
 };

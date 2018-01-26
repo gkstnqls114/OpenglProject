@@ -3,23 +3,26 @@
 
 class CSceneManager;
 class CTextureStorage;
-class CPlayerNotification;
+class PlayerObserver;
+class RoadObserver;
+class CRoad;
 
 class CTestScene :
-	public CScene
+	public Scene
 {
-	CSceneManager*		m_pSceneManager		{ nullptr };
 
-	CPlayerNotification*m_Notification		{ nullptr };
+	PlayerObserver*		m_PlayerObserver	{ nullptr };
+	RoadObserver*		m_RoadObserver		{ nullptr };
 	CPlayer *			m_Player			{ nullptr };
+	CRoad *				m_Road				{ nullptr };
 	CCamera*			m_Camera			{ nullptr };
 	
-	GLint				texture_object;
+	GLint				texture_object		{ 0 };
 	CTextureStorage*	m_texture			{ nullptr };
 
 
 public:
-	CTestScene(CSceneManager* const changer);
+	CTestScene();
 	virtual ~CTestScene();
 
 	virtual void Initialize();

@@ -13,7 +13,7 @@ class CCamera;
 class CTextureStorage;
 
 class CGameScene :
-	public CScene
+	public Scene
 {
 	CSceneManager*		m_pSceneManager	{ nullptr };
 

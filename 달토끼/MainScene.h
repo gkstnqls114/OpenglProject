@@ -14,7 +14,7 @@ class CSoundManager;
 
 
 class CMainScene :
-	public CScene
+	public Scene
 {
 	CVector3D<float> ClickPos;
 

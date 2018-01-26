@@ -4,22 +4,27 @@
 #include "Camera.h"
 #include "Player.h"
 #include "Texture.h"
-#include "PlayerNotification.h"
+#include "Road.h"
+#include "PlayerObserver.h"
+#include "RoadObserver.h"
 #include "TestScene.h"
 
 
-CTestScene::CTestScene(CSceneManager* const changer)
+CTestScene::CTestScene()
 {
-	m_pSceneManager = changer;
 	m_Camera = new CCamera();
 	m_Player = new CPlayer();
-	m_Notification = new CPlayerNotification();
+	m_Road = new CRoad(m_Player->Get_JumpReach());
+	m_PlayerObserver = new PlayerObserver();
+	m_RoadObserver = new RoadObserver();
 
 	m_Camera->Initialize(CVector3D<>(0.f, 0.f, 0.f), 100, 0.1f, 600.f, 60);
 	m_Camera->Rotate(25, 20);
 
-	m_Player->SetPlayerNotification(m_Notification);
-	m_Notification->Push(m_Camera);
+	m_Player->SetPlayerObserver(m_PlayerObserver);
+	m_Road->SetRoadObserver(m_RoadObserver);
+	m_PlayerObserver->Add_Observer(m_Camera);
+	m_RoadObserver->Add_Observer(m_Player);
 }
 
 
@@ -51,6 +56,7 @@ void CTestScene::Render()
 	//glEnd();
 
 	m_Player->Render();
+	m_Road->AllRender();
 }
 
 void CTestScene::Reshape(const int & w, const int & h)

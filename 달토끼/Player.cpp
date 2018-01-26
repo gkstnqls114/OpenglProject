@@ -3,7 +3,7 @@
 #include "Mediator.h"
 #include "Matrix.h"
 
-#include "PlayerNotification.h"
+#include "PlayerObserver.h"
 #include "PlayerState.h"
 
 #include "Player.h"
@@ -143,6 +143,11 @@ void CPlayer::Init_GameOver()
 	m_Rabit_Ear->Rotate(70, 1, 0, 0);
 }
 
+void CPlayer::Notify(CRoad * road)
+{
+	StateChange_Fall();
+}
+
 void CPlayer::CheckDead()
 {
 	bool InRange = m_MySide <= k_right && m_MySide >= k_left;
@@ -188,7 +193,7 @@ void CPlayer::FrontJump()
 
 	JumpRotate();
 
-	if(m_pPlayerNotification) m_pPlayerNotification->Notify(this);
+	if(m_pPlayerObserver) m_pPlayerObserver->Notify(this);
 }
 
 void CPlayer::RightJump()
@@ -201,7 +206,7 @@ void CPlayer::RightJump()
 
 	JumpRotate();
 
-	if (m_pPlayerNotification) m_pPlayerNotification->Notify(this);
+	if (m_pPlayerObserver) m_pPlayerObserver->Notify(this);
 }
 
 void CPlayer::LeftJump()
@@ -214,7 +219,7 @@ void CPlayer::LeftJump()
 
 	JumpRotate();
 
-	if (m_pPlayerNotification) m_pPlayerNotification->Notify(this);
+	if (m_pPlayerObserver) m_pPlayerObserver->Notify(this);
 }
 
 void CPlayer::Fall()

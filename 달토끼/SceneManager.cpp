@@ -12,7 +12,7 @@ CSceneManager::CSceneManager()
 	m_GameScene->SoundStop();
 	m_MainScene = new CMainScene(this);
 	m_MainScene->SoundStop();
-	m_TestScene = new CTestScene(this);
+	m_TestScene = new CTestScene();
 	m_TestScene->SoundStop();
 	m_GameOverScene = new CGameOver(this);
 	m_GameOverScene->SoundStop();

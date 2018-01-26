@@ -7,7 +7,7 @@ class CMoon;
 class CEarth;
 class CPLAY_word;
 class CEXIT_word;
-class CColleague;
+class Observer;
 
 class CSceneManager;
 class CSoundManager;
