@@ -204,7 +204,7 @@ void CGameScene::Render()
 	glPushMatrix();
 	m_MapCamera->LookAt();
 	{
-		m_Road->AllRender();
+		m_Road->TestRender();
 		m_Player->Render();
 	}
 	glPopMatrix();

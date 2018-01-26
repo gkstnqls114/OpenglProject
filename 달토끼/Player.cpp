@@ -6,6 +6,8 @@
 #include "PlayerObserver.h"
 #include "PlayerState.h"
 
+#include "Road.h"
+
 #include "Player.h"
 
 CObjModel* CPlayer::m_Rabit_Body = nullptr;
@@ -145,13 +147,13 @@ void CPlayer::Init_GameOver()
 
 void CPlayer::Notify(CRoad * road)
 {
+	//¶³¾îÁö´Â.. ¾îÂ¼±¸.. ÀúÂ¼±¸..
 	StateChange_Fall();
 }
 
 void CPlayer::CheckDead()
 {
-	bool InRange = m_MySide <= k_right && m_MySide >= k_left;
-	if (InRange) return;
+	if (!IsGetOutRoad()) return;
 
 	StateChange_Fall();
 }
@@ -163,16 +165,16 @@ float CPlayer::BodyRotateDegree()
 	bool Rotate_degree_0 = Rotate == 0;
 	if (Rotate_degree_0) return 0;
 
-	bool Rotate_degree_45 = Rotate == 1;
-	bool Rotate_degree_90 = Rotate == 2;
+	bool IsRotate_degree45 = Rotate == 1;
+	bool IsRotate_degree90 = Rotate == 2;
 	float frame_degree = 0;
 	float Nowdegree = 0;
 
-	if (Rotate_degree_45) {
+	if (IsRotate_degree45) {
 		Nowdegree = m_JumpProperty.Rotatedegree;
 		frame_degree = Nowdegree / float(m_JumpProperty.m_FinishJumpTime);
 	}
-	else if (Rotate_degree_90) {
+	else if (IsRotate_degree90) {
 		Nowdegree = m_JumpProperty.Rotatedegree * 2;
 		frame_degree = Nowdegree / float(m_JumpProperty.m_FinishJumpTime);
 	}
@@ -214,6 +216,7 @@ void CPlayer::LeftJump()
 	Calculate_JumpVector();
 	float rotatedegree = BodyRotateDegree();
 	m_Matrix->Calu_Rotate(rotatedegree, 0, 1, 0);
+	
 	float tmp_vector_x = - float(Road_Distance_X) / m_JumpProperty.m_FinishJumpTime;
 	m_Pos.x += tmp_vector_x;
 
@@ -236,7 +239,7 @@ void CPlayer::StateChange_FrontJump()
 {
 	m_BoardNum += 1;
 	m_prevSide = m_MySide;
-	m_MySide = m_MySide;
+	m_MySide = k_front;
 	m_PlayerState = &FrontJumpState;
 }
 
@@ -244,7 +247,7 @@ void CPlayer::StateChange_RightJump()
 {
 	m_BoardNum += 1;
 	m_prevSide = m_MySide;
-	m_MySide = m_MySide + k_right;
+	m_MySide = k_right;
 	m_PlayerState = &RightJumpState;
 }
 
@@ -252,7 +255,7 @@ void CPlayer::StateChange_LeftJump()
 {
 	m_BoardNum += 1;
 	m_prevSide = m_MySide;
-	m_MySide = m_MySide + k_left;
+	m_MySide = k_left;
 	m_PlayerState = &LeftJumpState;
 }
 
@@ -271,7 +274,7 @@ void CPlayer::StateChange_Wait()
 
 void CPlayer::StateChange_Fall()
 {
-	m_PlayerState = &FallingState;
+	//m_PlayerState = &FallingState;
 }
 
 void CPlayer::StateChange_Dead()
@@ -294,6 +297,11 @@ void CPlayer::Calculate_JumpVector()
 	m_Pos.x += tempVector.x;
 	m_Pos.y += tempVector.y;
 	m_Pos.z += tempVector.z;
+}
+
+const bool CPlayer::IsGetOutRoad() const noexcept
+{
+	return m_MySide > k_right || m_MySide < k_left;
 }
 
 void CPlayer::JumpRotate()

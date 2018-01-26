@@ -14,6 +14,7 @@ class CFootBoard
 {
 	static CObjModel* m_obj;
 	static CObjModel* m_Light_obj;
+
 	//c++은 static storage duration 가진 객체는
 	//0을 보장합니다.
 	//표준은 전역, 정적변수는 0으로 초기화함을 명시합니다.
@@ -21,12 +22,13 @@ class CFootBoard
 
 	int m_Side{ -2 }; //-2는 존재하지 않음
 
-	CVector3D<> m_Position{ 0, -5, 0 };
-	bool IsLast{ false };
-	bool IsLightDisappear{ false };
+	CVector3D<> m_Position			{ 0, -5, 0 };
+	bool IsLast						{ false };
+	bool IsLightDisappear			{ false };
 
-	float		m_TextureAlpha {1.f};
-	float		m_LightAlpha{ 0.5f };
+	float		m_TextureAlpha		{1.f};
+	const float m_DropAlphaUnit		{ 0.3f };
+	//float		m_LightAlpha{ 0.5f };
 
 	GLfloat m_Translate_Matrix[16] =
 	{
@@ -80,8 +82,6 @@ public:
 	const bool GetDisappear() const { return IsDisappear; }
 	void Disappear_True() { IsDisappear = true; }
 	const int GetSide() const noexcept { return m_Side; }
-
-	void Init_GameScene();
 
 };
 

@@ -10,7 +10,6 @@ class CRoad;
 class CTestScene :
 	public Scene
 {
-
 	PlayerObserver*		m_PlayerObserver	{ nullptr };
 	RoadObserver*		m_RoadObserver		{ nullptr };
 	CPlayer *			m_Player			{ nullptr };

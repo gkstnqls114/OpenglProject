@@ -14,25 +14,25 @@ void CFootBoard::Disappear()
 		return;
 	}
 
-	m_TextureAlpha -= 0.03f;
+	m_TextureAlpha -= 0.01f;
 }
 
 void CFootBoard::RenderModel()
 {
-
 	glColor4f(LIGHTRGB.x, LIGHTRGB.y, LIGHTRGB.z, m_TextureAlpha);
 	m_obj->Render();
 
 	if (IsLast) {
-		glColor4f(LIGHTRGB.x, LIGHTRGB.y, LIGHTRGB.z, m_LightAlpha);
-		m_Light_obj->Render();
+		//glColor4f(LIGHTRGB.x, LIGHTRGB.y, LIGHTRGB.z, m_LightAlpha);
+		//m_Light_obj->Render();
 	}
 }
 
 CFootBoard::CFootBoard()
 {
-
-
+	m_TextureAlpha = 1.f;
+	DisappearTime = 0.f;
+	IsDisappear = false;
 }
 
 CFootBoard::~CFootBoard()
@@ -80,13 +80,6 @@ void CFootBoard::Update()
 {
 	if (IsDisappear) return;
 	Disappear();
-}
-
-void CFootBoard::Init_GameScene()
-{
-	m_TextureAlpha = 1.f;
-	DisappearTime = 0.f;
-	IsDisappear = false;
 }
 
 void CFootBoard::InitPosition(const int & x, const int & y, const int & z)
@@ -143,7 +136,7 @@ void CFootBoard::InitPosition(CVector3D<>&& rhs)
 void CFootBoard::IsLight()
 {
 	IsLast = true;
-	m_LightAlpha = 0.5f;
+	//m_LightAlpha = 0.5f;
 	IsLightDisappear = false;
 }
 
@@ -155,6 +148,6 @@ void CFootBoard::IsNotLight()
 void CFootBoard::LightDisappear()
 {
 	if (IsLightDisappear) {
-		m_LightAlpha -= 0.01f;
+		//m_LightAlpha -= 0.01f;
 	}
 }

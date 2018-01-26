@@ -163,7 +163,7 @@
     <ClCompile Include="RoadState.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="ClearObject.cpp" />
-    <ClCompile Include="CLoadingScene.cpp" />
+    <ClCompile Include="LoadingScene.cpp" />
     <ClCompile Include="Observer.cpp" />
     <ClCompile Include="Dead.cpp" />
     <ClCompile Include="Devil.cpp" />
@@ -230,7 +230,7 @@
     <ClInclude Include="RoadState.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="ClearObject.h" />
-    <ClInclude Include="CLoadingScene.h" />
+    <ClInclude Include="LoadingScene.h" />
     <ClInclude Include="Observer.h" />
     <ClInclude Include="Dead.h" />
     <ClInclude Include="Devil.h" />

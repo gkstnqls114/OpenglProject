@@ -330,9 +330,6 @@
     <ClCompile Include="Suit.cpp">
       <Filter>소스 파일\Player\PlayerSkin\Suit</Filter>
     </ClCompile>
-    <ClCompile Include="CLoadingScene.cpp">
-      <Filter>소스 파일\GLFramework\Scene\Loading</Filter>
-    </ClCompile>
     <ClCompile Include="Observer.cpp">
       <Filter>소스 파일\Observer</Filter>
     </ClCompile>
@@ -356,6 +353,9 @@
     </ClCompile>
     <ClCompile Include="Stop.cpp">
       <Filter>소스 파일\Road\RoadState\Stop</Filter>
+    </ClCompile>
+    <ClCompile Include="LoadingScene.cpp">
+      <Filter>소스 파일\GLFramework\Scene\Loading</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -503,9 +503,6 @@
     <ClInclude Include="Suit.h">
       <Filter>소스 파일\Player\PlayerSkin\Suit</Filter>
     </ClInclude>
-    <ClInclude Include="CLoadingScene.h">
-      <Filter>소스 파일\GLFramework\Scene\Loading</Filter>
-    </ClInclude>
     <ClInclude Include="Observer.h">
       <Filter>소스 파일\Observer</Filter>
     </ClInclude>
@@ -529,6 +526,9 @@
     </ClInclude>
     <ClInclude Include="Stop.h">
       <Filter>소스 파일\Road\RoadState\Stop</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadingScene.h">
+      <Filter>소스 파일\GLFramework\Scene\Loading</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

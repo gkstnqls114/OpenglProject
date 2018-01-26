@@ -28,7 +28,6 @@ void CObjModel::ModelRender()
 			GLdouble x = m_pVertex[vertex_index - 1].x;
 			GLdouble y = m_pVertex[vertex_index - 1].y;
 			GLdouble z = m_pVertex[vertex_index - 1].z;
-
 			glVertex3f(x, y, z);
 		}
 
@@ -74,15 +73,10 @@ void CObjModel::Find_VertexNum(const char*& filename)
 		else if (IsNormal) {
 			m_NormalNum += 1;
 		}
-
-
 	}
 
 	fclose(fp);
 	fp = NULL;
-
-	///std::cout << m_VertexNum << std::endl;
-	//std::cout << m_FaceNum << std::endl;
 
 	//구한 개수를 동적할당 한다.
 	//동적할당: 배열
@@ -90,7 +84,6 @@ void CObjModel::Find_VertexNum(const char*& filename)
 	m_pNormal = new CVector3D<>[m_NormalNum];
 	m_pTexture = new CVector3D<>[m_TextureNum];
 	m_pFace = new CObjFace[m_FaceNum];
-
 }
 
 void CObjModel::Save_Information(const char*& filename)

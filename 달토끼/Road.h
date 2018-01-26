@@ -31,7 +31,8 @@ private:
 	void InitFootBoardModel();
 	void InitFootBoardPos(const GLdouble& distance);
 
-	//void Disappear();
+	const bool IsOutRange() const;
+	void Add_DisappearingBoardIndex();
 
 public:
 	CRoad(const GLdouble& distance);
@@ -39,7 +40,7 @@ public:
 	~CRoad();
 
 	void Render();
-	void AllRender();
+	void TestRender();
 	void Update();
 
 
@@ -59,7 +60,7 @@ public:
 	/////////////////////////////////Get
 
 	/////////////////////////////////Set
-	void Set_PlayerBoardIndex(const int& playerboardindex) noexcept { m_PlayerBoardIndex = playerboardindex; }
+	//void Set_PlayerBoardIndex(const int& playerboardindex) noexcept { m_PlayerBoardIndex = playerboardindex; }
 	void Set_RoadObserver(RoadObserver* notification) noexcept { m_pRoadObserver = notification; };
 	/////////////////////////////////Set
 	

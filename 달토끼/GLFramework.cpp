@@ -74,6 +74,7 @@ void CGLFramework::Initialize(int argc, char ** argv, int width, int height, int
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_TEXTURE_2D);
 	glEnable(GL_COLOR_MATERIAL);
+	
 }
 
 void CGLFramework::DrawScene()

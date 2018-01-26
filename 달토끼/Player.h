@@ -53,6 +53,7 @@ private:
 	float BodyRotateDegree(); //함수이름 나중에 수정
 	void JumpRotate(); //함수이름 나중에 수정
 	void Calculate_JumpVector();
+	const bool IsGetOutRoad() const noexcept;
 	void CheckDead();
 
 	static void InitBody();

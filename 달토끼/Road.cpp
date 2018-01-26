@@ -49,6 +49,18 @@ void CRoad::InitFootBoardPos(const GLdouble& distance)
 	m_pFootBoard[m_boardNum - 1].IsLight();
 }
 
+const bool CRoad::IsOutRange() const
+{
+	return (m_DisappearingBoardIndex < 0 || m_DisappearingBoardIndex >= m_boardNum);
+}
+
+void CRoad::Add_DisappearingBoardIndex()
+{
+	if (IsOutRange()) return;
+
+	m_DisappearingBoardIndex += 1;
+}
+
 CRoad::CRoad(const GLdouble & distance)
 {
 	m_boardNum = 100;
@@ -90,12 +102,17 @@ void CRoad::Render()
 	glDisable(GL_BLEND);
 }
 
-void CRoad::AllRender()
+void CRoad::TestRender()
 {
-	//int MaxNum = min(m_boardNum, m_PlayerBoardIndex + 8);
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	
+	int MaxNum = min(m_boardNum, m_PlayerBoardIndex + 8);
 	for (int x = m_DisappearingBoardIndex; x < m_boardNum; ++x) {
 		m_pFootBoard[x].Render();
 	}
+
+	glDisable(GL_BLEND);
 }
 
 void CRoad::Update()
@@ -168,7 +185,7 @@ void CRoad::StateChange_Stop()
 void CRoad::Init_GameScene()
 {
 	for (int index = 0; index < m_boardNum; ++index) {
-		m_pFootBoard[index].Init_GameScene();
+		//m_pFootBoard[index].Init_GameScene();
 	}
 	m_pFootBoard[m_boardNum - 1].IsLight();
 	InitFootBoardPos(JumpReach);

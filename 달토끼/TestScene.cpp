@@ -57,7 +57,7 @@ void CTestScene::Render()
 	//glEnd();
 
 	m_Player->Render();
-	m_Road->AllRender();
+	m_Road->TestRender();
 }
 
 void CTestScene::Reshape(const int & w, const int & h)

@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "CLoadingScene.h"
+#include "LoadingScene.h"
 
 
 LoadingScene::LoadingScene()
