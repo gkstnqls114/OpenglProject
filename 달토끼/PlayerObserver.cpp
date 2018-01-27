@@ -25,13 +25,20 @@ void PlayerObserver::Sub_Observer(Observer * pop)
 void PlayerObserver::Notify_PlayerJumping(CPlayer * player)
 {
 	for (auto d : m_List) {
-		d->Notify_PlayerJumping(player);
+		d->Receive_PlayerJumping(player);
 	}
 }
 
 void PlayerObserver::Notify_PlayerWaitCamera(CPlayer * player)
 {
 	for (auto d : m_List) {
-		d->Notify_PlayerWaitCamera(player);
+		d->Receive_PlayerWaitCamera(player);
+	}
+}
+
+void PlayerObserver::Notify_PlayerJumpFinish(CPlayer * player)
+{
+	for (auto d : m_List) {
+		d->Receive_PlayerJumpFinish(player);
 	}
 }

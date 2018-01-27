@@ -58,20 +58,11 @@ class CPlayer
 	int m_MyKeySide{ 0 };
 
 private:
-	
-
 	float BodyRotateDegree(); //함수이름 나중에 수정
 	void JumpRotate(); //함수이름 나중에 수정
 	void Calculate_JumpVector();
 	const bool IsGetOutRoad() const noexcept;
 	const int RotateDegree() const { return abs(m_prevKeySide - m_MyKeySide); };
-
-	void PrintSide() const
-	{
-		std::cout << "m_prevSide: " << m_prevKeySide << std::endl;
-		std::cout << "m_MySide: " << m_MyKeySide << std::endl;
-		std::cout << "RotateDegree: " << RotateDegree() << std::endl << std::endl;
-	};
 
 	static void InitBody();
 	static void InitEar();
@@ -82,26 +73,26 @@ private:
 	static void DeleteLeftFoot();
 	static void DeleteRightFoot();
 
-
 public:
 	CPlayer();
 	~CPlayer();
 	static void InitModel();
 	static void DeleteModel();
 	void Initialize();
-
 	void Keyboard(const unsigned char& key, const int& x, const int& y);
 	void SpecialKeys(const int& key, const int& x, const int& y);
 	void Update();
 	void Render();
 
+	
+	/////////////////////////////////State
 	void FrontJump();
 	void RightJump();
 	void LeftJump();
-	void Fall();
 	void WaitCamera();
-	
-	/////////////////////////////////State Change
+	void Fall();
+	void Dead();
+
 	void StateChange_FrontJump();
 	void StateChange_RightJump();
 	void StateChange_LeftJump();
@@ -109,18 +100,19 @@ public:
 	void StateChange_WaitCamera();
 	void StateChange_Fall();
 	void StateChange_Dead();
-	/////////////////////////////////State Change
+	/////////////////////////////////State
 
 	/////////////////////////////////Mediator
 	virtual void Init_GameScene();
 	virtual void Init_GameOver();
-	virtual void Notify_DisappearFootBoard(CRoad* road);
+	virtual void Receive_DisappearFootBoard(CRoad* road) override;
 	/////////////////////////////////Mediator
 
 	/////////////////////////////////GET
 	const GLdouble Get_JumpReach() const noexcept { return m_JumpProperty.Get_JumpReach(); }
 	const int Get_BoardNum() const noexcept { return m_MyBoardIndex; }
-	const int Get_Side() const noexcept { return m_MyKeySide; }
+	const int Get_KeySide() const noexcept { return m_MyKeySide; }
+	const int Get_BoardSide() const noexcept { return m_MyBoardSide; }
 	const CVector3D<> Get_Pos() const noexcept { return m_Pos; }
 	/////////////////////////////////GET
 

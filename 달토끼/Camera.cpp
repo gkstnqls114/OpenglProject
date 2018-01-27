@@ -136,14 +136,14 @@ void CCamera::Update()
 
 }
 
-void CCamera::Notify_PlayerJumping(CPlayer * player)
+void CCamera::Receive_PlayerJumping(CPlayer * player)
 {
 	CVector3D<> Move = player->Get_Pos();
 	Move.y = 0;
 	SetPosition(Move);
 }
 
-void CCamera::Notify_PlayerWaitCamera(CPlayer * player)
+void CCamera::Receive_PlayerWaitCamera(CPlayer * player)
 {
 	float max_v = float(180 + Rotatedegree) * PI / 180.f;
 	float max_h = 0 * PI / 180.f;

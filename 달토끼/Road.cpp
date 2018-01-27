@@ -3,6 +3,8 @@
 #include "FootBoard.h"
 #include "RoadState.h"
 #include "RoadObserver.h"
+#include "Player.h"
+
 #include "Road.h"
 
 
@@ -95,8 +97,8 @@ void CRoad::Render()
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	//플레이어 위치 기준으로 다섯개까지 렌더한다.
-	int MaxNum = min(m_boardNum - 1, m_PlayerBoardIndex + 5);
-	for (int x = m_DisappearingBoardIndex; x < MaxNum; ++x) {
+	//int MaxNum = min(m_boardNum - 1, m_PlayerBoardIndex + 5);
+	for (int x = m_DisappearingBoardIndex; x < m_DisappearingBoardIndex + 7; ++x) {
 		m_pFootBoard[x].Render();
 	}
 	m_pFootBoard[m_boardNum - 1].Render();
@@ -108,7 +110,6 @@ void CRoad::TestRender()
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	
-	int MaxNum = min(m_boardNum, m_PlayerBoardIndex + 8);
 	for (int x = m_DisappearingBoardIndex; x < m_boardNum; ++x) {
 		m_pFootBoard[x].Render();
 	}
@@ -184,9 +185,30 @@ void CRoad::StateChange_Stop()
 	m_RoadState = &StopState;
 }
 
-void CRoad::Notify(const CPlayer * player)
+void CRoad::Receive_PlayerWaitCamera(CPlayer * player)
+{
+	StateChange_Stop();
+}
+
+void CRoad::Receive_PlayerJumpFinish(CPlayer* player)
 {
 
+	std::cout << "여긴 되냐";
+
+	/*Add_DisappearingBoardIndex();
+
+	std::cout << "플레이어 보드 넘버:" << player->Get_BoardSide() << std::endl;
+	std::cout << "현재 보드 넘버:" << m_pFootBoard[player->Get_BoardNum()].GetSide() << std::endl;
+
+	const bool IsRightSide = player->Get_BoardSide() == m_pFootBoard[player->Get_BoardNum()].GetSide();
+
+	if (!IsRightSide) {
+		player->StateChange_WaitCamera();
+		std::cout << "??" << std::endl;
+	}
+	else {
+		std::cout << "??" << std::endl;
+	}*/
 }
 
 void CRoad::Init_GameScene()
@@ -196,25 +218,14 @@ void CRoad::Init_GameScene()
 	}
 	m_pFootBoard[m_boardNum - 1].IsLight();
 	InitFootBoardPos(JumpReach);
-
-	m_PlayerBoardIndex = 0;
+	
 	m_DisappearingBoardIndex = 0;
-}
-
-void CRoad::Player_JumpStart()
-{
-	m_PlayerBoardIndex += 1;
-}
-
-void CRoad::Player_Jumping()
-{
-
 }
 
 void CRoad::Player_JumpFinish(int playerside)
 {
 	//플레이어 위치가 올바른 곳인지 확인
-	bool IsWrongPos = m_pFootBoard[m_PlayerBoardIndex].GetSide() != playerside;
+	/*bool IsWrongPos = m_pFootBoard[m_PlayerBoardIndex].GetSide() != playerside;
 	if (IsWrongPos) {
 		m_pMediator->Player_Dead();
 		return;
@@ -231,5 +242,5 @@ void CRoad::Player_JumpFinish(int playerside)
 	}
 	else {
 		m_DisappearingBoardIndex = m_PlayerBoardIndex - 2;
-	}
+	}*/
 }

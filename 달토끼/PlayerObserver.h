@@ -13,6 +13,8 @@ public:
 
 	void Add_Observer(Observer* push);
 	void Sub_Observer(Observer* pop);
+
 	void Notify_PlayerJumping(CPlayer* player);
 	void Notify_PlayerWaitCamera(CPlayer* player);
+	void Notify_PlayerJumpFinish(CPlayer* player);
 };

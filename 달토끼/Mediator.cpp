@@ -95,25 +95,12 @@ void CMediator::Player_JumpStart()
 
 void CMediator::Player_Jumping()
 {
-	/*if (m_pPlayer)	m_pPlayer->Player_Jumping();
 
-	CVector3D<> jumpmove
-		(
-		m_pPlayer->Get_VectorX(),
-		0,
-		m_pPlayer->Get_VectorZ()
-		);
-
-	CVector3D<> map_jumpmove(0, 0, m_pPlayer->Get_VectorZ());
-*//*
-	if (m_pCamera) m_pCamera->Player_Jumping(jumpmove);
-	if (m_pMapCamera) m_pMapCamera->Player_Jumping(map_jumpmove);*/
-	if (m_pRoad) m_pRoad->Player_Jumping();
 }
 
 void CMediator::Player_JumpFinish()
 {
-	if (m_pRoad)	m_pRoad->Player_JumpFinish(m_pPlayer->Get_Side());
+	if (m_pRoad)	m_pRoad->Player_JumpFinish(m_pPlayer->Get_KeySide());
 }
 
 void CMediator::Player_Dead()

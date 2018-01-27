@@ -24,6 +24,6 @@ void RoadObserver::Sub_Observer(Observer * pop)
 void RoadObserver::Notify_DisappearFootBoard(CRoad * road)
 {
 	for (auto d : m_List) {
-		d->Notify_DisappearFootBoard(road);
+		d->Receive_DisappearFootBoard(road);
 	}
 }

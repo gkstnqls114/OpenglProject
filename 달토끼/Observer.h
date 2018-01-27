@@ -13,8 +13,10 @@ public:
 	virtual void Render() {};
 	virtual void Update() {};
 
-	virtual void Notify_PlayerJumping(CPlayer* player) {};
-	virtual void Notify_PlayerWaitCamera(CPlayer* player) {};
-	
-	virtual void Notify_DisappearFootBoard(CRoad* road) {};
+	virtual void Receive_PlayerJumping(CPlayer* player) { };
+	virtual void Receive_PlayerWaitCamera(CPlayer* player) {};
+	virtual void Receive_PlayerJumpFinish(CPlayer* player) {};
+
+
+	virtual void Receive_DisappearFootBoard(CRoad* road) {};
 };

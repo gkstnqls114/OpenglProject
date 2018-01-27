@@ -72,8 +72,8 @@ public:
 	void Update();
 
 	//Mediator
-	virtual void Notify_PlayerJumping(CPlayer* player) override;
-	virtual void Notify_PlayerWaitCamera(CPlayer* player) override;
+	virtual void Receive_PlayerJumping(CPlayer* player) override;
+	virtual void Receive_PlayerWaitCamera(CPlayer* player) override;
 
 	
 	virtual void Init_MainScene();

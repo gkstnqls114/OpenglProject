@@ -13,7 +13,6 @@ class CRoad : public Observer
 	const int		k_side[3] = { k_left, k_front, k_right };
 	CFootBoard*		m_pFootBoard;
 	int				m_boardNum{ 5 };
-	int				m_PlayerBoardIndex{ 0 };
 	int				m_DisappearingBoardIndex{ 0 };
 
 	RoadState*		m_RoadState{ nullptr };
@@ -43,14 +42,13 @@ public:
 	void TestRender();
 	void Update();
 
-
+	/////////////////////////////////State
 	void Disappear();
 	void Stop();
 
-	/////////////////////////////////State Change
 	void StateChange_Disappear();
 	void StateChange_Stop();
-	/////////////////////////////////State Change
+	/////////////////////////////////State
 
 	/////////////////////////////////Get
 	const CVector3D<> GetLastPos() const noexcept;
@@ -64,13 +62,12 @@ public:
 	void Set_RoadObserver(RoadObserver* notification) noexcept { m_pRoadObserver = notification; };
 	/////////////////////////////////Set
 	
-
-	virtual void Notify(const CPlayer* player);
-	
+	/////////////////////////////////Receive
+	virtual void Receive_PlayerWaitCamera(CPlayer* player) override;
+	virtual void Receive_PlayerJumpFinish(CPlayer* player) override;
+	/////////////////////////////////Receive
 
 	virtual void Init_GameScene();
-	virtual void Player_JumpStart();
-	virtual void Player_Jumping();
 	virtual void Player_JumpFinish(int playerside);
 	
 
