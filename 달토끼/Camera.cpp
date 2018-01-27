@@ -4,36 +4,6 @@
 #include "Camera.h"
 
 
-void CCamera::Animation_PlayerDead()
-{
-	if (!isPlayerDead) return;
-
-	float max_v = float(180 + Rotatedegree) * PI / 180.f;
-	float max_h = 0 * PI / 180.f;
-
-	bool verticalMove = m_vertical < max_v;
-	if (verticalMove) {
-		Rotate(3, 0);
-	}
-
-	bool horizontalMove = m_horizontal < max_h;
-	if (horizontalMove) {
-		Rotate(0, 3);
-	}
-	
-	bool Far = m_distance > 50;
-	if (Far) {
-		zoom(0.99f);
-	}
-
-	LookAt();
-
-	bool Finish = !Far && !verticalMove && !horizontalMove;
-	if (Finish) {
-		isAnimate = false;
-		m_pMediator->Player_Fall();
-	}
-}
 
 void CCamera::Animation_GameClear()
 {
@@ -163,10 +133,7 @@ CVector3D<> CCamera::eye() const
 
 void CCamera::Update()
 {
-	if (!isAnimate) return;
 
-	Animation_PlayerDead();
-	Animation_GameClear();
 }
 
 void CCamera::Notify_PlayerJumping(CPlayer * player)
@@ -174,6 +141,34 @@ void CCamera::Notify_PlayerJumping(CPlayer * player)
 	CVector3D<> Move = player->Get_Pos();
 	Move.y = 0;
 	SetPosition(Move);
+}
+
+void CCamera::Notify_PlayerWaitCamera(CPlayer * player)
+{
+	float max_v = float(180 + Rotatedegree) * PI / 180.f;
+	float max_h = 0 * PI / 180.f;
+
+	bool verticalMove = m_vertical < max_v;
+	if (verticalMove) {
+		Rotate(3, 0);
+	}
+
+	bool horizontalMove = m_horizontal < max_h;
+	if (horizontalMove) {
+		Rotate(0, 3);
+	}
+
+	bool Far = m_distance > 50;
+	if (Far) {
+		zoom(0.99f);
+	}
+
+	LookAt();
+
+	bool Finish = !Far && !verticalMove && !horizontalMove;
+	if (Finish) {
+		player->StateChange_Fall();
+	}
 }
 
 void CCamera::Init_MainScene()
@@ -203,30 +198,13 @@ void CCamera::Init_GameScene()
 	Rotate(25, 20);
 	LookAt();
 	isAnimate = false;
-	isPlayerDead = false;
 	isGameClear = false;
-}
-
-void CCamera::Player_JumpStart()
-{
-
-}
-
-void CCamera::Player_JumpFinish()
-{
-
 }
 
 void CCamera::Player_Dead(const float& rotatedegree)
 {
 	Rotatedegree = rotatedegree;
-	isPlayerDead = true;
 	isAnimate = true;
-}
-
-void CCamera::Player_Fall()
-{
-
 }
 
 void CCamera::Player_Clear(const float& rotatedegree)

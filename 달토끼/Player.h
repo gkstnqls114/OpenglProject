@@ -1,11 +1,14 @@
 #pragma once
 #include "Observer.h"
+
+#include "WaitCamera.h"
 #include "Waiting.h"
 #include "FrontJump.h"
 #include "RightJump.h"
 #include "LeftJump.h"
 #include "Fall.h"
 #include "Dead.h"
+
 #include "JumpProperty.h"
 
 
@@ -38,6 +41,7 @@ class CPlayer
 	CPlayerState* m_PlayerState{ nullptr };
 	
 	CDead		DeadState;
+	WaitCamera  WaitCameraState;
 	CWaiting	WaitingState;
 	CFalling	FallingState;
 	CFrontJump	FrontJumpState;
@@ -47,15 +51,27 @@ class CPlayer
 
 	//현재 넘어간 발판 개수
 	int m_MyBoardIndex{ 0 };
-	int m_prevSide{ 0 };
-	int m_MySide{ 0 };
+	//좌, 우, 앞 발판 중 어디에 있는가?
+	int m_MyBoardSide{ 0 };
+	// 방향키를 이전에 어떤 것을 눌렀는가?
+	int m_prevKeySide{ 0 };
+	int m_MyKeySide{ 0 };
 
 private:
+	
+
 	float BodyRotateDegree(); //함수이름 나중에 수정
 	void JumpRotate(); //함수이름 나중에 수정
 	void Calculate_JumpVector();
 	const bool IsGetOutRoad() const noexcept;
-	void CheckDead();
+	const int RotateDegree() const { return abs(m_prevKeySide - m_MyKeySide); };
+
+	void PrintSide() const
+	{
+		std::cout << "m_prevSide: " << m_prevKeySide << std::endl;
+		std::cout << "m_MySide: " << m_MyKeySide << std::endl;
+		std::cout << "RotateDegree: " << RotateDegree() << std::endl << std::endl;
+	};
 
 	static void InitBody();
 	static void InitEar();
@@ -83,6 +99,7 @@ public:
 	void RightJump();
 	void LeftJump();
 	void Fall();
+	void WaitCamera();
 	
 	/////////////////////////////////State Change
 	void StateChange_FrontJump();
@@ -103,7 +120,7 @@ public:
 	/////////////////////////////////GET
 	const GLdouble Get_JumpReach() const noexcept { return m_JumpProperty.Get_JumpReach(); }
 	const int Get_BoardNum() const noexcept { return m_MyBoardIndex; }
-	const int Get_Side() const noexcept { return m_MySide; }
+	const int Get_Side() const noexcept { return m_MyKeySide; }
 	const CVector3D<> Get_Pos() const noexcept { return m_Pos; }
 	/////////////////////////////////GET
 

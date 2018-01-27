@@ -26,14 +26,13 @@ class CCamera
 	//Camera Animation
 	CMediator* m_pMediator{ nullptr };
 
-	bool isPlayerDead{ false };
+	//bool isPlayerDead{ false };
 	bool isGameClear{ false };
 	bool isAnimate{ false };
 
 	float Rotatedegree{ 0 };
 
 private:
-	void Animation_PlayerDead();
 	void Animation_GameClear();
 
 public:
@@ -73,17 +72,16 @@ public:
 	void Update();
 
 	//Mediator
-	virtual void Notify_PlayerJumping(CPlayer* player);
+	virtual void Notify_PlayerJumping(CPlayer* player) override;
+	virtual void Notify_PlayerWaitCamera(CPlayer* player) override;
+
 	
 	virtual void Init_MainScene();
 	virtual void Init_GameOver();
 	virtual void Init_GameClear();
 
 	virtual void Init_GameScene();
-	virtual void Player_JumpStart();
-	virtual void Player_JumpFinish();
 	virtual void Player_Dead(const float& rotatedegree);
-	virtual void Player_Fall();
-
+	
 	virtual void Player_Clear(const float& rotatedegree);
 };

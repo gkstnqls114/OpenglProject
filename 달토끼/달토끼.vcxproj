@@ -222,6 +222,7 @@
     <ClCompile Include="TestScene.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TextureStorage.cpp" />
+    <ClCompile Include="WaitCamera.cpp" />
     <ClCompile Include="Waiting.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -281,6 +282,7 @@
     <ClInclude Include="TextureStorage.h" />
     <ClInclude Include="Vector3D - 복사본.h" />
     <ClInclude Include="Vector3D - 복사본.hpp" />
+    <ClInclude Include="WaitCamera.h" />
     <ClInclude Include="Waiting.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

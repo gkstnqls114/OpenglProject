@@ -360,6 +360,9 @@
     <ClCompile Include="LoadingScene.cpp">
       <Filter>소스 파일\GLFramework\Scene\Loading</Filter>
     </ClCompile>
+    <ClCompile Include="WaitCamera.cpp">
+      <Filter>소스 파일\Player\PlayerState\WaitCamera</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GLFramework.h">
@@ -532,6 +535,9 @@
     </ClInclude>
     <ClInclude Include="LoadingScene.h">
       <Filter>소스 파일\GLFramework\Scene\Loading</Filter>
+    </ClInclude>
+    <ClInclude Include="WaitCamera.h">
+      <Filter>소스 파일\Player\PlayerState\WaitCamera</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

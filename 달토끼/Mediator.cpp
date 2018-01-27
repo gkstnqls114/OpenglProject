@@ -114,7 +114,6 @@ void CMediator::Player_Jumping()
 void CMediator::Player_JumpFinish()
 {
 	if (m_pRoad)	m_pRoad->Player_JumpFinish(m_pPlayer->Get_Side());
-	if (m_pCamera)	m_pCamera->Player_JumpFinish();
 }
 
 void CMediator::Player_Dead()
@@ -126,7 +125,6 @@ void CMediator::Player_Fall()
 {
 	PushPlayQueue("FallEffect", CVector3D<float>());
 
-	if (m_pCamera)	m_pCamera->Player_Fall();
 }
 
 void CMediator::Player_Clear()

@@ -19,7 +19,7 @@ void CWaiting::Initialize()
 
 void CWaiting::Update(CPlayer * player)
 {
-	//아무것도 하지 않는다.
+	//do nothing
 }
 
 void CWaiting::SpecialKeys(CPlayer * player, const int & key)
@@ -33,14 +33,4 @@ void CWaiting::SpecialKeys(CPlayer * player, const int & key)
 	else if (key == GLUT_KEY_LEFT) {
 		player->StateChange_LeftJump();
 	}
-}
-
-
-Waiting::Waiting()
-{
-}
-
-
-Waiting::~Waiting()
-{
 }

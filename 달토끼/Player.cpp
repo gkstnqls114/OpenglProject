@@ -61,9 +61,7 @@ void CPlayer::SpecialKeys(const int & key, const int & x, const int & y)
 {
 	if (key != GLUT_KEY_UP && key != GLUT_KEY_LEFT && key != GLUT_KEY_RIGHT) return;
 
-	if (m_PlayerState) {
-		m_PlayerState->SpecialKeys(this, key);
-	}
+	if (m_PlayerState) m_PlayerState->SpecialKeys(this, key);
 }
 
 void CPlayer::Update()
@@ -120,9 +118,9 @@ void CPlayer::Init_GameScene()
 	m_Matrix->Set_Scale(0.3);
 	m_Matrix->ResetTranslate();
 
-	m_prevSide = 0;
+	m_prevKeySide = 0;
 	m_MyBoardIndex = 0;
-	m_MySide = 0;
+	m_MyKeySide = 0;
 }
 
 void CPlayer::Init_GameOver()
@@ -147,23 +145,16 @@ void CPlayer::Init_GameOver()
 
 void CPlayer::Notify_DisappearFootBoard(CRoad * road)
 {
-	//¶³¾îÁö´Â.. ¾îÂ¼±¸.. ÀúÂ¼±¸..
-	std::cout << "½ÅÈ£" << std::endl;
 	const bool IsOnFallBoard = m_MyBoardIndex <= road->Get_DisappearingBoardIndex();
 	if (!IsOnFallBoard) return;
 
-	StateChange_Fall();
-}
-void CPlayer::CheckDead()
-{
-	if (!IsGetOutRoad()) return;
-
-	StateChange_Fall();
+	road->StateChange_Stop();
+	//StateChange_WaitCamera();
 }
 
 float CPlayer::BodyRotateDegree()
 {
-	int Rotate = abs(m_prevSide - m_MySide);
+	int Rotate = RotateDegree();
 
 	bool Rotate_degree_0 = Rotate == 0;
 	if (Rotate_degree_0) return 0;
@@ -187,12 +178,14 @@ float CPlayer::BodyRotateDegree()
 
 void CPlayer::FrontJump()
 {
+	PrintSide();
+
 	Calculate_JumpVector();
 	float rotatedegree = BodyRotateDegree();
-	if (m_prevSide == k_right) {
+	if (m_prevKeySide == k_right) {
 		m_Matrix->Calu_Rotate(rotatedegree, 0, 1, 0);
 	}
-	else if (m_prevSide == k_left) {
+	else if (m_prevKeySide == k_left) {
 		m_Matrix->Calu_Rotate(-rotatedegree, 0, 1, 0);
 	}
 
@@ -203,6 +196,8 @@ void CPlayer::FrontJump()
 
 void CPlayer::RightJump()
 {
+	PrintSide();
+
 	Calculate_JumpVector();
 	float rotatedegree = BodyRotateDegree();
 	m_Matrix->Calu_Rotate(-rotatedegree, 0, 1, 0);
@@ -216,6 +211,8 @@ void CPlayer::RightJump()
 
 void CPlayer::LeftJump()
 {
+	PrintSide();
+
 	Calculate_JumpVector();
 	float rotatedegree = BodyRotateDegree();
 	m_Matrix->Calu_Rotate(rotatedegree, 0, 1, 0);
@@ -238,45 +235,54 @@ void CPlayer::Fall()
 	}
 }
 
+void CPlayer::WaitCamera()
+{
+	m_pPlayerObserver->Notify_PlayerWaitCamera(this);
+}
+
 void CPlayer::StateChange_FrontJump()
 {
 	m_MyBoardIndex += 1;
-	m_prevSide = m_MySide;
-	m_MySide = k_front;
+	m_prevKeySide = m_MyKeySide;
+	m_MyKeySide = k_front;
 	m_PlayerState = &FrontJumpState;
 }
 
 void CPlayer::StateChange_RightJump()
 {
 	m_MyBoardIndex += 1;
-	m_prevSide = m_MySide;
-	m_MySide = k_right;
+	m_prevKeySide = m_MyKeySide;
+	m_MyKeySide = k_right;
+	m_MyBoardSide += k_right;
 	m_PlayerState = &RightJumpState;
 }
 
 void CPlayer::StateChange_LeftJump()
 {
 	m_MyBoardIndex += 1;
-	m_prevSide = m_MySide;
-	m_MySide = k_left;
+	m_prevKeySide = m_MyKeySide;
+	m_MyKeySide = k_left;
+	m_MyBoardSide += k_left;
 	m_PlayerState = &LeftJumpState;
 }
 
 void CPlayer::StateChange_Wait()
 {
-	m_Rabit_Body->Scale(1.f, 1.f, 1.f);
+	m_Rabit_Body->Set_Scale(1.f, 1.f, 1.f);
 	m_Rabit_LeftFoot->ResetRotate();
 	m_Rabit_RightFoot->ResetRotate();
 	m_JumpProperty.Reset();
 	m_Pos.y = 0;
 
 	m_PlayerState = &WaitingState;
-	
-	CheckDead();
+	if (IsGetOutRoad()) {
+		StateChange_WaitCamera();
+	}
 }
 
 void CPlayer::StateChange_WaitCamera()
 {
+	m_PlayerState = &WaitCameraState;
 }
 
 void CPlayer::StateChange_Fall()
@@ -308,7 +314,7 @@ void CPlayer::Calculate_JumpVector()
 
 const bool CPlayer::IsGetOutRoad() const noexcept
 {
-	return m_MySide > k_right || m_MySide < k_left;
+	return m_MyBoardSide > k_right || m_MyBoardSide < k_left;
 }
 
 void CPlayer::JumpRotate()

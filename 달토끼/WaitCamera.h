@@ -1,16 +1,15 @@
 #pragma once
 #include "PlayerState.h"
-#include "RoadState.h"
 
-class CWaiting :
+class WaitCamera :
 	public CPlayerState
 {
-
 public:
-	CWaiting();
-	virtual ~CWaiting();
+	WaitCamera();
+	virtual ~WaitCamera();
 
 	virtual void Initialize() override;
 	virtual void Update(CPlayer* player) override;
 	virtual void SpecialKeys(CPlayer* player, const int& key) override;
 };
+

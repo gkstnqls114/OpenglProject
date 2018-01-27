@@ -14,5 +14,7 @@ public:
 	virtual void Update() {};
 
 	virtual void Notify_PlayerJumping(CPlayer* player) {};
+	virtual void Notify_PlayerWaitCamera(CPlayer* player) {};
+	
 	virtual void Notify_DisappearFootBoard(CRoad* road) {};
 };
