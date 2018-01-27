@@ -169,7 +169,7 @@ void CCamera::Update()
 	Animation_GameClear();
 }
 
-void CCamera::Notify(const CPlayer * player)
+void CCamera::Notify_PlayerJumping(CPlayer * player)
 {
 	CVector3D<> Move = player->Get_Pos();
 	Move.y = 0;

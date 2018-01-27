@@ -13,5 +13,5 @@ public:
 
 	void Add_Observer(Observer* push);
 	void Sub_Observer(Observer* pop);
-	void Notify(CPlayer* player);
+	void Notify_PlayerJumping(CPlayer* player);
 };

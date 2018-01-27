@@ -13,6 +13,6 @@ public:
 	virtual void Render() {};
 	virtual void Update() {};
 
-	virtual void Notify(const CPlayer* player) {};
-	virtual void Notify(const CRoad* road) {};
+	virtual void Notify_PlayerJumping(CPlayer* player) {};
+	virtual void Notify_DisappearFootBoard(CRoad* road) {};
 };

@@ -13,6 +13,6 @@ public:
 
 	void Add_Observer(Observer* push);
 	void Sub_Observer(Observer* pop);
-	void Notify(CRoad* road);
+	void Notify_DisappearFootBoard(CRoad* road);
 };
 

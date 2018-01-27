@@ -18,8 +18,8 @@ class CRoad : public Observer
 
 	RoadState*		m_RoadState{ nullptr };
 	
-	Stop		StopState;
-	Disappear	DisappearState;
+	Stop			StopState;
+	Disappear		DisappearState;
 	
 
 	GLdouble		JumpReach{ -1 };
@@ -64,6 +64,10 @@ public:
 	void Set_RoadObserver(RoadObserver* notification) noexcept { m_pRoadObserver = notification; };
 	/////////////////////////////////Set
 	
+
+	virtual void Notify(const CPlayer* player);
+	
+
 	virtual void Init_GameScene();
 	virtual void Player_JumpStart();
 	virtual void Player_Jumping();

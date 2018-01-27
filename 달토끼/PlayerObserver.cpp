@@ -22,9 +22,9 @@ void PlayerObserver::Sub_Observer(Observer * pop)
 	//일단 공백
 }
 
-void PlayerObserver::Notify(CPlayer * player)
+void PlayerObserver::Notify_PlayerJumping(CPlayer * player)
 {
 	for (auto d : m_List) {
-		d->Notify(player);
+		d->Notify_PlayerJumping(player);
 	}
 }

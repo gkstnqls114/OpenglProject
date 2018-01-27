@@ -70,9 +70,10 @@ public:
 	CVector3D<> eye() const;
 
 
-	//Mediator
 	void Update();
-	virtual void Notify(const CPlayer* player) override;
+
+	//Mediator
+	virtual void Notify_PlayerJumping(CPlayer* player);
 	
 	virtual void Init_MainScene();
 	virtual void Init_GameOver();

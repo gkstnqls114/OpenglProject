@@ -43,9 +43,10 @@ class CPlayer
 	CFrontJump	FrontJumpState;
 	CRightJump	RightJumpState;
 	CLeftJump	LeftJumpState;
+	
 
 	//현재 넘어간 발판 개수
-	int m_BoardNum{ 0 };
+	int m_MyBoardIndex{ 0 };
 	int m_prevSide{ 0 };
 	int m_MySide{ 0 };
 
@@ -88,6 +89,7 @@ public:
 	void StateChange_RightJump();
 	void StateChange_LeftJump();
 	void StateChange_Wait();
+	void StateChange_WaitCamera();
 	void StateChange_Fall();
 	void StateChange_Dead();
 	/////////////////////////////////State Change
@@ -95,13 +97,12 @@ public:
 	/////////////////////////////////Mediator
 	virtual void Init_GameScene();
 	virtual void Init_GameOver();
-	virtual void Notify(CPlayer* player) {};
-	virtual void Notify(CRoad* road);
+	virtual void Notify_DisappearFootBoard(CRoad* road);
 	/////////////////////////////////Mediator
 
 	/////////////////////////////////GET
 	const GLdouble Get_JumpReach() const noexcept { return m_JumpProperty.Get_JumpReach(); }
-	const int Get_BoardNum() const noexcept { return m_BoardNum; }
+	const int Get_BoardNum() const noexcept { return m_MyBoardIndex; }
 	const int Get_Side() const noexcept { return m_MySide; }
 	const CVector3D<> Get_Pos() const noexcept { return m_Pos; }
 	/////////////////////////////////GET

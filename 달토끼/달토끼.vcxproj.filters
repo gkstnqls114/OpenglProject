@@ -187,6 +187,9 @@
     <Filter Include="소스 파일\Road\RoadState\Stop">
       <UniqueIdentifier>{3d882605-7441-49e0-8788-6f3e1896b855}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Player\PlayerState\WaitCamera">
+      <UniqueIdentifier>{6c618a60-0c58-4fd8-b0ff-b928a05f2afa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GLFramework.cpp">

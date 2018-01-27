@@ -2,6 +2,7 @@
 #include "Mediator.h"
 #include "FootBoard.h"
 #include "RoadState.h"
+#include "RoadObserver.h"
 #include "Road.h"
 
 
@@ -162,6 +163,7 @@ void CRoad::Disappear()
 
 	//위 if문과 순서 중요!
 	if (m_pFootBoard[m_DisappearingBoardIndex].GetDisappear()) {
+		m_pRoadObserver->Notify_DisappearFootBoard(this);
 		m_DisappearingBoardIndex += 1;
 	}
 }
@@ -180,6 +182,11 @@ void CRoad::StateChange_Disappear()
 void CRoad::StateChange_Stop()
 {
 	m_RoadState = &StopState;
+}
+
+void CRoad::Notify(const CPlayer * player)
+{
+
 }
 
 void CRoad::Init_GameScene()

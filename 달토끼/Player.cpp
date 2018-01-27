@@ -121,7 +121,7 @@ void CPlayer::Init_GameScene()
 	m_Matrix->ResetTranslate();
 
 	m_prevSide = 0;
-	m_BoardNum = 0;
+	m_MyBoardIndex = 0;
 	m_MySide = 0;
 }
 
@@ -145,12 +145,15 @@ void CPlayer::Init_GameOver()
 	m_Rabit_Ear->Rotate(70, 1, 0, 0);
 }
 
-void CPlayer::Notify(CRoad * road)
+void CPlayer::Notify_DisappearFootBoard(CRoad * road)
 {
 	//¶³¾îÁö´Â.. ¾îÂ¼±¸.. ÀúÂ¼±¸..
+	std::cout << "½ÅÈ£" << std::endl;
+	const bool IsOnFallBoard = m_MyBoardIndex <= road->Get_DisappearingBoardIndex();
+	if (!IsOnFallBoard) return;
+
 	StateChange_Fall();
 }
-
 void CPlayer::CheckDead()
 {
 	if (!IsGetOutRoad()) return;
@@ -195,7 +198,7 @@ void CPlayer::FrontJump()
 
 	JumpRotate();
 
-	if(m_pPlayerObserver) m_pPlayerObserver->Notify(this);
+	if(m_pPlayerObserver) m_pPlayerObserver->Notify_PlayerJumping(this);
 }
 
 void CPlayer::RightJump()
@@ -208,7 +211,7 @@ void CPlayer::RightJump()
 
 	JumpRotate();
 
-	if (m_pPlayerObserver) m_pPlayerObserver->Notify(this);
+	if (m_pPlayerObserver) m_pPlayerObserver->Notify_PlayerJumping(this);
 }
 
 void CPlayer::LeftJump()
@@ -222,7 +225,7 @@ void CPlayer::LeftJump()
 
 	JumpRotate();
 
-	if (m_pPlayerObserver) m_pPlayerObserver->Notify(this);
+	if (m_pPlayerObserver) m_pPlayerObserver->Notify_PlayerJumping(this);
 }
 
 void CPlayer::Fall()
@@ -237,7 +240,7 @@ void CPlayer::Fall()
 
 void CPlayer::StateChange_FrontJump()
 {
-	m_BoardNum += 1;
+	m_MyBoardIndex += 1;
 	m_prevSide = m_MySide;
 	m_MySide = k_front;
 	m_PlayerState = &FrontJumpState;
@@ -245,7 +248,7 @@ void CPlayer::StateChange_FrontJump()
 
 void CPlayer::StateChange_RightJump()
 {
-	m_BoardNum += 1;
+	m_MyBoardIndex += 1;
 	m_prevSide = m_MySide;
 	m_MySide = k_right;
 	m_PlayerState = &RightJumpState;
@@ -253,7 +256,7 @@ void CPlayer::StateChange_RightJump()
 
 void CPlayer::StateChange_LeftJump()
 {
-	m_BoardNum += 1;
+	m_MyBoardIndex += 1;
 	m_prevSide = m_MySide;
 	m_MySide = k_left;
 	m_PlayerState = &LeftJumpState;
@@ -272,9 +275,13 @@ void CPlayer::StateChange_Wait()
 	CheckDead();
 }
 
+void CPlayer::StateChange_WaitCamera()
+{
+}
+
 void CPlayer::StateChange_Fall()
 {
-	//m_PlayerState = &FallingState;
+	m_PlayerState = &FallingState;
 }
 
 void CPlayer::StateChange_Dead()
