@@ -215,23 +215,5 @@ void CRoad::Init_GameScene()
 
 void CRoad::Player_JumpFinish(int playerside)
 {
-	//플레이어 위치가 올바른 곳인지 확인
-	/*bool IsWrongPos = m_pFootBoard[m_PlayerBoardIndex].GetSide() != playerside;
-	if (IsWrongPos) {
-		m_pMediator->Player_Dead();
-		return;
-	}
-	bool IsGameClear = m_PlayerBoardIndex == (m_boardNum - 1);
-	if (IsGameClear) {
-		m_pFootBoard[m_boardNum - 1].IsNotLight();
-		m_pMediator->Player_Clear();
-		return;
-	}
 
-	if (m_PlayerBoardIndex - 2 < 0) {
-		m_DisappearingBoardIndex = 0;
-	}
-	else {
-		m_DisappearingBoardIndex = m_PlayerBoardIndex - 2;
-	}*/
 }
