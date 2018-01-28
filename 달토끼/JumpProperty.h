@@ -14,8 +14,8 @@ public:
 public:
 	const int m_JumpDegree{ 80 };
 	const int m_power{ 9 };
-	const float k_gravity{ 0.6f };
-	const double k_PI{ 3.14 };
+	const float k_gravity{ 0.7f };
+	const double k_PI{ 3.14152 };
 
 public:
 	CJumpProperty();

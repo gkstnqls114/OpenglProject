@@ -46,8 +46,8 @@ void CFootBoard::InitModel()
 	if (CFootBoard::m_obj != nullptr) return;
 
 	CFootBoard::m_obj = new CObjModel;
-	CFootBoard::m_obj->LoadObj(".//OBJModel//FootBoard.obj");
-	CFootBoard::m_obj->LoadTexture(".//Texture//FootBoard.bmp");
+	CFootBoard::m_obj->LoadObj("FootBoard.obj");
+	CFootBoard::m_obj->LoadTexture("FootBoard.bmp");
 	//CFootBoard::m_obj->LoadTexture("Goal.bmp");
 
 	CFootBoard::m_Light_obj = new CObjModel;
