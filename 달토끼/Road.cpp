@@ -57,12 +57,10 @@ const bool CRoad::IsOutRange() const
 	return (m_DisappearingBoardIndex < 0 || m_DisappearingBoardIndex >= m_boardNum);
 }
 
-void CRoad::Add_DisappearingBoardIndex(const CPlayer * player)
+void CRoad::Add_DisappearingBoardIndex()
 {
 	if (IsOutRange()) return;
-	const bool IsDifferNum2 = player->Get_BoardNum() - m_DisappearingBoardIndex >= 2;
-	if (!IsDifferNum2) return;
-	
+
 	m_DisappearingBoardIndex += 1;
 }
 
@@ -194,12 +192,23 @@ void CRoad::Receive_PlayerWaitCamera(CPlayer * player)
 
 void CRoad::Receive_PlayerJumpFinish(CPlayer* player)
 {
-	Add_DisappearingBoardIndex(player);
+
+	std::cout << "여긴 되냐";
+
+	/*Add_DisappearingBoardIndex();
+
+	std::cout << "플레이어 보드 넘버:" << player->Get_BoardSide() << std::endl;
+	std::cout << "현재 보드 넘버:" << m_pFootBoard[player->Get_BoardNum()].GetSide() << std::endl;
 
 	const bool IsRightSide = player->Get_BoardSide() == m_pFootBoard[player->Get_BoardNum()].GetSide();
+
 	if (!IsRightSide) {
 		player->StateChange_WaitCamera();
+		std::cout << "??" << std::endl;
 	}
+	else {
+		std::cout << "??" << std::endl;
+	}*/
 }
 
 void CRoad::Init_GameScene()

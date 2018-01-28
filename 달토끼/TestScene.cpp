@@ -15,19 +15,17 @@ CTestScene::CTestScene()
 	m_Camera = new CCamera();
 	m_Player = new CPlayer();
 	m_Road = new CRoad(m_Player->Get_JumpReach());
-	
 	m_PlayerObserver = new PlayerObserver();
-	m_PlayerObserver->Add_Observer(m_Camera);
-	m_PlayerObserver->Add_Observer(m_Road);
-	
 	m_RoadObserver = new RoadObserver();
-	m_RoadObserver->Add_Observer(m_Player);
 
 	m_Camera->Initialize(CVector3D<>(0.f, 0.f, 0.f), 100, 0.1f, 600.f, 60);
 	m_Camera->Rotate(25, 20);
 
 	m_Player->SetPlayerObserver(m_PlayerObserver);
 	m_Road->Set_RoadObserver(m_RoadObserver);
+	m_PlayerObserver->Add_Observer(m_Camera);
+	m_RoadObserver->Add_Observer(m_Player);
+
 }
 
 
@@ -86,6 +84,7 @@ void CTestScene::Update()
 
 void CTestScene::Keyboard(const unsigned char & key, const int & x, const int & y)
 {
+
 	if (key == '=' || key == '+') {
 		m_Camera->zoom(0.8f);
 	}
