@@ -31,7 +31,7 @@ private:
 	void InitFootBoardPos(const GLdouble& distance);
 
 	const bool IsOutRange() const;
-	void Add_DisappearingBoardIndex();
+	void Add_DisappearingBoardIndex(const CPlayer* player);
 
 public:
 	CRoad(const GLdouble& distance);

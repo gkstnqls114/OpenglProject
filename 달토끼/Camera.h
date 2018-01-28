@@ -45,7 +45,7 @@ public:
 	//void Initialize(CVector3D<> && pos, float distance, float zNear, float zFar, float fov);
 
 	void SetAspect(float aspect) { m_aspect = aspect; }
-	CVector3D<> GetPosition()	const { return m_at; }
+	const CVector3D<> GetPosition()	const noexcept { return m_at; }
 
 	void SetPosition(const CVector3D<>& at);
 	void SetPosition(CVector3D<>&& at)	noexcept;

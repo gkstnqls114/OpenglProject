@@ -17,6 +17,5 @@ public:
 	virtual void Receive_PlayerWaitCamera(CPlayer* player) {};
 	virtual void Receive_PlayerJumpFinish(CPlayer* player) {};
 
-
 	virtual void Receive_DisappearFootBoard(CRoad* road) {};
 };
