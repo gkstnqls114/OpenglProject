@@ -148,7 +148,8 @@ void CPlayer::Receive_DisappearFootBoard(CRoad * road)
 	const bool IsOnFallBoard = m_MyBoardIndex <= road->Get_DisappearingBoardIndex();
 	if (!IsOnFallBoard) return;
 
-	StateChange_WaitCamera();
+	//road->StateChange_Stop();
+	//StateChange_WaitCamera();
 }
 
 float CPlayer::BodyRotateDegree()
@@ -186,9 +187,9 @@ void CPlayer::FrontJump()
 		m_Matrix->Calu_Rotate(-rotatedegree, 0, 1, 0);
 	}
 
-	if (m_pPlayerObserver) m_pPlayerObserver->Notify_PlayerJumping(this);
-
 	JumpRotate();
+
+	if(m_pPlayerObserver) m_pPlayerObserver->Notify_PlayerJumping(this);
 }
 
 void CPlayer::RightJump()
@@ -199,9 +200,9 @@ void CPlayer::RightJump()
 	float tmp_vector_x = float(Road_Distance_X) / m_JumpProperty.m_FinishJumpTime;
 	m_Pos.x += tmp_vector_x;
 
-	if (m_pPlayerObserver) m_pPlayerObserver->Notify_PlayerJumping(this);
-
 	JumpRotate();
+
+	if (m_pPlayerObserver) m_pPlayerObserver->Notify_PlayerJumping(this);
 }
 
 void CPlayer::LeftJump()
@@ -213,9 +214,9 @@ void CPlayer::LeftJump()
 	float tmp_vector_x = - float(Road_Distance_X) / m_JumpProperty.m_FinishJumpTime;
 	m_Pos.x += tmp_vector_x;
 
-	if (m_pPlayerObserver) m_pPlayerObserver->Notify_PlayerJumping(this);
-
 	JumpRotate();
+
+	if (m_pPlayerObserver) m_pPlayerObserver->Notify_PlayerJumping(this);
 }
 
 void CPlayer::Fall()
@@ -242,7 +243,6 @@ void CPlayer::StateChange_FrontJump()
 	m_MyBoardIndex += 1;
 	m_prevKeySide = m_MyKeySide;
 	m_MyKeySide = k_front;
-	m_MyBoardSide += k_front;
 	m_PlayerState = &FrontJumpState;
 }
 
@@ -274,7 +274,7 @@ void CPlayer::StateChange_Wait()
 
 	m_PlayerState = &WaitingState;
 
-	if (IsOutofRoad()) {
+	if (IsGetOutRoad()) {
 		StateChange_WaitCamera();
 	}
 	else {
@@ -314,7 +314,7 @@ void CPlayer::Calculate_JumpVector()
 	m_Pos.z += tempVector.z;
 }
 
-const bool CPlayer::IsOutofRoad() const noexcept
+const bool CPlayer::IsGetOutRoad() const noexcept
 {
 	return m_MyBoardSide > k_right || m_MyBoardSide < k_left;
 }
