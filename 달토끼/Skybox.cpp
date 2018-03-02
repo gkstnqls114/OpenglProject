@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "Star.h"
+#include "Spacestar.h"
 #include "Skybox.h"
 
 

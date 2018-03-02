@@ -1,6 +1,5 @@
 #include "pch.h"
 #include "SceneManager.h"
-#include "Mediator.h"
 #include "Camera.h"
 #include "Player.h"
 #include "Texture.h"

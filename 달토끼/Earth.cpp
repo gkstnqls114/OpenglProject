@@ -1,6 +1,5 @@
 #include "pch.h"
 #include "ObjModel.h"
-#include "Mediator.h"
 #include "Matrix.h"
 #include "Earth.h"
 
@@ -53,7 +52,7 @@ void CEarth::Update()
 		m_Matrix->Calu_Tranlate(CVector3D<>(0, 5, 0));
 
 		if (m_Matrix->Get_Tranlate_Y() > 400) {
-			m_pMediator->GameScene();
+			//m_pMediator->GameScene();
 		}
 
 		return;

@@ -1,7 +1,6 @@
 #include "pch.h"
 #include "SceneManager.h"
 #include "TextureStorage.h"
-#include "Mediator.h"
 #include "ClearObject.h"
 #include "Earth.h"
 #include "Camera.h"
@@ -21,15 +20,11 @@ CGameClear::CGameClear(CSceneManager* const changer)
 	m_textureStroage->StoreBitmap("Background.bmp", m_BackgroundTextureID);
 
 	m_pSceneManager = changer;
-	m_pMediator = new CMediator(m_pSceneManager);
 
 	m_Camera = new CCamera();
 	m_GAMECLEAR = new CGAMECLEAR_word(CVector3D<>(0, 200, -100));
 
 	m_earth = new CEarth(m_pMediator);
-
-	m_pMediator->SetCamera(m_Camera);
-
 	m_ClearObj = new CClearObject;
 }
 
@@ -51,7 +46,6 @@ void CGameClear::Initialize()
 	glDisable(GL_LIGHT2);
 	glEnable(GL_LIGHT3);
 
-	m_pMediator->Init_GameOver();
 
 }
 
@@ -138,10 +132,10 @@ void CGameClear::Update()
 
 void CGameClear::Keyboard(const unsigned char & key, const int & x, const int & y)
 {
-	m_pMediator->MainScene();
+
 }
 
 void CGameClear::SpecialKeys(const int & key, const int & x, const int & y)
 {
-	m_pMediator->MainScene();
+
 }

@@ -1,6 +1,5 @@
 #include "pch.h"
 #include "Player.h"
-#include "Mediator.h"
 #include "Camera.h"
 
 
@@ -32,7 +31,6 @@ void CCamera::Animation_GameClear()
 	bool Finish = !Far && !verticalMove && !horizontalMove;
 	if (Finish) {
 		isAnimate = false;
-		m_pMediator->GameClear();
 	}
 }
 

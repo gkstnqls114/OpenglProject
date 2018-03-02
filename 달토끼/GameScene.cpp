@@ -1,6 +1,5 @@
 #include "pch.h"
 #include "SceneManager.h"
-#include "Mediator.h"
 #include "Player.h"
 #include "Moon.h"
 #include "Earth.h"
@@ -93,7 +92,6 @@ CGameScene::CGameScene(CSceneManager* const changer)
 
 
 	m_pSceneManager = changer;
-	m_pMediator = new CMediator(m_pSceneManager);
 
 	m_textureStroage = new CTextureStorage;
 	m_textureStroage->StoreBitmap("Background.bmp", m_BackgroundTextureID);
@@ -109,11 +107,6 @@ CGameScene::CGameScene(CSceneManager* const changer)
 	m_Road = new CRoad(distance, m_pMediator);
 	int LastZ = m_Road->GetLastPos().z;
 	m_Skybox = new CSkybox(LastZ);
-
-	m_pMediator->SetPlayer(m_Player);
-	m_pMediator->SetRoad(m_Road);
-	m_pMediator->SetCamera(m_Camera);
-	m_pMediator->SetMapCamera(m_MapCamera);
 
 	m_Moon = new CMoon(m_pMediator);
 	m_Earth = new CEarth(m_pMediator);
@@ -157,7 +150,7 @@ void CGameScene::Initialize()
 
 	glEnable(GL_COLOR_MATERIAL);
 
-	m_pMediator->Init_GameScene();
+	//m_pMediator->Init_GameScene();
 
 	m_MapCamera->Initialize(CVector3D<>(0.f, 0.f, m_Road->GetFirstPos().z * 5), 500, 0.1f, 600.f, 60);
 	m_MapCamera->Rotate(0.f, 1.4f);

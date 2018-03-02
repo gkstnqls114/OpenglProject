@@ -1,6 +1,5 @@
 #include "pch.h"
 
-#include "Mediator.h"
 #include "Camera.h"
 #include "Moon.h"
 #include "Earth.h"
@@ -24,7 +23,7 @@ void CMainScene::ConfirmCursor()
 	else if (m_Cursor == k_PLAY) {
 		//장면 넘어간다.
 		IsGameStart = true;
-		m_pMediator->GameStart();
+		//m_pMediator->GameStart();
 	}
 }
 
@@ -33,7 +32,7 @@ void CMainScene::SelectCursor()
 	if (m_Cursor == k_PLAY) {
 		m_CursorPos = m_PLAY->Get_Pos();
 		m_CursorPos.y += 100;
-		m_pMediator->Cursor_PLAY();
+		//m_pMediator->Cursor_PLAY();
 
 		if (Nowdegree < 360 && Nowdegree >= 180) {
 			IsClockWise = false;
@@ -45,7 +44,7 @@ void CMainScene::SelectCursor()
 	else if (m_Cursor == k_EXIT) {
 		m_CursorPos = m_EXIT->Get_Pos();
 		m_CursorPos.y += 100;
-		m_pMediator->Cursor_EXIT();
+		//m_pMediator->Cursor_EXIT();
 
 		if (Nowdegree < 180 && Nowdegree >= 0) {
 			IsClockWise = false;
@@ -145,19 +144,13 @@ CMainScene::CMainScene(CSceneManager* const changer)
 
 	m_pSceneManager = changer;
 
-	m_pMediator = new CMediator(m_pSceneManager);
+	//m_pMediator = new CMediator(m_pSceneManager);
 
 	m_Camera = new CCamera();
 	m_Moon = new CMoon(m_pMediator);
 	m_Earth = new CEarth(m_pMediator);
 	m_PLAY = new CPLAY_word(CVector3D<>(- 150, -300, 0));
 	m_EXIT = new CEXIT_word(CVector3D<>(150, -300, 0));
-
-	m_pMediator->SetMoon(m_Moon);
-	m_pMediator->SetEarth(m_Earth);
-	m_pMediator->SetPLAYWORD(m_PLAY);
-	m_pMediator->SetEXITWORD(m_EXIT);
-	m_pMediator->SetCamera(m_Camera);
 
 	Initialize();
 
@@ -186,7 +179,7 @@ void CMainScene::Initialize()
 	glDisable(GL_LIGHT2);
 	glDisable(GL_LIGHT3);
 
-	m_pMediator->Init_MainScene();
+	//m_pMediator->Init_MainScene();
 	m_Cursor = k_PLAY;
 	SelectCursor();
 	IsRotate = false;

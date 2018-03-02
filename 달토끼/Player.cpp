@@ -1,6 +1,5 @@
 #include "pch.h"
 #include "ObjModel.h"
-#include "Mediator.h"
 #include "Matrix.h"
 
 #include "PlayerObserver.h"

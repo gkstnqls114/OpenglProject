@@ -1,7 +1,6 @@
 #include "pch.h"
 #include "Player.h"
 #include "Camera.h"
-#include "Mediator.h"
 #include "GAMEOVER_word.h"
 #include "SceneManager.h"
 #include "Gameover.h"
@@ -17,14 +16,10 @@ CGameOver::CGameOver(CSceneManager* const changer)
 	);
 
 	m_pSceneManager = changer;
-	m_pMediator = new CMediator(m_pSceneManager);
 
 	m_Player = new CPlayer();
 	m_Camera = new CCamera();
 	m_GAMEOVER = new CGAMEOVER_word(CVector3D<>(0, -200, 0));
-	
-	m_pMediator->SetPlayer(m_Player);
-	m_pMediator->SetCamera(m_Camera);
 
 	Initialize();
 }
@@ -45,8 +40,6 @@ void CGameOver::Initialize()
 	glDisable(GL_LIGHT1);
 	glEnable(GL_LIGHT2);
 	glDisable(GL_LIGHT3);
-
-	m_pMediator->Init_GameOver();
 
 }
 
@@ -92,10 +85,10 @@ void CGameOver::Update()
 
 void CGameOver::Keyboard(const unsigned char & key, const int & x, const int & y)
 {
-	m_pMediator->MainScene();
+
 }
 
 void CGameOver::SpecialKeys(const int & key, const int & x, const int & y)
 {
-	m_pMediator->MainScene();
+
 }
