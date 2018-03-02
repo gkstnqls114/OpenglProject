@@ -1,10 +1,10 @@
 #pragma once
 
-class CStar;
+class Spacestar;
 
 class CSkybox
 {
-	CStar* m_Stars{nullptr};
+	Spacestar* m_Stars{nullptr};
 	int m_StarNum{ 3000 };
 
 public:

@@ -159,7 +159,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Basic.cpp" />
+    <ClCompile Include="Carrat.cpp" />
     <ClCompile Include="Disappear.cpp" />
+    <ClCompile Include="Item.cpp" />
     <ClCompile Include="PlayerSubject.cpp" />
     <ClCompile Include="RoadState.cpp" />
     <ClCompile Include="Camera.cpp" />
@@ -181,7 +183,6 @@
     <ClCompile Include="LeftJump.cpp" />
     <ClCompile Include="Lighting.cpp" />
     <ClCompile Include="MainScene.cpp" />
-    <ClCompile Include="Mediator.cpp" />
     <ClCompile Include="FootBoard.cpp" />
     <ClCompile Include="GLFramework.cpp" />
     <ClCompile Include="main.cpp" />
@@ -214,9 +215,11 @@
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="ObjVertex.cpp" />
     <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="Shield.cpp" />
     <ClCompile Include="Skybox.cpp" />
     <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="Spacesuit.cpp" />
+    <ClCompile Include="Spacestar.cpp" />
     <ClCompile Include="Star.cpp" />
     <ClCompile Include="Stop.cpp" />
     <ClCompile Include="Suit.cpp" />
@@ -228,7 +231,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Basic.h" />
+    <ClInclude Include="Carrat.h" />
     <ClInclude Include="Disappear.h" />
+    <ClInclude Include="Item.h" />
     <ClInclude Include="PlayerSubject.h" />
     <ClInclude Include="RoadState.h" />
     <ClInclude Include="Camera.h" />
@@ -250,7 +255,6 @@
     <ClInclude Include="LeftJump.h" />
     <ClInclude Include="Lighting.h" />
     <ClInclude Include="MainScene.h" />
-    <ClInclude Include="Mediator.h" />
     <ClInclude Include="FootBoard.h" />
     <ClInclude Include="GLFramework.h" />
     <ClInclude Include="Matrix.h" />
@@ -273,9 +277,11 @@
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="ObjVertex.h" />
     <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="Shield.h" />
     <ClInclude Include="Skybox.h" />
     <ClInclude Include="SoundManager.h" />
     <ClInclude Include="Spacesuit.h" />
+    <ClInclude Include="Spacestar.h" />
     <ClInclude Include="Star.h" />
     <ClInclude Include="Stop.h" />
     <ClInclude Include="Suit.h" />

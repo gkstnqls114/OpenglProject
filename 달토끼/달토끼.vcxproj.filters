@@ -163,9 +163,6 @@
     <Filter Include="소스 파일\Observer\ClearObj">
       <UniqueIdentifier>{efdb6548-ecd7-46ba-9730-41b18310fdf9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\Observer\Item">
-      <UniqueIdentifier>{65dc07d0-4ca3-440a-9c34-44873a7cb74d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\Road">
       <UniqueIdentifier>{578427ee-78f8-4782-a051-0331483d9f88}</UniqueIdentifier>
     </Filter>
@@ -196,6 +193,18 @@
     <Filter Include="소스 파일\ObserverSystem\RoadSubject">
       <UniqueIdentifier>{8133cc61-163d-4197-b1bc-1c6f46462125}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Item">
+      <UniqueIdentifier>{519ffc40-23a4-451d-bbe7-0a367ce14f73}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Item\Star">
+      <UniqueIdentifier>{f9b9e604-af5d-486f-a3bf-7514c7d359f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Item\Carrat">
+      <UniqueIdentifier>{664c8ea0-81dc-4ef2-a063-6b2ddb4c3b9c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Item\Shield">
+      <UniqueIdentifier>{9e9811b5-d78e-4970-8404-1eee3b963bd2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GLFramework.cpp">
@@ -215,9 +224,6 @@
     </ClCompile>
     <ClCompile Include="MyRGB.cpp">
       <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Mediator.cpp">
-      <Filter>소스 파일\Manager</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>소스 파일\Player</Filter>
@@ -271,9 +277,6 @@
       <Filter>소스 파일\GLFramework\Scene\Gameover</Filter>
     </ClCompile>
     <ClCompile Include="Skybox.cpp">
-      <Filter>소스 파일\Skybox</Filter>
-    </ClCompile>
-    <ClCompile Include="Star.cpp">
       <Filter>소스 파일\Skybox</Filter>
     </ClCompile>
     <ClCompile Include="GAMEOVER_word.cpp">
@@ -372,6 +375,21 @@
     <ClCompile Include="RoadSubject.cpp">
       <Filter>소스 파일\ObserverSystem\RoadSubject</Filter>
     </ClCompile>
+    <ClCompile Include="Item.cpp">
+      <Filter>소스 파일\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="Carrat.cpp">
+      <Filter>소스 파일\Item\Carrat</Filter>
+    </ClCompile>
+    <ClCompile Include="Shield.cpp">
+      <Filter>소스 파일\Item\Shield</Filter>
+    </ClCompile>
+    <ClCompile Include="Spacestar.cpp">
+      <Filter>소스 파일\Skybox</Filter>
+    </ClCompile>
+    <ClCompile Include="Star.cpp">
+      <Filter>소스 파일\Item\Star</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GLFramework.h">
@@ -385,9 +403,6 @@
     </ClInclude>
     <ClInclude Include="MyRGB.h">
       <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Mediator.h">
-      <Filter>소스 파일\Manager</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>소스 파일\Player</Filter>
@@ -441,9 +456,6 @@
       <Filter>소스 파일\GLFramework\Scene\GameClear</Filter>
     </ClInclude>
     <ClInclude Include="Skybox.h">
-      <Filter>소스 파일\Skybox</Filter>
-    </ClInclude>
-    <ClInclude Include="Star.h">
       <Filter>소스 파일\Skybox</Filter>
     </ClInclude>
     <ClInclude Include="GAMEOVER_word.h">
@@ -550,6 +562,21 @@
     </ClInclude>
     <ClInclude Include="RoadSubject.h">
       <Filter>소스 파일\ObserverSystem\RoadSubject</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>소스 파일\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="Carrat.h">
+      <Filter>소스 파일\Item\Carrat</Filter>
+    </ClInclude>
+    <ClInclude Include="Shield.h">
+      <Filter>소스 파일\Item\Shield</Filter>
+    </ClInclude>
+    <ClInclude Include="Spacestar.h">
+      <Filter>소스 파일\Skybox</Filter>
+    </ClInclude>
+    <ClInclude Include="Star.h">
+      <Filter>소스 파일\Item\Star</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,10 +1,10 @@
 #pragma once
 #include "Item.h"
-class Star :
+class Shield :
 	public Item
 {
 public:
-	Star();
-	virtual ~Star();
+	Shield();
+	virtual ~Shield();
 };
 

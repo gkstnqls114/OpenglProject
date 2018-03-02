@@ -7,7 +7,7 @@ CSkybox::CSkybox(const int& z)
 {
 	m_StarNum = 3000;
 
-	m_Stars = new CStar[m_StarNum];
+	m_Stars = new Spacestar[m_StarNum];
 
 	for (int index = 0; index < m_StarNum; ++index) {
 		m_Stars[index].RandomPosZ(z);
