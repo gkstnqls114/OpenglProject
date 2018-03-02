@@ -1,11 +1,9 @@
 #pragma once
-#include "Observer.h"
 
 class CObjModel;
 class CMatrix;
 
 class CEXIT_word
-	:public Observer
 {
 	CVector3D<> m_Position;
 	CObjModel* m_model{ nullptr };

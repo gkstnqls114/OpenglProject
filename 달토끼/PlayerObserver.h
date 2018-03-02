@@ -5,16 +5,13 @@ class Observer;
 
 class PlayerObserver
 {
-	std::list<Observer*> m_List;
-
+	
 public:
 	PlayerObserver();
 	~PlayerObserver();
 
-	void Add_Observer(Observer* push);
-	void Sub_Observer(Observer* pop);
+	virtual void Receive_PlayerWaitCamera(CPlayer* player) = 0;
+	virtual void Receive_PlayerJumpFinish(CPlayer* player) = 0;
+	virtual void Receive_PlayerJumping(CPlayer* player) = 0;
 
-	void Notify_PlayerJumping(CPlayer* player);
-	void Notify_PlayerWaitCamera(CPlayer* player);
-	void Notify_PlayerJumpFinish(CPlayer* player);
 };

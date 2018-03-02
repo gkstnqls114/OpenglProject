@@ -1,11 +1,8 @@
 #pragma once
-#include "Observer.h"
-
 class CObjModel;
 class CMatrix;
 
-class CGAMECLEAR_word :
-	public Observer
+class CGAMECLEAR_word
 {
 	CVector3D<> m_Position;
 	CObjModel* m_model{ nullptr };

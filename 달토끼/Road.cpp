@@ -2,7 +2,7 @@
 #include "Mediator.h"
 #include "FootBoard.h"
 #include "RoadState.h"
-#include "RoadObserver.h"
+#include "RoadSubject.h"
 #include "Player.h"
 
 #include "Road.h"
@@ -81,7 +81,6 @@ CRoad::CRoad(const GLdouble& distance, CMediator*& mediator)
 	InitFootBoardModel();
 	InitFootBoardPos(distance);
 
-	m_pMediator = mediator;
 }
 
 
@@ -164,7 +163,7 @@ void CRoad::Disappear()
 
 	//위 if문과 순서 중요!
 	if (m_pFootBoard[m_DisappearingBoardIndex].GetDisappear()) {
-		m_pRoadObserver->Notify_DisappearFootBoard(this);
+		m_pRoadSubject->Notify_DisappearFootBoard(this);
 		m_DisappearingBoardIndex += 1;
 	}
 }
@@ -192,23 +191,16 @@ void CRoad::Receive_PlayerWaitCamera(CPlayer * player)
 
 void CRoad::Receive_PlayerJumpFinish(CPlayer* player)
 {
-
-	std::cout << "여긴 되냐";
-
-	/*Add_DisappearingBoardIndex();
+	Add_DisappearingBoardIndex();
 
 	std::cout << "플레이어 보드 넘버:" << player->Get_BoardSide() << std::endl;
 	std::cout << "현재 보드 넘버:" << m_pFootBoard[player->Get_BoardNum()].GetSide() << std::endl;
 
-	const bool IsRightSide = player->Get_BoardSide() == m_pFootBoard[player->Get_BoardNum()].GetSide();
+	const bool IsCorrectSide = player->Get_BoardSide() == m_pFootBoard[player->Get_BoardNum()].GetSide();
 
-	if (!IsRightSide) {
+	if (!IsCorrectSide) {
 		player->StateChange_WaitCamera();
-		std::cout << "??" << std::endl;
 	}
-	else {
-		std::cout << "??" << std::endl;
-	}*/
 }
 
 void CRoad::Init_GameScene()

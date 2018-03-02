@@ -1,11 +1,8 @@
 #pragma once
-#include "Observer.h"
-
 class CObjModel;
 class CMatrix;
 
-class CClearObject :
-	public Observer
+class CClearObject
 {
 	CVector3D<> m_Position;
 

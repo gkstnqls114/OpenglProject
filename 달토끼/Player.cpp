@@ -4,6 +4,7 @@
 #include "Matrix.h"
 
 #include "PlayerObserver.h"
+#include "PlayerSubject.h"
 #include "PlayerState.h"
 
 #include "Road.h"
@@ -189,7 +190,7 @@ void CPlayer::FrontJump()
 
 	JumpRotate();
 
-	if(m_pPlayerObserver) m_pPlayerObserver->Notify_PlayerJumping(this);
+	if(m_pPlayerSubject) m_pPlayerSubject->Notify_PlayerJumping(this);
 }
 
 void CPlayer::RightJump()
@@ -202,7 +203,7 @@ void CPlayer::RightJump()
 
 	JumpRotate();
 
-	if (m_pPlayerObserver) m_pPlayerObserver->Notify_PlayerJumping(this);
+	if (m_pPlayerSubject) m_pPlayerSubject->Notify_PlayerJumping(this);
 }
 
 void CPlayer::LeftJump()
@@ -216,7 +217,7 @@ void CPlayer::LeftJump()
 
 	JumpRotate();
 
-	if (m_pPlayerObserver) m_pPlayerObserver->Notify_PlayerJumping(this);
+	if (m_pPlayerSubject) m_pPlayerSubject->Notify_PlayerJumping(this);
 }
 
 void CPlayer::Fall()
@@ -235,7 +236,7 @@ void CPlayer::Dead()
 
 void CPlayer::WaitCamera()
 {
-	m_pPlayerObserver->Notify_PlayerWaitCamera(this);
+	m_pPlayerSubject->Notify_PlayerWaitCamera(this);
 }
 
 void CPlayer::StateChange_FrontJump()
@@ -278,7 +279,7 @@ void CPlayer::StateChange_Wait()
 		StateChange_WaitCamera();
 	}
 	else {
-		m_pPlayerObserver->Notify_PlayerJumpFinish(this);
+		m_pPlayerSubject->Notify_PlayerJumpFinish(this);
 	}
 }
 
@@ -316,8 +317,13 @@ void CPlayer::Calculate_JumpVector()
 
 const bool CPlayer::IsGetOutRoad() const noexcept
 {
-	return m_MyBoardSide > k_right || m_MyBoardSide < k_left;
+	return false;
 }
+
+//const bool CPlayer::IsGetOutRoad() const noexcept
+//{
+//	return m_MyBoardSide > k_right || m_MyBoardSide < k_left;
+//}
 
 void CPlayer::JumpRotate()
 {

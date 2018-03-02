@@ -160,11 +160,11 @@
   <ItemGroup>
     <ClCompile Include="Basic.cpp" />
     <ClCompile Include="Disappear.cpp" />
+    <ClCompile Include="PlayerSubject.cpp" />
     <ClCompile Include="RoadState.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="ClearObject.cpp" />
     <ClCompile Include="LoadingScene.cpp" />
-    <ClCompile Include="Observer.cpp" />
     <ClCompile Include="Dead.cpp" />
     <ClCompile Include="Devil.cpp" />
     <ClCompile Include="Earth.cpp" />
@@ -208,6 +208,7 @@
     <ClCompile Include="RightJump.cpp" />
     <ClCompile Include="Road.cpp" />
     <ClCompile Include="RoadObserver.cpp" />
+    <ClCompile Include="RoadSubject.cpp" />
     <ClCompile Include="Robot.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="GameScene.cpp" />
@@ -228,11 +229,11 @@
   <ItemGroup>
     <ClInclude Include="Basic.h" />
     <ClInclude Include="Disappear.h" />
+    <ClInclude Include="PlayerSubject.h" />
     <ClInclude Include="RoadState.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="ClearObject.h" />
     <ClInclude Include="LoadingScene.h" />
-    <ClInclude Include="Observer.h" />
     <ClInclude Include="Dead.h" />
     <ClInclude Include="Devil.h" />
     <ClInclude Include="Earth.h" />
@@ -266,6 +267,7 @@
     <ClInclude Include="RightJump.h" />
     <ClInclude Include="Road.h" />
     <ClInclude Include="RoadObserver.h" />
+    <ClInclude Include="RoadSubject.h" />
     <ClInclude Include="Robot.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="GameScene.h" />

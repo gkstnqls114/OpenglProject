@@ -1,17 +1,20 @@
-#pragma once
+#pragma 
+#include "PlayerSubject.h"
+#include "RoadSubject.h"
+
 #include "Scene.h"
 
 class CSceneManager;
 class CTextureStorage;
-class PlayerObserver;
+class PlayerSubject;
 class RoadObserver;
 class CRoad;
 
 class CTestScene :
 	public Scene
 {
-	PlayerObserver*		m_PlayerObserver	{ nullptr };
-	RoadObserver*		m_RoadObserver		{ nullptr };
+	PlayerSubject		m_PlayerObserver	;
+	RoadSubject			m_RoadObserver		;
 	CPlayer *			m_Player			{ nullptr };
 	CRoad *				m_Road				{ nullptr };
 	CCamera*			m_Camera			{ nullptr };

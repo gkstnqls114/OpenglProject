@@ -1,5 +1,5 @@
 #pragma once
-#include "Observer.h"
+#include "RoadObserver.h"
 
 #include "WaitCamera.h"
 #include "Waiting.h"
@@ -19,18 +19,18 @@ class CRoad;
 class CCamera;
 
 class CPlayerState;
-class PlayerObserver;
+class PlayerSubject;
 
 
 class CPlayer
-	: public Observer
+	: public RoadObserver
 {
 	static CObjModel* m_Rabit_Body		;
 	static CObjModel* m_Rabit_Ear		;
 	static CObjModel* m_Rabit_LeftFoot	;
 	static CObjModel* m_Rabit_RightFoot	;
 
-	PlayerObserver* m_pPlayerObserver{ nullptr };
+	PlayerSubject* m_pPlayerSubject{ nullptr };
 
 	//플레이어 위치
 	CVector3D<> m_Pos;
@@ -84,6 +84,10 @@ public:
 	void Update();
 	void Render();
 
+	/////////////////////////////////Init
+	void Init_GameScene();
+	void Init_GameOver();
+	/////////////////////////////////Init
 	
 	/////////////////////////////////State
 	void FrontJump();
@@ -102,11 +106,9 @@ public:
 	void StateChange_Dead();
 	/////////////////////////////////State
 
-	/////////////////////////////////Mediator
-	virtual void Init_GameScene();
-	virtual void Init_GameOver();
+	/////////////////////////////////Road Observer
 	virtual void Receive_DisappearFootBoard(CRoad* road) override;
-	/////////////////////////////////Mediator
+	/////////////////////////////////Road Observer
 
 	/////////////////////////////////GET
 	const GLdouble Get_JumpReach() const noexcept { return m_JumpProperty.Get_JumpReach(); }
@@ -120,7 +122,7 @@ public:
 	void RotateX(const int degree);
 	void RotateY(const int degree);
 	void RotateZ(const int degree);
-	void SetPlayerObserver(PlayerObserver* notification) noexcept { m_pPlayerObserver = notification; };
+	void Set_PlayerSubjer(PlayerSubject* subject) noexcept { m_pPlayerSubject = subject; };
 	/////////////////////////////////SET
 
 };

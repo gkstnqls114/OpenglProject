@@ -1,14 +1,16 @@
 #pragma once
 #include "Disappear.h"
 #include "Stop.h"
-#include "Observer.h"
+
+#include "PlayerObserver.h"
 
 class RoadState;
 class CFootBoard;
 class CMediator;
-class RoadObserver;
+class RoadSubject;
 
-class CRoad : public Observer
+class CRoad 
+	: public PlayerObserver
 {
 	const int		k_side[3] = { k_left, k_front, k_right };
 	CFootBoard*		m_pFootBoard;
@@ -23,8 +25,7 @@ class CRoad : public Observer
 
 	GLdouble		JumpReach{ -1 };
 
-	CMediator*		m_pMediator{ nullptr };
-	RoadObserver*	m_pRoadObserver{ nullptr };
+	RoadSubject*	m_pRoadSubject{ nullptr };
 
 private:
 	void InitFootBoardModel();
@@ -59,12 +60,13 @@ public:
 
 	/////////////////////////////////Set
 	//void Set_PlayerBoardIndex(const int& playerboardindex) noexcept { m_PlayerBoardIndex = playerboardindex; }
-	void Set_RoadObserver(RoadObserver* notification) noexcept { m_pRoadObserver = notification; };
+	void Set_RoadObserver(RoadSubject* subject) noexcept { m_pRoadSubject = subject; };
 	/////////////////////////////////Set
 	
 	/////////////////////////////////Receive
 	virtual void Receive_PlayerWaitCamera(CPlayer* player) override;
 	virtual void Receive_PlayerJumpFinish(CPlayer* player) override;
+	virtual void Receive_PlayerJumping(CPlayer* player)	override {};
 	/////////////////////////////////Receive
 
 	virtual void Init_GameScene();

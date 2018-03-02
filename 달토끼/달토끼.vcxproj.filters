@@ -190,6 +190,12 @@
     <Filter Include="소스 파일\Player\PlayerState\WaitCamera">
       <UniqueIdentifier>{6c618a60-0c58-4fd8-b0ff-b928a05f2afa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\ObserverSystem\PlayerSubject">
+      <UniqueIdentifier>{18a45f34-e809-4b2a-9265-73c98b22b712}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\ObserverSystem\RoadSubject">
+      <UniqueIdentifier>{8133cc61-163d-4197-b1bc-1c6f46462125}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GLFramework.cpp">
@@ -333,9 +339,6 @@
     <ClCompile Include="Suit.cpp">
       <Filter>소스 파일\Player\PlayerSkin\Suit</Filter>
     </ClCompile>
-    <ClCompile Include="Observer.cpp">
-      <Filter>소스 파일\Observer</Filter>
-    </ClCompile>
     <ClCompile Include="PlayerObserver.cpp">
       <Filter>소스 파일\ObserverSystem\PlayerObserver</Filter>
     </ClCompile>
@@ -362,6 +365,12 @@
     </ClCompile>
     <ClCompile Include="WaitCamera.cpp">
       <Filter>소스 파일\Player\PlayerState\WaitCamera</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerSubject.cpp">
+      <Filter>소스 파일\ObserverSystem\PlayerSubject</Filter>
+    </ClCompile>
+    <ClCompile Include="RoadSubject.cpp">
+      <Filter>소스 파일\ObserverSystem\RoadSubject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -509,9 +518,6 @@
     <ClInclude Include="Suit.h">
       <Filter>소스 파일\Player\PlayerSkin\Suit</Filter>
     </ClInclude>
-    <ClInclude Include="Observer.h">
-      <Filter>소스 파일\Observer</Filter>
-    </ClInclude>
     <ClInclude Include="PlayerObserver.h">
       <Filter>소스 파일\ObserverSystem\PlayerObserver</Filter>
     </ClInclude>
@@ -538,6 +544,12 @@
     </ClInclude>
     <ClInclude Include="WaitCamera.h">
       <Filter>소스 파일\Player\PlayerState\WaitCamera</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerSubject.h">
+      <Filter>소스 파일\ObserverSystem\PlayerSubject</Filter>
+    </ClInclude>
+    <ClInclude Include="RoadSubject.h">
+      <Filter>소스 파일\ObserverSystem\RoadSubject</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
