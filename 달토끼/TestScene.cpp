@@ -22,6 +22,7 @@ CTestScene::CTestScene()
 	m_Player->Set_PlayerSubjer(&m_PlayerObserver);
 	m_Road->Set_RoadObserver(&m_RoadObserver);
 	m_PlayerObserver.Add_Observer(m_Camera);
+	m_PlayerObserver.Add_Observer(m_Road);
 	m_RoadObserver.Add_Observer(m_Player);
 
 }

@@ -193,13 +193,43 @@ void CRoad::Receive_PlayerJumpFinish(CPlayer* player)
 {
 	Add_DisappearingBoardIndex();
 
-	std::cout << "플레이어 보드 넘버:" << player->Get_BoardSide() << std::endl;
-	std::cout << "현재 보드 넘버:" << m_pFootBoard[player->Get_BoardNum()].GetSide() << std::endl;
+	//Test용
+	int playerboardside = player->Get_BoardSide();
+	std::cout << "플레이어 보드 넘버:" << player->Get_BoardNum() << " , ";
+	switch (playerboardside)
+	{
+	case 1:
+		std::cout << "오른쪽" << std::endl;
+		break;
+	case 0:
+		std::cout << "가운데" << std::endl;
+		break;
+	case -1:
+		std::cout << "왼쪽" << std::endl;
+		break;
+	}
+	
+	int boardside = m_pFootBoard[player->Get_BoardNum()].GetSide();
+	std::cout << "현재 보드 넘버 :";
+	switch (boardside)
+	{
+	case 1:
+		std::cout << "오른쪽" << std::endl;
+		break;
+	case 0:
+		std::cout << "가운데" << std::endl;
+		break;
+	case -1:
+		std::cout << "왼쪽" << std::endl;
+		break;
+	}
+
+	//Test용
 
 	const bool IsCorrectSide = player->Get_BoardSide() == m_pFootBoard[player->Get_BoardNum()].GetSide();
-
 	if (!IsCorrectSide) {
-		player->StateChange_WaitCamera();
+		//Test를 위해 주석합니다.
+		//player->StateChange_WaitCamera();
 	}
 }
 
@@ -225,7 +255,6 @@ void CRoad::Player_JumpFinish(int playerside)
 	bool IsGameClear = m_PlayerBoardIndex == (m_boardNum - 1);
 	if (IsGameClear) {
 		m_pFootBoard[m_boardNum - 1].IsNotLight();
-		m_pMediator->Player_Clear();
 		return;
 	}
 

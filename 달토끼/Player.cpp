@@ -149,6 +149,7 @@ void CPlayer::Receive_DisappearFootBoard(CRoad * road)
 	const bool IsOnFallBoard = m_MyBoardIndex <= road->Get_DisappearingBoardIndex();
 	if (!IsOnFallBoard) return;
 
+	//Test를 위해 주석처리 합니다
 	//road->StateChange_Stop();
 	//StateChange_WaitCamera();
 }
@@ -232,6 +233,7 @@ void CPlayer::Fall()
 
 void CPlayer::Dead()
 {
+	
 }
 
 void CPlayer::WaitCamera()
@@ -317,13 +319,8 @@ void CPlayer::Calculate_JumpVector()
 
 const bool CPlayer::IsGetOutRoad() const noexcept
 {
-	return false;
+	return m_MyBoardSide > k_right || m_MyBoardSide < k_left;
 }
-
-//const bool CPlayer::IsGetOutRoad() const noexcept
-//{
-//	return m_MyBoardSide > k_right || m_MyBoardSide < k_left;
-//}
 
 void CPlayer::JumpRotate()
 {
