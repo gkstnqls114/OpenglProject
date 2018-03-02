@@ -195,7 +195,7 @@ void CRoad::Receive_PlayerJumpFinish(CPlayer* player)
 
 	//Test용
 	int playerboardside = player->Get_BoardSide();
-	std::cout << "플레이어 보드 넘버:" << player->Get_BoardNum() << " , ";
+	std::cout << "플레이어 보드 넘버:" ;
 	switch (playerboardside)
 	{
 	case 1:
@@ -210,7 +210,7 @@ void CRoad::Receive_PlayerJumpFinish(CPlayer* player)
 	}
 	
 	int boardside = m_pFootBoard[player->Get_BoardNum()].GetSide();
-	std::cout << "현재 보드 넘버 :";
+	std::cout << "도착한 보드넘버 :";
 	switch (boardside)
 	{
 	case 1:
@@ -223,7 +223,7 @@ void CRoad::Receive_PlayerJumpFinish(CPlayer* player)
 		std::cout << "왼쪽" << std::endl;
 		break;
 	}
-
+	std::cout << std::endl;
 	//Test용
 
 	const bool IsCorrectSide = player->Get_BoardSide() == m_pFootBoard[player->Get_BoardNum()].GetSide();
