@@ -15,10 +15,11 @@ void CDead::Initialize()
 {
 }
 
-void CDead::Update(CPlayer * player)
+void CDead::Update(CPlayer & player)
 {
 }
 
-void CDead::SpecialKeys(CPlayer * player, const int & key)
+void CDead::SpecialKeys(CPlayer & player, const int & key)
 {
 }
+

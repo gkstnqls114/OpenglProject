@@ -16,11 +16,11 @@ void CLeftJump::Initialize()
 {
 }
 
-void CLeftJump::Update(CPlayer * player)
+void CLeftJump::Update(CPlayer & player)
 {
-	player->LeftJump();
+	player.LeftJump();
 }
 
-void CLeftJump::SpecialKeys(CPlayer * player, const int & key)
+void CLeftJump::SpecialKeys(CPlayer & player, const int & key)
 {
 }

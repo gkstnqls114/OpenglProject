@@ -16,11 +16,11 @@ void CRightJump::Initialize()
 {
 }
 
-void CRightJump::Update(CPlayer * player)
+void CRightJump::Update(CPlayer & player)
 {
-	player->RightJump();
+	player.RightJump();
 }
 
-void CRightJump::SpecialKeys(CPlayer * player, const int & key)
+void CRightJump::SpecialKeys(CPlayer & player, const int & key)
 {
 }

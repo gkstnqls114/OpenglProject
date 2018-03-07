@@ -16,11 +16,11 @@ void CFalling::Initialize()
 {
 }
 
-void CFalling::Update(CPlayer * player)
+void CFalling::Update(CPlayer & player)
 {
-	player->Fall();
+	player.Fall();
 }
 
-void CFalling::SpecialKeys(CPlayer * player, const int & key)
+void CFalling::SpecialKeys(CPlayer & player, const int & key)
 {
 }

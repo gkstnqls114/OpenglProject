@@ -16,10 +16,10 @@ void CFrontJump::Initialize()
 {
 }
 
-void CFrontJump::Update(CPlayer * player)
+void CFrontJump::Update(CPlayer & player)
 {
-	player->FrontJump();
-	
+	player.FrontJump();
+
 
 	//if (!IsJump) return;
 
@@ -33,7 +33,7 @@ void CFrontJump::Update(CPlayer * player)
 
 }
 
-void CFrontJump::SpecialKeys(CPlayer * player, const int & key)
+void CFrontJump::SpecialKeys(CPlayer & player, const int & key)
 {
-
 }
+

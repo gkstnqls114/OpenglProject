@@ -17,12 +17,13 @@ void WaitCamera::Initialize()
 {
 }
 
-void WaitCamera::Update(CPlayer * player)
+void WaitCamera::Update(CPlayer & player)
 {
-	player->WaitCamera();
+	player.WaitCamera();
 }
 
-void WaitCamera::SpecialKeys(CPlayer * player, const int & key)
+void WaitCamera::SpecialKeys(CPlayer & player, const int & key)
 {
-	//do nothing
+	//DO NOTHING
 }
+

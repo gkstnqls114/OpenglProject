@@ -115,9 +115,6 @@
     <Filter Include="소스 파일\Player\PlayerState\Jump">
       <UniqueIdentifier>{b3b1f6ec-608d-4752-bf16-0be0efd1fe05}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\Player\PlayerState\Jump\Abstract">
-      <UniqueIdentifier>{daecdb01-9f08-4011-b64c-64fc6c68afaf}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\Manager">
       <UniqueIdentifier>{caf245db-854e-46f8-8e7d-a90c57fd5116}</UniqueIdentifier>
     </Filter>
@@ -321,9 +318,6 @@
     <ClCompile Include="Scene.cpp">
       <Filter>소스 파일\GLFramework\Scene\Abstract</Filter>
     </ClCompile>
-    <ClCompile Include="Jump.cpp">
-      <Filter>소스 파일\Player\PlayerState\Jump\Abstract</Filter>
-    </ClCompile>
     <ClCompile Include="Basic.cpp">
       <Filter>소스 파일\Player\PlayerSkin\Basic</Filter>
     </ClCompile>
@@ -508,9 +502,6 @@
     </ClInclude>
     <ClInclude Include="Scene.h">
       <Filter>소스 파일\GLFramework\Scene\Abstract</Filter>
-    </ClInclude>
-    <ClInclude Include="Jump.h">
-      <Filter>소스 파일\Player\PlayerState\Jump\Abstract</Filter>
     </ClInclude>
     <ClInclude Include="Basic.h">
       <Filter>소스 파일\Player\PlayerSkin\Basic</Filter>

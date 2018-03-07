@@ -117,7 +117,7 @@ void CRoad::TestRender()
 
 void CRoad::Update()
 {
-	if (m_RoadState) m_RoadState->Update(this);
+	if (m_RoadState) m_RoadState->Update(*this);
 }
 
 const CVector3D<> CRoad::GetLastPos() const noexcept

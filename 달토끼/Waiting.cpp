@@ -17,20 +17,21 @@ void CWaiting::Initialize()
 {
 }
 
-void CWaiting::Update(CPlayer * player)
+void CWaiting::Update(CPlayer & player)
 {
-	//do nothing
+	//DO NOTHING
 }
 
-void CWaiting::SpecialKeys(CPlayer * player, const int & key)
+void CWaiting::SpecialKeys(CPlayer & player, const int & key)
 {
 	if (key == GLUT_KEY_UP) {
-		player->StateChange_FrontJump();
+		player.StateChange_FrontJump();
 	}
 	else if (key == GLUT_KEY_RIGHT) {
-		player->StateChange_RightJump();
+		player.StateChange_RightJump();
 	}
 	else if (key == GLUT_KEY_LEFT) {
-		player->StateChange_LeftJump();
+		player.StateChange_LeftJump();
 	}
 }
+

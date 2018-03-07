@@ -178,7 +178,6 @@
     <ClCompile Include="GAMECLEAR_word.cpp" />
     <ClCompile Include="Gameover.cpp" />
     <ClCompile Include="GAMEOVER_word.cpp" />
-    <ClCompile Include="Jump.cpp" />
     <ClCompile Include="JumpProperty.cpp" />
     <ClCompile Include="LeftJump.cpp" />
     <ClCompile Include="Lighting.cpp" />
@@ -250,7 +249,6 @@
     <ClInclude Include="GAMECLEAR_word.h" />
     <ClInclude Include="Gameover.h" />
     <ClInclude Include="GAMEOVER_word.h" />
-    <ClInclude Include="Jump.h" />
     <ClInclude Include="JumpProperty.h" />
     <ClInclude Include="LeftJump.h" />
     <ClInclude Include="Lighting.h" />

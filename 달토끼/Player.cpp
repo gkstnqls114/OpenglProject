@@ -61,12 +61,12 @@ void CPlayer::SpecialKeys(const int & key, const int & x, const int & y)
 {
 	if (key != GLUT_KEY_UP && key != GLUT_KEY_LEFT && key != GLUT_KEY_RIGHT) return;
 
-	if (m_PlayerState) m_PlayerState->SpecialKeys(this, key);
+	if (m_PlayerState) m_PlayerState->SpecialKeys(*this, key);
 }
 
 void CPlayer::Update()
 {
-	if (m_PlayerState) m_PlayerState->Update(this);
+	if (m_PlayerState) m_PlayerState->Update(*this);
 }
 
 void CPlayer::Render()

@@ -1,16 +1,16 @@
 #pragma once
-#include "Jump.h"
+#include "PlayerState.h"
 
 class CLeftJump :
-	public CJump
+	public CPlayerState
 {
 public:
 	CLeftJump();
 	virtual ~CLeftJump();
 
 	virtual void Initialize() override;
-	virtual void Update(CPlayer* player) override;
-	virtual void SpecialKeys(CPlayer* player, const int& key) override;
+	virtual void Update(CPlayer& player) override;
+	virtual void SpecialKeys(CPlayer& player, const int& key) override;
 
 };
 
