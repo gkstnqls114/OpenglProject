@@ -174,7 +174,6 @@ void CGameScene::SoundStop()
 	SoundManager.Stop("FallEffect");
 }
 
-
 void CGameScene::Render()
 {
 	double Width = glutGet(GLUT_WINDOW_WIDTH);

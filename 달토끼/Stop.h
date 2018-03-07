@@ -8,6 +8,6 @@ public:
 	virtual ~Stop();
 
 	virtual void Initialize();
-	virtual void Update(CRoad* road);
+	virtual void Update(CRoad& road);
 };
 

@@ -18,7 +18,7 @@ void Disappear::Initialize()
 {
 }
 
-void Disappear::Update(CRoad * road)
+void Disappear::Update(CRoad&road)
 {
-	road->Disappear();
+	road.Disappear();
 }

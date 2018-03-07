@@ -9,5 +9,5 @@ public:
 	virtual ~RoadState();
 
 	virtual void Initialize();
-	virtual void Update(CRoad* road) = 0;
+	virtual void Update(CRoad& road) = 0;
 };
