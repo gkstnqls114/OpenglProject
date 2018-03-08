@@ -6,5 +6,10 @@ class Shield :
 public:
 	Shield();
 	virtual ~Shield();
+
+	static void InitModel();
+
+	virtual void Update();
+	virtual void Render();
 };
 

@@ -162,6 +162,7 @@
     <ClCompile Include="Carrat.cpp" />
     <ClCompile Include="Disappear.cpp" />
     <ClCompile Include="Item.cpp" />
+    <ClCompile Include="ItemManager.cpp" />
     <ClCompile Include="PlayerSubject.cpp" />
     <ClCompile Include="RoadState.cpp" />
     <ClCompile Include="Camera.cpp" />
@@ -233,6 +234,7 @@
     <ClInclude Include="Carrat.h" />
     <ClInclude Include="Disappear.h" />
     <ClInclude Include="Item.h" />
+    <ClInclude Include="ItemManager.h" />
     <ClInclude Include="PlayerSubject.h" />
     <ClInclude Include="RoadState.h" />
     <ClInclude Include="Camera.h" />

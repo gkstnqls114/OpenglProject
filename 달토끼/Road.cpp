@@ -69,19 +69,10 @@ CRoad::CRoad(const GLdouble & distance)
 
 	InitFootBoardModel();
 	InitFootBoardPos(distance);
+	
 
 	StateChange_Disappear();
 }
-
-CRoad::CRoad(const GLdouble& distance, CMediator*& mediator)
-{
-	m_boardNum = 100;
-
-	InitFootBoardModel();
-	InitFootBoardPos(distance);
-
-}
-
 
 CRoad::~CRoad()
 {

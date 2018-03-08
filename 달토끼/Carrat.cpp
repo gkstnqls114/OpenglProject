@@ -12,9 +12,9 @@ void Carrat::InitModel()
 	//텍스쳐 추가
 }
 
-Carrat::Carrat()
+Carrat::Carrat(const int & boardnum)
 {
-
+	m_BoardPosNum = boardnum;
 }
 
 Carrat::~Carrat()

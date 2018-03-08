@@ -8,10 +8,11 @@ class Carrat :
 {
 	static CObjModel* m_Carrat	;
 
-	static void InitModel();
 public:
-	Carrat();
+	Carrat(const int& boardnum);
 	virtual ~Carrat();
+
+	static void InitModel();
 
 	virtual void Update();
 	virtual void Render();

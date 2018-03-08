@@ -2,7 +2,6 @@
 
 class CPlayer;
 
-
 class CPlayerState
 {
 

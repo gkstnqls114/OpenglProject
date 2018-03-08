@@ -1,6 +1,10 @@
 #pragma once
+
 class Item
 {
+protected:
+	CVector3D<GLdouble>	m_Pos;
+	int					m_BoardPosNum{ 0 };
 
 public:
 	Item();

@@ -6,5 +6,10 @@ class Star :
 public:
 	Star();
 	virtual ~Star();
+
+	static void InitModel();
+
+	virtual void Update();
+	virtual void Render();
 };
 

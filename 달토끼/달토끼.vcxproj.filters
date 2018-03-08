@@ -384,6 +384,9 @@
     <ClCompile Include="Star.cpp">
       <Filter>소스 파일\Item\Star</Filter>
     </ClCompile>
+    <ClCompile Include="ItemManager.cpp">
+      <Filter>소스 파일\Item</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GLFramework.h">
@@ -568,6 +571,9 @@
     </ClInclude>
     <ClInclude Include="Star.h">
       <Filter>소스 파일\Item\Star</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemManager.h">
+      <Filter>소스 파일\Item</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

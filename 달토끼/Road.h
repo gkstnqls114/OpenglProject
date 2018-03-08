@@ -1,6 +1,7 @@
 #pragma once
 #include "Disappear.h"
 #include "Stop.h"
+#include "ItemManager.h"
 
 #include "PlayerObserver.h"
 
@@ -12,17 +13,19 @@ class RoadSubject;
 ////////////////////////////////////////////////////
 // Road는 FootBoard와 Item을 관리하고 생성합니다.
 ////////////////////////////////////////////////////
-//
-//
-//
 
 class CRoad 
 	: public PlayerObserver
 {
 	const int		k_side[3] = { k_left, k_front, k_right };
-	CFootBoard*		m_pFootBoard;
-	int				m_boardNum{ 5 };
+	
+	////////////////////// 나중에 묶기
+	CFootBoard*		m_pFootBoard{ nullptr };
 	int				m_DisappearingBoardIndex{ 0 };
+	int				m_boardNum{ 5 };
+	//////////////////////
+
+	ItemManager		m_ItemManager;
 
 	RoadState*		m_RoadState{ nullptr };
 	
@@ -43,7 +46,6 @@ private:
 
 public:
 	CRoad(const GLdouble& distance);
-	CRoad(const GLdouble& distance, CMediator*& mediator);
 	~CRoad();
 
 	void Render();
