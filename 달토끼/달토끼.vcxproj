@@ -161,6 +161,7 @@
     <ClCompile Include="Basic.cpp" />
     <ClCompile Include="Carrat.cpp" />
     <ClCompile Include="Disappear.cpp" />
+    <ClCompile Include="FootBoardManager.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="ItemManager.cpp" />
     <ClCompile Include="PlayerSubject.cpp" />
@@ -233,6 +234,7 @@
     <ClInclude Include="Basic.h" />
     <ClInclude Include="Carrat.h" />
     <ClInclude Include="Disappear.h" />
+    <ClInclude Include="FootBoardManager.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="ItemManager.h" />
     <ClInclude Include="PlayerSubject.h" />

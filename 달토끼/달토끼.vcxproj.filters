@@ -163,9 +163,6 @@
     <Filter Include="소스 파일\Road">
       <UniqueIdentifier>{578427ee-78f8-4782-a051-0331483d9f88}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\Road\FootBoard">
-      <UniqueIdentifier>{988bad74-8a61-4eec-80f3-612ed0a76efa}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\Road\Road">
       <UniqueIdentifier>{bf362806-b361-40b7-9cbf-b9fa38ea6f94}</UniqueIdentifier>
     </Filter>
@@ -201,6 +198,12 @@
     </Filter>
     <Filter Include="소스 파일\Item\Shield">
       <UniqueIdentifier>{9e9811b5-d78e-4970-8404-1eee3b963bd2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\FootBoard">
+      <UniqueIdentifier>{988bad74-8a61-4eec-80f3-612ed0a76efa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\FootBoard\FootBoardManager">
+      <UniqueIdentifier>{145d5d4a-18c2-4bf2-a052-fa8c699f7159}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -343,7 +346,7 @@
       <Filter>소스 파일\ObserverSystem\RoadObserver</Filter>
     </ClCompile>
     <ClCompile Include="FootBoard.cpp">
-      <Filter>소스 파일\Road\FootBoard</Filter>
+      <Filter>소스 파일\FootBoard</Filter>
     </ClCompile>
     <ClCompile Include="Road.cpp">
       <Filter>소스 파일\Road\Road</Filter>
@@ -386,6 +389,9 @@
     </ClCompile>
     <ClCompile Include="ItemManager.cpp">
       <Filter>소스 파일\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="FootBoardManager.cpp">
+      <Filter>소스 파일\FootBoard\FootBoardManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -531,7 +537,7 @@
       <Filter>소스 파일\ObserverSystem\RoadObserver</Filter>
     </ClInclude>
     <ClInclude Include="FootBoard.h">
-      <Filter>소스 파일\Road\FootBoard</Filter>
+      <Filter>소스 파일\FootBoard</Filter>
     </ClInclude>
     <ClInclude Include="Road.h">
       <Filter>소스 파일\Road\Road</Filter>
@@ -574,6 +580,9 @@
     </ClInclude>
     <ClInclude Include="ItemManager.h">
       <Filter>소스 파일\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="FootBoardManager.h">
+      <Filter>소스 파일\FootBoard\FootBoardManager</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -8,7 +8,7 @@
 ItemManager::ItemManager()
 {
 	ItemManager::initModel();
-	//일단 기본으로 ㅇ
+
 }
 
 ItemManager::~ItemManager()

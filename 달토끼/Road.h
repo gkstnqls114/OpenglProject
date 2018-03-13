@@ -2,6 +2,7 @@
 #include "Disappear.h"
 #include "Stop.h"
 #include "ItemManager.h"
+#include "FootBoardManager.h"
 
 #include "PlayerObserver.h"
 
@@ -19,12 +20,7 @@ class CRoad
 {
 	const int		k_side[3] = { k_left, k_front, k_right };
 	
-	////////////////////// ³ªÁß¿¡ ¹­±â
-	CFootBoard*		m_pFootBoard{ nullptr };
-	int				m_DisappearingBoardIndex{ 0 };
-	int				m_boardNum{ 5 };
-	//////////////////////
-
+	FootBoardManger m_FootBoardManger;
 	ItemManager		m_ItemManager;
 
 	RoadState*		m_RoadState{ nullptr };
@@ -32,7 +28,6 @@ class CRoad
 	Stop			StopState;
 	Disappear		DisappearState;
 	
-
 	GLdouble		JumpReach{ -1 };
 
 	RoadSubject*	m_pRoadSubject{ nullptr };
@@ -64,7 +59,6 @@ public:
 	const CVector3D<> GetLastPos() const noexcept;
 	const CVector3D<> GetFirstPos() const noexcept;
 	const CVector3D<> GetCenterPos() const noexcept;
-	const int Get_DisappearingBoardIndex() const noexcept { return m_DisappearingBoardIndex; }
 	/////////////////////////////////Get
 
 	/////////////////////////////////Set
