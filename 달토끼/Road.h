@@ -18,8 +18,6 @@ class RoadSubject;
 class CRoad 
 	: public PlayerObserver
 {
-	const int		k_side[3] = { k_left, k_front, k_right };
-	
 	FootBoardManger m_FootBoardManger;
 	ItemManager		m_ItemManager;
 

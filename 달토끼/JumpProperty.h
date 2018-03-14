@@ -3,19 +3,19 @@
 class CJumpProperty
 {
 public:
-	int m_FinishJumpTime{ 0 };
-	int m_JumpTime{ 0 };
+	static int		FinishJumpTime ;
+	static int		JumpTime ;
 
-	GLdouble m_JumpReach{ 0 };
+	static GLdouble m_JumpReach ;
 
-	float Rotatedegree{ 0 };
-	float Sidedegree{ 0 };
+	static float	Rotatedegree ;
+	static float	Sidedegree ;
 
 public:
-	const int m_JumpDegree{ 80 };
-	const int m_power{ 9 };
-	const float k_gravity{ 0.7f };
-	const double k_PI{ 3.14152 };
+	static const int	k_JumpDegree ;
+	static const int	k_power ;
+	static const float	k_gravity ;
+	static const double k_PI ;
 
 public:
 	CJumpProperty();

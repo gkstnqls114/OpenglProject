@@ -167,11 +167,11 @@ float CPlayer::BodyRotateDegree()
 
 	if (IsRotate_degree45) {
 		Nowdegree = m_JumpProperty.Rotatedegree;
-		frame_degree = Nowdegree / float(m_JumpProperty.m_FinishJumpTime);
+		frame_degree = Nowdegree / float(m_JumpProperty.FinishJumpTime);
 	}
 	else if (IsRotate_degree90) {
 		Nowdegree = m_JumpProperty.Rotatedegree * 2;
-		frame_degree = Nowdegree / float(m_JumpProperty.m_FinishJumpTime);
+		frame_degree = Nowdegree / float(m_JumpProperty.FinishJumpTime);
 	}
 
 	return frame_degree;
@@ -198,7 +198,7 @@ void CPlayer::RightJump()
 	Calculate_JumpVector();
 	float rotatedegree = BodyRotateDegree();
 	m_Matrix->Calu_Rotate(-rotatedegree, 0, 1, 0);
-	float tmp_vector_x = float(Road_Distance_X) / m_JumpProperty.m_FinishJumpTime;
+	float tmp_vector_x = float(Road_Distance_X) / m_JumpProperty.FinishJumpTime;
 	m_Pos.x += tmp_vector_x;
 
 	JumpRotate();
@@ -212,7 +212,7 @@ void CPlayer::LeftJump()
 	float rotatedegree = BodyRotateDegree();
 	m_Matrix->Calu_Rotate(rotatedegree, 0, 1, 0);
 	
-	float tmp_vector_x = - float(Road_Distance_X) / m_JumpProperty.m_FinishJumpTime;
+	float tmp_vector_x = - float(Road_Distance_X) / m_JumpProperty.FinishJumpTime;
 	m_Pos.x += tmp_vector_x;
 
 	JumpRotate();
@@ -302,14 +302,14 @@ void CPlayer::StateChange_Dead()
 
 void CPlayer::Calculate_JumpVector()
 {
-	m_JumpProperty.m_JumpTime += 1;
+	m_JumpProperty.JumpTime += 1;
 
-	float radian = m_JumpProperty.m_JumpDegree * m_JumpProperty.k_PI / 180;
+	float radian = m_JumpProperty.k_JumpDegree * m_JumpProperty.k_PI / 180;
 	
 	CVector3D<> tempVector;
-	tempVector.z = - m_JumpProperty.m_power * cos(radian);
-	tempVector.y = m_JumpProperty.m_power * sin(radian)
-		- m_JumpProperty.k_gravity * m_JumpProperty.m_JumpTime;
+	tempVector.z = - m_JumpProperty.k_power * cos(radian);
+	tempVector.y = m_JumpProperty.k_power * sin(radian)
+		- m_JumpProperty.k_gravity * m_JumpProperty.JumpTime;
 	
 	m_Pos.x += tempVector.x;
 	m_Pos.y += tempVector.y;
@@ -323,21 +323,21 @@ const bool CPlayer::IsGetOutRoad() const noexcept
 
 void CPlayer::JumpRotate()
 {
-	if (m_JumpProperty.m_FinishJumpTime % 2 == 1 && m_JumpProperty.m_JumpTime
-		== (m_JumpProperty.m_FinishJumpTime / 2 + 1)) return;
+	if (m_JumpProperty.FinishJumpTime % 2 == 1 && m_JumpProperty.JumpTime
+		== (m_JumpProperty.FinishJumpTime / 2 + 1)) return;
 
-	float TimeSection = float(m_JumpProperty.m_FinishJumpTime) / 4.f;
-	int FrameSection = m_JumpProperty.m_FinishJumpTime / 4;
+	float TimeSection = float(m_JumpProperty.FinishJumpTime) / 4.f;
+	int FrameSection = m_JumpProperty.FinishJumpTime / 4;
 
 	// 자신의 움직이는 TimeSection
-	float Body_degree = 45.f / float(m_JumpProperty.m_FinishJumpTime);
-	float Boby_flat_percent = 0.5f / float(m_JumpProperty.m_FinishJumpTime);
+	float Body_degree = 45.f / float(m_JumpProperty.FinishJumpTime);
+	float Boby_flat_percent = 0.5f / float(m_JumpProperty.FinishJumpTime);
 	float Ear_degree = -35.f / float(FrameSection * 2);
 	float Foot_top_degree = 40.f / float(FrameSection * 2);
 	float Foot_befor_reach_degree = -90.f / float(FrameSection);
 	float Foot_reach_degree = 50.f / float(FrameSection);
 
-	bool Untill_Top = m_JumpProperty.m_JumpTime <= TimeSection * 2;
+	bool Untill_Top = m_JumpProperty.JumpTime <= TimeSection * 2;
 	if (Untill_Top) {
 		m_Rabit_LeftFoot->Rotate(Foot_top_degree, 1, 0, 0);
 		m_Rabit_RightFoot->Rotate(Foot_top_degree, 1, 0, 0);
@@ -351,12 +351,12 @@ void CPlayer::JumpRotate()
 		m_Rabit_Ear->Rotate(-Ear_degree, 1, 0, 0);
 	}
 
-	if (m_JumpProperty.m_FinishJumpTime % 2 == 1 &&
-		m_JumpProperty.m_JumpTime == (m_JumpProperty.m_FinishJumpTime / 2 + m_JumpProperty.m_JumpTime / 4 + 2)) return;
+	if (m_JumpProperty.FinishJumpTime % 2 == 1 &&
+		m_JumpProperty.JumpTime == (m_JumpProperty.FinishJumpTime / 2 + m_JumpProperty.JumpTime / 4 + 2)) return;
 
-	bool Unitll_Before_Reach = m_JumpProperty.m_JumpTime >= TimeSection * 2;
-	bool Unitll_Reach = m_JumpProperty.m_JumpTime >= TimeSection * 3;
-	bool Unitll_Last = m_JumpProperty.m_JumpTime == m_JumpProperty.m_FinishJumpTime;
+	bool Unitll_Before_Reach = m_JumpProperty.JumpTime >= TimeSection * 2;
+	bool Unitll_Reach = m_JumpProperty.JumpTime >= TimeSection * 3;
+	bool Unitll_Last = m_JumpProperty.JumpTime == m_JumpProperty.FinishJumpTime;
 
 	if (Unitll_Reach) {
 		//앞으로 발이 나아감

@@ -217,6 +217,7 @@
     <ClCompile Include="ObjVertex.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Shield.cpp" />
+    <ClCompile Include="Side.cpp" />
     <ClCompile Include="Skybox.cpp" />
     <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="Spacesuit.cpp" />
@@ -280,6 +281,7 @@
     <ClInclude Include="ObjVertex.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Shield.h" />
+    <ClInclude Include="Side.h" />
     <ClInclude Include="Skybox.h" />
     <ClInclude Include="SoundManager.h" />
     <ClInclude Include="Spacesuit.h" />

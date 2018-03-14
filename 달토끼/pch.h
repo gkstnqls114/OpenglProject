@@ -22,7 +22,7 @@ T Interpolation(T begin, T end, float time) {
 	return begin * (1 - time) + end * time;
 }
 
-enum side_num
+enum eSide
 {
 	k_left = -1,
 	k_front,
