@@ -18,7 +18,7 @@ class RoadSubject;
 class Road 
 	: public PlayerObserver
 {
-	FootBoardManger m_FootBoardManger;
+	FootBoardManger m_FootBoardManager;
 	ItemManager		m_ItemManager;
 
 	RoadState*		m_RoadState{ nullptr };
@@ -31,7 +31,6 @@ class Road
 	RoadSubject*	m_pRoadSubject{ nullptr };
 
 private:
-	const bool IsOutRange() const;
 	void Add_DisappearingBoardIndex();
 
 public:
@@ -54,7 +53,7 @@ public:
 	/////////////////////////////////Get
 	const CVector3D<> Get_LastPos() const noexcept;
 	const CVector3D<> Get_FirstPos() const noexcept;
-	const int Get_DisappearingBoardIndex() const noexcept { return m_FootBoardManger.Get_DisappearingBoardIndex(); };
+	const int Get_DisappearingBoardIndex() const noexcept { return m_FootBoardManager.Get_DisappearingBoardIndex(); };
 	/////////////////////////////////Get
 
 	/////////////////////////////////Set

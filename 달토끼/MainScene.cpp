@@ -164,7 +164,6 @@ CMainScene::CMainScene(CSceneManager* const changer)
 CMainScene::~CMainScene()
 {
 	delete m_Camera;
-	delete m_pMediator;
 	delete m_Moon;
 	delete m_Earth;
 	delete m_PLAY;

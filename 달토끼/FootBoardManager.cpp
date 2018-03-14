@@ -10,6 +10,7 @@ FootBoardManger::FootBoardManger()
 	//Test
 	InitFootBoardModel();
 	m_pFootBoard = new CFootBoard[m_boardNum];
+	Initialize();
 }
 
 FootBoardManger::~FootBoardManger()
@@ -27,6 +28,7 @@ void FootBoardManger::Initialize()
 
 	//맨 첫번째는 이동하지 않으므로 1부터 시작
 	srand(time(NULL));
+	int prev_Side = 0;
 	for (int x = 1; x < m_boardNum - 1; ++x) {
 		int nowSide = k_side[rand() % 3];
 
@@ -45,7 +47,7 @@ void FootBoardManger::Initialize()
 		float tranlateX = Road_Distance_X * nowSide;
 		float tranlateZ = -x * JumpProperty::Get_JumpReach();
 		m_pFootBoard[x].InitPosition(CVector3D<>(tranlateX, -5, tranlateZ));
-
+		
 		prev_Side = nowSide;
 	}
 	//마지막은 반드시 가운데
@@ -90,6 +92,10 @@ void FootBoardManger::Render()
 void FootBoardManger::Update()
 {
 	m_pFootBoard[m_DisappearingBoardIndex].Update();
+
+	if (Get_Disappear(m_DisappearingBoardIndex)) {
+		m_DisappearingBoardIndex += 1;
+	}
 }
 
 const CVector3D<> FootBoardManger::Get_LastPos() const noexcept
@@ -102,12 +108,24 @@ const CVector3D<> FootBoardManger::Get_FirstPos() const noexcept
 	return m_pFootBoard[0].Get_Pos();
 }
 
-const bool FootBoardManger::IsOutRange() const
+const bool FootBoardManger::IsOutRange_Disappearing() const
 {
 	return (m_DisappearingBoardIndex < 0 || m_DisappearingBoardIndex >= m_boardNum);
 }
 
-const bool FootBoardManger::CheckSide(const int & side)
+const bool FootBoardManger::IsOutRange(const int & boardnum) const
 {
-	return false;
+	return boardnum < 0 || boardnum >= m_boardNum;
+}
+
+const int FootBoardManger::Get_Side(const int & boardnum) const noexcept
+{
+	if (IsOutRange(boardnum)) return 0;
+	else return m_pFootBoard[boardnum].GetSide(); 
+}
+
+const int FootBoardManger::Get_Disappear(const int & boardnum) const noexcept
+{
+	if (IsOutRange(boardnum)) return 0;
+	else return m_pFootBoard[boardnum].GetDisappear();
 }

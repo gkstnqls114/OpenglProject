@@ -4,6 +4,8 @@ class CFootBoard;
 
 class FootBoardManger
 {
+	const int k_side[3]{ k_left, k_front, k_right };
+
 	CFootBoard*		m_pFootBoard{ nullptr };
 	int				m_DisappearingBoardIndex{ 0 };
 	int				m_boardNum{ 5 };
@@ -25,9 +27,10 @@ public:
 	const CVector3D<> Get_LastPos() const noexcept;
 	const CVector3D<> Get_FirstPos() const noexcept;
 
-	const bool IsOutRange() const;
-	const bool CheckSide(const int& side);
+	const bool IsOutRange_Disappearing() const;
+	const bool IsOutRange(const int& boardnum) const;
+	const int Get_Side(const int& boardnum) const noexcept;
+	const int Get_Disappear(const int& boardnum) const noexcept;
 	/////////////////////////////////Get
-
 
 };

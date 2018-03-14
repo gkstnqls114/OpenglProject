@@ -131,9 +131,6 @@ CGameScene::~CGameScene()
 	delete m_Road;
 	m_Road = nullptr;
 
-	delete m_pMediator;
-	m_pMediator = nullptr;
-
 	delete m_Skybox;
 	m_Skybox = nullptr;
 }
