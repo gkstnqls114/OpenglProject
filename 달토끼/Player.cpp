@@ -10,10 +10,10 @@
 
 #include "Player.h"
 
-CObjModel* CPlayer::m_Rabit_Body = nullptr;
-CObjModel* CPlayer::m_Rabit_Ear = nullptr;
-CObjModel* CPlayer::m_Rabit_LeftFoot = nullptr;
-CObjModel* CPlayer::m_Rabit_RightFoot = nullptr;
+CObjModel* CPlayer::m_Rabit_Body{ nullptr };
+CObjModel* CPlayer::m_Rabit_Ear{ nullptr };
+CObjModel* CPlayer::m_Rabit_LeftFoot{ nullptr };
+CObjModel* CPlayer::m_Rabit_RightFoot{ nullptr };
 
 CPlayer::CPlayer()
 {

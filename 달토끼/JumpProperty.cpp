@@ -2,8 +2,7 @@
 #include "JumpProperty.h"
 
 int CJumpProperty::FinishJumpTime{ 0 };
-int CJumpProperty::JumpTime{ 0 };
-GLdouble CJumpProperty::m_JumpReach{ 0 };
+GLdouble CJumpProperty::JumpReach{ 0 };
 float CJumpProperty::Rotatedegree{ 0 };
 float CJumpProperty::Sidedegree{ 0 };
 const int CJumpProperty::k_JumpDegree{ 80 };
@@ -33,13 +32,13 @@ void CJumpProperty::Initialize()
 	}
 
 	FinishJumpTime = temp_jumptime;
-	m_JumpReach = -temp_vector_z;
+	JumpReach = -temp_vector_z;
 
-	Rotatedegree = atan(float(m_JumpReach) / float(Road_Distance_X)) * 180 / k_PI;
+	Rotatedegree = atan(float(JumpReach) / float(Road_Distance_X)) * 180 / k_PI;
 	Rotatedegree = 90 - Rotatedegree;
 }
 
 void CJumpProperty::Reset()
 {
-	JumpTime = 0;
+
 }

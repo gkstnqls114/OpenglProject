@@ -2,14 +2,10 @@
 
 class CJumpProperty
 {
-public:
 	static int		FinishJumpTime ;
-	static int		JumpTime ;
-
-	static GLdouble m_JumpReach ;
-
 	static float	Rotatedegree ;
 	static float	Sidedegree ;
+	static GLdouble JumpReach ;
 
 public:
 	static const int	k_JumpDegree ;
@@ -21,8 +17,11 @@ public:
 	CJumpProperty();
 	~CJumpProperty();
 
-	void Initialize();
-	void Reset();
+	static void Initialize();
+	static void Reset();
 	
-	const GLdouble Get_JumpReach() const noexcept { return m_JumpReach; }
+	const GLdouble Get_JumpReach() const noexcept { return JumpReach; }
+	const int	   Get_FinishJumpTime() const noexcept { return FinishJumpTime; }
+	const float    Get_Rotatedegree() const noexcept { return Rotatedegree; }
+	const float    Get_Sidedegree() const noexcept { return Sidedegree; }
 };
