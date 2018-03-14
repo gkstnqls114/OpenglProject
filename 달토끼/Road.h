@@ -15,7 +15,7 @@ class RoadSubject;
 // Road는 FootBoard와 Item을 관리하고 생성합니다.
 ////////////////////////////////////////////////////
 
-class CRoad 
+class Road 
 	: public PlayerObserver
 {
 	FootBoardManger m_FootBoardManger;
@@ -31,19 +31,17 @@ class CRoad
 	RoadSubject*	m_pRoadSubject{ nullptr };
 
 private:
-	void InitFootBoardModel();
-	void InitFootBoardPos(const GLdouble& distance);
-
 	const bool IsOutRange() const;
 	void Add_DisappearingBoardIndex();
 
 public:
-	CRoad(const GLdouble& distance);
-	~CRoad();
+	Road();
+	~Road();
 
 	void Render();
 	void TestRender();
 	void Update();
+	void Reset();
 
 	/////////////////////////////////State
 	void Disappear();
@@ -54,9 +52,9 @@ public:
 	/////////////////////////////////State
 
 	/////////////////////////////////Get
-	const CVector3D<> GetLastPos() const noexcept;
-	const CVector3D<> GetFirstPos() const noexcept;
-	const CVector3D<> GetCenterPos() const noexcept;
+	const CVector3D<> Get_LastPos() const noexcept;
+	const CVector3D<> Get_FirstPos() const noexcept;
+	const int Get_DisappearingBoardIndex() const noexcept { return m_FootBoardManger.Get_DisappearingBoardIndex(); };
 	/////////////////////////////////Get
 
 	/////////////////////////////////Set
@@ -69,9 +67,5 @@ public:
 	virtual void Receive_PlayerJumpFinish(CPlayer* player) override;
 	virtual void Receive_PlayerJumping(CPlayer* player)	override {};
 	/////////////////////////////////Receive
-
-	virtual void Init_GameScene();
-	virtual void Player_JumpFinish(int playerside);
-	
 
 };

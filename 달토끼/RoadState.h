@@ -1,6 +1,6 @@
 #pragma once
 
-class CRoad;
+class Road;
 
 class RoadState
 {
@@ -9,5 +9,5 @@ public:
 	virtual ~RoadState();
 
 	virtual void Initialize();
-	virtual void Update(CRoad& road) = 0;
+	virtual void Update(Road& road) = 0;
 };

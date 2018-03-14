@@ -16,7 +16,7 @@ void Stop::Initialize()
 {
 }
 
-void Stop::Update(CRoad & road)
+void Stop::Update(Road & road)
 {
 	road.Stop();
 }

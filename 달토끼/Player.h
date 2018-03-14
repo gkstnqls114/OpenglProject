@@ -15,7 +15,7 @@
 class CObjModel;
 class CMatrix;
 class CMediator;
-class CRoad;
+class Road;
 class CCamera;
 
 class CPlayerState;
@@ -37,7 +37,7 @@ class CPlayer
 	CMatrix* m_Matrix{ nullptr };
 	
 	//플레이어 상태
-	CJumpProperty m_JumpProperty;
+	JumpProperty m_JumpProperty;
 	CPlayerState* m_PlayerState{ nullptr };
 	
 	CDead		DeadState;
@@ -84,6 +84,8 @@ public:
 	void Update();
 	void Render();
 
+	void Reset_ModelRotate();
+
 	/////////////////////////////////Init
 	void Init_GameScene();
 	void Init_GameOver();
@@ -107,7 +109,7 @@ public:
 	/////////////////////////////////State
 
 	/////////////////////////////////Road Observer
-	virtual void Receive_DisappearFootBoard(CRoad* road) override;
+	virtual void Receive_DisappearFootBoard(Road* road) override;
 	/////////////////////////////////Road Observer
 
 	/////////////////////////////////GET

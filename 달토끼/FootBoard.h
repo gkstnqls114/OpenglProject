@@ -2,14 +2,6 @@
 
 class CObjModel;
 
-
-namespace {
-	CObjModel* m_obj;
-}
-//음.. 으음 ; _;
-//static보다 요게 최신방법이래..
-//근데 졸려서 일단 패쓰..
-
 class CFootBoard
 {
 	static CObjModel* m_obj;

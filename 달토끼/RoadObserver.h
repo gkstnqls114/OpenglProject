@@ -1,6 +1,6 @@
 #pragma once
 
-class CRoad;
+class Road;
 class Observer;
 
 class RoadObserver
@@ -9,6 +9,6 @@ public:
 	RoadObserver();
 	~RoadObserver();
 
-	virtual void Receive_DisappearFootBoard(CRoad* road) = 0;
+	virtual void Receive_DisappearFootBoard(Road* road) = 0;
 };
 

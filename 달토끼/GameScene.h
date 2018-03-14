@@ -5,7 +5,7 @@ class CSceneManager;
 class CPlayer;
 class CMoon;
 class CEarth;
-class CRoad;
+class Road;
 class CMediator;
 class CSkybox;
 class CCamera;
@@ -24,7 +24,7 @@ class CGameScene :
 	CEarth *			m_Earth			{ nullptr };
 	CCamera*			m_Camera		{ nullptr };
 	CCamera*			m_MapCamera		{ nullptr };
-	CRoad *				m_Road			{ nullptr };
+	Road *				m_Road			{ nullptr };
 
 	CSkybox*			m_Skybox		{ nullptr };
 

@@ -5,6 +5,5 @@ public:
 	Side();
 	~Side();
 
-	static const int
 };
 

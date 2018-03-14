@@ -19,6 +19,8 @@ CPlayer::CPlayer()
 {
 	CPlayer::InitModel();
 	m_Matrix = new CMatrix();
+	m_JumpProperty.Initialize();
+
 
 	Init_GameScene();
 }
@@ -87,6 +89,14 @@ void CPlayer::Render()
 	glPopMatrix();
 }
 
+void CPlayer::Reset_ModelRotate()
+{
+	m_Rabit_LeftFoot->Reset();
+	m_Rabit_RightFoot->Reset();
+	m_Rabit_Body->Reset();
+	m_Rabit_Ear->Reset();
+}
+
 void CPlayer::RotateX(int degree)
 {
 	m_Matrix->Calu_Rotate(degree, 1, 0, 0);
@@ -106,17 +116,13 @@ void CPlayer::Init_GameScene()
 {
 	//초기화
 	m_Rabit_Body->SetTextuerIDindex(0);
-	m_JumpProperty.Initialize();
-	m_Rabit_LeftFoot->Reset();
-	m_Rabit_RightFoot->Reset();
-	m_Rabit_Body->Reset();
-	m_Rabit_Ear->Reset();
+	Reset_ModelRotate();
 
-	m_PlayerState = &WaitingState;
-	
 	m_Matrix->Set_Rotate(180, 0, 1, 0);
 	m_Matrix->Set_Scale(0.3);
 	m_Matrix->ResetTranslate();
+
+	m_PlayerState = &WaitingState;
 
 	m_prevKeySide = 0;
 	m_MyBoardIndex = 0;
@@ -143,7 +149,7 @@ void CPlayer::Init_GameOver()
 	m_Rabit_Ear->Rotate(70, 1, 0, 0);
 }
 
-void CPlayer::Receive_DisappearFootBoard(CRoad * road)
+void CPlayer::Receive_DisappearFootBoard(Road * road)
 {
 	const bool IsOnFallBoard = m_MyBoardIndex <= road->Get_DisappearingBoardIndex();
 	if (!IsOnFallBoard) return;
@@ -166,12 +172,12 @@ float CPlayer::BodyRotateDegree()
 	float Nowdegree = 0;
 
 	if (IsRotate_degree45) {
-		Nowdegree = m_JumpProperty.Rotatedegree;
-		frame_degree = Nowdegree / float(m_JumpProperty.FinishJumpTime);
+		Nowdegree = m_JumpProperty.Get_Rotatedegree();
+		frame_degree = Nowdegree / float(m_JumpProperty.Get_FinishJumpTime());
 	}
 	else if (IsRotate_degree90) {
-		Nowdegree = m_JumpProperty.Rotatedegree * 2;
-		frame_degree = Nowdegree / float(m_JumpProperty.FinishJumpTime);
+		Nowdegree = m_JumpProperty.Get_Rotatedegree() * 2;
+		frame_degree = Nowdegree / float(m_JumpProperty.Get_FinishJumpTime());
 	}
 
 	return frame_degree;
@@ -198,7 +204,7 @@ void CPlayer::RightJump()
 	Calculate_JumpVector();
 	float rotatedegree = BodyRotateDegree();
 	m_Matrix->Calu_Rotate(-rotatedegree, 0, 1, 0);
-	float tmp_vector_x = float(Road_Distance_X) / m_JumpProperty.FinishJumpTime;
+	float tmp_vector_x = float(Road_Distance_X) / m_JumpProperty.Get_FinishJumpTime();
 	m_Pos.x += tmp_vector_x;
 
 	JumpRotate();
@@ -212,7 +218,7 @@ void CPlayer::LeftJump()
 	float rotatedegree = BodyRotateDegree();
 	m_Matrix->Calu_Rotate(rotatedegree, 0, 1, 0);
 	
-	float tmp_vector_x = - float(Road_Distance_X) / m_JumpProperty.FinishJumpTime;
+	float tmp_vector_x = - float(Road_Distance_X) / m_JumpProperty.Get_FinishJumpTime();
 	m_Pos.x += tmp_vector_x;
 
 	JumpRotate();
@@ -302,14 +308,14 @@ void CPlayer::StateChange_Dead()
 
 void CPlayer::Calculate_JumpVector()
 {
-	m_JumpProperty.JumpTime += 1;
+	m_JumpProperty.Add_JumpTime();
 
 	float radian = m_JumpProperty.k_JumpDegree * m_JumpProperty.k_PI / 180;
 	
 	CVector3D<> tempVector;
 	tempVector.z = - m_JumpProperty.k_power * cos(radian);
 	tempVector.y = m_JumpProperty.k_power * sin(radian)
-		- m_JumpProperty.k_gravity * m_JumpProperty.JumpTime;
+		- m_JumpProperty.k_gravity * m_JumpProperty.Get_JumpTime();
 	
 	m_Pos.x += tempVector.x;
 	m_Pos.y += tempVector.y;
@@ -323,21 +329,21 @@ const bool CPlayer::IsGetOutRoad() const noexcept
 
 void CPlayer::JumpRotate()
 {
-	if (m_JumpProperty.FinishJumpTime % 2 == 1 && m_JumpProperty.JumpTime
-		== (m_JumpProperty.FinishJumpTime / 2 + 1)) return;
+	if (m_JumpProperty.Get_FinishJumpTime() % 2 == 1 && m_JumpProperty.Get_JumpTime()
+		== (m_JumpProperty.Get_FinishJumpTime() / 2 + 1)) return;
 
-	float TimeSection = float(m_JumpProperty.FinishJumpTime) / 4.f;
-	int FrameSection = m_JumpProperty.FinishJumpTime / 4;
+	float TimeSection = float(m_JumpProperty.Get_FinishJumpTime()) / 4.f;
+	int FrameSection = m_JumpProperty.Get_FinishJumpTime() / 4;
 
 	// 자신의 움직이는 TimeSection
-	float Body_degree = 45.f / float(m_JumpProperty.FinishJumpTime);
-	float Boby_flat_percent = 0.5f / float(m_JumpProperty.FinishJumpTime);
+	float Body_degree = 45.f / float(m_JumpProperty.Get_FinishJumpTime());
+	float Boby_flat_percent = 0.5f / float(m_JumpProperty.Get_FinishJumpTime());
 	float Ear_degree = -35.f / float(FrameSection * 2);
 	float Foot_top_degree = 40.f / float(FrameSection * 2);
 	float Foot_befor_reach_degree = -90.f / float(FrameSection);
 	float Foot_reach_degree = 50.f / float(FrameSection);
 
-	bool Untill_Top = m_JumpProperty.JumpTime <= TimeSection * 2;
+	bool Untill_Top = m_JumpProperty.Get_JumpTime() <= TimeSection * 2;
 	if (Untill_Top) {
 		m_Rabit_LeftFoot->Rotate(Foot_top_degree, 1, 0, 0);
 		m_Rabit_RightFoot->Rotate(Foot_top_degree, 1, 0, 0);
@@ -351,12 +357,12 @@ void CPlayer::JumpRotate()
 		m_Rabit_Ear->Rotate(-Ear_degree, 1, 0, 0);
 	}
 
-	if (m_JumpProperty.FinishJumpTime % 2 == 1 &&
-		m_JumpProperty.JumpTime == (m_JumpProperty.FinishJumpTime / 2 + m_JumpProperty.JumpTime / 4 + 2)) return;
+	if (m_JumpProperty.Get_FinishJumpTime() % 2 == 1 &&
+		m_JumpProperty.Get_JumpTime() == (m_JumpProperty.Get_FinishJumpTime() / 2 + m_JumpProperty.Get_JumpTime() / 4 + 2)) return;
 
-	bool Unitll_Before_Reach = m_JumpProperty.JumpTime >= TimeSection * 2;
-	bool Unitll_Reach = m_JumpProperty.JumpTime >= TimeSection * 3;
-	bool Unitll_Last = m_JumpProperty.JumpTime == m_JumpProperty.FinishJumpTime;
+	bool Unitll_Before_Reach = m_JumpProperty.Get_JumpTime() >= TimeSection * 2;
+	bool Unitll_Reach = m_JumpProperty.Get_JumpTime() >= TimeSection * 3;
+	bool Unitll_Last = m_JumpProperty.Get_JumpTime() == m_JumpProperty.Get_FinishJumpTime();
 
 	if (Unitll_Reach) {
 		//앞으로 발이 나아감

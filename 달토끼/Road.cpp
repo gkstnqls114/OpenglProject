@@ -6,108 +6,62 @@
 
 #include "Road.h"
 
-
-void CRoad::InitFootBoardModel()
-{
-	CFootBoard::InitModel();
-}
-
-void CRoad::InitFootBoardPos(const GLdouble& distance)
-{
-	if (distance <= 0) return;
-	JumpReach = distance;
-
-	int prev_Side = 0;
-	//
-}
-
-const bool CRoad::IsOutRange() const
+const bool Road::IsOutRange() const
 {
 	return (m_DisappearingBoardIndex < 0 || m_DisappearingBoardIndex >= m_boardNum);
 }
 
-void CRoad::Add_DisappearingBoardIndex()
+void Road::Add_DisappearingBoardIndex()
 {
 	if (IsOutRange()) return;
 
 	m_DisappearingBoardIndex += 1;
 }
 
-CRoad::CRoad(const GLdouble & distance)
+Road::Road()
 {
-	m_boardNum = 100;
-
-	InitFootBoardModel();
-	InitFootBoardPos(distance);
-	
 
 	StateChange_Disappear();
 }
 
-CRoad::~CRoad()
+Road::~Road()
 {
 	CFootBoard::DeleteModel();
-	delete[] m_pFootBoard;
 }
 
-void CRoad::Render()
+void Road::Render()
 {
 	m_FootBoardManger.Render();
 }
 
-void CRoad::TestRender()
+void Road::TestRender()
 {
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	
-	for (int x = m_DisappearingBoardIndex; x < m_boardNum; ++x) {
-		m_pFootBoard[x].Render();
-	}
-
-	glDisable(GL_BLEND);
+	m_FootBoardManger.TestRender();
 }
 
-void CRoad::Update()
+void Road::Update()
 {
 	if (m_RoadState) m_RoadState->Update(*this);
+	m_FootBoardManger.Update();
 }
 
-const CVector3D<> CRoad::GetLastPos() const noexcept
+void Road::Reset()
 {
-	return m_pFootBoard[m_boardNum - 1].Get_Pos();
+
 }
 
-const CVector3D<> CRoad::GetFirstPos() const noexcept
+const CVector3D<> Road::Get_LastPos() const noexcept
 {
-	return m_pFootBoard[0].Get_Pos();
+	return m_FootBoardManger.Get_LastPos();
 }
 
-const CVector3D<> CRoad::GetCenterPos() const noexcept
+const CVector3D<> Road::Get_FirstPos() const noexcept
 {
-	CVector3D<> Center;
-	if (m_boardNum % 2 == 0) {
-		int center_num_1 = m_boardNum / 2;
-		int center_num_2 = center_num_1 + 1;
-		CVector3D<> Prev = m_pFootBoard[center_num_1].Get_Pos();
-		CVector3D<> Next = m_pFootBoard[center_num_2].Get_Pos();
-
-		Center = CVector3D<>(
-			  (Prev.x + Next.x) / 2
-			, (Prev.y + Next.y) / 2
-			, (Prev.z + Next.z) / 2
-			);
-	}
-	else {
-		int center_num = float(m_boardNum) / 2.f + 0.5;
-		Center = m_pFootBoard[center_num].Get_Pos();
-	}
-	return Center;
+	return m_FootBoardManger.Get_FirstPos();
 }
 
-void CRoad::Disappear()
+void Road::Disappear()
 {
-	m_pFootBoard[m_DisappearingBoardIndex].Update();
-	
 	//if (m_pFootBoard[m_PlayerBoardIndex].GetDisappear()) {
 	//	m_pMediator->Player_Dead();
 	//}
@@ -119,63 +73,30 @@ void CRoad::Disappear()
 	}
 }
 
-void CRoad::Stop()
+void Road::Stop()
 {
 	//아무 행동도 하지 않는다.
 	//doing nothing
 }
 
-void CRoad::StateChange_Disappear()
+void Road::StateChange_Disappear()
 {
 	m_RoadState = &DisappearState;
 }
 
-void CRoad::StateChange_Stop()
+void Road::StateChange_Stop()
 {
 	m_RoadState = &StopState;
 }
 
-void CRoad::Receive_PlayerWaitCamera(CPlayer * player)
+void Road::Receive_PlayerWaitCamera(CPlayer * player)
 {
 	StateChange_Stop();
 }
 
-void CRoad::Receive_PlayerJumpFinish(CPlayer* player)
+void Road::Receive_PlayerJumpFinish(CPlayer* player)
 {
 	Add_DisappearingBoardIndex();
-
-	//Test용
-	int playerboardside = player->Get_BoardSide();
-	std::cout << "플레이어 보드 넘버:" ;
-	switch (playerboardside)
-	{
-	case 1:
-		std::cout << "오른쪽" << std::endl;
-		break;
-	case 0:
-		std::cout << "가운데" << std::endl;
-		break;
-	case -1:
-		std::cout << "왼쪽" << std::endl;
-		break;
-	}
-	
-	int boardside = m_pFootBoard[player->Get_BoardNum()].GetSide();
-	std::cout << "도착한 보드넘버 :";
-	switch (boardside)
-	{
-	case 1:
-		std::cout << "오른쪽" << std::endl;
-		break;
-	case 0:
-		std::cout << "가운데" << std::endl;
-		break;
-	case -1:
-		std::cout << "왼쪽" << std::endl;
-		break;
-	}
-	std::cout << std::endl;
-	//Test용
 
 	const bool IsCorrectSide = player->Get_BoardSide() == m_pFootBoard[player->Get_BoardNum()].GetSide();
 	if (!IsCorrectSide) {
@@ -184,19 +105,8 @@ void CRoad::Receive_PlayerJumpFinish(CPlayer* player)
 	}
 }
 
-void CRoad::Init_GameScene()
-{
-	for (int index = 0; index < m_boardNum; ++index) {
-		//m_pFootBoard[index].Init_GameScene();
-	}
-	m_pFootBoard[m_boardNum - 1].IsLight();
-	InitFootBoardPos(JumpReach);
-	
-	m_DisappearingBoardIndex = 0;
-}
-
-void CRoad::Player_JumpFinish(int playerside)
-{
+//void Road::Player_JumpFinish(int playerside)
+//{
 	//플레이어 위치가 올바른 곳인지 확인
 	/*bool IsWrongPos = m_pFootBoard[m_PlayerBoardIndex].GetSide() != playerside;
 	if (IsWrongPos) {
@@ -215,4 +125,4 @@ void CRoad::Player_JumpFinish(int playerside)
 	else {
 		m_DisappearingBoardIndex = m_PlayerBoardIndex - 2;
 	}*/
-}
+//}

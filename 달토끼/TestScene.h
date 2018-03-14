@@ -8,7 +8,7 @@ class CSceneManager;
 class CTextureStorage;
 class PlayerSubject;
 class RoadObserver;
-class CRoad;
+class Road;
 
 class CTestScene :
 	public Scene
@@ -16,7 +16,7 @@ class CTestScene :
 	PlayerSubject		m_PlayerObserver	;
 	RoadSubject			m_RoadObserver		;
 	CPlayer *			m_Player			{ nullptr };
-	CRoad *				m_Road				{ nullptr };
+	Road *				m_Road				{ nullptr };
 	CCamera*			m_Camera			{ nullptr };
 	
 	GLint				texture_object		{ 0 };

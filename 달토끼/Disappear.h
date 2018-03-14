@@ -9,6 +9,6 @@ public:
 	virtual ~Disappear();
 
 	virtual void Initialize();
-	virtual void Update(CRoad& road);
+	virtual void Update(Road& road);
 };
 

@@ -1,7 +1,7 @@
 #pragma once
 
 class RoadObserver;
-class CRoad;
+class Road;
 
 class RoadSubject
 {
@@ -12,7 +12,7 @@ public:
 	void Add_Observer(RoadObserver* push);
 	void Sub_Observer(RoadObserver* pop);
 
-	void Notify_DisappearFootBoard(CRoad* road);
+	void Notify_DisappearFootBoard(Road* road);
 
 private:
 	std::list<RoadObserver*> m_RoadObserverList;

@@ -1,9 +1,14 @@
 #include "pch.h"
 #include "FootBoard.h"
+#include "JumpProperty.h"
 #include "FootBoardManager.h"
 
 FootBoardManger::FootBoardManger()
 {
+	//Test
+	m_boardNum = 100;
+	//Test
+	InitFootBoardModel();
 	m_pFootBoard = new CFootBoard[m_boardNum];
 }
 
@@ -15,6 +20,8 @@ FootBoardManger::~FootBoardManger()
 void FootBoardManger::Initialize()
 {
 	if (!m_pFootBoard) return;
+
+	JumpProperty::Initialize();
 	
 	m_pFootBoard[0].InitPosition(CVector3D<>(0, -5, 0));
 
@@ -36,16 +43,34 @@ void FootBoardManger::Initialize()
 		}
 
 		float tranlateX = Road_Distance_X * nowSide;
-		float tranlateZ = -x * distance;
+		float tranlateZ = -x * JumpProperty::Get_JumpReach();
 		m_pFootBoard[x].InitPosition(CVector3D<>(tranlateX, -5, tranlateZ));
 
 		prev_Side = nowSide;
 	}
 	//마지막은 반드시 가운데
 	float tranlateX = 0;
-	float tranlateZ = -(m_boardNum - 1) * distance;
+	float tranlateZ = -(m_boardNum - 1) * JumpProperty::Get_JumpReach();
 	m_pFootBoard[m_boardNum - 1].InitPosition(CVector3D<>(tranlateX, -5, tranlateZ));
 	m_pFootBoard[m_boardNum - 1].IsLight();
+}
+
+void FootBoardManger::InitFootBoardModel()
+{
+	CFootBoard::InitModel();
+}
+
+//전부 렌더합니다.
+void FootBoardManger::TestRender()
+{
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+	for (int x = 0; x < m_boardNum; ++x) {
+		m_pFootBoard[x].Render();
+	}
+
+	glDisable(GL_BLEND);
 }
 
 void FootBoardManger::Render()
@@ -60,4 +85,29 @@ void FootBoardManger::Render()
 	}
 	m_pFootBoard[m_boardNum - 1].Render();
 	glDisable(GL_BLEND);
+}
+
+void FootBoardManger::Update()
+{
+	m_pFootBoard[m_DisappearingBoardIndex].Update();
+}
+
+const CVector3D<> FootBoardManger::Get_LastPos() const noexcept
+{
+	return m_pFootBoard[m_boardNum - 1].Get_Pos();
+}
+
+const CVector3D<> FootBoardManger::Get_FirstPos() const noexcept
+{
+	return m_pFootBoard[0].Get_Pos();
+}
+
+const bool FootBoardManger::IsOutRange() const
+{
+	return (m_DisappearingBoardIndex < 0 || m_DisappearingBoardIndex >= m_boardNum);
+}
+
+const bool FootBoardManger::CheckSide(const int & side)
+{
+	return false;
 }

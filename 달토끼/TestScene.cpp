@@ -13,7 +13,7 @@ CTestScene::CTestScene()
 {
 	m_Camera = new CCamera();
 	m_Player = new CPlayer();
-	m_Road = new CRoad(m_Player->Get_JumpReach());
+	m_Road = new Road();
 
 	m_Camera->Initialize(CVector3D<>(0.f, 0.f, 0.f), 100, 0.1f, 600.f, 60);
 	m_Camera->Rotate(25, 20);

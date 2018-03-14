@@ -1,25 +1,29 @@
 #include "pch.h"
 #include "JumpProperty.h"
 
-int CJumpProperty::FinishJumpTime{ 0 };
-GLdouble CJumpProperty::JumpReach{ 0 };
-float CJumpProperty::Rotatedegree{ 0 };
-float CJumpProperty::Sidedegree{ 0 };
-const int CJumpProperty::k_JumpDegree{ 80 };
-const int CJumpProperty::k_power{ 9 };
-const float CJumpProperty::k_gravity{ 0.7f };
-const double CJumpProperty::k_PI{ 3.14152 };
+bool	JumpProperty::IsInitialized{ false };
+int JumpProperty::FinishJumpTime{ 0 };
+int JumpProperty::JumpTime{ 0 };
+GLdouble JumpProperty::JumpReach{ 0 };
+float JumpProperty::Rotatedegree{ 0 };
+float JumpProperty::Sidedegree{ 0 };
+const int JumpProperty::k_JumpDegree{ 80 };
+const int JumpProperty::k_power{ 9 };
+const float JumpProperty::k_gravity{ 0.7f };
+const double JumpProperty::k_PI{ 3.14152 };
 
-CJumpProperty::CJumpProperty()
+JumpProperty::JumpProperty()
 {
 }
 
-CJumpProperty::~CJumpProperty()
+JumpProperty::~JumpProperty()
 {
 }
 
-void CJumpProperty::Initialize()
+void JumpProperty::Initialize()
 {
+	if (IsInitialized) return;
+
 	float radian = k_JumpDegree * k_PI / 180;
 	int temp_jumptime = 0;
 	GLdouble temp_vector_z = 0;
@@ -36,9 +40,11 @@ void CJumpProperty::Initialize()
 
 	Rotatedegree = atan(float(JumpReach) / float(Road_Distance_X)) * 180 / k_PI;
 	Rotatedegree = 90 - Rotatedegree;
+
+	IsInitialized = true;
 }
 
-void CJumpProperty::Reset()
+void JumpProperty::Reset()
 {
-
+	JumpTime = 0;
 }

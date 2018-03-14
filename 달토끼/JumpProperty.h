@@ -1,8 +1,10 @@
 #pragma once
 
-class CJumpProperty
+class JumpProperty
 {
+	static bool		IsInitialized;
 	static int		FinishJumpTime ;
+	static int		JumpTime;
 	static float	Rotatedegree ;
 	static float	Sidedegree ;
 	static GLdouble JumpReach ;
@@ -13,15 +15,22 @@ public:
 	static const float	k_gravity ;
 	static const double k_PI ;
 
+private:
+
 public:
-	CJumpProperty();
-	~CJumpProperty();
+	JumpProperty();
+	~JumpProperty();
 
 	static void Initialize();
 	static void Reset();
 	
-	const GLdouble Get_JumpReach() const noexcept { return JumpReach; }
-	const int	   Get_FinishJumpTime() const noexcept { return FinishJumpTime; }
-	const float    Get_Rotatedegree() const noexcept { return Rotatedegree; }
-	const float    Get_Sidedegree() const noexcept { return Sidedegree; }
+	////////////////////////////Get
+	static const GLdouble Get_JumpReach() noexcept { return JumpReach; }
+	static const int	   Get_FinishJumpTime() noexcept { return FinishJumpTime; }
+	static const int	  Get_JumpTime() noexcept { return JumpTime; }
+	static const float    Get_Rotatedegree() noexcept { return Rotatedegree; }
+	static const float    Get_Sidedegree() noexcept { return Sidedegree; }
+	////////////////////////////Get
+	void Add_JumpTime() { JumpTime += 1; }
+
 };

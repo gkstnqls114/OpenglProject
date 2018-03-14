@@ -103,9 +103,8 @@ CGameScene::CGameScene(CSceneManager* const changer)
 	m_Camera = new CCamera();
 	m_Player = new CPlayer();
 
-	double distance = m_Player->Get_JumpReach();
-	m_Road = new CRoad(distance, m_pMediator);
-	int LastZ = m_Road->GetLastPos().z;
+	m_Road = new Road();
+	int LastZ = m_Road->Get_LastPos().z;
 	m_Skybox = new CSkybox(LastZ);
 
 	m_Moon = new CMoon(m_pMediator);
@@ -152,13 +151,13 @@ void CGameScene::Initialize()
 
 	//m_pMediator->Init_GameScene();
 
-	m_MapCamera->Initialize(CVector3D<>(0.f, 0.f, m_Road->GetFirstPos().z * 5), 500, 0.1f, 600.f, 60);
+	m_MapCamera->Initialize(CVector3D<>(0.f, 0.f, m_Road->Get_FirstPos().z * 5), 500, 0.1f, 600.f, 60);
 	m_MapCamera->Rotate(0.f, 1.4f);
 	m_MapCamera->Rotate(90, 0);
 
 	GLdouble DownY = 100;
-	CVector3D<> MoonPos = m_Road->GetLastPos();
-	CVector3D<> EarthPos = m_Road->GetFirstPos();
+	CVector3D<> MoonPos = m_Road->Get_LastPos();
+	CVector3D<> EarthPos = m_Road->Get_FirstPos();
 	m_Earth->SetPos(CVector3D<>(EarthPos.x, EarthPos.y - DownY, EarthPos.z));
 	m_Moon->SetPos(CVector3D<>(MoonPos.x, MoonPos.y - DownY + 30, MoonPos.z));
 
