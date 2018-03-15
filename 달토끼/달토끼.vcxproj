@@ -164,6 +164,7 @@
     <ClCompile Include="FootBoardManager.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="ItemManager.cpp" />
+    <ClCompile Include="NullItem.cpp" />
     <ClCompile Include="PlayerSubject.cpp" />
     <ClCompile Include="RoadState.cpp" />
     <ClCompile Include="Camera.cpp" />
@@ -238,6 +239,7 @@
     <ClInclude Include="FootBoardManager.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="ItemManager.h" />
+    <ClInclude Include="NullItem.h" />
     <ClInclude Include="PlayerSubject.h" />
     <ClInclude Include="RoadState.h" />
     <ClInclude Include="Camera.h" />

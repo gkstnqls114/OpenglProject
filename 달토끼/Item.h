@@ -12,6 +12,7 @@ public:
 	
 	virtual void Update() = 0;
 	virtual void Render() = 0;
+	virtual void Set_Pos(const CVector3D<>& pos) = 0;
 
 	void StateChange_Pop() {};
 	void StateChange_Float() {};

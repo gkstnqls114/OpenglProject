@@ -108,5 +108,6 @@ void CTestScene::Keyboard(const unsigned char & key, const int & x, const int & 
 
 void CTestScene::SpecialKeys(const int & key, const int & x, const int & y)
 {
+	m_Road->StateChange_Disappear();
 	m_Player->SpecialKeys(key, x, y);
 }

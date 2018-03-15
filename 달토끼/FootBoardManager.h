@@ -26,11 +26,12 @@ public:
 	const int Get_DisappearingBoardIndex() const noexcept { return m_DisappearingBoardIndex; }
 	const CVector3D<> Get_LastPos() const noexcept;
 	const CVector3D<> Get_FirstPos() const noexcept;
-
-	const bool IsOutRange_Disappearing() const;
-	const bool IsOutRange(const int& boardnum) const;
 	const int Get_Side(const int& boardnum) const noexcept;
+	const CVector3D<> Get_Pos(const int& boardnum) const noexcept;
 	const int Get_Disappear(const int& boardnum) const noexcept;
 	/////////////////////////////////Get
 
+	const bool IsOutRange_DisappearingIndex() const;
+	const bool IsOutRange(const int& boardnum) const;
+	void Add_DisappearingIndex();
 };

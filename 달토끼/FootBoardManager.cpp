@@ -8,6 +8,7 @@ FootBoardManger::FootBoardManger()
 	//Test
 	m_boardNum = 100;
 	//Test
+	
 	InitFootBoardModel();
 	m_pFootBoard = new CFootBoard[m_boardNum];
 	Initialize();
@@ -108,7 +109,7 @@ const CVector3D<> FootBoardManger::Get_FirstPos() const noexcept
 	return m_pFootBoard[0].Get_Pos();
 }
 
-const bool FootBoardManger::IsOutRange_Disappearing() const
+const bool FootBoardManger::IsOutRange_DisappearingIndex() const
 {
 	return (m_DisappearingBoardIndex < 0 || m_DisappearingBoardIndex >= m_boardNum);
 }
@@ -124,8 +125,22 @@ const int FootBoardManger::Get_Side(const int & boardnum) const noexcept
 	else return m_pFootBoard[boardnum].GetSide(); 
 }
 
+const CVector3D<> FootBoardManger::Get_Pos(const int & boardnum) const noexcept
+{
+	if (IsOutRange(boardnum)) return CVector3D<>();
+	else return m_pFootBoard[boardnum].Get_Pos();
+}
+
 const int FootBoardManger::Get_Disappear(const int & boardnum) const noexcept
 {
 	if (IsOutRange(boardnum)) return 0;
 	else return m_pFootBoard[boardnum].GetDisappear();
+}
+
+void FootBoardManger::Add_DisappearingIndex()
+{
+	m_DisappearingBoardIndex += 1;
+	if (IsOutRange_DisappearingIndex()) {
+		m_DisappearingBoardIndex -= 1;
+	}
 }

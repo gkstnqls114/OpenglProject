@@ -205,6 +205,9 @@
     <Filter Include="소스 파일\FootBoard\FootBoardManager">
       <UniqueIdentifier>{145d5d4a-18c2-4bf2-a052-fa8c699f7159}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Item\NullItem">
+      <UniqueIdentifier>{18618349-a259-4fff-8ff8-2577f6da294f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GLFramework.cpp">
@@ -392,6 +395,12 @@
     </ClCompile>
     <ClCompile Include="FootBoardManager.cpp">
       <Filter>소스 파일\FootBoard\FootBoardManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Side.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="NullItem.cpp">
+      <Filter>소스 파일\Item\NullItem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -583,6 +592,12 @@
     </ClInclude>
     <ClInclude Include="FootBoardManager.h">
       <Filter>소스 파일\FootBoard\FootBoardManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Side.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="NullItem.h">
+      <Filter>소스 파일\Item\NullItem</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

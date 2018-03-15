@@ -31,7 +31,6 @@ class Road
 	RoadSubject*	m_pRoadSubject{ nullptr };
 
 private:
-	void Add_DisappearingBoardIndex();
 
 public:
 	Road();

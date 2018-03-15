@@ -6,7 +6,7 @@ class CObjModel;
 class Carrat :
 	public Item
 {
-	static CObjModel* m_Carrat	;
+	static CObjModel* m_ObjModel	;
 
 public:
 	Carrat(const int& boardnum);
@@ -16,4 +16,5 @@ public:
 
 	virtual void Update();
 	virtual void Render();
+	virtual void Set_Pos(const CVector3D<>& pos) override { m_Pos = pos; };
 };

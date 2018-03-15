@@ -1,15 +1,15 @@
 #include "pch.h"
 #include "ObjModel.h"
 #include "Carrat.h"
-CObjModel* Carrat::m_Carrat = nullptr;
+
+CObjModel* Carrat::m_ObjModel { nullptr };
 
 void Carrat::InitModel()
 {
-	if (Carrat::m_Carrat) return;
+	if (Carrat::m_ObjModel) return;
 	
-	Carrat::m_Carrat = new CObjModel;
-	Carrat::m_Carrat->LoadObj(".\\OBJModel\\item_carrot.obj");
-	//텍스쳐 추가
+	Carrat::m_ObjModel = new CObjModel;
+	Carrat::m_ObjModel->LoadObj(".\\OBJModel\\item_carrat.obj");
 }
 
 Carrat::Carrat(const int & boardnum)
@@ -27,5 +27,5 @@ void Carrat::Update()
 
 void Carrat::Render()
 {
-	Carrat::m_Carrat->Render();
+	Carrat::m_ObjModel->Render();
 }

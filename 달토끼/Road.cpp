@@ -6,16 +6,8 @@
 
 #include "Road.h"
 
-void Road::Add_DisappearingBoardIndex()
-{
-	//if (IsOutRange_Disappearing()) return;
-
-	//m_DisappearingBoardIndex += 1;
-}
-
 Road::Road()
 {
-
 	StateChange_Disappear();
 }
 
@@ -36,12 +28,12 @@ void Road::TestRender()
 
 void Road::Update()
 {
-	m_FootBoardManager.Update();
+
 }
 
 void Road::Reset()
 {
-
+	m_RoadState->Update(*this);
 }
 
 const CVector3D<> Road::Get_LastPos() const noexcept
@@ -56,16 +48,7 @@ const CVector3D<> Road::Get_FirstPos() const noexcept
 
 void Road::Disappear()
 {
-
-	//if (m_pFootBoard[m_PlayerBoardIndex].GetDisappear()) {
-	//	m_pMediator->Player_Dead();
-	//}
-
-	////위 if문과 순서 중요!
-	//if (m_pFootBoard[m_DisappearingBoardIndex].GetDisappear()) {
-	//	m_pRoadSubject->Notify_DisappearFootBoard(this);
-	//	m_DisappearingBoardIndex += 1;
-	//}
+	m_FootBoardManager.Update();
 }
 
 void Road::Stop()
@@ -91,7 +74,7 @@ void Road::Receive_PlayerWaitCamera(CPlayer * player)
 
 void Road::Receive_PlayerJumpFinish(CPlayer* player)
 {
-	Add_DisappearingBoardIndex();
+	m_FootBoardManager.Add_DisappearingIndex();
 
 	const bool IsCorrectSide = player->Get_BoardSide() == m_FootBoardManager.Get_Side(player->Get_BoardNum());
 	if (!IsCorrectSide) {
