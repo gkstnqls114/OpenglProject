@@ -38,7 +38,7 @@ void Road::TestRender()
 
 void Road::Update()
 {
-
+	m_FootBoardManager.Update();
 }
 
 void Road::Reset()
@@ -63,8 +63,7 @@ void Road::Disappear()
 
 void Road::Stop()
 {
-	//아무 행동도 하지 않는다.
-	//doing nothing
+	//do nothing
 }
 
 void Road::StateChange_Disappear()

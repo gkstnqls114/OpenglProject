@@ -51,7 +51,7 @@ void FootBoardManger::Set_FootBoardPos(ItemManager & itemmanager)
 			nowSide = k_front;
 		}
 
-		float tranlateX = JumpProperty::Road_Distance_X * nowSide;
+		float tranlateX = JumpProperty::k_RoadDistance_X * nowSide;
 		float tranlateZ = -x * JumpProperty::Get_JumpReach();
 
 		CVector3D<> pos(tranlateX, footboardY, tranlateZ);

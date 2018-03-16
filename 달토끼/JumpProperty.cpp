@@ -11,7 +11,7 @@ const int JumpProperty::k_JumpDegree{ 70 };
 const int JumpProperty::k_power{ 15 };
 const float JumpProperty::k_gravity{ 0.9f };
 const double JumpProperty::k_PI{ 3.14152 };
-const int JumpProperty::Road_Distance_X{ 50 };
+const int JumpProperty::k_RoadDistance_X{ 100 };
 
 JumpProperty::JumpProperty()
 {
@@ -39,7 +39,7 @@ void JumpProperty::Initialize()
 	FinishJumpTime = temp_jumptime;
 	JumpReach = -temp_vector_z;
 
-	Rotatedegree = atan(float(JumpReach) / float(Road_Distance_X)) * 180 / k_PI;
+	Rotatedegree = atan(float(JumpReach) / float(k_RoadDistance_X)) * 180 / k_PI;
 	Rotatedegree = 90 - Rotatedegree;
 
 	IsInitialized = true;
