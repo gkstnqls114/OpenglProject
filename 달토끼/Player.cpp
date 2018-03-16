@@ -21,7 +21,6 @@ CPlayer::CPlayer()
 	m_Matrix = new CMatrix();
 	m_JumpProperty.Initialize();
 
-
 	Init_GameScene();
 }
 

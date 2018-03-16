@@ -22,14 +22,6 @@ class CFootBoard
 	const float m_DropAlphaUnit		{ 0.3f };
 	//float		m_LightAlpha{ 0.5f };
 
-	GLfloat m_Translate_Matrix[16] =
-	{
-		1, 0, 0, 0,
-		0, 1, 0, 0,
-		0, 0, 1, 0,
-		0, 0, 0, 1
-	};
-
 	GLfloat m_Scale_Matrix[16] =
 	{
 		0.3f, 0, 0, 0,

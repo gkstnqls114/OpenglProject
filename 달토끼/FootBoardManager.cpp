@@ -54,7 +54,7 @@ void FootBoardManger::Set_FootBoardPos(ItemManager & itemmanager)
 
 		CVector3D<> pos(tranlateX, -5, tranlateZ);
 		m_pFootBoard[x].InitPosition(pos);
-		//itemmanager.Set_Pos(x, pos);
+		itemmanager.Set_Pos(x, pos);
 		
 		prev_Side = nowSide;
 	}

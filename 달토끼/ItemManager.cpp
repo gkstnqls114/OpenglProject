@@ -53,10 +53,6 @@ void ItemManager::Initialize(const int& num)
 	{
 		m_ItemList[index] = new Star;
 	}
-
-	//Test
-	m_ItemList[2][0].Set_Pos(CVector3D<>(0, 0, 50));
-	//Test
 }
  
 const bool ItemManager::IsOutRange(const int& num) const noexcept

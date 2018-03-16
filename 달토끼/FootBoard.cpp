@@ -110,9 +110,7 @@ void CFootBoard::InitPosition(const CVector3D<> & rhs)
 		m_Side = k_front;
 	}
 
-	m_Pos.x  = rhs.x;
-	m_Pos.y  = rhs.y;
-	m_Pos.z  = rhs.z;
+	m_Pos = rhs;
 }
 
 void CFootBoard::InitPosition(CVector3D<>&& rhs)
@@ -127,7 +125,7 @@ void CFootBoard::InitPosition(CVector3D<>&& rhs)
 		m_Side = k_front;
 	}
 
-	m_Pos = rhs
+	m_Pos = rhs;
 }
 
 void CFootBoard::HasLight()

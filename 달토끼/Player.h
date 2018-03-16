@@ -34,7 +34,14 @@ class CPlayer
 
 	//플레이어 위치
 	CVector3D<> m_Pos;
-	CMatrix* m_Matrix{ nullptr };
+
+	GLfloat m_Rotate_Matrix[16] =
+	{
+		1, 0, 0, 0,
+		0, 1, 0, 0,
+		0, 0, 1, 0,
+		0, 0, 0, 1
+	};
 	
 	//플레이어 상태
 	JumpProperty m_JumpProperty;
