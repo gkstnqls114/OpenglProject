@@ -103,7 +103,7 @@ CGameScene::CGameScene(CSceneManager* const changer)
 	m_Camera = new CCamera();
 	m_Player = new CPlayer();
 
-	m_Road = new Road();
+	m_Road = new Road(100);
 	int LastZ = m_Road->Get_LastPos().z;
 	m_Skybox = new CSkybox(LastZ);
 

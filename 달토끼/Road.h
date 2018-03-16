@@ -18,6 +18,7 @@ class RoadSubject;
 class Road 
 	: public PlayerObserver
 {
+	int				m_RoadLength{ 0 };
 	FootBoardManger m_FootBoardManager;
 	ItemManager		m_ItemManager;
 
@@ -34,6 +35,7 @@ private:
 
 public:
 	Road();
+	Road(const int& num);
 	~Road();
 
 	void Render();

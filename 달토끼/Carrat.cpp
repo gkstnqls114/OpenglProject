@@ -23,6 +23,7 @@ Carrat::~Carrat()
 
 void Carrat::Update()
 {
+
 }
 
 void Carrat::Render()

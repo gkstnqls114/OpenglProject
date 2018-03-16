@@ -19,6 +19,7 @@ void Star::InitModel()
 
 	Star::m_ObjModel = new CObjModel;
 	Star::m_ObjModel->LoadObj(".\\OBJModel\\item_star.obj");
+	Star::m_ObjModel->LoadTexture(".\\Texture\\GoalLight.bmp");
 }
 
 void Star::Update()

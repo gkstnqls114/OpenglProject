@@ -270,7 +270,7 @@ void CObjModel::Reset()
 
 void CObjModel::LoadObj(const char * filename)
 {
-	//std::cout << "CObjModel 葛胆 积己: " << filename << std::endl;
+	std::cout << "CObjModel 葛胆 积己: " << filename << std::endl;
 
 	Find_VertexNum(filename);
 	Save_Information(filename);

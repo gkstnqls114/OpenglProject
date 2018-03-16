@@ -1,6 +1,7 @@
 #pragma once
 
 class CFootBoard;
+class ItemManager;
 
 class FootBoardManger
 {
@@ -8,16 +9,18 @@ class FootBoardManger
 
 	CFootBoard*		m_pFootBoard{ nullptr };
 	int				m_DisappearingBoardIndex{ 0 };
-	int				m_boardNum{ 5 };
+	int				m_Length{ -1 };
 	
 private:
-	void Initialize();
+	void Initialize(ItemManager&);
 	void InitFootBoardModel();
 
 public:
 	FootBoardManger();
+	FootBoardManger(const int& , ItemManager&);
 	~FootBoardManger();
 
+	void Initialize(const int&, ItemManager&);
 	void TestRender();
 	void Render();
 	void Update();

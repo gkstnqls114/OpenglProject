@@ -5,13 +5,13 @@
 
 FootBoardManger::FootBoardManger()
 {
-	//Test
-	m_boardNum = 100;
-	//Test
-	
+}
+
+FootBoardManger::FootBoardManger(const int & num, ItemManager& itemManager)
+{
+	m_Length = num;
 	InitFootBoardModel();
-	m_pFootBoard = new CFootBoard[m_boardNum];
-	Initialize();
+	Initialize(itemManager);
 }
 
 FootBoardManger::~FootBoardManger()
@@ -19,9 +19,11 @@ FootBoardManger::~FootBoardManger()
 	delete[] m_pFootBoard;
 }
 
-void FootBoardManger::Initialize()
+void FootBoardManger::Initialize(ItemManager &)
 {
-	if (!m_pFootBoard) return;
+	if (m_pFootBoard) return;
+
+	m_pFootBoard = new CFootBoard[m_Length];
 
 	JumpProperty::Initialize();
 	
@@ -30,7 +32,7 @@ void FootBoardManger::Initialize()
 	//맨 첫번째는 이동하지 않으므로 1부터 시작
 	srand(time(NULL));
 	int prev_Side = 0;
-	for (int x = 1; x < m_boardNum - 1; ++x) {
+	for (int x = 1; x < m_Length - 1; ++x) {
 		int nowSide = k_side[rand() % 3];
 
 		//왼쪽발판 다음에서 오른쪽 발판이 생성되는 경우
@@ -53,14 +55,22 @@ void FootBoardManger::Initialize()
 	}
 	//마지막은 반드시 가운데
 	float tranlateX = 0;
-	float tranlateZ = -(m_boardNum - 1) * JumpProperty::Get_JumpReach();
-	m_pFootBoard[m_boardNum - 1].InitPosition(CVector3D<>(tranlateX, -5, tranlateZ));
-	m_pFootBoard[m_boardNum - 1].IsLight();
+	float tranlateZ = -(m_Length - 1) * JumpProperty::Get_JumpReach();
+	m_pFootBoard[m_Length - 1].InitPosition(CVector3D<>(tranlateX, -5, tranlateZ));
+	m_pFootBoard[m_Length - 1].HasLight();
 }
 
 void FootBoardManger::InitFootBoardModel()
 {
 	CFootBoard::InitModel();
+}
+
+void FootBoardManger::Initialize(const int & num, ItemManager & itemManager)
+{
+	m_Length = num;
+
+	InitFootBoardModel();
+	Initialize(itemManager);
 }
 
 //전부 렌더합니다.
@@ -69,7 +79,7 @@ void FootBoardManger::TestRender()
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-	for (int x = 0; x < m_boardNum; ++x) {
+	for (int x = 0; x < m_Length; ++x) {
 		m_pFootBoard[x].Render();
 	}
 
@@ -86,7 +96,7 @@ void FootBoardManger::Render()
 	for (int x = m_DisappearingBoardIndex; x < m_DisappearingBoardIndex + 7; ++x) {
 		m_pFootBoard[x].Render();
 	}
-	m_pFootBoard[m_boardNum - 1].Render();
+	m_pFootBoard[m_Length - 1].Render();
 	glDisable(GL_BLEND);
 }
 
@@ -101,7 +111,7 @@ void FootBoardManger::Update()
 
 const CVector3D<> FootBoardManger::Get_LastPos() const noexcept
 {
-	return m_pFootBoard[m_boardNum - 1].Get_Pos();
+	return m_pFootBoard[m_Length - 1].Get_Pos();
 }
 
 const CVector3D<> FootBoardManger::Get_FirstPos() const noexcept
@@ -111,12 +121,12 @@ const CVector3D<> FootBoardManger::Get_FirstPos() const noexcept
 
 const bool FootBoardManger::IsOutRange_DisappearingIndex() const
 {
-	return (m_DisappearingBoardIndex < 0 || m_DisappearingBoardIndex >= m_boardNum);
+	return (m_DisappearingBoardIndex < 0 || m_DisappearingBoardIndex >= m_Length);
 }
 
 const bool FootBoardManger::IsOutRange(const int & boardnum) const
 {
-	return boardnum < 0 || boardnum >= m_boardNum;
+	return boardnum < 0 || boardnum >= m_Length;
 }
 
 const int FootBoardManger::Get_Side(const int & boardnum) const noexcept

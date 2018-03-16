@@ -116,27 +116,24 @@ void CFootBoard::InitPosition(const CVector3D<> & rhs)
 
 void CFootBoard::InitPosition(CVector3D<>&& rhs)
 {
-
 	if (rhs.x < 0) {
-		m_Side = -1;
+		m_Side = k_left;
 	}
 	else if (rhs.x > 0) {
-		m_Side = 1;
+		m_Side = k_right;
 	}
 	else {
-		m_Side = 0;
+		m_Side = k_front;
 	}
 
 	m_Position.x = rhs.x;
 	m_Position.y = rhs.y;
 	m_Position.z = rhs.z;
-
 }
 
-void CFootBoard::IsLight()
+void CFootBoard::HasLight()
 {
 	IsLast = true;
-	//m_LightAlpha = 0.5f;
 	IsLightDisappear = false;
 }
 

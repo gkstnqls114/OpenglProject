@@ -2,6 +2,8 @@
 #include "PlayerSubject.h"
 #include "RoadSubject.h"
 
+#include "Star.h"
+
 #include "Scene.h"
 
 class CSceneManager;

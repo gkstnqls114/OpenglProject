@@ -8,22 +8,31 @@
 
 Road::Road()
 {
-	StateChange_Disappear();
+	m_RoadLength = 100;
+	m_FootBoardManager.Initialize(m_RoadLength, m_ItemManager);
+}
+
+Road::Road(const int & num)
+{
+	m_RoadLength = num;
+	m_FootBoardManager.Initialize(num, m_ItemManager);
 }
 
 Road::~Road()
 {
-	CFootBoard::DeleteModel();
+
 }
 
 void Road::Render()
 {
 	m_FootBoardManager.Render();
+	m_ItemManager.Render();
 }
 
 void Road::TestRender()
 {
 	m_FootBoardManager.TestRender();
+	m_ItemManager.TestRender();
 }
 
 void Road::Update()

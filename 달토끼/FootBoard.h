@@ -63,7 +63,7 @@ public:
 	void InitPosition(const int& x, const int & y, const int& z);
 	void InitPosition(const CVector3D<>& rhs);
 	void InitPosition(CVector3D<>&& rhs);
-	void IsLight();
+	void HasLight();
 	void IsNotLight();
 	void LightDisappear();
 
