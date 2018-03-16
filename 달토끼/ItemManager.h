@@ -6,7 +6,7 @@ class Item;
 class ItemManager
 {
 	Item** m_ItemList{ nullptr };
-	int m_ItemNumber{ 0 };
+	int m_ItemLength{ 0 };
 
 	static void initModel();
 	void Add_Item(Item*&);
@@ -14,10 +14,11 @@ class ItemManager
 private:
 	void Initialize();
 	void InitItemModel();
-	const bool IsOutRange() const noexcept;
+	const bool IsOutRange(const int& num) const noexcept;
 
 public:
-	ItemManager(const int& num = 0);
+	ItemManager();
+	ItemManager(const int& num);
 	~ItemManager();
 
 	void Render();

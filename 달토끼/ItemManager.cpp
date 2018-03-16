@@ -7,9 +7,14 @@
 
 #include "ItemManager.h"
 
+ItemManager::ItemManager()
+{
+
+}
+
 ItemManager::ItemManager(const int & num)
 {
-	m_ItemNumber = num;
+	m_ItemLength = num;
 	ItemManager::initModel();
 	Initialize();
 }
@@ -35,8 +40,8 @@ void ItemManager::Initialize()
 {
 	if (m_ItemList) return;
 
-	m_ItemList = new Item*[m_ItemNumber];
-	for (int index = 0; index < m_ItemNumber; ++index) 
+	m_ItemList = new Item*[m_ItemLength];
+	for (int index = 0; index < m_ItemLength; ++index) 
 	{
 		m_ItemList[index] = new Star;
 	}
@@ -46,10 +51,10 @@ void ItemManager::InitItemModel()
 {
 }
 
-const bool ItemManager::IsOutRange() const noexcept
+const bool ItemManager::IsOutRange(const int& num) const noexcept
 {
-
-	return false;
+	if (num < 0 || num >= m_ItemLength) return true;
+	else return false;
 }
 
 void ItemManager::Render()
@@ -62,21 +67,21 @@ void ItemManager::Render()
 void ItemManager::TestRender()
 {
 	//all Render
-	for (int index = 0; index < m_ItemNumber; ++index) {
-		m_ItemList[index]->Render();
+	for (int index = 0; index < m_ItemLength; ++index) {
+		m_ItemList[index][0].Render();
 	}
 }
 
 void ItemManager::Update()
 { 
-	for (int index = 0; index < m_ItemNumber; ++index) {
-		m_ItemList[index]->Update();
+	for (int index = 0; index < m_ItemLength; ++index) {
+		m_ItemList[index][0].Update();
 	}
 }
 
 void ItemManager::Set_Pos(const int & boardnum, const CVector3D<> pos)
 {
-	m_ItemList[boardnum]->Set_Pos(pos);
+	m_ItemList[boardnum][0].Set_Pos(pos);
 }
 
 
