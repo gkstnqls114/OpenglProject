@@ -1,4 +1,5 @@
 #include "pch.h"
+#include "ItemManager.h"
 #include "FootBoard.h"
 #include "JumpProperty.h"
 #include "FootBoardManager.h"
@@ -19,15 +20,17 @@ FootBoardManger::~FootBoardManger()
 	delete[] m_pFootBoard;
 }
 
-void FootBoardManger::Set_FootBoardPos(ItemManager &)
+void FootBoardManger::Set_FootBoardPos(ItemManager & itemmanager)
 {
 	if (m_pFootBoard) return;
 
 	m_pFootBoard = new CFootBoard[m_Length];
 
 	JumpProperty::Initialize();
-	
-	m_pFootBoard[0].InitPosition(CVector3D<>(0, -5, 0));
+
+	CVector3D<> firstPos(0, -5, 0);
+	m_pFootBoard[0].InitPosition(firstPos);
+	itemmanager.Set_Pos(0, firstPos);
 
 	//맨 첫번째는 이동하지 않으므로 1부터 시작
 	srand(time(NULL));
@@ -40,7 +43,6 @@ void FootBoardManger::Set_FootBoardPos(ItemManager &)
 		if (Is_Left_to_Right) {
 			nowSide = k_front;
 		}
-
 		//오른쪽발판 다음에서 왼쪽 발판이 생성되는 경우
 		bool Is_Right_to_Left = (prev_Side == k_right) && (nowSide == k_left);
 		if (Is_Right_to_Left) {
@@ -49,7 +51,10 @@ void FootBoardManger::Set_FootBoardPos(ItemManager &)
 
 		float tranlateX = Road_Distance_X * nowSide;
 		float tranlateZ = -x * JumpProperty::Get_JumpReach();
-		m_pFootBoard[x].InitPosition(CVector3D<>(tranlateX, -5, tranlateZ));
+
+		CVector3D<> pos(tranlateX, -5, tranlateZ);
+		m_pFootBoard[x].InitPosition(pos);
+		//itemmanager.Set_Pos(x, pos);
 		
 		prev_Side = nowSide;
 	}

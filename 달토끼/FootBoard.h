@@ -14,7 +14,7 @@ class CFootBoard
 
 	int m_Side{ -2 }; //-2는 존재하지 않음
 
-	CVector3D<> m_Position			{ 0, -5, 0 };
+	CVector3D<> m_Pos			{ 0, -5, 0 };
 	bool IsLast						{ false };
 	bool IsLightDisappear			{ false };
 
@@ -70,7 +70,7 @@ public:
 	void Render();
 	void Update();
 
-	const CVector3D<> Get_Pos() const noexcept { return m_Position; }
+	const CVector3D<> Get_Pos() const noexcept { return m_Pos; }
 	const bool GetDisappear() const { return IsDisappear; }
 	void Disappear_True() { IsDisappear = true; }
 	const int GetSide() const noexcept { return m_Side; }

@@ -23,8 +23,10 @@ void CFootBoard::RenderModel()
 	m_obj->Render();
 
 	if (IsLast) {
+		///////////////////////////Test
 		//glColor4f(LIGHTRGB.x, LIGHTRGB.y, LIGHTRGB.z, m_LightAlpha);
 		//m_Light_obj->Render();
+		///////////////////////////Test
 	}
 }
 
@@ -67,7 +69,7 @@ void CFootBoard::Render()
 	if (IsDisappear) return;
 
 	glPushMatrix();
-	glTranslatef(m_Position.x, m_Position.y, m_Position.z);
+	glTranslatef(m_Pos.x, m_Pos.y, m_Pos.z);
 	glMultMatrixf(m_Rotate_Matrix);
 	glMultMatrixf(m_Scale_Matrix);
 	
@@ -99,19 +101,18 @@ void CFootBoard::InitPosition(const int & x, const int & y, const int & z)
 void CFootBoard::InitPosition(const CVector3D<> & rhs)
 {
 	if (rhs.x < 0) {
-		m_Side = -1;
+		m_Side = k_left;
 	}
 	else if (rhs.x > 0) {
-		m_Side = 1;
+		m_Side = k_right;
 	}
 	else {
-		m_Side = 0;
+		m_Side = k_front;
 	}
 
-	m_Position.x  = rhs.x;
-	m_Position.y  = rhs.y;
-	m_Position.z  = rhs.z;
-
+	m_Pos.x  = rhs.x;
+	m_Pos.y  = rhs.y;
+	m_Pos.z  = rhs.z;
 }
 
 void CFootBoard::InitPosition(CVector3D<>&& rhs)
@@ -126,9 +127,7 @@ void CFootBoard::InitPosition(CVector3D<>&& rhs)
 		m_Side = k_front;
 	}
 
-	m_Position.x = rhs.x;
-	m_Position.y = rhs.y;
-	m_Position.z = rhs.z;
+	m_Pos = rhs
 }
 
 void CFootBoard::HasLight()

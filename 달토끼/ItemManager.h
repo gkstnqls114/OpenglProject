@@ -23,10 +23,11 @@ public:
 	void Render();
 	void TestRender();
 	void Update();
-	void Set_Pos(const int& boardnum, const CVector3D<> pos);
+	void Set_Pos(const int& boardnum, const CVector3D<>& pos);
 	
 	void Change_Star(const int& boardnum);
 	void Change_Shield(const int& boardnum);
 	void Change_Carrat(const int& boardnum);
 	
+	void TestPosPrint(const int& num) const;
 };

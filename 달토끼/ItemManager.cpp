@@ -53,6 +53,10 @@ void ItemManager::Initialize(const int& num)
 	{
 		m_ItemList[index] = new Star;
 	}
+
+	//Test
+	m_ItemList[2][0].Set_Pos(CVector3D<>(0, 0, 50));
+	//Test
 }
  
 const bool ItemManager::IsOutRange(const int& num) const noexcept
@@ -83,11 +87,12 @@ void ItemManager::Update()
 	}
 }
 
-void ItemManager::Set_Pos(const int & boardnum, const CVector3D<> pos)
+void ItemManager::Set_Pos(const int & boardnum, const CVector3D<>& rhs)
 {
-	m_ItemList[boardnum][0].Set_Pos(pos);
-}
+	if (IsOutRange(boardnum)) return;
 
+	m_ItemList[boardnum][0].Set_Pos(rhs);
+}
 
 void ItemManager::Change_Star(const int & boardnum)
 {
@@ -100,5 +105,11 @@ void ItemManager::Change_Shield(const int & boardnum)
 
 void ItemManager::Change_Carrat(const int & boardnum)
 {
+}
+
+void ItemManager::TestPosPrint(const int & num) const
+{
+	CVector3D<> pos = m_ItemList[num][0].Get_Pos();
+	std::cout << pos.x << " , " << pos.y << " , " << pos.z << std::endl;
 }
 

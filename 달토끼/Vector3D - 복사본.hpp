@@ -47,7 +47,6 @@ CVector3D<T> CVector3D<T>::operator-(CVector3D<T>&& rhs)
 template <typename T>
 CVector3D<T> & CVector3D<T>::operator=(const CVector3D<T> & rhs)
 {
-	//std::cout << "복사 대입 연산자" << std::endl;
 	x = rhs.x;
 	y = rhs.y;
 	z = rhs.z;
