@@ -64,8 +64,9 @@ void FootBoardManger::Set_FootBoardPos(ItemManager & itemmanager)
 	//마지막은 반드시 가운데
 	float tranlateX = 0;
 	float tranlateZ = -(m_Length - 1) * JumpProperty::Get_JumpReach();
-	m_pFootBoard[m_Length - 1].InitPosition(CVector3D<>(tranlateX, -5, tranlateZ));
+	m_pFootBoard[m_Length - 1].InitPosition(CVector3D<>(tranlateX, footboardY, tranlateZ));
 	m_pFootBoard[m_Length - 1].HasLight();
+	itemmanager.Set_Pos(m_Length - 1, CVector3D<>(tranlateX, itemY, tranlateZ));
 }
 
 void FootBoardManger::InitFootBoardModel()
