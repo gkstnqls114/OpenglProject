@@ -93,28 +93,6 @@ void Road::Receive_PlayerJumpFinish(CPlayer* player)
 	}
 }
 
-// Road에 존재하는 모든 아이템들의 Y위치를 위로 옮깁니다.
-void Road::MoveUp_Item()
-{
-	
-}
-
-// Road에 존재하는 모든 발판들의 Y위치를 위로 옮깁니다.
-void Road::MoveUp_FootBoard()
-{
-}
-
-// Road에 존재하는 모든 아이템들의 Y위치를 아래로 옮깁니다.
-void Road::MoveDown_Item()
-{
-}
-
-// Road에 존재하는 모든 발판들의 Y위치를 아래로 옮깁니다.
-void Road::MoveDown_FootBoard()
-{
-
-}
-
 //void Road::Player_JumpFinish(int playerside)
 //{
 	//플레이어 위치가 올바른 곳인지 확인

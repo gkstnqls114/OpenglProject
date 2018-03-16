@@ -69,9 +69,6 @@ public:
 	///////////////////////////////// Receive
 
 	///////////////////////////////// Etc
-	void MoveUp_Item();
-	void MoveUp_FootBoard();
-	void MoveDown_Item();
-	void MoveDown_FootBoard();
+
 	///////////////////////////////// Etc
 };
