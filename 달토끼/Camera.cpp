@@ -156,7 +156,7 @@ void CCamera::Receive_PlayerWaitCamera(CPlayer * player)
 		Rotate(0, 3);
 	}
 
-	bool Far = m_distance > 50;
+	bool Far = m_distance > 150;
 	if (Far) {
 		zoom(0.99f);
 	}

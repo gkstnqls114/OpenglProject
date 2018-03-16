@@ -15,7 +15,7 @@ CTestScene::CTestScene()
 	m_Player = new CPlayer();
 	m_Road = new Road(100);
 
-	m_Camera->Initialize(CVector3D<>(0.f, 0.f, 0.f), 100, 0.1f, 600.f, 60);
+	m_Camera->Initialize(CVector3D<>(0.f, 0.f, 0.f), 300, 0.1f, 1000.f, 60);
 	m_Camera->Rotate(25, 20);
 
 	m_Player->Set_PlayerSubjer(&m_PlayerObserver);
