@@ -13,8 +13,8 @@ CPLAY_word::CPLAY_word(const CVector3D<>& pos)
 	m_model->LoadTexture("PLAYWORD.bmp");
 
 	m_Position = pos;
-	m_matrix = new CMatrix;
-	m_matrix->Set_Translate(m_Position);
+	m_matrix = new RotateMatrix;
+//	m_matrix->Set_Translate(m_Position);
 }
 
 
@@ -27,7 +27,7 @@ CPLAY_word::~CPLAY_word()
 void CPLAY_word::Render()
 {
 	glPushMatrix();
-	m_matrix->MultiMatrix();
+	m_matrix->Rotate();
 	m_model->Render();
 	glPopMatrix();
 }
@@ -50,12 +50,12 @@ void CPLAY_word::Update()
 	SizeTime += 0.03f;
 	NowSize = Interpolation(BeginSize, EndSize, SizeTime);
 
-	m_matrix->Set_Scale(NowSize);
+//	m_matrix->Set_Scale(NowSize);
 }
 
 void CPLAY_word::Init_MainScene()
 {
-	m_matrix->Set_Translate(m_Position);
+	//m_matrix->Set_Translate(m_Position);
 	m_matrix->ResetRotate();
 	IsGameStart = false;
 }
@@ -68,7 +68,7 @@ void CPLAY_word::GameStart()
 
 void CPLAY_word::Scale(const float & NowSize)
 {
-	m_matrix->Calu_Scale(NowSize);
+	//m_matrix->Calu_Scale(NowSize);
 }
 
 void CPLAY_word::NotSelected()
@@ -78,5 +78,5 @@ void CPLAY_word::NotSelected()
 	SizeTime = 0.f;
 	BeginSize = 1.1f;
 	EndSize = 1.3f;
-	m_matrix->ResetScale();
+	//m_matrix->ResetScale();
 }

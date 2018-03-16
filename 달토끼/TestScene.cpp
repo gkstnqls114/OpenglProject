@@ -82,7 +82,6 @@ void CTestScene::Update()
 
 void CTestScene::Keyboard(const unsigned char & key, const int & x, const int & y)
 {
-
 	if (key == '=' || key == '+') {
 		m_Camera->zoom(0.8f);
 	}

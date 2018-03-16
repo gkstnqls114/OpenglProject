@@ -13,7 +13,7 @@
 
 
 class CObjModel;
-class CMatrix;
+class RotateMatrix;
 class CMediator;
 class Road;
 class CCamera;
@@ -34,14 +34,7 @@ class CPlayer
 
 	//플레이어 위치
 	CVector3D<> m_Pos;
-
-	GLfloat m_Rotate_Matrix[16] =
-	{
-		1, 0, 0, 0,
-		0, 1, 0, 0,
-		0, 0, 1, 0,
-		0, 0, 0, 1
-	};
+	RotateMatrix* m_Matrix{ nullptr };
 	
 	//플레이어 상태
 	JumpProperty m_JumpProperty;
@@ -55,7 +48,6 @@ class CPlayer
 	CRightJump	RightJumpState;
 	CLeftJump	LeftJumpState;
 	
-
 	//현재 넘어간 발판 개수
 	int m_MyBoardIndex{ 0 };
 	//좌, 우, 앞 발판 중 어디에 있는가?

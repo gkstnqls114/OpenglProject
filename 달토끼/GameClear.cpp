@@ -31,7 +31,6 @@ CGameClear::CGameClear(CSceneManager* const changer)
 CGameClear::~CGameClear()
 {
 	delete[] m_Camera;
-	delete[] m_pMediator;
 	delete[] m_ClearObj;
 	delete[] m_GAMECLEAR;
 	delete[] m_textureStroage;

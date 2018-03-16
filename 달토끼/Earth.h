@@ -2,7 +2,7 @@
 
 class CObjModel;
 class CMediator;
-class CMatrix;
+class RotateMatrix;
 
 class CEarth
 {
@@ -10,7 +10,7 @@ class CEarth
 
 	CMediator* m_pMediator{ nullptr };
 
-	CMatrix* m_Matrix{ nullptr };
+	RotateMatrix* m_Matrix{ nullptr };
 	GLdouble m_BeginY{ 0.f };
 	GLdouble m_EndY{ 1.f };
 	float m_Time{ 0.f };

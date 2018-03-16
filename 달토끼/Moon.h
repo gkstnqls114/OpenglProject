@@ -1,7 +1,7 @@
 #pragma once
 
 class CObjModel;
-class CMatrix;
+class RotateMatrix;
 class CMediator;
 
 class CMoon
@@ -10,7 +10,7 @@ class CMoon
 
 	CMediator*		m_pMediator{ nullptr };
 
-	CMatrix* m_Matrix{ nullptr };
+	RotateMatrix* m_Matrix{ nullptr };
 	GLdouble m_BeginY{ 0 };
 	GLdouble m_EndY{ 1.f };
 	float m_Time{ 0.f };

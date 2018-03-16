@@ -1,12 +1,12 @@
 #pragma once
 class CObjModel;
-class CMatrix;
+class RotateMatrix;
 
 class CGAMEOVER_word
 {
 	CVector3D<> m_Position;
 	CObjModel* m_model{ nullptr };
-	CMatrix* m_matrix{ nullptr };
+	RotateMatrix* m_matrix{ nullptr };
 
 
 public:

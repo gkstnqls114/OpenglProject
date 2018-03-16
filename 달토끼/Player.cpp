@@ -18,7 +18,7 @@ CObjModel* CPlayer::m_Rabit_RightFoot{ nullptr };
 CPlayer::CPlayer()
 {
 	CPlayer::InitModel();
-	m_Matrix = new CMatrix();
+	m_Matrix = new RotateMatrix();
 	m_JumpProperty.Initialize();
 
 	Init_GameScene();
@@ -76,7 +76,7 @@ void CPlayer::Render()
 	glPushMatrix();
 		glTranslated(m_Pos.x, m_Pos.y, m_Pos.z);
 	glPushMatrix();
-		m_Matrix->MultiMatrix();
+		m_Matrix->Rotate();
 	glPushMatrix();
 		//glRotated(Tumblingdegree, 1, 0, 0);
 		m_Rabit_Body->Render();
@@ -118,8 +118,8 @@ void CPlayer::Init_GameScene()
 	Reset_ModelRotate();
 
 	m_Matrix->Set_Rotate(180, 0, 1, 0);
-	m_Matrix->Set_Scale(0.3);
-	m_Matrix->ResetTranslate();
+	//m_Matrix->Set_Scale(0.3);
+	//m_Matrix->ResetTranslate();
 
 	m_PlayerState = &WaitingState;
 

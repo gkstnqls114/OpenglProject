@@ -1,7 +1,7 @@
 #pragma once
 
 class CObjFace;
-class CMatrix;
+class RotateMatrix;
 class CTextureStorage;
 
 class CObjModel
@@ -20,9 +20,9 @@ class CObjModel
 	CVector3D<> *			m_pNormal			{ nullptr };
 	CObjFace *				m_pFace				{ nullptr };
 
-	CMatrix*		m_PivotMove_Matrix	{ nullptr };
-	CMatrix*		m_PivotReturn_Matrix{ nullptr };
-	CMatrix*		m_Matrix			{ nullptr };
+	RotateMatrix*		m_PivotMove_Matrix	{ nullptr };
+	RotateMatrix*		m_PivotReturn_Matrix{ nullptr };
+	RotateMatrix*		m_RotateMatrix			{ nullptr };
 	
 private:
 	void ModelRender();

@@ -226,9 +226,9 @@ void CObjModel::Save_Information(const char*& filename)
 
 CObjModel::CObjModel()
 {
-	m_PivotMove_Matrix = new CMatrix;
-	m_PivotReturn_Matrix = new CMatrix;
-	m_Matrix = new CMatrix;
+	m_PivotMove_Matrix = new RotateMatrix;
+	m_PivotReturn_Matrix = new RotateMatrix;
+	m_RotateMatrix = new RotateMatrix;
 }
 
 CObjModel::~CObjModel()
@@ -253,8 +253,8 @@ CObjModel::~CObjModel()
 		m_pFace = nullptr;
 	}
 
-	delete m_Matrix;
-	m_Matrix = nullptr;
+	delete m_RotateMatrix;
+	m_RotateMatrix = nullptr;
 	delete m_PivotMove_Matrix;
 	m_PivotMove_Matrix = nullptr;
 	delete m_PivotReturn_Matrix;
@@ -263,9 +263,7 @@ CObjModel::~CObjModel()
 
 void CObjModel::Reset()
 {
-	m_Matrix->ResetRotate();
-	m_Matrix->ResetTranslate();
-	m_Matrix->ResetScale();
+	m_RotateMatrix->ResetRotate();
 }
 
 void CObjModel::LoadObj(const char * filename)
@@ -287,13 +285,13 @@ void CObjModel::LoadTexture(const char* filename)
 void CObjModel::Render()
 {
 	glPushMatrix();
-	m_PivotReturn_Matrix->MultiMatrix();
+	m_PivotReturn_Matrix->Rotate();
 
 	glPushMatrix();
-	m_Matrix->MultiMatrix();
+	m_RotateMatrix->Rotate();
 
 	glPushMatrix();
-	m_PivotMove_Matrix->MultiMatrix();
+	m_PivotMove_Matrix->Rotate();
 
 	ModelRender();
 
@@ -309,57 +307,57 @@ void CObjModel::SetTextuerIDindex(const int& index)
 
 void CObjModel::MovePivot(const GLdouble & x, const GLdouble & y, const GLdouble & z)
 {
-	m_PivotMove_Matrix->Calu_Tranlate(CVector3D<>(x, y, z));
-	m_PivotReturn_Matrix->Calu_Tranlate(CVector3D<>(-x, -y, -z));
+	//m_PivotMove_Matrix->Calu_Tranlate(CVector3D<>(x, y, z));
+	//m_PivotReturn_Matrix->Calu_Tranlate(CVector3D<>(-x, -y, -z));
 }
 
 void CObjModel::MovePivot(const CVector3D<> & Pos)
 {
-	m_PivotMove_Matrix->Calu_Tranlate(Pos);
+	//m_PivotMove_Matrix->Calu_Tranlate(Pos);
 	//나중에 단항연산자 오버로딩 찾아보기
 	//지금은 일단 .. 쓰자 ㅠ
-	m_PivotReturn_Matrix->Calu_Tranlate(CVector3D<>(-Pos.x, -Pos.y, -Pos.z));
+	//m_PivotReturn_Matrix->Calu_Tranlate(CVector3D<>(-Pos.x, -Pos.y, -Pos.z));
 }
 
 void CObjModel::MovePivot(CVector3D<>&& Pos)
 {
-	m_PivotMove_Matrix->Calu_Tranlate(Pos);
+	//m_PivotMove_Matrix->Calu_Tranlate(Pos);
 	//나중에 단항연산자 오버로딩 찾아보기
 	//지금은 일단 .. 쓰자 ㅠ
-	m_PivotReturn_Matrix->Calu_Tranlate(CVector3D<>(-Pos.x, -Pos.y, -Pos.z));
+	//m_PivotReturn_Matrix->Calu_Tranlate(CVector3D<>(-Pos.x, -Pos.y, -Pos.z));
 }
 
 void CObjModel::Rotate(const int & Nowdegree, const int & x, const int & y, const int & z)
 {
-	m_Matrix->Calu_Rotate(Nowdegree, x, y, z);
+	m_RotateMatrix->Calu_Rotate(Nowdegree, x, y, z);
 }
 
 void CObjModel::Rotate(const float & Nowdegree, const int & x, const int & y, const int & z)
 {
-	m_Matrix->Calu_Rotate(Nowdegree, x, y, z);
+	m_RotateMatrix->Calu_Rotate(Nowdegree, x, y, z);
 }
 
 void CObjModel::Translate(const CVector3D<>& rhs)
 {
-	m_Matrix->Calu_Tranlate(rhs);
+//	m_Matrix->Calu_Tranlate(rhs);
 }
 
 void CObjModel::Translate(CVector3D<>&& rhs)
 {
-	m_Matrix->Calu_Tranlate(rhs);
+//	m_Matrix->Calu_Tranlate(rhs);
 }
 
 void CObjModel::ResetRotate()
 {
-	m_Matrix->ResetRotate();
+	m_RotateMatrix->ResetRotate();
 }
 
 void CObjModel::Scale(const float & x, const float & y, const float & z)
 {
-	m_Matrix->Calu_Scale(x, y, z);
+	//m_RotateMatrix->Calu_Scale(x, y, z);
 }
 
 void CObjModel::Set_Scale(const float & x, const float & y, const float & z)
 {
-	m_Matrix->Set_Scale(x, y, z);
+	//m_RotateMatrix->Set_Scale(x, y, z);
 }

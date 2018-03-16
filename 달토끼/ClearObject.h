@@ -1,6 +1,6 @@
 #pragma once
 class CObjModel;
-class CMatrix;
+class RotateMatrix;
 
 class CClearObject
 {

@@ -70,8 +70,8 @@ void CFootBoard::Render()
 
 	glPushMatrix();
 	glTranslatef(m_Pos.x, m_Pos.y, m_Pos.z);
-	glMultMatrixf(m_Rotate_Matrix);
-	glMultMatrixf(m_Scale_Matrix);
+	//glMultMatrixf(m_Rotate_Matrix);
+	//glMultMatrixf(m_Scale_Matrix);
 	
 	RenderModel();
 

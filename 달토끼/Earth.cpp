@@ -25,7 +25,7 @@ CEarth::CEarth(CMediator*& mediator)
 {
 	InitModel();
 	m_pMediator = mediator;
-	m_Matrix = new CMatrix;
+	m_Matrix = new RotateMatrix;
 }
 
 CEarth::~CEarth()
@@ -36,12 +36,12 @@ CEarth::~CEarth()
 
 void CEarth::SetPos(const CVector3D<>& rhs)
 {
-	m_Matrix->Set_Translate(rhs);
+	//m_Matrix->Set_Translate(rhs);
 }
 
 void CEarth::SetPos(CVector3D<>&& rhs)
 {
-	m_Matrix->Set_Translate(rhs);
+	//m_Matrix->Set_Translate(rhs);
 
 }
 
@@ -49,11 +49,11 @@ void CEarth::Update()
 {
 	if (IsGameStart) {
 		m_Matrix->Calu_Rotate(6, 0, 1, 0);
-		m_Matrix->Calu_Tranlate(CVector3D<>(0, 5, 0));
+		//m_Matrix->Calu_Tranlate(CVector3D<>(0, 5, 0));
 
-		if (m_Matrix->Get_Tranlate_Y() > 400) {
+		//if (m_Matrix->Get_Tranlate_Y() > 400) {
 			//m_pMediator->GameScene();
-		}
+		//}
 
 		return;
 	}
@@ -67,7 +67,7 @@ void CEarth::Render()
 
 	glColor3f(LIGHTRGB.x, LIGHTRGB.y, LIGHTRGB.z);
 	glPushMatrix();
-	m_Matrix->MultiMatrix();
+	m_Matrix->Rotate();
 	m_Earth->Render();
 	glPopMatrix();
 }
@@ -84,7 +84,7 @@ void CEarth::Float()
 	}
 
 	GLdouble MoveY = Interpolation(m_BeginY, m_EndY, m_Time);
-	m_Matrix->Calu_Tranlate(CVector3D<>(0, MoveY, 0));
+	//m_Matrix->Calu_Tranlate(CVector3D<>(0, MoveY, 0));
 }
 
 void CEarth::Init_MainScene()

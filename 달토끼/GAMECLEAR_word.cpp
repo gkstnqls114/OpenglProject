@@ -14,8 +14,8 @@ CGAMECLEAR_word::CGAMECLEAR_word(const CVector3D<>& Pos)
 	m_model->LoadTexture("GAMECLEARWORD.bmp");
 	
 	m_Position = Pos;
-	m_matrix = new CMatrix;
-	m_matrix->Set_Translate(m_Position);
+	m_matrix = new RotateMatrix;
+	//m_matrix->Set_Translate(m_Position);
 }
 
 CGAMECLEAR_word::~CGAMECLEAR_word()
@@ -26,7 +26,7 @@ void CGAMECLEAR_word::Render()
 {
 	glColor3f(LIGHTRGB.x, LIGHTRGB.y, LIGHTRGB.z);
 	glPushMatrix();
-	m_matrix->MultiMatrix();
+	m_matrix->Rotate();
 	m_model->Render();
 	glPopMatrix();
 }

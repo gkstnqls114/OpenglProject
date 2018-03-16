@@ -13,8 +13,8 @@ CGAMEOVER_word::CGAMEOVER_word(const CVector3D<>& Pos)
 	m_model->LoadTexture("GAMEOVERWORD.bmp");
 
 	m_Position = Pos;
-	m_matrix = new CMatrix;
-	m_matrix->Set_Translate(m_Position);
+	m_matrix = new RotateMatrix;
+	//m_matrix->Set_Translate(m_Position);
 }
 
 CGAMEOVER_word::~CGAMEOVER_word()
@@ -24,7 +24,7 @@ CGAMEOVER_word::~CGAMEOVER_word()
 void CGAMEOVER_word::Render()
 {
 	glPushMatrix();
-	m_matrix->MultiMatrix();
+	m_matrix->Rotate();
 	m_model->Render();
 	glPopMatrix();
 }
