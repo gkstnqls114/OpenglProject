@@ -43,29 +43,35 @@ public:
 	void Update();
 	void Reset();
 
-	/////////////////////////////////State
+	///////////////////////////////// State
 	void Disappear();
 	void Stop();
 
 	void StateChange_Disappear();
 	void StateChange_Stop();
-	/////////////////////////////////State
+	///////////////////////////////// State
 
-	/////////////////////////////////Get
+	///////////////////////////////// Get
 	const CVector3D<> Get_LastPos() const noexcept;
 	const CVector3D<> Get_FirstPos() const noexcept;
 	const int Get_DisappearingBoardIndex() const noexcept { return m_FootBoardManager.Get_DisappearingBoardIndex(); };
-	/////////////////////////////////Get
+	///////////////////////////////// Get
 
-	/////////////////////////////////Set
+	///////////////////////////////// Set
 	//void Set_PlayerBoardIndex(const int& playerboardindex) noexcept { m_PlayerBoardIndex = playerboardindex; }
 	void Set_RoadObserver(RoadSubject* subject) noexcept { m_pRoadSubject = subject; };
-	/////////////////////////////////Set
+	///////////////////////////////// Set
 	
-	/////////////////////////////////Receive
+	///////////////////////////////// Receive
 	virtual void Receive_PlayerWaitCamera(CPlayer* player) override;
 	virtual void Receive_PlayerJumpFinish(CPlayer* player) override;
 	virtual void Receive_PlayerJumping(CPlayer* player)	override {};
-	/////////////////////////////////Receive
+	///////////////////////////////// Receive
 
+	///////////////////////////////// Etc
+	void MoveUp_Item();
+	void MoveUp_FootBoard();
+	void MoveDown_Item();
+	void MoveDown_FootBoard();
+	///////////////////////////////// Etc
 };

@@ -29,5 +29,4 @@ enum eSide
 	k_right
 };
 
-const int Road_Distance_X = 20;
 const CVector3D<float> LIGHTRGB{ 1.f, 0.7f, 0.7f };

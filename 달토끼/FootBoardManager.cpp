@@ -28,9 +28,11 @@ void FootBoardManger::Set_FootBoardPos(ItemManager & itemmanager)
 
 	JumpProperty::Initialize();
 
-	CVector3D<> firstPos(0, -5, 0);
-	m_pFootBoard[0].InitPosition(firstPos);
-	itemmanager.Set_Pos(0, firstPos);
+	GLdouble footboardY = -20;
+	GLdouble itemY = 30;
+
+	m_pFootBoard[0].InitPosition(CVector3D<>(0, footboardY, 0));
+	itemmanager.Set_Pos(0, CVector3D<> (0, itemY, 0));
 
 	//맨 첫번째는 이동하지 않으므로 1부터 시작
 	srand(time(NULL));
@@ -49,11 +51,12 @@ void FootBoardManger::Set_FootBoardPos(ItemManager & itemmanager)
 			nowSide = k_front;
 		}
 
-		float tranlateX = Road_Distance_X * nowSide;
+		float tranlateX = JumpProperty::Road_Distance_X * nowSide;
 		float tranlateZ = -x * JumpProperty::Get_JumpReach();
 
-		CVector3D<> pos(tranlateX, -5, tranlateZ);
+		CVector3D<> pos(tranlateX, footboardY, tranlateZ);
 		m_pFootBoard[x].InitPosition(pos);
+		pos.y = itemY;
 		itemmanager.Set_Pos(x, pos);
 		
 		prev_Side = nowSide;

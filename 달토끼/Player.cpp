@@ -203,7 +203,7 @@ void CPlayer::RightJump()
 	Calculate_JumpVector();
 	float rotatedegree = BodyRotateDegree();
 	m_Matrix->Calu_Rotate(-rotatedegree, 0, 1, 0);
-	float tmp_vector_x = float(Road_Distance_X) / m_JumpProperty.Get_FinishJumpTime();
+	float tmp_vector_x = float(JumpProperty::Road_Distance_X) / m_JumpProperty.Get_FinishJumpTime();
 	m_Pos.x += tmp_vector_x;
 
 	JumpRotate();
@@ -217,7 +217,7 @@ void CPlayer::LeftJump()
 	float rotatedegree = BodyRotateDegree();
 	m_Matrix->Calu_Rotate(rotatedegree, 0, 1, 0);
 	
-	float tmp_vector_x = - float(Road_Distance_X) / m_JumpProperty.Get_FinishJumpTime();
+	float tmp_vector_x = - float(JumpProperty::Road_Distance_X) / m_JumpProperty.Get_FinishJumpTime();
 	m_Pos.x += tmp_vector_x;
 
 	JumpRotate();

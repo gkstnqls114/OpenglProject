@@ -102,7 +102,7 @@ void CGLFramework::Reshape(int w, int h)
 
 void CGLFramework::Keyboard(unsigned char key, int x, int y)
 {
-	//if(m_CurrScene) m_CurrScene->SceneKeyboard(key, x, y);
+	if(m_CurrScene) m_CurrScene->Keyboard(key, x, y);
 }
 
 void CGLFramework::SpecialKeys(int key, int x, int y)

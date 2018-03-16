@@ -7,10 +7,11 @@ int JumpProperty::JumpTime{ 0 };
 GLdouble JumpProperty::JumpReach{ 0 };
 float JumpProperty::Rotatedegree{ 0 };
 float JumpProperty::Sidedegree{ 0 };
-const int JumpProperty::k_JumpDegree{ 80 };
-const int JumpProperty::k_power{ 9 };
-const float JumpProperty::k_gravity{ 0.7f };
+const int JumpProperty::k_JumpDegree{ 70 };
+const int JumpProperty::k_power{ 15 };
+const float JumpProperty::k_gravity{ 0.9f };
 const double JumpProperty::k_PI{ 3.14152 };
+const int JumpProperty::Road_Distance_X{ 50 };
 
 JumpProperty::JumpProperty()
 {

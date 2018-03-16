@@ -10,6 +10,7 @@ class JumpProperty
 	static GLdouble JumpReach ;
 
 public:
+	static const int Road_Distance_X;
 	static const int	k_JumpDegree ;
 	static const int	k_power ;
 	static const float	k_gravity ;
