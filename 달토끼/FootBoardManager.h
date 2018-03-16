@@ -12,7 +12,7 @@ class FootBoardManger
 	int				m_Length{ -1 };
 	
 private:
-	void Initialize(ItemManager&);
+	void Set_FootBoardPos(ItemManager&);
 	void InitFootBoardModel();
 
 public:

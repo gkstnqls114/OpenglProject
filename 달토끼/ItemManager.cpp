@@ -9,14 +9,14 @@
 
 ItemManager::ItemManager()
 {
-
+	ItemManager::initModel();
 }
 
 ItemManager::ItemManager(const int & num)
 {
-	m_ItemLength = num;
 	ItemManager::initModel();
-	Initialize();
+	m_ItemLength = num;
+	Initialize(num);
 }
 
 ItemManager::~ItemManager()
@@ -36,21 +36,25 @@ void ItemManager::Add_Item(Item* & item)
 
 }
 
-void ItemManager::Initialize()
+void ItemManager::Initialize(const int& num)
 {
-	if (m_ItemList) return;
+	if (m_ItemList) 
+	{
+		for (int index = 0; index < num; ++index)
+		{
+			delete[] m_ItemList[index];
+		}
+		delete[] m_ItemList;
+	}
 
-	m_ItemList = new Item*[m_ItemLength];
-	for (int index = 0; index < m_ItemLength; ++index) 
+	m_ItemLength = num;
+	m_ItemList = new Item*[num];
+	for (int index = 0; index < num; ++index)
 	{
 		m_ItemList[index] = new Star;
 	}
 }
-
-void ItemManager::InitItemModel()
-{
-}
-
+ 
 const bool ItemManager::IsOutRange(const int& num) const noexcept
 {
 	if (num < 0 || num >= m_ItemLength) return true;

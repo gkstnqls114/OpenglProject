@@ -15,6 +15,7 @@ Road::Road()
 Road::Road(const int & num)
 {
 	m_RoadLength = num;
+	m_ItemManager.Initialize(num);
 	m_FootBoardManager.Initialize(num, m_ItemManager);
 }
 

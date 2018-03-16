@@ -8,12 +8,10 @@ class ItemManager
 	Item** m_ItemList{ nullptr };
 	int m_ItemLength{ 0 };
 
-	static void initModel();
-	void Add_Item(Item*&);
 	
 private:
-	void Initialize();
-	void InitItemModel();
+	static void initModel();
+	void Add_Item(Item*&);
 	const bool IsOutRange(const int& num) const noexcept;
 
 public:
@@ -21,6 +19,7 @@ public:
 	ItemManager(const int& num);
 	~ItemManager();
 
+	void Initialize(const int& num);
 	void Render();
 	void TestRender();
 	void Update();

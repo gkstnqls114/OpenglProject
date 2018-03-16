@@ -5,13 +5,13 @@
 
 FootBoardManger::FootBoardManger()
 {
+	InitFootBoardModel();
 }
 
 FootBoardManger::FootBoardManger(const int & num, ItemManager& itemManager)
 {
-	m_Length = num;
 	InitFootBoardModel();
-	Initialize(itemManager);
+	Initialize(num, itemManager);
 }
 
 FootBoardManger::~FootBoardManger()
@@ -19,7 +19,7 @@ FootBoardManger::~FootBoardManger()
 	delete[] m_pFootBoard;
 }
 
-void FootBoardManger::Initialize(ItemManager &)
+void FootBoardManger::Set_FootBoardPos(ItemManager &)
 {
 	if (m_pFootBoard) return;
 
@@ -68,9 +68,7 @@ void FootBoardManger::InitFootBoardModel()
 void FootBoardManger::Initialize(const int & num, ItemManager & itemManager)
 {
 	m_Length = num;
-
-	InitFootBoardModel();
-	Initialize(itemManager);
+	Set_FootBoardPos(itemManager);
 }
 
 //전부 렌더합니다.
