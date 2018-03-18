@@ -162,6 +162,7 @@
   <ItemGroup>
     <ClCompile Include="Basic.cpp" />
     <ClCompile Include="Carrat.cpp" />
+    <ClCompile Include="Collision.cpp" />
     <ClCompile Include="Disappear.cpp" />
     <ClCompile Include="FootBoardManager.cpp" />
     <ClCompile Include="Item.cpp" />
@@ -237,6 +238,7 @@
   <ItemGroup>
     <ClInclude Include="Basic.h" />
     <ClInclude Include="Carrat.h" />
+    <ClInclude Include="Collision.h" />
     <ClInclude Include="Disappear.h" />
     <ClInclude Include="FootBoardManager.h" />
     <ClInclude Include="Item.h" />

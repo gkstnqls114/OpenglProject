@@ -208,6 +208,9 @@
     <Filter Include="소스 파일\Item\NullItem">
       <UniqueIdentifier>{18618349-a259-4fff-8ff8-2577f6da294f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Collision">
+      <UniqueIdentifier>{150d1f2b-3974-42fe-b033-a6448d7583b4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GLFramework.cpp">
@@ -401,6 +404,9 @@
     </ClCompile>
     <ClCompile Include="NullItem.cpp">
       <Filter>소스 파일\Item\NullItem</Filter>
+    </ClCompile>
+    <ClCompile Include="Collision.cpp">
+      <Filter>소스 파일\Collision</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -598,6 +604,9 @@
     </ClInclude>
     <ClInclude Include="NullItem.h">
       <Filter>소스 파일\Item\NullItem</Filter>
+    </ClInclude>
+    <ClInclude Include="Collision.h">
+      <Filter>소스 파일\Collision</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

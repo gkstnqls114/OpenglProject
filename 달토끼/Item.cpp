@@ -19,6 +19,7 @@ void Item::Render_Sphere()
 
 Item::Item()
 {
+
 }
 
 Item::~Item()
@@ -35,7 +36,6 @@ void Item::Render()
 	Render_Sphere();
 
 	glPopMatrix();
-
 }
 
 void Item::Set_Pos(const CVector3D<>& rhs)
