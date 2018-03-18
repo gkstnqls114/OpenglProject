@@ -10,7 +10,7 @@ void Item::Render_Sphere()
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	glColor4f(1.f, 1.f, 1.f, 0.5f);
-	glutSolidSphere(30, 10, 10);
+	glutSolidSphere(m_sphereRadius, 10, 10);
 
 	glDisable(GL_BLEND);
 	glEnable(GL_TEXTURE_2D);

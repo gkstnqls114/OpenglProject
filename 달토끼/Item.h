@@ -5,6 +5,8 @@ class Item
 protected:
 	int m_Side{ k_front };
 	CVector3D<GLdouble>	m_Pos;
+	
+	int m_sphereRadius{ 30 };
 
 	GLdouble m_BeginY{ 0 };
 	GLdouble m_EndY{ 1.f };
@@ -36,9 +38,14 @@ public:
 	
 	virtual void Update() = 0;
 	virtual void Render();
+
 	void Set_Pos(const CVector3D<>& pos);
+
+	/////////////////////////////////// Get
 	const CVector3D<> Get_Pos() const { return m_Pos; };
-	
+	const int Get_sphereRadius() const { return m_sphereRadius; };
+	/////////////////////////////////// Get
+
 	void StateChange_Pop() {};
 	void StateChange_Float() {};
 	void StateChange_Disappear() {};
