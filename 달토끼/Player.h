@@ -121,7 +121,7 @@ public:
 	const int Get_KeySide() const noexcept { return m_MyKeySide; }
 	const int Get_BoardSide() const noexcept { return m_MyBoardSide; }
 	const CVector3D<> Get_Pos() const noexcept { return m_Pos; }
-	const CVector3D<> Get_CollidPos() const noexcept { return CVector3D<>(m_Pos.x, m_Pos.y + m_CollideY, m_Pos.z); }
+	const CVector3D<GLdouble> Get_CollidPos() const noexcept { return CVector3D<>(m_Pos.x, m_Pos.y + m_CollideY, m_Pos.z); }
 	const int Get_Radius() const noexcept { return m_playerRadius; }
 	/////////////////////////////////GET
 

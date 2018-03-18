@@ -409,7 +409,6 @@ void CPlayer::InitBody()
 	CPlayer::m_Rabit_Body->LoadTexture(".\\Texture\\Rabit_Body_Dead.bmp");
 	CPlayer::m_Rabit_Body->LoadTexture(".\\Texture\\Rabit_Body_Fall.bmp");
 	m_Rabit_Body->MovePivot(CVector3D<>(0, -20, 10));
-
 }
 
 void CPlayer::InitEar()

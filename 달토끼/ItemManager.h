@@ -8,7 +8,6 @@ class ItemManager
 	Item** m_ItemList{ nullptr };
 	int m_ItemLength{ 0 };
 
-	
 private:
 	static void initModel();
 	void Add_Item(Item*&);

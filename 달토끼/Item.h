@@ -3,10 +3,11 @@
 class Item
 { 
 protected:
+	static const int m_sphereRadius;
+	bool m_IsCollide{ false };
+
 	int m_Side{ k_front };
 	CVector3D<GLdouble>	m_Pos;
-	
-	int m_sphereRadius{ 30 };
 
 	GLdouble m_BeginY{ 0 };
 	GLdouble m_EndY{ 1.f };
@@ -40,11 +41,14 @@ public:
 	virtual void Render();
 
 	void Set_Pos(const CVector3D<>& pos);
+	void IsCollided() { m_IsCollide = true; }
 
 	/////////////////////////////////// Get
 	const CVector3D<> Get_Pos() const { return m_Pos; };
 	const int Get_sphereRadius() const { return m_sphereRadius; };
+	const bool Get_Collide() const { return m_IsCollide; }
 	/////////////////////////////////// Get
+
 
 	void StateChange_Pop() {};
 	void StateChange_Float() {};

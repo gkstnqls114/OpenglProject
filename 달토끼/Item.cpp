@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "Item.h"
-
+const int Item::m_sphereRadius{ 30 };
 
 void Item::Render_Sphere()
 {
@@ -19,7 +19,6 @@ void Item::Render_Sphere()
 
 Item::Item()
 {
-
 }
 
 Item::~Item()

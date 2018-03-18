@@ -65,5 +65,5 @@ CVector3D<T> & CVector3D<T>::operator=(CVector3D<T> && rhs)
 	return *this;
 }
 
-
 #include "pch.h"
+

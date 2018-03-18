@@ -408,6 +408,9 @@
     <ClCompile Include="Collision.cpp">
       <Filter>소스 파일\Collision</Filter>
     </ClCompile>
+    <ClCompile Include="Vector3D - 복사본.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GLFramework.h">
