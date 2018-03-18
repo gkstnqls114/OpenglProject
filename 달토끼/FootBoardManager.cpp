@@ -36,7 +36,7 @@ void FootBoardManger::Set_FootBoardPos(ItemManager & itemmanager)
 	GLdouble footboardY = -20;
 	GLdouble itemY = 20;
 
-	m_pFootBoard[0].InitPosition(CVector3D<>(0, footboardY, 0));
+	m_pFootBoard[0][].InitPosition(CVector3D<>(0, footboardY, 0));
 	itemmanager.Set_Pos(0, CVector3D<> (0, itemY, 0));
 
 	//맨 첫번째는 이동하지 않으므로 1부터 시작
