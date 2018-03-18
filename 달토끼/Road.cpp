@@ -32,7 +32,7 @@ void Road::Render()
 
 void Road::TestRender()
 {
-	m_FootBoardManager.TestRender();
+	m_FootBoardManager.Render();
 	m_ItemManager.TestRender();
 }
 

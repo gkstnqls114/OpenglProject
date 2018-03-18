@@ -100,8 +100,8 @@ void FootBoardManger::Render()
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	//플레이어 위치 기준으로 다섯개까지 렌더한다.
-	//int MaxNum = min(m_boardNum - 1, m_PlayerBoardIndex + 5);
-	for (int x = m_DisappearingBoardIndex; x < m_DisappearingBoardIndex + 7; ++x) {
+	int MaxIndex = min(m_DisappearingBoardIndex + 7, m_Length);
+	for (int x = m_DisappearingBoardIndex; x < MaxIndex; ++x) {
 		m_pFootBoard[x].Render();
 	}
 	m_pFootBoard[m_Length - 1].Render();
