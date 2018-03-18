@@ -104,6 +104,7 @@ void FootBoardManger::Render()
 		m_pFootBoard[x].Render();
 	}
 	m_pFootBoard[m_Length - 1].Render();
+
 	glDisable(GL_BLEND);
 }
 

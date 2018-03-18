@@ -4,7 +4,7 @@
 
 CObjModel* Shield::m_ObjModel{ nullptr };
 
-void Shield::ModelRender()
+void Shield::Render_Model()
 {
 	Shield::m_ObjModel->Render();
 }

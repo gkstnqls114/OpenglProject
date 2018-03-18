@@ -23,7 +23,8 @@ protected:
 	};
 
 private:
-	virtual void ModelRender() = 0;
+	virtual void Render_Model() = 0;
+	void Render_Sphere();
 
 public:
 	Item();

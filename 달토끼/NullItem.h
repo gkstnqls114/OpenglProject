@@ -5,7 +5,7 @@ class NullItem :
 {
 
 private:
-	virtual void ModelRender() { /*do nothing*/};
+	virtual void Render_Model() { /*do nothing*/};
 
 public:
 	NullItem();

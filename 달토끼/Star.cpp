@@ -4,7 +4,7 @@
 
 CObjModel* Star::m_ObjModel { nullptr };
 
-void Star::ModelRender()
+void Star::Render_Model()
 {
 	Star::m_ObjModel->Render();
 }

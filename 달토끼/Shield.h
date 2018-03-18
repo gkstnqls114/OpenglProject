@@ -9,7 +9,7 @@ class Shield :
 	static CObjModel* m_ObjModel;
 
 private:
-	virtual void ModelRender();
+	virtual void Render_Model();
 
 public:
 	Shield();

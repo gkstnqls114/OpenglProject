@@ -12,7 +12,7 @@ void Carrat::InitModel()
 	Carrat::m_ObjModel->LoadObj(".\\OBJModel\\item_carrat.obj");
 }
  
-void Carrat::ModelRender()
+void Carrat::Render_Model()
 {
 	Carrat::m_ObjModel->Render();
 }
