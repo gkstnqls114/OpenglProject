@@ -223,6 +223,9 @@
     <Filter Include="소스 파일\Item\ItemState\BeUsed">
       <UniqueIdentifier>{c5d2c9e9-62c5-4e66-a9aa-9390c482b80a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Item\ItemState\Pop">
+      <UniqueIdentifier>{b89c602d-6141-4f5a-9449-182d2c6ff05d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GLFramework.cpp">
@@ -432,6 +435,9 @@
     <ClCompile Include="RotateMatrix.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Pop.cpp">
+      <Filter>소스 파일\Item\ItemState\Pop</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GLFramework.h">
@@ -640,6 +646,9 @@
     </ClInclude>
     <ClInclude Include="RotateMatrix.h">
       <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Pop.h">
+      <Filter>소스 파일\Item\ItemState\Pop</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

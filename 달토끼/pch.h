@@ -29,4 +29,5 @@ enum eSide
 	k_right
 };
 
+
 const CVector3D<float> LIGHTRGB{ 1.f, 0.7f, 0.7f };

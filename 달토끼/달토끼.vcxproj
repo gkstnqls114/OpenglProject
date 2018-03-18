@@ -172,6 +172,7 @@
     <ClCompile Include="ItemState.cpp" />
     <ClCompile Include="NullItem.cpp" />
     <ClCompile Include="PlayerSubject.cpp" />
+    <ClCompile Include="Pop.cpp" />
     <ClCompile Include="RoadState.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="ClearObject.cpp" />
@@ -252,6 +253,7 @@
     <ClInclude Include="ItemState.h" />
     <ClInclude Include="NullItem.h" />
     <ClInclude Include="PlayerSubject.h" />
+    <ClInclude Include="Pop.h" />
     <ClInclude Include="RoadState.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="ClearObject.h" />

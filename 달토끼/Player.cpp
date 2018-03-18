@@ -87,7 +87,6 @@ void CPlayer::Render()
 	glPopMatrix();
 	glPopMatrix();
 
-	Render_TestRadius();
 }
 
 void CPlayer::Reset_ModelRotate()

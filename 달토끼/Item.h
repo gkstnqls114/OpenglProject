@@ -1,10 +1,27 @@
 #pragma once
+
+/////////////////////// Item State
+#include "Pop.h"
+#include "BeUsed.h"
+#include "Float.h"
+/////////////////////// Item State
+
 #include "PlayerObserver.h"
+
+class ItemState;
 
 class Item
 {
 protected:
-	static const int m_sphereRadius;
+	static const int MaxRadius;
+	int m_sphereRadius{ 30 };
+
+	/////////////////////// Item State
+	ItemState* m_ItemState{ nullptr };
+	Pop		   PopState;
+	BeUsed	   BeUsedState;
+	Float	   FloatState;
+	/////////////////////// Item State
 
 	GLdouble m_BeginY{ 0 };
 	GLdouble m_EndY{ 1.f };
@@ -32,15 +49,16 @@ protected:
 	};
 
 private:
-	virtual void Render_Model() = 0;
 	void Render_Sphere();
+	virtual void Render_Model() = 0;
 
 public:
 	Item();
 	virtual ~Item();
 
-	virtual void Update() = 0;
-	virtual void Render();
+	void Update();
+	void Render();
+	void Render_All();
 
 	void Set_Pos(const CVector3D<>& pos);
 	void IsCollided() { m_IsCollide = true; }
@@ -52,13 +70,12 @@ public:
 	/////////////////////////////////// Get
 
 	/////////////////////////////////// State
-	void StateChange_Pop() {};
-	void StateChange_Float() {};
-	void StateChange_Disappear() {};
+	void StateChange_Pop() { m_ItemState = &PopState; };
+	void StateChange_Float() { m_ItemState = &FloatState; };
+	void StateChange_BeUsed() { m_ItemState = &BeUsedState; };
 
-	void Pop() {};
-	void Float() {};
-	void Disappear() {};
+	void Pop();
+	void Float();
 	/////////////////////////////////// State
 
 };

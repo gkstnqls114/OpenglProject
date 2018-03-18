@@ -25,8 +25,3 @@ Carrat::~Carrat()
 {
 }
 
-void Carrat::Update()
-{
-
-}
-

@@ -16,7 +16,6 @@ public:
 	virtual ~Shield();
 
 	static void InitModel();
-	virtual void Update();
 
 };
 

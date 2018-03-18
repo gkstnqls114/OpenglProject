@@ -5,17 +5,17 @@ class RotateMatrix;
 
 class CFootBoard
 {
-	static CObjModel* m_obj;
-	static CObjModel* m_Light_obj;
-
+	CVector3D<> m_Pos			{ 0, -5, 0 };
+	
 	//c++은 static storage duration 가진 객체는
 	//0을 보장합니다.
 	//표준은 전역, 정적변수는 0으로 초기화함을 명시합니다.
 	//static bool isInitModel;
+	static CObjModel* m_obj;
+	static CObjModel* m_Light_obj;
 
 	int m_Side{ -2 }; //-2는 존재하지 않음
 
-	CVector3D<> m_Pos			{ 0, -5, 0 };
 	bool IsLast						{ false };
 	bool IsLightDisappear			{ false };
 
@@ -29,6 +29,8 @@ class CFootBoard
 	float DisappearTime{ 0.f };
 	bool IsDisappear{ false };
 	
+	bool m_IsExisted{ false }; /* true라면 그리지도 않고 업데이트도 하지않습니다. */
+
 private:
 	//내부함수
 	void Disappear();
@@ -49,11 +51,14 @@ public:
 	void Render();
 	void Update();
 
+	///////////////////////////////// Get
 	const CVector3D<> Get_Pos() const noexcept { return m_Pos; }
 	const bool GetDisappear() const { return IsDisappear; }
-	void Disappear_True() { IsDisappear = true; }
 	const int GetSide() const noexcept { return m_Side; }
+	///////////////////////////////// Get
 
+	void Disappear_True() { IsDisappear = true; }
+	void IsExisted() { m_IsExisted = true; }
 };
 
 

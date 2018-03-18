@@ -1,11 +1,11 @@
 #pragma once
 #include "ItemState.h"
-class Float :
+class Pop :
 	public ItemState
 {
 public:
-	Float();
-	virtual ~Float();
+	Pop();
+	virtual ~Pop();
 
 	virtual void Initialize();
 	virtual void Render(Item& item);

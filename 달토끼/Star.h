@@ -16,7 +16,6 @@ public:
 	virtual ~Star();
 
 	static void InitModel();
-	virtual void Update();
 
 };
 

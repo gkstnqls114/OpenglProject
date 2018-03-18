@@ -25,7 +25,11 @@ void FootBoardManger::Set_FootBoardPos(ItemManager & itemmanager)
 {
 	if (m_pFootBoard) return;
 
-	m_pFootBoard = new CFootBoard[m_Length];
+	m_pFootBoard = new CFootBoard*[m_Length];
+	for (int index = 0; index < m_Length; ++index)
+	{
+		m_pFootBoard[index] = new CFootBoard[m_Width];
+	}
 
 	JumpProperty::Initialize();
 

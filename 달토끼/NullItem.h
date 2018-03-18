@@ -11,7 +11,5 @@ public:
 	NullItem();
 	virtual ~NullItem();
 
-	virtual void Update() override { /*do nothing*/ };
-
 };
 

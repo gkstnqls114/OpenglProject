@@ -25,17 +25,3 @@ void Star::InitModel()
 	Star::m_ObjModel->LoadObj(".\\OBJModel\\item_star.obj");
 	Star::m_ObjModel->LoadTexture(".\\Texture\\GoalLight.bmp");
 }
-
-void Star::Update()
-{
-	m_Time += 0.02f;
-	if (m_Time >= 1.f) {
-		m_Time = 0.f;
-		m_BeginY = m_EndY;
-		m_EndY = -m_EndY;
-	}
-
-	GLdouble MoveY = Interpolation(m_BeginY, m_EndY, m_Time);
-	m_Pos.y += MoveY;
-}
-

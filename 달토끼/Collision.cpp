@@ -25,7 +25,7 @@ void Collision::Collide(CPlayer & player, Item & item)
 	float length = vector.GetLength();
 	
 	if (length <= collideLength) {
-		std::cout << "Ãæµ¹" << std::endl;
 		item.IsCollided();
+		item.StateChange_Pop();
 	}
 }

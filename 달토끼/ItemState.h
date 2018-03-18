@@ -10,5 +10,6 @@ public:
 	virtual ~ItemState();
 
 	virtual void Initialize() = 0;
-	virtual void Update(Item& player) = 0;
+	virtual void Render(Item& item) = 0;
+	virtual void Update(Item& item) = 0;
 };

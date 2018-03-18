@@ -16,5 +16,4 @@ public:
 	virtual ~Carrat();
 
 	static void InitModel();
-	virtual void Update();
 };

@@ -66,6 +66,7 @@ void CFootBoard::DeleteModel()
 
 void CFootBoard::Render()
 {
+	if (m_IsExisted) return;
 	if (IsDisappear) return;
 
 	glPushMatrix();
@@ -80,6 +81,7 @@ void CFootBoard::Render()
 
 void CFootBoard::Update()
 {
+	if (m_IsExisted) return;
 	if (IsDisappear) return;
 	Disappear();
 }

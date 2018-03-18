@@ -8,9 +8,10 @@ class FootBoardManger
 {
 	const int k_side[3]{ k_left, k_front, k_right };
 
-	CFootBoard*		m_pFootBoard{ nullptr };
+	CFootBoard**		m_pFootBoard{ nullptr };
 	int				m_DisappearingBoardIndex{ 0 };
 	int				m_Length{ -1 };
+	int				m_Width{ 3 };
 	
 private:
 	void Set_FootBoardPos(ItemManager&);

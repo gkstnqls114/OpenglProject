@@ -26,7 +26,4 @@ void Shield::InitModel()
 	Shield::m_ObjModel->LoadObj(".\\OBJModel\\item_shield.obj");
 }
 
-void Shield::Update()
-{
-}
 

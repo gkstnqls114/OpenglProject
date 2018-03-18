@@ -6,5 +6,9 @@ class BeUsed :
 public:
 	BeUsed();
 	virtual ~BeUsed();
+
+	virtual void Initialize();
+	virtual void Render(Item& item);
+	virtual void Update(Item& item);
 };
 
