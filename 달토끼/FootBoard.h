@@ -55,6 +55,7 @@ public:
 	const CVector3D<> Get_Pos() const noexcept { return m_Pos; }
 	const bool GetDisappear() const { return IsDisappear; }
 	const int GetSide() const noexcept { return m_Side; }
+	const bool Get_IsExisted() const noexcept{ return m_IsExisted; }
 	///////////////////////////////// Get
 
 	void Disappear_True() { IsDisappear = true; }

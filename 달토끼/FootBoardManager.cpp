@@ -136,7 +136,7 @@ void FootBoardManger::Update()
 		m_pFootBoard[m_DisappearingBoardIndex][index].Update();
 	}
 
-	if (Get_Disappear(m_DisappearingBoardIndex)) {
+	if (Get_DisappearLength(m_DisappearingBoardIndex)) {
 		m_DisappearingBoardIndex += 1;
 	}
 }
@@ -151,14 +151,24 @@ const CVector3D<> FootBoardManger::Get_FirstPos() const noexcept
 	return m_pFootBoard[0][k_FrontIndex].Get_Pos();
 }
 
+const int FootBoardManger::Get_Side(const int & len, const int & index) const noexcept
+{
+	return 0;
+}
+
 const bool FootBoardManger::IsOutRange_DisappearingIndex() const
 {
 	return (m_DisappearingBoardIndex < 0 || m_DisappearingBoardIndex >= m_Length);
 }
 
-const bool FootBoardManger::IsOutRange(const int & boardnum) const
+const bool FootBoardManger::IsOutRange_Length(const int & len) const
 {
-	return boardnum < 0 || boardnum >= m_Length;
+	return len < 0 || len >= m_Length;
+}
+
+const bool FootBoardManger::IsOutRange_Width(const int & index) const
+{
+	return index < 0 || index >= m_Width;
 }
 
 void FootBoardManger::Add_DisappearingIndex(const CPlayer & player)
@@ -170,20 +180,48 @@ void FootBoardManger::Add_DisappearingIndex(const CPlayer & player)
 	}
 }
 
-const int FootBoardManger::Get_Side(const int & boardnum) const noexcept
+const int FootBoardManger::Get_Side(const int& len, const int& index) const noexcept
 {
-	if (IsOutRange(boardnum)) return 0;
-	else return m_pFootBoard[boardnum].GetSide(); 
+	if (IsOutRange_Length(len)) return -1;
+	if (IsOutRange_Width(index)) return -1;
+
+	else return m_pFootBoard[len][index].GetSide(); 
 }
 
-const CVector3D<> FootBoardManger::Get_Pos(const int & boardnum) const noexcept
+// len : 앞으로 나아간 정도 (0부터 시작)
+// index : 오른쪽, 왼쪽, 앞
+const CVector3D<> FootBoardManger::Get_Pos(const int & len, const int & index) const noexcept
 {
-	if (IsOutRange(boardnum)) return CVector3D<>();
-	else return m_pFootBoard[boardnum].Get_Pos();
+	if (IsOutRange_Length(len)) return CVector3D<>();
+	if (IsOutRange_Width(index)) return CVector3D<>();
+	
+	return m_pFootBoard[len][index].Get_Pos();
 }
 
-const int FootBoardManger::Get_Disappear(const int & boardnum) const noexcept
+const bool FootBoardManger::Get_Disappear(const int & len, const int & index) const noexcept
 {
-	if (IsOutRange(boardnum)) return 0;
-	else return m_pFootBoard[boardnum].GetDisappear();
+	if (IsOutRange_Length(len)) return false;
+	if (IsOutRange_Width(index)) return false;
+
+	else return m_pFootBoard[len][index].GetDisappear();
+}
+
+const bool FootBoardManger::Get_DisappearLength(const int & len) const noexcept
+{
+	if (IsOutRange_Length(len)) return false;
+
+	for (int index = 0; index < m_Width; ++index) {
+		if (m_pFootBoard[len][index].GetDisappear()) {
+			return true;
+		}
+	}
+	return false;
+}
+
+const bool FootBoardManger::Get_IsExisted(const int & len, const int & index) const noexcept
+{
+	if (IsOutRange_Length(len)) return false;
+	if (IsOutRange_Width(index)) return false;
+
+	else return m_pFootBoard[len][index].Get_IsExisted();
 }
