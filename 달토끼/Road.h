@@ -65,7 +65,7 @@ public:
 	///////////////////////////////// Receive
 	virtual void Receive_PlayerWaitCamera(CPlayer* player) override;
 	virtual void Receive_PlayerJumpFinish(CPlayer* player) override;
-	virtual void Receive_PlayerJumping(CPlayer* player)	override {};
+	virtual void Receive_PlayerJumping(CPlayer* player)	override;
 	///////////////////////////////// Receive
 
 	///////////////////////////////// Etc

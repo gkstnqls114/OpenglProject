@@ -1,16 +1,18 @@
 #pragma once
+#include "PlayerObserver.h"
 
 class Item
-{ 
+{
 protected:
 	static const int m_sphereRadius;
+
+	GLdouble m_BeginY{ 0 };
+	GLdouble m_EndY{ 1.f };
+	
 	bool m_IsCollide{ false };
 
 	int m_Side{ k_front };
 	CVector3D<GLdouble>	m_Pos;
-
-	GLdouble m_BeginY{ 0 };
-	GLdouble m_EndY{ 1.f };
 	float m_Time{ 0 };
 
 	GLfloat m_Scale_Matrix[16] =
@@ -36,7 +38,7 @@ private:
 public:
 	Item();
 	virtual ~Item();
-	
+
 	virtual void Update() = 0;
 	virtual void Render();
 
@@ -49,9 +51,15 @@ public:
 	const bool Get_Collide() const { return m_IsCollide; }
 	/////////////////////////////////// Get
 
-
+	/////////////////////////////////// State
 	void StateChange_Pop() {};
 	void StateChange_Float() {};
 	void StateChange_Disappear() {};
+
+	void Pop() {};
+	void Float() {};
+	void Disappear() {};
+	/////////////////////////////////// State
+
 };
 

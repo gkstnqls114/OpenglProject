@@ -1,4 +1,5 @@
 #include "pch.h"
+#include "Collision.h"
 #include "FootBoard.h"
 #include "RoadState.h"
 #include "RoadSubject.h"
@@ -91,6 +92,13 @@ void Road::Receive_PlayerJumpFinish(CPlayer* player)
 		//Test를 위해 주석합니다.
 		//player->StateChange_WaitCamera();
 	}
+}
+
+
+//플레이어 위치에 해당하는 아이템에 충돌체크를 합니다.
+void Road::Receive_PlayerJumping(CPlayer * player)
+{
+	Collision::Collide(*player,	m_ItemManager.Get_Item(player->Get_BoardIndex()));
 }
 
 //void Road::Player_JumpFinish(int playerside)

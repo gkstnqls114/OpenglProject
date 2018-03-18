@@ -1,4 +1,5 @@
 #include "pch.h"
+#include"Collision.h"
 
 #include "NullItem.h"
 #include "Star.h"
@@ -88,6 +89,11 @@ void ItemManager::Set_Pos(const int & boardnum, const CVector3D<>& rhs)
 	if (IsOutRange(boardnum)) return;
 
 	m_ItemList[boardnum][0].Set_Pos(rhs);
+}
+
+Item & ItemManager::Get_Item(const int & num) const
+{ 
+	return m_ItemList[num][0];
 }
 
 void ItemManager::Change_Star(const int & boardnum)

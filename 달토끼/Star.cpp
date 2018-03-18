@@ -11,7 +11,6 @@ void Star::Render_Model()
 
 Star::Star()
 {
-
 }
 
 Star::~Star()

@@ -1,7 +1,6 @@
 #pragma once
 
 class CPlayer;
-class Observer;
 
 class PlayerObserver
 {
