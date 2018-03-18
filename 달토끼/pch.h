@@ -29,5 +29,8 @@ enum eSide
 	k_right
 };
 
+const int k_LeftIndex{ 0 };
+const int k_FrontIndex{ 1 };
+const int k_RightIndex{ 2 };
 
 const CVector3D<float> LIGHTRGB{ 1.f, 0.7f, 0.7f };

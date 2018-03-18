@@ -6,10 +6,6 @@ class CPlayer;
 
 class FootBoardManger
 {
-	const int k_LeftIndex{ 0 };
-	const int k_FrontIndex{ 1 };
-	const int k_RightIndex{ 2 };
-
 	const int k_side[3]{ k_left, k_front, k_right };
 
 	CFootBoard**		m_pFootBoard{ nullptr };

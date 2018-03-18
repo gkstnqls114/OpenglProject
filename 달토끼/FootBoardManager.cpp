@@ -36,7 +36,8 @@ void FootBoardManger::Set_FootBoardPos(ItemManager & itemmanager)
 	GLdouble footboardY = -20;
 	GLdouble itemY = 20;
 
-	m_pFootBoard[0][].InitPosition(CVector3D<>(0, footboardY, 0));
+	m_pFootBoard[0][k_FrontIndex].InitPosition(CVector3D<>(0, footboardY, 0));
+	m_pFootBoard[0][k_FrontIndex].IsExisted();
 	itemmanager.Set_Pos(0, CVector3D<> (0, itemY, 0));
 
 	//맨 첫번째는 이동하지 않으므로 1부터 시작
@@ -60,7 +61,18 @@ void FootBoardManger::Set_FootBoardPos(ItemManager & itemmanager)
 		float tranlateZ = -x * JumpProperty::Get_JumpReach();
 
 		CVector3D<> pos(tranlateX, footboardY, tranlateZ);
-		m_pFootBoard[x].InitPosition(pos);
+		int nowIndex{ -1 };
+		if (tranlateX == 0) {
+			nowIndex = k_FrontIndex;
+		}
+		else if (tranlateX > 0) {
+			nowIndex = k_RightIndex;
+		}
+		else {
+			nowIndex = k_LeftIndex;
+		}
+		m_pFootBoard[x][nowIndex].InitPosition(pos);
+		m_pFootBoard[x][nowIndex].IsExisted();
 		pos.y = itemY;
 		itemmanager.Set_Pos(x, pos);
 		
@@ -69,8 +81,9 @@ void FootBoardManger::Set_FootBoardPos(ItemManager & itemmanager)
 	//마지막은 반드시 가운데
 	float tranlateX = 0;
 	float tranlateZ = -(m_Length - 1) * JumpProperty::Get_JumpReach();
-	m_pFootBoard[m_Length - 1].InitPosition(CVector3D<>(tranlateX, footboardY, tranlateZ));
-	m_pFootBoard[m_Length - 1].HasLight();
+	m_pFootBoard[m_Length - 1][k_FrontIndex].InitPosition(CVector3D<>(tranlateX, footboardY, tranlateZ));
+	m_pFootBoard[m_Length - 1][k_FrontIndex].HasLight();
+	m_pFootBoard[m_Length - 1][k_FrontIndex].IsExisted();
 	itemmanager.Set_Pos(m_Length - 1, CVector3D<>(tranlateX, itemY, tranlateZ));
 }
 
@@ -91,8 +104,10 @@ void FootBoardManger::TestRender()
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-	for (int x = 0; x < m_Length; ++x) {
-		m_pFootBoard[x].Render();
+	for (int len = 0; len < m_Length; ++len) {
+		for (int index = 0; index < m_Width; ++index) {
+			m_pFootBoard[len][index].Render();
+		}
 	}
 
 	glDisable(GL_BLEND);
@@ -105,17 +120,21 @@ void FootBoardManger::Render()
 
 	//플레이어 위치 기준으로 다섯개까지 렌더한다.
 	int MaxIndex = min(m_DisappearingBoardIndex + 7, m_Length);
-	for (int x = m_DisappearingBoardIndex; x < MaxIndex; ++x) {
-		m_pFootBoard[x].Render();
+	for (int len = m_DisappearingBoardIndex; len < MaxIndex; ++len) {
+		for (int index = 0; index < m_Width; ++index) {
+			m_pFootBoard[len][index].Render();
+		}
 	}
-	m_pFootBoard[m_Length - 1].Render();
+	m_pFootBoard[m_Length - 1][k_FrontIndex].Render();
 
 	glDisable(GL_BLEND);
 }
 
 void FootBoardManger::Update()
 {
-	m_pFootBoard[m_DisappearingBoardIndex].Update();
+	for (int index = 0; index < m_Width; ++index) {
+		m_pFootBoard[m_DisappearingBoardIndex][index].Update();
+	}
 
 	if (Get_Disappear(m_DisappearingBoardIndex)) {
 		m_DisappearingBoardIndex += 1;
@@ -124,12 +143,12 @@ void FootBoardManger::Update()
 
 const CVector3D<> FootBoardManger::Get_LastPos() const noexcept
 {
-	return m_pFootBoard[m_Length - 1].Get_Pos();
+	return m_pFootBoard[m_Length - 1][k_FrontIndex].Get_Pos();
 }
 
 const CVector3D<> FootBoardManger::Get_FirstPos() const noexcept
 {
-	return m_pFootBoard[0].Get_Pos();
+	return m_pFootBoard[0][k_FrontIndex].Get_Pos();
 }
 
 const bool FootBoardManger::IsOutRange_DisappearingIndex() const
