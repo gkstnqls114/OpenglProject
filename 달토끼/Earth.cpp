@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "ObjModel.h"
-#include "Matrix.h"
+#include "RotateMatrix.h"
 #include "Earth.h"
 
 CObjModel* CEarth::m_Earth = nullptr;

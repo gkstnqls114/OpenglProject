@@ -211,6 +211,18 @@
     <Filter Include="소스 파일\Collision">
       <UniqueIdentifier>{150d1f2b-3974-42fe-b033-a6448d7583b4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Item\ItemState">
+      <UniqueIdentifier>{be6080d4-ea24-4afc-8f82-9fc2777b2f6d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Item\ItemState\Abstract">
+      <UniqueIdentifier>{8c1a9341-a187-416d-8c87-3aba11f9f42c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Item\ItemState\Float">
+      <UniqueIdentifier>{45161dde-1d95-4689-a141-e9ec207b46ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Item\ItemState\BeUsed">
+      <UniqueIdentifier>{c5d2c9e9-62c5-4e66-a9aa-9390c482b80a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GLFramework.cpp">
@@ -221,9 +233,6 @@
     </ClCompile>
     <ClCompile Include="pch.cpp">
       <Filter>소스 파일\main</Filter>
-    </ClCompile>
-    <ClCompile Include="Matrix.cpp">
-      <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Camera.cpp">
       <Filter>소스 파일\Observer\Camera</Filter>
@@ -411,6 +420,18 @@
     <ClCompile Include="Vector3D - 복사본.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="ItemState.cpp">
+      <Filter>소스 파일\Item\ItemState\Abstract</Filter>
+    </ClCompile>
+    <ClCompile Include="BeUsed.cpp">
+      <Filter>소스 파일\Item\ItemState\BeUsed</Filter>
+    </ClCompile>
+    <ClCompile Include="Float.cpp">
+      <Filter>소스 파일\Item\ItemState\Float</Filter>
+    </ClCompile>
+    <ClCompile Include="RotateMatrix.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GLFramework.h">
@@ -502,9 +523,6 @@
     </ClInclude>
     <ClInclude Include="PlayerSkin.h">
       <Filter>소스 파일\Player\PlayerSkin\Abstract</Filter>
-    </ClInclude>
-    <ClInclude Include="Matrix.h">
-      <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="JumpProperty.h">
       <Filter>소스 파일\Player\Property</Filter>
@@ -610,6 +628,18 @@
     </ClInclude>
     <ClInclude Include="Collision.h">
       <Filter>소스 파일\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemState.h">
+      <Filter>소스 파일\Item\ItemState\Abstract</Filter>
+    </ClInclude>
+    <ClInclude Include="BeUsed.h">
+      <Filter>소스 파일\Item\ItemState\BeUsed</Filter>
+    </ClInclude>
+    <ClInclude Include="Float.h">
+      <Filter>소스 파일\Item\ItemState\Float</Filter>
+    </ClInclude>
+    <ClInclude Include="RotateMatrix.h">
+      <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

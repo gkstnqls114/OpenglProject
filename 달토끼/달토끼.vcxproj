@@ -161,12 +161,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Basic.cpp" />
+    <ClCompile Include="BeUsed.cpp" />
     <ClCompile Include="Carrat.cpp" />
     <ClCompile Include="Collision.cpp" />
     <ClCompile Include="Disappear.cpp" />
+    <ClCompile Include="Float.cpp" />
     <ClCompile Include="FootBoardManager.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="ItemManager.cpp" />
+    <ClCompile Include="ItemState.cpp" />
     <ClCompile Include="NullItem.cpp" />
     <ClCompile Include="PlayerSubject.cpp" />
     <ClCompile Include="RoadState.cpp" />
@@ -191,7 +194,7 @@
     <ClCompile Include="FootBoard.cpp" />
     <ClCompile Include="GLFramework.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Matrix.cpp" />
+    <ClCompile Include="RotateMatrix.cpp" />
     <ClCompile Include="Moon.cpp" />
     <ClCompile Include="MyRGB.cpp" />
     <ClCompile Include="ObjFace.cpp" />
@@ -238,12 +241,15 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Basic.h" />
+    <ClInclude Include="BeUsed.h" />
     <ClInclude Include="Carrat.h" />
     <ClInclude Include="Collision.h" />
     <ClInclude Include="Disappear.h" />
+    <ClInclude Include="Float.h" />
     <ClInclude Include="FootBoardManager.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="ItemManager.h" />
+    <ClInclude Include="ItemState.h" />
     <ClInclude Include="NullItem.h" />
     <ClInclude Include="PlayerSubject.h" />
     <ClInclude Include="RoadState.h" />
@@ -267,7 +273,7 @@
     <ClInclude Include="MainScene.h" />
     <ClInclude Include="FootBoard.h" />
     <ClInclude Include="GLFramework.h" />
-    <ClInclude Include="Matrix.h" />
+    <ClInclude Include="RotateMatrix.h" />
     <ClInclude Include="Moon.h" />
     <ClInclude Include="MyRGB.h" />
     <ClInclude Include="ObjFace.h" />

@@ -10,7 +10,6 @@ class RotateMatrix
 		0, 0, 0, 1
 	};
 
-
 public:
 	RotateMatrix();
 	~RotateMatrix();
