@@ -35,6 +35,8 @@ class CPlayer
 	//플레이어 위치
 	CVector3D<> m_Pos;
 	RotateMatrix* m_Matrix{ nullptr };
+	GLdouble m_CollideY{ 30 }; /* 플레이어 Y 위치에 이 값을 더해 충돌을 계산해야 합니다*/
+	int m_playerRadius{ 30 };
 	
 	//플레이어 상태
 	JumpProperty m_JumpProperty;
@@ -62,6 +64,8 @@ private:
 	void Calculate_JumpVector();
 	const bool IsGetOutRoad() const noexcept;
 	const int RotateDegree() const { return abs(m_prevKeySide - m_MyKeySide); };
+
+	void Render_TestRadius();
 
 	static void InitBody();
 	static void InitEar();
@@ -117,6 +121,8 @@ public:
 	const int Get_KeySide() const noexcept { return m_MyKeySide; }
 	const int Get_BoardSide() const noexcept { return m_MyBoardSide; }
 	const CVector3D<> Get_Pos() const noexcept { return m_Pos; }
+	const CVector3D<> Get_CollidPos() const noexcept { return CVector3D<>(m_Pos.x, m_Pos.y + m_CollideY, m_Pos.z); }
+	const int Get_Radius() const noexcept { return m_playerRadius; }
 	/////////////////////////////////GET
 
 	/////////////////////////////////SET

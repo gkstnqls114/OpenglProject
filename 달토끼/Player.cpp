@@ -86,6 +86,8 @@ void CPlayer::Render()
 	glPopMatrix();
 	glPopMatrix();
 	glPopMatrix();
+
+	Render_TestRadius();
 }
 
 void CPlayer::Reset_ModelRotate()
@@ -153,9 +155,8 @@ void CPlayer::Receive_DisappearFootBoard(Road * road)
 	const bool IsOnFallBoard = m_MyBoardIndex <= road->Get_DisappearingBoardIndex();
 	if (!IsOnFallBoard) return;
 
-	//Test를 위해 주석처리 합니다
-	//road->StateChange_Stop();
-	//StateChange_WaitCamera();
+	road->StateChange_Stop();
+	StateChange_WaitCamera();
 }
 
 float CPlayer::BodyRotateDegree()
@@ -376,6 +377,26 @@ void CPlayer::JumpRotate()
 	if (Unitll_Last) {
 		StateChange_Wait();
 	}
+}
+
+void CPlayer::Render_TestRadius()
+{
+
+	glDisable(GL_LIGHTING);
+	glDisable(GL_TEXTURE_2D);
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+	glColor4f(1.f, 1.f, 1.f, 0.5f);
+	
+	glPushMatrix();
+	glTranslated(m_Pos.x, m_Pos.y + m_CollideY, m_Pos.z);
+	glutSolidSphere(m_playerRadius, 10, 10);
+	glPopMatrix();
+
+	glDisable(GL_BLEND);
+	glEnable(GL_TEXTURE_2D);
+	glEnable(GL_LIGHTING);
 }
 
 void CPlayer::InitBody()
