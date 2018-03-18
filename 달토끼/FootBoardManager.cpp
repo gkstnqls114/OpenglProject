@@ -30,7 +30,7 @@ void FootBoardManger::Set_FootBoardPos(ItemManager & itemmanager)
 	JumpProperty::Initialize();
 
 	GLdouble footboardY = -20;
-	GLdouble itemY = 30;
+	GLdouble itemY = 20;
 
 	m_pFootBoard[0].InitPosition(CVector3D<>(0, footboardY, 0));
 	itemmanager.Set_Pos(0, CVector3D<> (0, itemY, 0));

@@ -6,6 +6,10 @@ protected:
 	int m_Side{ k_front };
 	CVector3D<GLdouble>	m_Pos;
 
+	GLdouble m_BeginY{ 0 };
+	GLdouble m_EndY{ 1.f };
+	float m_Time{ 0 };
+
 	GLfloat m_Scale_Matrix[16] =
 	{
 		1.f, 0, 0, 0,

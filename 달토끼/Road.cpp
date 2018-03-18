@@ -39,6 +39,7 @@ void Road::TestRender()
 void Road::Update()
 {
 	m_FootBoardManager.Update();
+	m_ItemManager.Update();
 }
 
 void Road::Reset()

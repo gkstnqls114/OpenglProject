@@ -18,6 +18,7 @@ void RoadSubject::Add_Observer(RoadObserver * push)
 
 void RoadSubject::Sub_Observer(RoadObserver * pop)
 {
+
 }
 
 void RoadSubject::Notify_DisappearFootBoard(Road * road)
