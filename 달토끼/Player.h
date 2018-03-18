@@ -113,7 +113,7 @@ public:
 
 	/////////////////////////////////GET
 	const GLdouble Get_JumpReach() const noexcept { return m_JumpProperty.Get_JumpReach(); }
-	const int Get_BoardNum() const noexcept { return m_MyBoardIndex; }
+	const int Get_BoardIndex() const noexcept { return m_MyBoardIndex; }
 	const int Get_KeySide() const noexcept { return m_MyKeySide; }
 	const int Get_BoardSide() const noexcept { return m_MyBoardSide; }
 	const CVector3D<> Get_Pos() const noexcept { return m_Pos; }

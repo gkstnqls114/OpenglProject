@@ -2,6 +2,7 @@
 
 class CFootBoard;
 class ItemManager;
+class CPlayer;
 
 class FootBoardManger
 {
@@ -36,5 +37,5 @@ public:
 
 	const bool IsOutRange_DisappearingIndex() const;
 	const bool IsOutRange(const int& boardnum) const;
-	void Add_DisappearingIndex();
+	void Add_DisappearingIndex(const CPlayer& player);
 };

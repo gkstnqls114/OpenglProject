@@ -2,6 +2,7 @@
 #include "ItemManager.h"
 #include "FootBoard.h"
 #include "JumpProperty.h"
+#include "Player.h"
 #include "FootBoardManager.h"
 
 FootBoardManger::FootBoardManger()
@@ -137,6 +138,15 @@ const bool FootBoardManger::IsOutRange(const int & boardnum) const
 	return boardnum < 0 || boardnum >= m_Length;
 }
 
+void FootBoardManger::Add_DisappearingIndex(const CPlayer & player)
+{
+	m_DisappearingBoardIndex = max(m_DisappearingBoardIndex, player.Get_BoardIndex() - 1);
+	
+	if (IsOutRange_DisappearingIndex()) {
+		m_DisappearingBoardIndex = m_Length;
+	}
+}
+
 const int FootBoardManger::Get_Side(const int & boardnum) const noexcept
 {
 	if (IsOutRange(boardnum)) return 0;
@@ -153,12 +163,4 @@ const int FootBoardManger::Get_Disappear(const int & boardnum) const noexcept
 {
 	if (IsOutRange(boardnum)) return 0;
 	else return m_pFootBoard[boardnum].GetDisappear();
-}
-
-void FootBoardManger::Add_DisappearingIndex()
-{
-	m_DisappearingBoardIndex += 1;
-	if (IsOutRange_DisappearingIndex()) {
-		m_DisappearingBoardIndex -= 1;
-	}
 }

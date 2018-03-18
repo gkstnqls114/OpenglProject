@@ -83,9 +83,9 @@ void Road::Receive_PlayerWaitCamera(CPlayer * player)
 
 void Road::Receive_PlayerJumpFinish(CPlayer* player)
 {
-	m_FootBoardManager.Add_DisappearingIndex();
+	m_FootBoardManager.Add_DisappearingIndex(*player);
 
-	const bool IsCorrectSide = player->Get_BoardSide() == m_FootBoardManager.Get_Side(player->Get_BoardNum());
+	const bool IsCorrectSide = player->Get_BoardSide() == m_FootBoardManager.Get_Side(player->Get_BoardIndex());
 	if (!IsCorrectSide) {
 		//Test를 위해 주석합니다.
 		//player->StateChange_WaitCamera();
