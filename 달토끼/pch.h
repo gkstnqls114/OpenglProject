@@ -24,7 +24,7 @@ T Interpolation(T begin, T end, float time) {
 
 enum eSide
 {
-	k_left = 0,
+	k_left = -1,
 	k_front,
 	k_right
 };
