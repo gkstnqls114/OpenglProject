@@ -97,6 +97,11 @@ void CPlayer::Reset_ModelRotate()
 	m_Rabit_Ear->Reset();
 }
 
+const bool CPlayer::IsAutoWaiting() const noexcept
+{
+	return AutoWaitingState.Get_IsUsing();
+}
+
 void CPlayer::RotateX(int degree)
 {
 	m_Matrix->Calu_Rotate(degree, 1, 0, 0);
@@ -159,6 +164,26 @@ void CPlayer::Receive_DisappearFootBoard(Road * road)
 	//StateChange_WaitCamera();
 }
 
+void CPlayer::Notify_PlayerJumping()
+{
+	if (m_pPlayerSubject) m_pPlayerSubject->Notify_PlayerJumping(this);
+}
+
+void CPlayer::Notify_PlayerWaitCamera()
+{
+	if (m_pPlayerSubject) m_pPlayerSubject->Notify_PlayerWaitCamera(this);
+}
+
+void CPlayer::Notify_PlayerJumpFinish()
+{
+	if (m_pPlayerSubject) m_pPlayerSubject->Notify_PlayerJumpFinish(this);
+}
+
+void CPlayer::Nofity_PlayerAutoJumping()
+{
+	if (m_pPlayerSubject) m_pPlayerSubject->Nofity_PlayerAutoJumping(this);
+}
+
 float CPlayer::BodyRotateDegree()
 {
 	int prevKeySide = m_prevKeySide.Get_Side() - 1;
@@ -187,45 +212,35 @@ float CPlayer::BodyRotateDegree()
 
 void CPlayer::FrontJump()
 {
-	Calculate_JumpVector();
-	float rotatedegree = BodyRotateDegree();
-	if (m_prevKeySide.Get_IsRight()) {
-		m_Matrix->Calu_Rotate(rotatedegree, 0, 1, 0);
-	}
-	else if (m_prevKeySide.Get_IsLeft()) {
-		m_Matrix->Calu_Rotate(-rotatedegree, 0, 1, 0);
+	Calculate_FrontJump();
+	//만약 오토점프중이라면 다시 한번 더 호출한다.
+	if (AutoWaitingState.Get_IsUsing()) {
+		Calculate_FrontJump();
 	}
 
-	JumpRotate();
-
-	if(m_pPlayerSubject) m_pPlayerSubject->Notify_PlayerJumping(this);
+	Notify_PlayerJumping();
 }
 
 void CPlayer::RightJump()
 {
-	Calculate_JumpVector();
-	float rotatedegree = BodyRotateDegree();
-	m_Matrix->Calu_Rotate(-rotatedegree, 0, 1, 0);
-	float tmp_vector_x = float(JumpProperty::k_RoadDistance_X) / m_JumpProperty.Get_FinishJumpTime();
-	m_Pos.x += tmp_vector_x;
+	Calculate_RightJump();
+	//만약 오토점프중이라면 다시 한번 더 호출한다.
+	if (AutoWaitingState.Get_IsUsing()) {
+		Calculate_RightJump();
+	}
 
-	JumpRotate();
-
-	if (m_pPlayerSubject) m_pPlayerSubject->Notify_PlayerJumping(this);
+	Notify_PlayerJumping();
 }
 
 void CPlayer::LeftJump()
 {
-	Calculate_JumpVector();
-	float rotatedegree = BodyRotateDegree();
-	m_Matrix->Calu_Rotate(rotatedegree, 0, 1, 0);
-	
-	float tmp_vector_x = - float(JumpProperty::k_RoadDistance_X) / m_JumpProperty.Get_FinishJumpTime();
-	m_Pos.x += tmp_vector_x;
+	Calculate_LeftJump();
+	//만약 오토점프중이라면 다시 한번 더 호출한다.
+	if (AutoWaitingState.Get_IsUsing()) {
+		Calculate_LeftJump();
+	}
 
-	JumpRotate();
-
-	if (m_pPlayerSubject) m_pPlayerSubject->Notify_PlayerJumping(this);
+	Notify_PlayerJumping();
 }
 
 void CPlayer::Fall()
@@ -245,7 +260,12 @@ void CPlayer::Dead()
 
 void CPlayer::WaitCamera()
 {
-	m_pPlayerSubject->Notify_PlayerWaitCamera(this);
+	Notify_PlayerWaitCamera();
+}
+
+void CPlayer::AutoWaiting()
+{
+	Nofity_PlayerAutoJumping();
 }
 
 void CPlayer::StateChange_FrontJump()
@@ -274,6 +294,7 @@ void CPlayer::StateChange_LeftJump()
 	m_PlayerState = &LeftJumpState;
 }
 
+//WaitCamera 혹은 AutoJump
 void CPlayer::StateChange_Wait()
 {
 	m_Rabit_Body->Set_Scale(1.f, 1.f, 1.f);
@@ -285,11 +306,13 @@ void CPlayer::StateChange_Wait()
 	m_PlayerState = &WaitingState;
 
 	if (IsGetOutRoad()) {
-		//TEST
 		StateChange_WaitCamera();
 	}
+	else if (IsAutoWaiting()) {
+		m_PlayerState = &AutoWaitingState;
+	}
 	else {
-		m_pPlayerSubject->Notify_PlayerJumpFinish(this);
+		Notify_PlayerJumpFinish();
 	}
 }
 
@@ -307,6 +330,11 @@ void CPlayer::StateChange_Dead()
 {
 	Init_GameOver();
 	m_PlayerState = &DeadState;
+}
+
+void CPlayer::StateChange_AutoWaiting()
+{
+	AutoWaitingState.Initialize();
 }
 
 void CPlayer::Calculate_JumpVector()
@@ -400,6 +428,43 @@ void CPlayer::Render_TestRadius()
 	glDisable(GL_BLEND);
 	glEnable(GL_TEXTURE_2D);
 	glEnable(GL_LIGHTING);
+}
+
+void CPlayer::Calculate_FrontJump()
+{
+	Calculate_JumpVector();
+	float rotatedegree = BodyRotateDegree();
+	if (m_prevKeySide.Get_IsRight()) {
+		m_Matrix->Calu_Rotate(rotatedegree, 0, 1, 0);
+	}
+	else if (m_prevKeySide.Get_IsLeft()) {
+		m_Matrix->Calu_Rotate(-rotatedegree, 0, 1, 0);
+	}
+
+	JumpRotate();
+}
+
+void CPlayer::Calculate_RightJump()
+{
+	Calculate_JumpVector();
+	float rotatedegree = BodyRotateDegree();
+	m_Matrix->Calu_Rotate(-rotatedegree, 0, 1, 0);
+	float tmp_vector_x = float(JumpProperty::k_RoadDistance_X) / m_JumpProperty.Get_FinishJumpTime();
+	m_Pos.x += tmp_vector_x;
+
+	JumpRotate();
+}
+
+void CPlayer::Calculate_LeftJump()
+{
+	Calculate_JumpVector();
+	float rotatedegree = BodyRotateDegree();
+	m_Matrix->Calu_Rotate(rotatedegree, 0, 1, 0);
+
+	float tmp_vector_x = -float(JumpProperty::k_RoadDistance_X) / m_JumpProperty.Get_FinishJumpTime();
+	m_Pos.x += tmp_vector_x;
+
+	JumpRotate();
 }
 
 void CPlayer::InitBody()

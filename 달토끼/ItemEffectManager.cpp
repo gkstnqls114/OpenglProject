@@ -21,7 +21,7 @@ void ItemEffectManager::ItemEffect_Star()
 void ItemEffectManager::ItemEffect_Carrat()
 {
 	if (m_pPlayer) {
-
+		m_pPlayer->StateChange_AutoWaiting();
 	}
 }
 

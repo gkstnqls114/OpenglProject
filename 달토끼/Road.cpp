@@ -114,6 +114,25 @@ void Road::Receive_PlayerJumping(CPlayer * player)
 	Collision::Collide(*player,	m_ItemManager.Get_Item(player->Get_BoardLength()));
 }
 
+// road에 적절한 위치로 점프 시킵니다.
+void Road::Receive_PlayerAutoWaiting(CPlayer * player)
+{
+	int playerLenght = player->Get_BoardLength() + 1;
+	Side playerSide = player->Get_BoardSide();
+	Side footboardSide = m_FootBoardManager.Get_IsExisted(playerLenght);
+
+	Side futureMove = playerSide.FutureMoveSide(footboardSide);
+	if (futureMove.Get_IsLeft()) {
+		player->StateChange_LeftJump();
+	}
+	else if (futureMove.Get_IsFront()) {
+		player->StateChange_FrontJump();
+	}
+	else if (futureMove.Get_IsRight()) {
+		player->StateChange_RightJump();
+	}
+}
+
 //void Road::Player_JumpFinish(int playerside)
 //{
 	//플레이어 위치가 올바른 곳인지 확인

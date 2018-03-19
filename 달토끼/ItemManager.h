@@ -31,7 +31,7 @@ public:
 
 	void Change_Star(const int& boardnum);
 	void Change_Shield(const int& boardnum);
-	void Change_Carrat(const int& boardnum);
+	void Change_Carrot(const int& boardnum);
 	
 
 	void TestPosPrint(const int& num) const;

@@ -3,7 +3,7 @@
 
 class CObjModel;
 
-class Carrat :
+class Carrot :
 	public Item
 {
 	static CObjModel* m_ObjModel	;
@@ -13,8 +13,8 @@ private:
 	virtual void Render_Model();
 
 public:
-	Carrat();
-	virtual ~Carrat();
+	Carrot();
+	virtual ~Carrot();
 
 	static void InitModel();
 };

@@ -8,6 +8,7 @@
 #include "LeftJump.h"
 #include "Fall.h"
 #include "Dead.h"
+#include "AutoWaiting.h"
 
 #include "JumpProperty.h"
 
@@ -49,6 +50,7 @@ class CPlayer
 	CFrontJump	FrontJumpState;
 	CRightJump	RightJumpState;
 	CLeftJump	LeftJumpState;
+	CAutoWaiting AutoWaitingState;
 	
 	//현재 넘어간 발판 개수
 	int m_MyBoardLength{ 0 };
@@ -64,6 +66,10 @@ private:
 	void Calculate_JumpVector();
 	const bool IsGetOutRoad() const noexcept;
 	void Render_TestRadius();
+
+	void Calculate_FrontJump();
+	void Calculate_RightJump();
+	void Calculate_LeftJump();
 
 	static void InitBody();
 	static void InitEar();
@@ -97,6 +103,7 @@ public:
 	void RightJump();
 	void LeftJump();
 	void WaitCamera();
+	void AutoWaiting();
 	void Fall();
 	void Dead();
 
@@ -107,11 +114,19 @@ public:
 	void StateChange_WaitCamera();
 	void StateChange_Fall();
 	void StateChange_Dead();
+	void StateChange_AutoWaiting();
 	/////////////////////////////////State
 
 	/////////////////////////////////Road Observer
 	virtual void Receive_DisappearFootBoard(Road* road) override;
 	/////////////////////////////////Road Observer
+
+	/////////////////////////////////Notify
+	void Notify_PlayerJumping();
+	void Notify_PlayerWaitCamera();
+	void Notify_PlayerJumpFinish();
+	void Nofity_PlayerAutoJumping();
+	/////////////////////////////////Notify
 
 	/////////////////////////////////GET
 	const GLdouble Get_JumpReach() const noexcept { return m_JumpProperty.Get_JumpReach(); }
@@ -121,6 +136,7 @@ public:
 	const CVector3D<> Get_Pos() const noexcept { return m_Pos; }
 	const CVector3D<GLdouble> Get_CollidPos() const noexcept { return CVector3D<>(m_Pos.x, m_Pos.y + m_CollideY, m_Pos.z); }
 	const int Get_Radius() const noexcept { return m_playerRadius; }
+	const bool IsAutoWaiting() const noexcept;
 	/////////////////////////////////GET
 
 	/////////////////////////////////SET

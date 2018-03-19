@@ -4,7 +4,7 @@
 #include "NullItem.h"
 #include "Star.h"
 #include "Shield.h"
-#include "Carrat.h"
+#include "Carrot.h"
 
 #include "ItemManager.h"
 
@@ -29,7 +29,7 @@ void ItemManager::initModel()
 {
 	Star::InitModel();
 	Shield::InitModel();
-	Carrat::InitModel();
+	Carrot::InitModel();
 }
 
 void ItemManager::Add_Item(Item* & item)
@@ -52,8 +52,11 @@ void ItemManager::Initialize(const int& num)
 	m_ItemList = new Item*[num];
 	for (int index = 0; index < num; ++index)
 	{
-		m_ItemList[index] = new Star;
+		m_ItemList[index] = new NullItem;
 	}
+	Change_Carrot(1);
+	Change_Carrot(2);
+
 }
  
 const bool ItemManager::IsOutRange(const int& num) const noexcept
@@ -98,15 +101,32 @@ Item & ItemManager::Get_Item(const int & num) const
 
 void ItemManager::Change_Star(const int & boardnum)
 {
-	
+	if (m_ItemList[boardnum]) {
+		delete[] m_ItemList[boardnum];
+		m_ItemList[boardnum] = nullptr;
+	}
+
+	m_ItemList[boardnum] = new Star;
 }
 
 void ItemManager::Change_Shield(const int & boardnum)
 {
+	if (m_ItemList[boardnum]) {
+		delete[] m_ItemList[boardnum];
+		m_ItemList[boardnum] = nullptr;
+	}
+
+	m_ItemList[boardnum] = new Shield;
 }
 
-void ItemManager::Change_Carrat(const int & boardnum)
+void ItemManager::Change_Carrot(const int & boardnum)
 {
+	if (m_ItemList[boardnum]) {
+		delete[] m_ItemList[boardnum];
+		m_ItemList[boardnum] = nullptr;
+	}
+	
+	m_ItemList[boardnum] = new Carrot;
 }
 
 void ItemManager::TestPosPrint(const int & num) const

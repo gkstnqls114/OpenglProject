@@ -14,6 +14,7 @@ class Side
 
 public:
 	Side();
+	Side(const int side);
 	~Side();
 	
 	void IsLeft() { m_Side = k_LeftIndex; }
@@ -29,7 +30,9 @@ public:
 	const bool Get_IsFront() const;
 	const bool Get_IsRight() const;
 	const bool IsOutofRange() const;
-	const bool Get_IsSame(const Side& side) const;
+	const bool IsOutofRange(const int& side) const;
+	const bool IsSame(const Side& side) const;
+	const Side FutureMoveSide(const Side& future);
 
 	static const int Get_randSide()
 	{

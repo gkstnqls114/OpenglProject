@@ -8,7 +8,7 @@ CObjModel* Star::m_ObjModel { nullptr };
 void Star::ItemEffect()
 {
 	if (m_pItemEffectManager) {
-		m_pItemEffectManager->ItemEffect_Star(*this);
+		m_pItemEffectManager->ItemEffect_Star();
 	}
 }
 

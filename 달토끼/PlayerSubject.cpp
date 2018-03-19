@@ -41,3 +41,10 @@ void PlayerSubject::Notify_PlayerJumpFinish(CPlayer * player)
 		d->Receive_PlayerJumpFinish(player);
 	}
 }
+
+void PlayerSubject::Nofity_PlayerAutoJumping(CPlayer * player)
+{
+	for (auto d : m_PlayerObserverList) {
+		d->Receive_PlayerAutoWaiting(player);
+	}
+}

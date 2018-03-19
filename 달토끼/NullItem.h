@@ -5,7 +5,8 @@ class NullItem :
 {
 
 private:
-	virtual void Render_Model() { /*do nothing*/};
+	virtual void Render_Model() override{ /*do nothing*/};
+	virtual void ItemEffect() override { /*do nothing*/ };
 
 public:
 	NullItem();

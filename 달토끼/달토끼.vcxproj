@@ -160,10 +160,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AutoJump.cpp" />
+    <ClCompile Include="AutoWaiting.cpp" />
     <ClCompile Include="Basic.cpp" />
     <ClCompile Include="BeUsed.cpp" />
-    <ClCompile Include="Carrat.cpp" />
+    <ClCompile Include="Carrot.cpp" />
     <ClCompile Include="Collision.cpp" />
     <ClCompile Include="Disappear.cpp" />
     <ClCompile Include="Float.cpp" />
@@ -243,10 +243,10 @@
     <ClCompile Include="ItemEffectManager.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AutoJump.h" />
+    <ClInclude Include="AutoWaiting.h" />
     <ClInclude Include="Basic.h" />
     <ClInclude Include="BeUsed.h" />
-    <ClInclude Include="Carrat.h" />
+    <ClInclude Include="Carrot.h" />
     <ClInclude Include="Collision.h" />
     <ClInclude Include="Disappear.h" />
     <ClInclude Include="Float.h" />

@@ -232,3 +232,11 @@ const bool FootBoardManager::Get_IsExisted(const int & len, const int & index) c
 
 	return m_pFootBoard[len][index].Get_IsExisted();
 }
+
+const Side FootBoardManager::Get_IsExisted(const int & len) const noexcept
+{
+	if (Get_IsExisted(len, k_LeftIndex)) return Side(k_LeftIndex);
+	else if (Get_IsExisted(len, k_FrontIndex)) return Side(k_FrontIndex);
+	else if (Get_IsExisted(len, k_RightIndex)) return Side(k_RightIndex);
+	else return Side();
+}
