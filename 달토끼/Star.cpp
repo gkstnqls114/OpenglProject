@@ -15,6 +15,7 @@ void Star::ItemEffect()
 void Star::Render_Model()
 {
 	Star::m_ObjModel->Render();
+	Render_Sphere();
 }
 
 Star::Star()

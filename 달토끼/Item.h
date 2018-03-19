@@ -50,9 +50,11 @@ protected:
 	};
 
 private:
-	void Render_Sphere();
 	virtual void Render_Model() = 0;
 	virtual void ItemEffect() = 0;
+
+protected:
+	void Render_Sphere();
 
 public:
 	Item();

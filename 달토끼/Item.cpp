@@ -11,8 +11,7 @@ void Item::Render_All()
 	glMultMatrixf(m_Rotate_Matrix);
 
 	Render_Model();
-	Render_Sphere();
-
+	
 	glPopMatrix();
 }
 

@@ -23,6 +23,7 @@ void Carrot::ItemEffect()
 void Carrot::Render_Model()
 {
 	Carrot::m_ObjModel->Render();
+	Render_Sphere();
 }
 
 Carrot::Carrot()

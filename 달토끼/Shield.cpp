@@ -15,6 +15,7 @@ void Shield::ItemEffect()
 void Shield::Render_Model()
 {
 	Shield::m_ObjModel->Render();
+	Render_Sphere();
 }
 
 Shield::Shield()
