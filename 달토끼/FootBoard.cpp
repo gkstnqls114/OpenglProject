@@ -81,7 +81,7 @@ void CFootBoard::Render()
 
 void CFootBoard::Update()
 {
-	if (m_IsExisted) return;
+	if (!m_IsExisted) return;
 	if (IsDisappear) return;
 	Disappear();
 }

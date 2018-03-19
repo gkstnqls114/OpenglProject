@@ -53,18 +53,16 @@ class CPlayer
 	//현재 넘어간 발판 개수
 	int m_MyBoardLength{ 0 };
 	//좌, 우, 앞 발판 중 어디에 있는가?
-	int m_MyBoardSide{ 0 };
+	Side m_MyBoardSide;
 	// 방향키를 이전에 어떤 것을 눌렀는가?
-	int m_prevKeySide{ 0 };
-	int m_MyKeySide{ 0 };
+	Side m_prevKeySide;
+	Side m_MyKeySide;
 
 private:
 	float BodyRotateDegree(); //함수이름 나중에 수정
 	void JumpRotate(); //함수이름 나중에 수정
 	void Calculate_JumpVector();
 	const bool IsGetOutRoad() const noexcept;
-	const int RotateDegree() const { return abs(m_prevKeySide - m_MyKeySide); };
-
 	void Render_TestRadius();
 
 	static void InitBody();
@@ -118,8 +116,8 @@ public:
 	/////////////////////////////////GET
 	const GLdouble Get_JumpReach() const noexcept { return m_JumpProperty.Get_JumpReach(); }
 	const int Get_BoardLength() const noexcept { return m_MyBoardLength; }
-	const int Get_KeySide() const noexcept { return m_MyKeySide; }
-	const int Get_BoardSide() const noexcept { return m_MyBoardSide; }
+	const Side Get_KeySide() const noexcept { return m_MyKeySide; }
+	const Side Get_BoardSide() const noexcept { return m_MyBoardSide; }
 	const CVector3D<> Get_Pos() const noexcept { return m_Pos; }
 	const CVector3D<GLdouble> Get_CollidPos() const noexcept { return CVector3D<>(m_Pos.x, m_Pos.y + m_CollideY, m_Pos.z); }
 	const int Get_Radius() const noexcept { return m_playerRadius; }

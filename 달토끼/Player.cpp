@@ -124,9 +124,9 @@ void CPlayer::Init_GameScene()
 
 	m_PlayerState = &WaitingState;
 
-	m_prevKeySide = 0;
 	m_MyBoardLength = 0;
-	m_MyKeySide = 0;
+	m_prevKeySide.IsFront();
+	m_MyKeySide.IsFront();
 }
 
 void CPlayer::Init_GameOver()
@@ -154,13 +154,16 @@ void CPlayer::Receive_DisappearFootBoard(Road * road)
 	const bool IsOnFallBoard = m_MyBoardLength <= road->Get_DisappearingBoardIndex();
 	if (!IsOnFallBoard) return;
 
-	road->StateChange_Stop();
-	StateChange_WaitCamera();
+	//TEST
+	//road->StateChange_Stop();
+	//StateChange_WaitCamera();
 }
 
 float CPlayer::BodyRotateDegree()
 {
-	int Rotate = RotateDegree();
+	int prevKeySide = m_prevKeySide.Get_Side() - 1;
+	int currKeySide = m_MyKeySide.Get_Side() - 1;
+	int Rotate = abs(prevKeySide - currKeySide);
 
 	bool Rotate_degree_0 = Rotate == 0;
 	if (Rotate_degree_0) return 0;
@@ -186,10 +189,10 @@ void CPlayer::FrontJump()
 {
 	Calculate_JumpVector();
 	float rotatedegree = BodyRotateDegree();
-	if (m_prevKeySide == k_RightIndex) {
+	if (m_prevKeySide.Get_IsRight()) {
 		m_Matrix->Calu_Rotate(rotatedegree, 0, 1, 0);
 	}
-	else if (m_prevKeySide == k_LeftIndex) {
+	else if (m_prevKeySide.Get_IsLeft()) {
 		m_Matrix->Calu_Rotate(-rotatedegree, 0, 1, 0);
 	}
 
@@ -249,7 +252,7 @@ void CPlayer::StateChange_FrontJump()
 {
 	m_MyBoardLength += 1;
 	m_prevKeySide = m_MyKeySide;
-	m_MyKeySide = k_FrontIndex;
+	m_MyKeySide.IsFront();
 	m_PlayerState = &FrontJumpState;
 }
 
@@ -257,8 +260,8 @@ void CPlayer::StateChange_RightJump()
 {
 	m_MyBoardLength += 1;
 	m_prevKeySide = m_MyKeySide;
-	m_MyKeySide = k_RightIndex;
-	m_MyBoardSide += k_RightIndex;
+	m_MyKeySide.IsRight();
+	m_MyBoardSide.MoveRight();
 	m_PlayerState = &RightJumpState;
 }
 
@@ -266,8 +269,8 @@ void CPlayer::StateChange_LeftJump()
 {
 	m_MyBoardLength += 1;
 	m_prevKeySide = m_MyKeySide;
-	m_MyKeySide = k_LeftIndex;
-	m_MyBoardSide += k_LeftIndex;
+	m_MyKeySide.IsLeft();
+	m_MyBoardSide.MoveLeft();
 	m_PlayerState = &LeftJumpState;
 }
 
@@ -282,7 +285,8 @@ void CPlayer::StateChange_Wait()
 	m_PlayerState = &WaitingState;
 
 	if (IsGetOutRoad()) {
-		StateChange_WaitCamera();
+		//TEST
+		//StateChange_WaitCamera();
 	}
 	else {
 		m_pPlayerSubject->Notify_PlayerJumpFinish(this);
@@ -323,7 +327,7 @@ void CPlayer::Calculate_JumpVector()
 
 const bool CPlayer::IsGetOutRoad() const noexcept
 {
-	return m_MyBoardSide > k_RightIndex || m_MyBoardSide < k_LeftIndex;
+	return m_MyBoardSide.IsOutofRange();
 }
 
 void CPlayer::JumpRotate()

@@ -142,21 +142,27 @@ const CVector3D<> FootBoardManger::Get_FirstPos() const noexcept
 	return m_pFootBoard[0][k_FrontIndex].Get_Pos();
 }
 
-const int FootBoardManger::Get_Side(const int & len, const int & index) const noexcept
+const Side FootBoardManger::Get_Side(const int & len, const int & index) const noexcept
 {
-	if (IsOutRange_Length(len)) return -1;
-	if (IsOutRange_Width(index)) return -1;
+	//반드시 수정
+	if (IsOutRange_Length(len)) return Side();
+	if (IsOutRange_Width(index)) return Side();
 
-	int val = m_pFootBoard[len][index].Get_Pos().x;
-	if (val < 0) {
-		return k_LeftIndex;
+	Side val;
+	if (index == k_FrontIndex) {
+		val.IsFront();
+		return val;
 	}
-	else if (val > 0) {
-		return k_RightIndex;
+	else if (index == k_LeftIndex) {
+		val.IsLeft();
+		return val;
 	}
-	else {
-		return k_FrontIndex;
+	else if (index == k_RightIndex) {
+		val.IsRight();
+		return val;
 	}
+	
+	return val;
 }
 
 const bool FootBoardManger::IsOutRange_DisappearingIndex() const

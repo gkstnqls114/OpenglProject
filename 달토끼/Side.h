@@ -19,8 +19,17 @@ public:
 	void IsLeft() { m_Side = k_LeftIndex; }
 	void IsFront() { m_Side = k_FrontIndex; }
 	void IsRight() { m_Side = k_RightIndex;	}
+
+	void MoveLeft() { m_Side -= 1; }
+	void MoveRight() { m_Side += 1; }
+
 	const int Get_Side() const { return m_Side; }
 
+	const bool Get_IsLeft() const;
+	const bool Get_IsFront() const;
+	const bool Get_IsRight() const;
+	const bool IsOutofRange() const;
+	const bool Get_IsSame(const Side& side) const;
 
 	static const int Get_randSide()
 	{
