@@ -1,6 +1,7 @@
 #pragma 
 #include "PlayerSubject.h"
 #include "RoadSubject.h"
+#include "ItemEffectManager.h"
 
 #include "Star.h"
 
@@ -12,9 +13,12 @@ class PlayerSubject;
 class RoadObserver;
 class Road;
 
+
 class CTestScene :
 	public Scene
 {
+	bool Start{ false };
+	ItemEffectManager   m_ItemEffectManager ;
 	PlayerSubject		m_PlayerObserver	;
 	RoadSubject			m_RoadObserver		;
 	CPlayer *			m_Player			{ nullptr };

@@ -1,8 +1,16 @@
 #include "pch.h"
+#include "ItemEffectManager.h"
 #include "ObjModel.h"
 #include "Shield.h"
 
 CObjModel* Shield::m_ObjModel{ nullptr };
+
+void Shield::ItemEffect()
+{
+	if (m_pItemEffectManager) {
+		m_pItemEffectManager->ItemEffect_Shield(*this);
+	}
+}
 
 void Shield::Render_Model()
 {

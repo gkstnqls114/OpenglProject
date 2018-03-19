@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "Collision.h"
 #include "Item.h"
+ItemEffectManager* Item::m_pItemEffectManager{ nullptr };
 const int Item::MaxRadius{ 40 };
 
 void Item::Render_All()
@@ -52,6 +53,13 @@ void Item::Render()
 void Item::Set_Pos(const CVector3D<>& rhs)
 {
 	m_Pos = rhs;
+}
+
+//터짐 변수를 true로 만들고 아이템 효과를 쓴다.
+void Item::IsCollided()
+{ 
+	m_IsCollide = true;
+	ItemEffect();
 }
 
 //터지는 애니메이션 업데이트를 수행합니다.

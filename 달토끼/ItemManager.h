@@ -1,11 +1,12 @@
 #pragma once
-#include <vector>
 
 class Item;
+class ItemEffectManager;
 
 class ItemManager
 {
 	Item** m_ItemList{ nullptr };
+	ItemEffectManager* m_pItemEffectManager;
 	int m_ItemLength{ 0 };
 
 private:
@@ -19,6 +20,7 @@ public:
 	~ItemManager();
 
 	void Initialize(const int& num);
+	void Set_ItemEffectManager(ItemEffectManager& manager) { m_pItemEffectManager = &manager; };
 	void Render();
 	void TestRender();
 	void Update();

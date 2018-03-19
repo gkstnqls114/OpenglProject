@@ -160,6 +160,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AutoJump.cpp" />
     <ClCompile Include="Basic.cpp" />
     <ClCompile Include="BeUsed.cpp" />
     <ClCompile Include="Carrat.cpp" />
@@ -242,6 +243,7 @@
     <ClCompile Include="ItemEffectManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AutoJump.h" />
     <ClInclude Include="Basic.h" />
     <ClInclude Include="BeUsed.h" />
     <ClInclude Include="Carrat.h" />

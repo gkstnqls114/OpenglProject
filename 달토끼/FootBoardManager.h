@@ -4,7 +4,7 @@ class CFootBoard;
 class ItemManager;
 class CPlayer;
 
-class FootBoardManger
+class FootBoardManager
 {
 	CFootBoard**		m_pFootBoard{ nullptr };
 	int				m_DisappearingBoardIndex{ 0 };
@@ -16,9 +16,9 @@ private:
 	void InitFootBoardModel();
 
 public:
-	FootBoardManger();
-	FootBoardManger(const int& , ItemManager&);
-	~FootBoardManger();
+	FootBoardManager();
+	FootBoardManager(const int& , ItemManager&);
+	~FootBoardManager();
 
 	void Initialize(const int&, ItemManager&);
 	void TestRender();
@@ -36,6 +36,7 @@ public:
 	const bool Get_IsExisted(const int& len, const int& index) const noexcept;
 	/////////////////////////////////Get
 
+	void IsExisted_FootBoard(const int& len, const int& index);
 	const bool IsOutRange_DisappearingIndex() const;
 	const bool IsOutRange_Length(const int& boardnum) const;
 	const bool IsOutRange_Width(const int & index) const;

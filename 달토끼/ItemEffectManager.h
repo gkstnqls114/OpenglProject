@@ -1,21 +1,26 @@
 #pragma once
 
-class Road;
 class CPlayer;
 class Item;
+class FootBoardManager;
 
 class ItemEffectManager
 {
-	Road* m_pRoad{ nullptr };
+	int m_StarPlusLenght{ 5 };
+	FootBoardManager* m_pFootboardManager{ nullptr };
+
 	CPlayer * m_pPlayer{ nullptr };
 
 public:
 	ItemEffectManager() {}
-	ItemEffectManager(const Road&, const CPlayer&);
+	ItemEffectManager(FootBoardManager& road, CPlayer& player) : m_pFootboardManager(&road), m_pPlayer(&player) {};
 	~ItemEffectManager() {}
 
-	void ItemEffect_Star(const Item& item);
-	void ItemEffect_Carrat(const Item& item);
-	void ItemEffect_Shield(const Item& item);
+	void Set_pRoad(FootBoardManager& road) { m_pFootboardManager = &road; }
+	void Set_pPlayer(CPlayer& player) { m_pPlayer = &player; }
+
+	void ItemEffect_Star();
+	void ItemEffect_Carrat();
+	void ItemEffect_Shield();
 
 };

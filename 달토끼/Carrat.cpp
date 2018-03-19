@@ -1,4 +1,5 @@
 #include "pch.h"
+#include "ItemEffectManager.h"
 #include "ObjModel.h"
 #include "Carrat.h"
 
@@ -12,6 +13,13 @@ void Carrat::InitModel()
 	Carrat::m_ObjModel->LoadObj(".\\OBJModel\\item_carrat.obj");
 }
  
+void Carrat::ItemEffect()
+{
+	if (m_pItemEffectManager) {
+		m_pItemEffectManager->ItemEffect_Carrat(*this);
+	}
+}
+
 void Carrat::Render_Model()
 {
 	Carrat::m_ObjModel->Render();

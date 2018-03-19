@@ -1,8 +1,16 @@
 #include "pch.h"
+#include "ItemEffectManager.h"
 #include "ObjModel.h"
 #include "Star.h"
 
 CObjModel* Star::m_ObjModel { nullptr };
+
+void Star::ItemEffect()
+{
+	if (m_pItemEffectManager) {
+		m_pItemEffectManager->ItemEffect_Star(*this);
+	}
+}
 
 void Star::Render_Model()
 {

@@ -5,25 +5,26 @@
 #include "Player.h"
 #include "FootBoardManager.h"
 
-FootBoardManger::FootBoardManger()
+FootBoardManager::FootBoardManager()
 {
 	InitFootBoardModel();
 }
 
-FootBoardManger::FootBoardManger(const int & num, ItemManager& itemManager)
+FootBoardManager::FootBoardManager(const int & num, ItemManager& itemManager)
 {
 	InitFootBoardModel();
 	Initialize(num, itemManager);
 }
 
-FootBoardManger::~FootBoardManger()
+FootBoardManager::~FootBoardManager()
 {
 	delete[] m_pFootBoard;
 }
 
-void FootBoardManger::Set_FootBoardPos(ItemManager & itemmanager)
+void FootBoardManager::Set_FootBoardPos(ItemManager & itemmanager)
 {
 	if (m_pFootBoard) return;
+	JumpProperty::Initialize();
 
 	m_pFootBoard = new CFootBoard*[m_Length];
 	for (int index = 0; index < m_Length; ++index)
@@ -31,11 +32,8 @@ void FootBoardManger::Set_FootBoardPos(ItemManager & itemmanager)
 		m_pFootBoard[index] = new CFootBoard[m_Width];
 	}
 
-	JumpProperty::Initialize();
-
 	GLdouble footboardY = -20;
 	GLdouble itemY = 20;
-
 	m_pFootBoard[0][k_FrontIndex].InitPosition(CVector3D<>(0, footboardY, 0));
 	m_pFootBoard[0][k_FrontIndex].IsExisted();
 	itemmanager.Set_Pos(0, CVector3D<> (0, itemY, 0));
@@ -57,16 +55,16 @@ void FootBoardManger::Set_FootBoardPos(ItemManager & itemmanager)
 			nowSide = k_FrontIndex;
 		}
 
-		// nowSide - 1 : 양수일 경우 right, 음수일경우 left 위치
-		float tranlateX = JumpProperty::k_RoadDistance_X * (nowSide - 1);
+		float tranlateX = JumpProperty::k_RoadDistance_X;
 		float tranlateZ = -x * JumpProperty::Get_JumpReach();
 
-		CVector3D<> pos(tranlateX, footboardY, tranlateZ);
-		m_pFootBoard[x][nowSide].InitPosition(pos);
+		// SideIndex - 1 : 양수일 경우 right, 음수일경우 left 위치
+		m_pFootBoard[x][k_LeftIndex].InitPosition(CVector3D<>(tranlateX * (k_LeftIndex - 1), footboardY, tranlateZ));
+		m_pFootBoard[x][k_FrontIndex].InitPosition(CVector3D<>(tranlateX * (k_FrontIndex - 1), footboardY, tranlateZ));
+		m_pFootBoard[x][k_RightIndex].InitPosition(CVector3D<>(tranlateX * (k_RightIndex - 1), footboardY, tranlateZ));
 		m_pFootBoard[x][nowSide].IsExisted();
-		pos.y = itemY;
-		itemmanager.Set_Pos(x, pos);
-		
+
+		itemmanager.Set_Pos(x, CVector3D<> (tranlateX * (nowSide - 1), itemY, tranlateZ));
 		prev_Side = nowSide;
 	}
 	//마지막은 반드시 가운데
@@ -78,19 +76,19 @@ void FootBoardManger::Set_FootBoardPos(ItemManager & itemmanager)
 	itemmanager.Set_Pos(m_Length - 1, CVector3D<>(tranlateX, itemY, tranlateZ));
 }
 
-void FootBoardManger::InitFootBoardModel()
+void FootBoardManager::InitFootBoardModel()
 {
 	CFootBoard::InitModel();
 }
 
-void FootBoardManger::Initialize(const int & num, ItemManager & itemManager)
+void FootBoardManager::Initialize(const int & num, ItemManager & itemManager)
 {
 	m_Length = num;
 	Set_FootBoardPos(itemManager);
 }
 
 //전부 렌더합니다.
-void FootBoardManger::TestRender()
+void FootBoardManager::TestRender()
 {
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -104,7 +102,7 @@ void FootBoardManger::TestRender()
 	glDisable(GL_BLEND);
 }
 
-void FootBoardManger::Render()
+void FootBoardManager::Render()
 {
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -121,7 +119,7 @@ void FootBoardManger::Render()
 	glDisable(GL_BLEND);
 }
 
-void FootBoardManger::Update()
+void FootBoardManager::Update()
 {
 	for (int index = 0; index < m_Width; ++index) {
 		m_pFootBoard[m_DisappearingBoardIndex][index].Update();
@@ -132,17 +130,17 @@ void FootBoardManger::Update()
 	}
 }
 
-const CVector3D<> FootBoardManger::Get_LastPos() const noexcept
+const CVector3D<> FootBoardManager::Get_LastPos() const noexcept
 {
 	return m_pFootBoard[m_Length - 1][k_FrontIndex].Get_Pos();
 }
 
-const CVector3D<> FootBoardManger::Get_FirstPos() const noexcept
+const CVector3D<> FootBoardManager::Get_FirstPos() const noexcept
 {
 	return m_pFootBoard[0][k_FrontIndex].Get_Pos();
 }
 
-const Side FootBoardManger::Get_Side(const int & len, const int & index) const noexcept
+const Side FootBoardManager::Get_Side(const int & len, const int & index) const noexcept
 {
 	//반드시 수정
 	if (IsOutRange_Length(len)) return Side();
@@ -165,22 +163,30 @@ const Side FootBoardManger::Get_Side(const int & len, const int & index) const n
 	return val;
 }
 
-const bool FootBoardManger::IsOutRange_DisappearingIndex() const
+void FootBoardManager::IsExisted_FootBoard(const int & len, const int & index)
+{
+	if (IsOutRange_Length(len)) return;
+	if (IsOutRange_Width(index)) return;
+
+	m_pFootBoard[len][index].IsExisted();
+}
+
+const bool FootBoardManager::IsOutRange_DisappearingIndex() const
 {
 	return (m_DisappearingBoardIndex < 0 || m_DisappearingBoardIndex >= m_Length);
 }
 
-const bool FootBoardManger::IsOutRange_Length(const int & len) const
+const bool FootBoardManager::IsOutRange_Length(const int & len) const
 {
 	return len < 0 || len >= m_Length;
 }
 
-const bool FootBoardManger::IsOutRange_Width(const int & index) const
+const bool FootBoardManager::IsOutRange_Width(const int & index) const
 {
 	return index < 0 || index >= m_Width;
 }
 
-void FootBoardManger::Add_DisappearingIndex(const CPlayer & player)
+void FootBoardManager::Add_DisappearingIndex(const CPlayer & player)
 {
 	m_DisappearingBoardIndex = max(m_DisappearingBoardIndex, player.Get_BoardLength() - 1);
 	
@@ -191,7 +197,7 @@ void FootBoardManger::Add_DisappearingIndex(const CPlayer & player)
 
 // len : 앞으로 나아간 정도 (0부터 시작)
 // index : 오른쪽, 왼쪽, 앞
-const CVector3D<> FootBoardManger::Get_Pos(const int & len, const int & index) const noexcept
+const CVector3D<> FootBoardManager::Get_Pos(const int & len, const int & index) const noexcept
 {
 	if (IsOutRange_Length(len)) return CVector3D<>();
 	if (IsOutRange_Width(index)) return CVector3D<>();
@@ -199,7 +205,7 @@ const CVector3D<> FootBoardManger::Get_Pos(const int & len, const int & index) c
 	return m_pFootBoard[len][index].Get_Pos();
 }
 
-const bool FootBoardManger::Get_Disappear(const int & len, const int & index) const noexcept
+const bool FootBoardManager::Get_Disappear(const int & len, const int & index) const noexcept
 {
 	if (IsOutRange_Length(len)) return false;
 	if (IsOutRange_Width(index)) return false;
@@ -207,7 +213,7 @@ const bool FootBoardManger::Get_Disappear(const int & len, const int & index) co
 	return m_pFootBoard[len][index].GetDisappear();
 }
 
-const bool FootBoardManger::Get_DisappearLength(const int & len) const noexcept
+const bool FootBoardManager::Get_DisappearLength(const int & len) const noexcept
 {
 	if (IsOutRange_Length(len)) return false;
 
@@ -219,7 +225,7 @@ const bool FootBoardManger::Get_DisappearLength(const int & len) const noexcept
 	return false;
 }
 
-const bool FootBoardManger::Get_IsExisted(const int & len, const int & index) const noexcept
+const bool FootBoardManager::Get_IsExisted(const int & len, const int & index) const noexcept
 {
 	if (IsOutRange_Length(len)) return false;
 	if (IsOutRange_Width(index)) return false;

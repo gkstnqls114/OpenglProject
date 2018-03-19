@@ -232,6 +232,9 @@
     <Filter Include="소스 파일\Item\ItemEffectManager">
       <UniqueIdentifier>{69e88d90-f821-49cb-b1e8-71ca086e217f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Player\PlayerState\AutoJump">
+      <UniqueIdentifier>{d54dfd61-7996-46d6-8a95-57290715bb7a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GLFramework.cpp">
@@ -447,6 +450,9 @@
     <ClCompile Include="ItemEffectManager.cpp">
       <Filter>소스 파일\Item\ItemEffectManager</Filter>
     </ClCompile>
+    <ClCompile Include="AutoJump.cpp">
+      <Filter>소스 파일\Player\PlayerState\AutoJump</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GLFramework.h">
@@ -661,6 +667,9 @@
     </ClInclude>
     <ClInclude Include="ItemEffectManager.h">
       <Filter>소스 파일\Item\ItemEffectManager</Filter>
+    </ClInclude>
+    <ClInclude Include="AutoJump.h">
+      <Filter>소스 파일\Player\PlayerState\AutoJump</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

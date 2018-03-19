@@ -8,10 +8,12 @@
 #include "PlayerObserver.h"
 
 class ItemState;
+class ItemEffectManager;
 
 class Item
 {
 protected:
+	static ItemEffectManager* m_pItemEffectManager;
 	static const int MaxRadius;
 	int m_sphereRadius{ 30 };
 
@@ -50,17 +52,21 @@ protected:
 private:
 	void Render_Sphere();
 	virtual void Render_Model() = 0;
+	virtual void ItemEffect() = 0;
 
 public:
 	Item();
 	virtual ~Item();
+	static void Set_pItemEffectManager(ItemEffectManager& manager) {
+		m_pItemEffectManager = &manager;
+	}
 
 	void Update();
 	void Render();
 	void Render_All();
 
 	void Set_Pos(const CVector3D<>& pos);
-	void IsCollided() { m_IsCollide = true; }
+	void IsCollided();
 
 	/////////////////////////////////// Get
 	const CVector3D<> Get_Pos() const { return m_Pos; };

@@ -19,7 +19,7 @@ class Road
 	: public PlayerObserver
 {
 	int				m_RoadLength{ 0 };
-	FootBoardManger m_FootBoardManager;
+	FootBoardManager m_FootBoardManager;
 	ItemManager		m_ItemManager;
 
 	RoadState*		m_RoadState{ nullptr };
@@ -56,6 +56,7 @@ public:
 	const CVector3D<> Get_LastPos() const noexcept;
 	const CVector3D<> Get_FirstPos() const noexcept;
 	const int Get_DisappearingBoardIndex() const noexcept { return m_FootBoardManager.Get_DisappearingBoardIndex(); };
+	FootBoardManager& Get_FootBoardManager() noexcept { return m_FootBoardManager; }
 	///////////////////////////////// Get
 
 	///////////////////////////////// Set

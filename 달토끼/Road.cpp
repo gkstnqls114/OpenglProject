@@ -9,18 +9,14 @@
 
 const bool Road::IsOutofRange(const int & len)
 {
-	if (0 > len || len >= m_RoadLength) {
-		return true;
-	}
-	else {
-		return false;
-	}
+	return (0 > len || len >= m_RoadLength);
 }
 
 Road::Road()
 {
 	m_RoadLength = 5;
 	m_FootBoardManager.Initialize(m_RoadLength, m_ItemManager);
+	StateChange_Stop();
 }
 
 Road::Road(const int & num)
@@ -28,6 +24,7 @@ Road::Road(const int & num)
 	m_RoadLength = num;
 	m_ItemManager.Initialize(num);
 	m_FootBoardManager.Initialize(num, m_ItemManager);
+	StateChange_Stop();
 }
 
 Road::~Road()
@@ -49,8 +46,7 @@ void Road::TestRender()
 
 void Road::Update()
 {
-	m_FootBoardManager.Update();
-	m_ItemManager.Update();
+	m_RoadState->Update(*this);
 }
 
 void Road::Reset()
@@ -71,11 +67,13 @@ const CVector3D<> Road::Get_FirstPos() const noexcept
 void Road::Disappear()
 {
 	m_FootBoardManager.Update();
+	m_ItemManager.Update();
 }
 
 void Road::Stop()
 {
-	//do nothing
+	//FootBoardManager do nothing;
+	m_ItemManager.Update();
 }
 
 void Road::StateChange_Disappear()
