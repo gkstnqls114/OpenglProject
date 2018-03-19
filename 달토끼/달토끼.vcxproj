@@ -239,6 +239,7 @@
     <ClCompile Include="Vector3D - 복사본.cpp" />
     <ClCompile Include="WaitCamera.cpp" />
     <ClCompile Include="Waiting.cpp" />
+    <ClCompile Include="ItemEffectManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Basic.h" />
@@ -249,6 +250,7 @@
     <ClInclude Include="Float.h" />
     <ClInclude Include="FootBoardManager.h" />
     <ClInclude Include="Item.h" />
+    <ClInclude Include="ItemEffectManager.h" />
     <ClInclude Include="ItemManager.h" />
     <ClInclude Include="ItemState.h" />
     <ClInclude Include="NullItem.h" />

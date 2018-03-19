@@ -32,6 +32,7 @@ class Road
 	RoadSubject*	m_pRoadSubject{ nullptr };
 
 private:
+	const bool IsOutofRange(const int& len);
 
 public:
 	Road();

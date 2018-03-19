@@ -7,9 +7,19 @@
 
 #include "Road.h"
 
+const bool Road::IsOutofRange(const int & len)
+{
+	if (0 > len || len >= m_RoadLength) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
 Road::Road()
 {
-	m_RoadLength = 100;
+	m_RoadLength = 5;
 	m_FootBoardManager.Initialize(m_RoadLength, m_ItemManager);
 }
 
@@ -33,7 +43,7 @@ void Road::Render()
 
 void Road::TestRender()
 {
-	m_FootBoardManager.Render();
+	m_FootBoardManager.TestRender();
 	m_ItemManager.TestRender();
 }
 
@@ -90,9 +100,7 @@ void Road::Receive_PlayerJumpFinish(CPlayer* player)
 	// 반드시 수정
 	Side player_sideindex = player->Get_BoardSide();
 	Side road_sideindex = m_FootBoardManager.Get_Side(player->Get_BoardLength(), player_sideindex.Get_Side());
-	//const bool IsCorrectSide = player->Get_BoardSide() == m_FootBoardManager.Get_Side(player->Get_BoardLength(), sideindex);
 	const bool IsCorrectSide = player_sideindex.Get_Side() == road_sideindex.Get_Side();
-
 	if (!IsCorrectSide) {
 		//Test를 위해 주석합니다.
 		//player->StateChange_WaitCamera();
@@ -103,6 +111,8 @@ void Road::Receive_PlayerJumpFinish(CPlayer* player)
 //플레이어 위치에 해당하는 아이템에 충돌체크를 합니다.
 void Road::Receive_PlayerJumping(CPlayer * player)
 {
+	if (IsOutofRange(player->Get_BoardLength())) return;
+
 	Collision::Collide(*player,	m_ItemManager.Get_Item(player->Get_BoardLength()));
 }
 

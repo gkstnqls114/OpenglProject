@@ -286,7 +286,7 @@ void CPlayer::StateChange_Wait()
 
 	if (IsGetOutRoad()) {
 		//TEST
-		//StateChange_WaitCamera();
+		StateChange_WaitCamera();
 	}
 	else {
 		m_pPlayerSubject->Notify_PlayerJumpFinish(this);
