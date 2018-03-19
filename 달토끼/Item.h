@@ -1,5 +1,4 @@
 #pragma once
-
 /////////////////////// Item State
 #include "Pop.h"
 #include "BeUsed.h"
@@ -28,7 +27,7 @@ protected:
 	
 	bool m_IsCollide{ false };
 
-	int m_Side{ k_front };
+	int m_Side{ k_FrontIndex };
 	CVector3D<GLdouble>	m_Pos;
 	float m_Time{ 0 };
 

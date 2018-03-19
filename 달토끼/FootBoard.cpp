@@ -66,11 +66,11 @@ void CFootBoard::DeleteModel()
 
 void CFootBoard::Render()
 {
-	if (m_IsExisted) return;
+	if (!m_IsExisted) return;
 	if (IsDisappear) return;
 
 	glPushMatrix();
-	glTranslatef(m_Pos.x, m_Pos.y, m_Pos.z);
+	glTranslated(m_Pos.x, m_Pos.y, m_Pos.z);
 	//glMultMatrixf(m_Rotate_Matrix);
 	//glMultMatrixf(m_Scale_Matrix);
 	
@@ -88,45 +88,18 @@ void CFootBoard::Update()
 
 void CFootBoard::InitPosition(const int & x, const int & y, const int & z)
 {
-	if (x < 0) {
-		m_Side = -1;
-	}
-	else if (x > 0) {
-		m_Side = 1;
-	}
-	else {
-		m_Side = 0;
-	}
-
+	m_Pos.x = x;
+	m_Pos.y = y;
+	m_Pos.z = z;
 }
 
 void CFootBoard::InitPosition(const CVector3D<> & rhs)
 {
-	if (rhs.x < 0) {
-		m_Side = k_left;
-	}
-	else if (rhs.x > 0) {
-		m_Side = k_right;
-	}
-	else {
-		m_Side = k_front;
-	}
-
 	m_Pos = rhs;
 }
 
 void CFootBoard::InitPosition(CVector3D<>&& rhs)
 {
-	if (rhs.x < 0) {
-		m_Side = k_left;
-	}
-	else if (rhs.x > 0) {
-		m_Side = k_right;
-	}
-	else {
-		m_Side = k_front;
-	}
-
 	m_Pos = rhs;
 }
 

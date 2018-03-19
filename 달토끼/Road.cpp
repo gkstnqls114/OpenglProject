@@ -87,7 +87,8 @@ void Road::Receive_PlayerJumpFinish(CPlayer* player)
 {
 	m_FootBoardManager.Add_DisappearingIndex(*player);
 
-	const bool IsCorrectSide = player->Get_BoardSide() == m_FootBoardManager.Get_Side(player->Get_BoardIndex());
+	int sideindex = player->Get_BoardSide();
+	const bool IsCorrectSide = player->Get_BoardSide() == m_FootBoardManager.Get_Side(player->Get_BoardLength(), sideindex);
 	if (!IsCorrectSide) {
 		//Test를 위해 주석합니다.
 		//player->StateChange_WaitCamera();
@@ -98,7 +99,7 @@ void Road::Receive_PlayerJumpFinish(CPlayer* player)
 //플레이어 위치에 해당하는 아이템에 충돌체크를 합니다.
 void Road::Receive_PlayerJumping(CPlayer * player)
 {
-	Collision::Collide(*player,	m_ItemManager.Get_Item(player->Get_BoardIndex()));
+	Collision::Collide(*player,	m_ItemManager.Get_Item(player->Get_BoardLength()));
 }
 
 //void Road::Player_JumpFinish(int playerside)

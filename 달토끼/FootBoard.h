@@ -14,8 +14,6 @@ class CFootBoard
 	static CObjModel* m_obj;
 	static CObjModel* m_Light_obj;
 
-	int m_Side{ -2 }; //-2는 존재하지 않음
-
 	bool IsLast						{ false };
 	bool IsLightDisappear			{ false };
 
@@ -29,7 +27,7 @@ class CFootBoard
 	float DisappearTime{ 0.f };
 	bool IsDisappear{ false };
 	
-	bool m_IsExisted{ false }; /* true라면 그리지도 않고 업데이트도 하지않습니다. */
+	bool m_IsExisted{ false }; /* false라면 그리지도 않고 업데이트도 하지않습니다. */
 
 private:
 	//내부함수
@@ -54,7 +52,6 @@ public:
 	///////////////////////////////// Get
 	const CVector3D<> Get_Pos() const noexcept { return m_Pos; }
 	const bool GetDisappear() const { return IsDisappear; }
-	const int GetSide() const noexcept { return m_Side; }
 	const bool Get_IsExisted() const noexcept{ return m_IsExisted; }
 	///////////////////////////////// Get
 

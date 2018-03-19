@@ -13,7 +13,7 @@
 //makeDAKF
 #include "Vector3D - บนป็บป.h"
 #include "SoundManager.h"
-
+#include "Side.h"
 
 static CSoundManager SoundManager;
 
@@ -21,16 +21,5 @@ template <typename T>
 T Interpolation(T begin, T end, float time) {
 	return begin * (1 - time) + end * time;
 }
-
-enum eSide
-{
-	k_left = -1,
-	k_front,
-	k_right
-};
-
-const int k_LeftIndex{ 0 };
-const int k_FrontIndex{ 1 };
-const int k_RightIndex{ 2 };
 
 const CVector3D<float> LIGHTRGB{ 1.f, 0.7f, 0.7f };
