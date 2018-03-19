@@ -17,7 +17,7 @@ public:
 	virtual void SpecialKeys(CPlayer& player, const int& key) override;
 
 	void Reset();
-	void Add_JumpNum() { m_JumpNum += 1; std::cout << m_JumpNum << std::endl; }
+	void Add_JumpNum() { m_JumpNum += 1; }
 	const int Get_JumpNume() const { return m_JumpNum; }
 	const bool Get_IsUsing() const { return IsUsing; }
 };
