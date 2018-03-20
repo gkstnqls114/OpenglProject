@@ -160,12 +160,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Appear.cpp" />
     <ClCompile Include="AutoWaiting.cpp" />
     <ClCompile Include="Basic.cpp" />
     <ClCompile Include="BeUsed.cpp" />
     <ClCompile Include="Carrot.cpp" />
     <ClCompile Include="Collision.cpp" />
     <ClCompile Include="Disappear.cpp" />
+    <ClCompile Include="Drop.cpp" />
     <ClCompile Include="Float.cpp" />
     <ClCompile Include="FootBoardManager.cpp" />
     <ClCompile Include="Item.cpp" />
@@ -174,6 +176,7 @@
     <ClCompile Include="NullItem.cpp" />
     <ClCompile Include="PlayerSubject.cpp" />
     <ClCompile Include="Pop.cpp" />
+    <ClCompile Include="Protected.cpp" />
     <ClCompile Include="RoadState.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="ClearObject.cpp" />
@@ -243,12 +246,14 @@
     <ClCompile Include="ItemEffectManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Appear.h" />
     <ClInclude Include="AutoWaiting.h" />
     <ClInclude Include="Basic.h" />
     <ClInclude Include="BeUsed.h" />
     <ClInclude Include="Carrot.h" />
     <ClInclude Include="Collision.h" />
     <ClInclude Include="Disappear.h" />
+    <ClInclude Include="Drop.h" />
     <ClInclude Include="Float.h" />
     <ClInclude Include="FootBoardManager.h" />
     <ClInclude Include="Item.h" />
@@ -258,6 +263,7 @@
     <ClInclude Include="NullItem.h" />
     <ClInclude Include="PlayerSubject.h" />
     <ClInclude Include="Pop.h" />
+    <ClInclude Include="Protected.h" />
     <ClInclude Include="RoadState.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="ClearObject.h" />

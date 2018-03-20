@@ -55,8 +55,8 @@ void ItemManager::Initialize(const int& num)
 		m_ItemList[index] = new NullItem;
 	}
 	Change_Carrot(1);
-	Change_Carrot(2);
-
+	Change_Star(2);
+	Change_Shield(3);
 }
  
 const bool ItemManager::IsOutRange(const int& num) const noexcept

@@ -235,6 +235,15 @@
     <Filter Include="소스 파일\Player\PlayerState\AutoWaiting">
       <UniqueIdentifier>{d54dfd61-7996-46d6-8a95-57290715bb7a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Player\PlayerState\Appear">
+      <UniqueIdentifier>{1840399a-5c7a-494c-94e4-77901313ebd9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Player\PlayerState\Drop">
+      <UniqueIdentifier>{0501a6a6-1009-44c8-984e-0435ed6091fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Player\PlayerState\Protected">
+      <UniqueIdentifier>{76b33777-6fa5-465e-82d8-0398fff6b80f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GLFramework.cpp">
@@ -453,6 +462,15 @@
     <ClCompile Include="Carrot.cpp">
       <Filter>소스 파일\Item\Carrat</Filter>
     </ClCompile>
+    <ClCompile Include="Appear.cpp">
+      <Filter>소스 파일\Player\PlayerState\Appear</Filter>
+    </ClCompile>
+    <ClCompile Include="Drop.cpp">
+      <Filter>소스 파일\Player\PlayerState\Drop</Filter>
+    </ClCompile>
+    <ClCompile Include="Protected.cpp">
+      <Filter>소스 파일\Player\PlayerState\Protected</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GLFramework.h">
@@ -670,6 +688,15 @@
     </ClInclude>
     <ClInclude Include="Carrot.h">
       <Filter>소스 파일\Item\Carrat</Filter>
+    </ClInclude>
+    <ClInclude Include="Appear.h">
+      <Filter>소스 파일\Player\PlayerState\Appear</Filter>
+    </ClInclude>
+    <ClInclude Include="Drop.h">
+      <Filter>소스 파일\Player\PlayerState\Drop</Filter>
+    </ClInclude>
+    <ClInclude Include="Protected.h">
+      <Filter>소스 파일\Player\PlayerState\Protected</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

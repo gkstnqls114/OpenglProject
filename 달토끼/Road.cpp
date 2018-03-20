@@ -122,11 +122,12 @@ void Road::Receive_PlayerAutoWaiting(CPlayer * player)
 	Side footboardSide = m_FootBoardManager.Get_IsExisted(playerLenght);
 
 	Side futureMove = playerSide.FutureMoveSide(footboardSide);
-	if (futureMove.Get_IsLeft()) {
-		player->StateChange_LeftJump();
-	}
-	else if (futureMove.Get_IsFront()) {
+	
+	if (futureMove.Get_IsFront()) {
 		player->StateChange_FrontJump();
+	}
+	else if (futureMove.Get_IsLeft()) {
+		player->StateChange_LeftJump();
 	}
 	else if (futureMove.Get_IsRight()) {
 		player->StateChange_RightJump();
