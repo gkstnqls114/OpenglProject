@@ -4,6 +4,7 @@
 class Protected
 	: public CPlayerState
 {
+	bool IsUsing{ false };
 
 public:
 	Protected();

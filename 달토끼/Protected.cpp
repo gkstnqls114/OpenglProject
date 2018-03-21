@@ -11,12 +11,15 @@ Protected::~Protected()
 
 void Protected::Initialize()
 {
+	IsUsing = true;
 }
 
 void Protected::Update(CPlayer & player)
 {
+	//player.Protected();
 }
 
 void Protected::SpecialKeys(CPlayer & player, const int & key)
 {
+	// do nothing
 }
