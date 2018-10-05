@@ -244,6 +244,9 @@
     <Filter Include="소스 파일\Player\PlayerState\Protected">
       <UniqueIdentifier>{76b33777-6fa5-465e-82d8-0398fff6b80f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Player\PlayerEfficacy">
+      <UniqueIdentifier>{349a2de9-906c-4bb8-86af-7dc9ed26b19a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GLFramework.cpp">

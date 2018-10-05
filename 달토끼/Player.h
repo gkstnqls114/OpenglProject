@@ -106,6 +106,7 @@ public:
 	void AutoWaiting();
 	void Fall();
 	void Dead();
+	void Protected();
 
 	void StateChange_FrontJump();
 	void StateChange_RightJump();
@@ -115,6 +116,7 @@ public:
 	void StateChange_Fall();
 	void StateChange_Dead();
 	void StateChange_AutoWaiting();
+	void StateChange_Protected();
 	/////////////////////////////////State
 
 	/////////////////////////////////Road Observer

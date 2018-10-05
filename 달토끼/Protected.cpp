@@ -11,7 +11,7 @@ Protected::~Protected()
 
 void Protected::Initialize()
 {
-	IsUsing = true;
+	b_IsUsing = true;
 }
 
 void Protected::Update(CPlayer & player)
@@ -22,4 +22,9 @@ void Protected::Update(CPlayer & player)
 void Protected::SpecialKeys(CPlayer & player, const int & key)
 {
 	// do nothing
+}
+
+void Protected::Reset()
+{
+	b_IsUsing = false;
 }

@@ -19,7 +19,7 @@ CTestScene::CTestScene()
 	Item::Set_pItemEffectManager(m_ItemEffectManager);
 
 	m_Camera->Initialize(CVector3D<>(0.f, 0.f, 0.f), 400, 1, 1500.f, 60);
-	m_Camera->Rotate(20, 25);
+	m_Camera->Rotate(0, 89);
 
 	m_Player->Set_PlayerSubjer(&m_PlayerObserver);
 	m_Road->Set_RoadObserver(&m_RoadObserver);

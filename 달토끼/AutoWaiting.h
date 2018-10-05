@@ -4,9 +4,13 @@
 class CAutoWaiting :
 	public CPlayerState
 {
-	bool IsUsing{ false };
+	bool b_IsUsing{ false }; // ?
 	int m_JumpNum{ 0 };
 	const int MaxJum{ 10 };
+
+	int m_WaitTime{0};
+	int m_MAXWaitTime{ 1 };
+	
 
 public:
 	CAutoWaiting();
@@ -19,5 +23,6 @@ public:
 	void Reset();
 	void Add_JumpNum() { m_JumpNum += 1; }
 	const int Get_JumpNume() const { return m_JumpNum; }
-	const bool Get_IsUsing() const { return IsUsing; }
+	const bool Get_IsUsing() const { return b_IsUsing; }
+	const bool IsPossibleUpdate();
 };

@@ -12,8 +12,9 @@ CAutoWaiting::~CAutoWaiting()
 
 void CAutoWaiting::Initialize()
 {
-	IsUsing = true;
+	b_IsUsing = true;
 	m_JumpNum = 0;
+	m_WaitTime = 0;
 }
 
 void CAutoWaiting::Update(CPlayer & player)
@@ -35,6 +36,18 @@ void CAutoWaiting::SpecialKeys(CPlayer & player, const int & key)
 
 void CAutoWaiting::Reset()
 {
-	IsUsing = false;
+	b_IsUsing = false;
 	m_JumpNum = 0;
+}
+
+const bool CAutoWaiting::IsPossibleUpdate()
+{
+	if (m_WaitTime == m_MAXWaitTime) {
+		m_WaitTime = 0;
+		return true;
+	}
+	else {
+		m_WaitTime += 1;
+		return false;
+	}
 }

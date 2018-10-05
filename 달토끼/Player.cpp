@@ -158,10 +158,6 @@ void CPlayer::Receive_DisappearFootBoard(Road * road)
 {
 	const bool IsOnFallBoard = m_MyBoardLength <= road->Get_DisappearingBoardIndex();
 	if (!IsOnFallBoard) return;
-
-	//TEST
-	//road->StateChange_Stop();
-	//StateChange_WaitCamera();
 }
 
 void CPlayer::Notify_PlayerJumping()
@@ -258,6 +254,10 @@ void CPlayer::Dead()
 	
 }
 
+void CPlayer::Protected()
+{
+}
+
 void CPlayer::WaitCamera()
 {
 	Notify_PlayerWaitCamera();
@@ -265,7 +265,9 @@ void CPlayer::WaitCamera()
 
 void CPlayer::AutoWaiting()
 {
-	Nofity_PlayerAutoJumping();
+	if(AutoWaitingState.IsPossibleUpdate()) {
+		Nofity_PlayerAutoJumping();
+	}
 }
 
 void CPlayer::StateChange_FrontJump()
@@ -294,16 +296,33 @@ void CPlayer::StateChange_LeftJump()
 	m_PlayerState = &LeftJumpState;
 }
 
-//WaitCamera 혹은 AutoJump
+//WaitCamera인지 AutoJump인지, 혹은 정상적으로 점프가 완료했는지 확인한다.
 void CPlayer::StateChange_Wait()
 {
+	// 현재 상태에 따라 rotate각도를 고정한다.
+	// -z 가 현재 토끼가 바라보는 방향이므로 전부 +180도를 한다.
+	m_Matrix->ResetRotate();
+	if (m_PlayerState == &LeftJumpState) {
+		std::cout << "Left Jump" << std::endl;
+		//m_Matrix->Set_Rotate(-m_JumpProperty.Get_Rotatedegree() + 180, 0, 1, 0);
+	}
+	else if (m_PlayerState == &RightJumpState) {
+		std::cout << "Right Jump" << std::endl;
+		//m_Matrix->Set_Rotate(m_JumpProperty.Get_Rotatedegree() + 180, 0, 1, 0);
+	}
+	else if (m_PlayerState == &FrontJumpState) {
+		std::cout << "Front Jump" << std::endl;
+		//m_Matrix->Set_Rotate(180, 0, 1, 0);
+	}
+
 	m_Rabit_Body->Set_Scale(1.f, 1.f, 1.f);
+	m_Rabit_Body->ResetRotate();
 	m_Rabit_LeftFoot->ResetRotate();
 	m_Rabit_RightFoot->ResetRotate();
 	m_JumpProperty.Reset();
+	m_Pos.x;
 	m_Pos.y = 0;
-
-	m_PlayerState = &WaitingState;
+	m_Pos.z;
 
 	if (IsGetOutRoad()) {
 		StateChange_WaitCamera();
@@ -312,6 +331,7 @@ void CPlayer::StateChange_Wait()
 		m_PlayerState = &AutoWaitingState;
 	}
 	else {
+		m_PlayerState = &WaitingState;
 		Notify_PlayerJumpFinish();
 	}
 }
@@ -335,6 +355,11 @@ void CPlayer::StateChange_Dead()
 void CPlayer::StateChange_AutoWaiting()
 {
 	AutoWaitingState.Initialize();
+}
+
+void CPlayer::StateChange_Protected()
+{
+
 }
 
 void CPlayer::Calculate_JumpVector()
