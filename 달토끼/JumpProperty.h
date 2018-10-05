@@ -26,6 +26,10 @@ public:
 	static void Reset();
 	
 	////////////////////////////Get
+
+	static const int	Get_RoadDistanceX() {
+		return k_RoadDistance_X;
+	};
 	static const GLdouble Get_JumpReach() noexcept { return JumpReach; }
 	static const int	   Get_FinishJumpTime() noexcept { return FinishJumpTime; }
 	static const int	  Get_JumpTime() noexcept { return JumpTime; }
