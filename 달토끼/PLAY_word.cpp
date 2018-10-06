@@ -52,13 +52,10 @@ void CPLAY_word::Update()
 
 	SizeTime += 0.03f;
 	NowSize = Interpolation(BeginSize, EndSize, SizeTime);
-
-//	m_matrix->Set_Scale(NowSize);
 }
 
 void CPLAY_word::Init_MainScene()
 {
-	//m_matrix->Set_Translate(m_Position);
 	m_Position = m_InitPosition;
 	m_matrix->ResetRotate();
 	IsGameStart = false;

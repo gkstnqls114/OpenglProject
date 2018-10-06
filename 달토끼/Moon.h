@@ -6,7 +6,7 @@ class CMediator;
 
 class CMoon
 {
-	const float m_Scale{ 0.7 };
+	const float m_Scale{ 0.7f };
 	CVector3D<> m_InitPosition;
 	CVector3D<> m_Position;
 

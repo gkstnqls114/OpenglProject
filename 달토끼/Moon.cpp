@@ -82,9 +82,9 @@ void CMoon::Render()
 
 	glColor3f(LIGHTRGB.x, LIGHTRGB.y, LIGHTRGB.z);
 	glPushMatrix();
-	glScalef(m_Scale, m_Scale, m_Scale);
 	glTranslatef(m_Position.x, m_Position.y, m_Position.z);
 	m_Matrix->Rotate();
+	glScalef(m_Scale, m_Scale, m_Scale);
 	m_Moon->Render();
 	glPopMatrix();
 }

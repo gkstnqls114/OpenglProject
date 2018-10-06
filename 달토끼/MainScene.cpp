@@ -21,9 +21,11 @@ void CMainScene::ConfirmCursor()
 		exit(0);
 	}
 	else if (m_Cursor == k_PLAY) {
-		//장면 넘어간다.
 		IsGameStart = true;
-		//m_pMediator->GameStart();
+		m_PLAY->GameStart();
+		m_EXIT->GameStart();
+		m_Moon->GameStart();
+		m_Earth->GameStart();
 	}
 }
 
@@ -173,11 +175,14 @@ void CMainScene::Initialize()
 {
 	SoundManager.Play("MainBGM");
 
+	glEnable(GL_LIGHTING);
 	glEnable(GL_LIGHT0);
 	glDisable(GL_LIGHT1);
 	glDisable(GL_LIGHT2);
 	glDisable(GL_LIGHT3);
 
+	////////////////////////////// 게임 오브젝트들에 대한 Init
+	m_Camera->Init_MainScene();
 	m_Moon->Init_MainScene();
 	m_Earth->Init_MainScene();
 	m_PLAY->Init_MainScene();
@@ -185,6 +190,7 @@ void CMainScene::Initialize()
 
 	m_EXIT->Init_MainScene();
 	m_EXIT->NotSelected();
+	////////////////////////////// 게임 오브젝트들에 대한 Init
 
 	m_Cursor = k_PLAY;
 	SelectCursor();

@@ -28,11 +28,11 @@ CSceneManager::CSceneManager()
 
 CSceneManager::~CSceneManager()
 {
-	delete[] m_GameScene;
-	delete[] m_MainScene;
-	delete[] m_TestScene;
-	delete[] m_GameOverScene;
-	delete[] m_GameClearScene;
+	delete m_GameScene;
+	delete m_MainScene;
+	delete m_TestScene;
+	delete m_GameOverScene;
+	delete m_GameClearScene;
 }
 
 void CSceneManager::ChangeToMain()

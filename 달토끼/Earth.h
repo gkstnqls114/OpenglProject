@@ -6,6 +6,8 @@ class RotateMatrix;
 
 class CEarth
 {
+	CVector3D<> m_Position;
+	const float m_Scale{ 1.f };
 	static CObjModel* m_Earth;
 
 	CMediator* m_pMediator{ nullptr };
