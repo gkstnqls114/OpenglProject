@@ -1,4 +1,8 @@
 #pragma once
+#include "PlayerSubject.h"
+#include "RoadSubject.h"
+#include "ItemEffectManager.h"
+
 #include "Scene.h"
 
 class CSceneManager;
@@ -15,6 +19,10 @@ class CTextureStorage;
 class CGameScene :
 	public Scene
 {
+	ItemEffectManager   m_ItemEffectManager;
+	PlayerSubject		m_PlayerObserver;
+	RoadSubject			m_RoadObserver;
+
 	CSceneManager*		m_pSceneManager	{ nullptr };
 
 	CMediator *			m_pMediator		{ nullptr };

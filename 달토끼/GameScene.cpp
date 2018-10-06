@@ -1,4 +1,5 @@
 #include "pch.h"
+#include "Item.h"
 #include "SceneManager.h"
 #include "Player.h"
 #include "Moon.h"
@@ -110,6 +111,15 @@ CGameScene::CGameScene(CSceneManager* const changer)
 	m_Moon = new CMoon(m_pMediator);
 	m_Earth = new CEarth(m_pMediator);
 
+	m_ItemEffectManager.Set_pPlayer(*m_Player);
+	m_ItemEffectManager.Set_pRoad(m_Road->Get_FootBoardManager());
+	Item::Set_pItemEffectManager(m_ItemEffectManager);
+
+	m_Player->Set_PlayerSubjer(&m_PlayerObserver);
+	m_Road->Set_RoadObserver(&m_RoadObserver);
+	m_PlayerObserver.Add_Observer(m_Camera);
+	m_PlayerObserver.Add_Observer(m_Road);
+	m_RoadObserver.Add_Observer(m_Player);
 
 	Initialize();
 }
@@ -157,6 +167,8 @@ void CGameScene::Initialize()
 	CVector3D<> EarthPos = m_Road->Get_FirstPos();
 	m_Earth->SetPos(CVector3D<>(EarthPos.x, EarthPos.y - DownY, EarthPos.z));
 	m_Moon->SetPos(CVector3D<>(MoonPos.x, MoonPos.y - DownY + 30, MoonPos.z));
+
+	m_Player->Init_GameScene();
 
 	Start = false;
 	Explain = false;
@@ -292,6 +304,7 @@ void CGameScene::SpecialKeys(const int& key, const int& x, const int& y)
 	if (key == GLUT_KEY_UP || key == GLUT_KEY_LEFT || key == GLUT_KEY_RIGHT) {
 		Start = true;
 	}
-	
+
+	m_Road->StateChange_Disappear();
 	m_Player->SpecialKeys(key, x, y);
 }
