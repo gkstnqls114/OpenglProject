@@ -27,7 +27,8 @@ void CGLFramework::Initialize(int argc, char ** argv, int width, int height, int
 	glutInitWindowPosition(x, y);
 	glutCreateWindow("MOON RABBIT");
 
-	m_CurrScene = new CTestScene;
+	m_SceneChager = new CSceneManager();
+	m_SceneChager->ChangeToMain();
 
 	//임시로 쓰이는 라이트값
 	//메인 라이트
@@ -90,29 +91,29 @@ void CGLFramework::DrawScene()
 
 void CGLFramework::Render()
 {
-	if (m_CurrScene) m_CurrScene->Render();
+	if (m_SceneChager) m_SceneChager->SceneRender();
 }
 
 void CGLFramework::Reshape(int w, int h)
 {
-	if(m_CurrScene) m_CurrScene->Reshape(w, h);
+	if(m_SceneChager) m_SceneChager->SceneReshape(w, h);
 
 	glutPostRedisplay();
 }
 
 void CGLFramework::Keyboard(unsigned char key, int x, int y)
 {
-	if(m_CurrScene) m_CurrScene->Keyboard(key, x, y);
+	if(m_SceneChager) m_SceneChager->SceneKeyboard(key, x, y);
 }
 
 void CGLFramework::SpecialKeys(int key, int x, int y)
 {
-	if(m_CurrScene) m_CurrScene->SpecialKeys(key, x, y);
+	if(m_SceneChager) m_SceneChager->SceneSpecialKeys(key, x, y);
 }
 
 void CGLFramework::Timer(int value)
 {
-	if(m_CurrScene) m_CurrScene->Timer(value);
+	if(m_SceneChager) m_SceneChager->SceneTimer(value);
 
 	glutTimerFunc(m_fps, fnTimer, 1);
 }

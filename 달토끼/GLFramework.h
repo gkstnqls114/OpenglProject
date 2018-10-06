@@ -58,7 +58,7 @@ private:
 	
 	int m_fps = 16;
 
-	Scene *		m_CurrScene{ nullptr };
-	//CSceneManager*	m_SceneChager{ nullptr };
+	// Scene *		m_CurrScene{ nullptr };
+	CSceneManager*	m_SceneChager{ nullptr };
 };
 
