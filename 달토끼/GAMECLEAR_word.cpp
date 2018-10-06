@@ -10,8 +10,8 @@ CGAMECLEAR_word::CGAMECLEAR_word(const CVector3D<>& Pos)
 	if (m_model != nullptr) return;
 
 	m_model = new CObjModel;
-	m_model->LoadObj("GAMECLEARWORD.obj");
-	m_model->LoadTexture("GAMECLEARWORD.bmp");
+	m_model->LoadObj(".\\OBJModel\\GAMECLEARWORD.obj");
+	m_model->LoadTexture(".\\Texture\\GAMECLEARWORD.bmp");
 	
 	m_Position = Pos;
 	m_matrix = new RotateMatrix;

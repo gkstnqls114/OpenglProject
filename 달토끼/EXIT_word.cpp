@@ -9,8 +9,8 @@ CEXIT_word::CEXIT_word(const CVector3D<>& Pos)
 	if (m_model != nullptr) return;
 
 	m_model = new CObjModel;
-	m_model->LoadObj("EXITWORD.obj");
-	m_model->LoadTexture("EXITWORD.bmp");
+	m_model->LoadObj(".\\OBJModel\\EXITWORD.obj");
+	m_model->LoadTexture(".\\Texture\\EXITWORD.bmp");
 
 	m_Position = Pos;
 	m_matrix = new RotateMatrix;

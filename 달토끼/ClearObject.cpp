@@ -6,24 +6,24 @@
 CClearObject::CClearObject()
 {
 	m_ClearMoon = new CObjModel;
-	m_ClearMoon->LoadObj("ClearMoon.obj");
-	m_ClearMoon->LoadTexture("ClearMoon.bmp");
+	m_ClearMoon->LoadObj(".\\OBJModel\\ClearMoon.obj");
+	m_ClearMoon->LoadTexture(".\\Texture\\ClearMoon.bmp");
 
 	m_ClearRabbit = new CObjModel;
-	m_ClearRabbit->LoadObj("ClearRabit.obj");
-	m_ClearRabbit->LoadTexture("ClearRabit.bmp");
+	m_ClearRabbit->LoadObj(".\\OBJModel\\ClearRabit.obj");
+	m_ClearRabbit->LoadTexture(".\\Texture\\ClearRabit.bmp");
 
 	m_ClearRabbitEar = new CObjModel;
-	m_ClearRabbitEar->LoadObj("ClearRabitEar.obj");
-	m_ClearRabbitEar->LoadTexture("ClearRabitEar.bmp");
+	m_ClearRabbitEar->LoadObj(".\\OBJModel\\ClearRabitEar.obj");
+	m_ClearRabbitEar->LoadTexture(".\\Texture\\ClearRabitEar.bmp");
 
 	m_ClearSunglass = new CObjModel;
-	m_ClearSunglass->LoadObj("ClearSunglass.obj");
-	m_ClearSunglass->LoadTexture("ClearSunglass.bmp");
+	m_ClearSunglass->LoadObj(".\\OBJModel\\ClearSunglass.obj");
+	m_ClearSunglass->LoadTexture(".\\Texture\\ClearSunglass.bmp");
 
 	m_ClearMartini = new CObjModel;
-	m_ClearMartini->LoadObj("ClearMartini.obj");
-	m_ClearMartini->LoadTexture("ClearMartini.bmp");
+	m_ClearMartini->LoadObj(".\\OBJModel\\ClearMartini.obj");
+	m_ClearMartini->LoadTexture(".\\Texture\\ClearMartini.bmp");
 }
 
 

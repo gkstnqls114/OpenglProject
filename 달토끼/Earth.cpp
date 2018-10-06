@@ -9,8 +9,8 @@ void CEarth::InitModel()
 {
 	if (m_Earth != nullptr) return;
 	m_Earth = new CObjModel;
-	m_Earth->LoadObj("Earth.obj");
-	m_Earth->LoadTexture("Earth.bmp");
+	m_Earth->LoadObj(".\\OBJModel\\Earth.obj");
+	m_Earth->LoadTexture(".\\Texture\\Earth.bmp");
 }
 
 void CEarth::DeleteModel()

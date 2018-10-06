@@ -9,8 +9,8 @@ CGAMEOVER_word::CGAMEOVER_word(const CVector3D<>& Pos)
 	if (m_model != nullptr) return;
 
 	m_model = new CObjModel;
-	m_model->LoadObj("GAMEOVERWORD.obj");
-	m_model->LoadTexture("GAMEOVERWORD.bmp");
+	m_model->LoadObj(".\\OBJModel\\GAMEOVERWORD.obj");
+	m_model->LoadTexture(".\\Texture\\GAMEOVERWORD.bmp");
 
 	m_Position = Pos;
 	m_matrix = new RotateMatrix;

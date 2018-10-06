@@ -53,8 +53,8 @@ void CFootBoard::InitModel()
 	//CFootBoard::m_obj->LoadTexture("Goal.bmp");
 
 	CFootBoard::m_Light_obj = new CObjModel;
-	CFootBoard::m_Light_obj->LoadObj("GoalLight.obj");
-	CFootBoard::m_Light_obj->LoadTexture("GoalLight.bmp");
+	CFootBoard::m_Light_obj->LoadObj(".\\OBJModel\\GoalLight.obj");
+	CFootBoard::m_Light_obj->LoadTexture(".\\Texture\\GoalLight.bmp");
 }
 
 void CFootBoard::DeleteModel()
