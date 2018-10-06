@@ -181,6 +181,8 @@ void CMainScene::Initialize()
 	glDisable(GL_LIGHT2);
 	glDisable(GL_LIGHT3);
 
+	glEnable(GL_COLOR_MATERIAL);
+
 	////////////////////////////// 게임 오브젝트들에 대한 Init
 	m_Camera->Init_MainScene();
 	m_Moon->Init_MainScene();

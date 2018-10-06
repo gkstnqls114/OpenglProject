@@ -26,6 +26,7 @@ class PlayerSubject;
 class CPlayer
 	: public RoadObserver
 {
+	const float m_Scale{ 0.3f };
 	static CObjModel* m_Rabit_Body		;
 	static CObjModel* m_Rabit_Ear		;
 	static CObjModel* m_Rabit_LeftFoot	;

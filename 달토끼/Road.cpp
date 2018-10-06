@@ -34,8 +34,11 @@ Road::~Road()
 
 void Road::Render()
 {
+	glPushMatrix();
+	glScalef(m_Scale, m_Scale, m_Scale);
 	m_FootBoardManager.Render();
 	m_ItemManager.Render();
+	glPopMatrix();
 }
 
 void Road::TestRender()

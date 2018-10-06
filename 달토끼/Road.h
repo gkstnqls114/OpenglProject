@@ -18,6 +18,8 @@ class RoadSubject;
 class Road 
 	: public PlayerObserver
 {
+	const float m_Scale{ 0.3f };
+
 	int				m_RoadLength{ 0 };
 	FootBoardManager m_FootBoardManager;
 	ItemManager		m_ItemManager;

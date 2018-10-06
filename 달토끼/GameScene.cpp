@@ -111,16 +111,6 @@ CGameScene::CGameScene(CSceneManager* const changer)
 	m_Moon = new CMoon(m_pMediator);
 	m_Earth = new CEarth(m_pMediator);
 
-	m_ItemEffectManager.Set_pPlayer(*m_Player);
-	m_ItemEffectManager.Set_pRoad(m_Road->Get_FootBoardManager());
-	Item::Set_pItemEffectManager(m_ItemEffectManager);
-
-	m_Player->Set_PlayerSubjer(&m_PlayerObserver);
-	m_Road->Set_RoadObserver(&m_RoadObserver);
-	m_PlayerObserver.Add_Observer(m_Camera);
-	m_PlayerObserver.Add_Observer(m_Road);
-	m_RoadObserver.Add_Observer(m_Player);
-
 	Initialize();
 }
 
@@ -149,6 +139,7 @@ void CGameScene::Initialize()
 {
 	SoundManager.Play("GameBGM");
 
+	glEnable(GL_LIGHTING);
 	glDisable(GL_LIGHT0);
 	glEnable(GL_LIGHT1);
 	glDisable(GL_LIGHT2);
@@ -156,7 +147,24 @@ void CGameScene::Initialize()
 
 	glEnable(GL_COLOR_MATERIAL);
 
-	//m_pMediator->Init_GameScene();
+	//
+	m_ItemEffectManager.Set_pPlayer(*m_Player);
+	m_ItemEffectManager.Set_pRoad(m_Road->Get_FootBoardManager());
+	Item::Set_pItemEffectManager(m_ItemEffectManager);
+
+	m_Player->Set_PlayerSubjer(&m_PlayerObserver);
+	m_Road->Set_RoadObserver(&m_RoadObserver);
+	m_PlayerObserver.Add_Observer(m_Camera);
+	m_PlayerObserver.Add_Observer(m_Road);
+	m_RoadObserver.Add_Observer(m_Player);
+
+	//////////////////////////////////// 오브젝트 초기화
+	m_Camera->Init_GameScene();
+	m_Player->Init_GameScene();
+	// m_Moon->Init_GameScene();
+	// m_Earth->Init_GameScene();
+	//////////////////////////////////// 오브젝트 초기화
+
 
 	m_MapCamera->Initialize(CVector3D<>(0.f, 0.f, m_Road->Get_FirstPos().z * 5), 500, 0.1f, 600.f, 60);
 	m_MapCamera->Rotate(0.f, 1.4f);
@@ -167,8 +175,6 @@ void CGameScene::Initialize()
 	CVector3D<> EarthPos = m_Road->Get_FirstPos();
 	m_Earth->SetPos(CVector3D<>(EarthPos.x, EarthPos.y - DownY, EarthPos.z));
 	m_Moon->SetPos(CVector3D<>(MoonPos.x, MoonPos.y - DownY + 30, MoonPos.z));
-
-	m_Player->Init_GameScene();
 
 	Start = false;
 	Explain = false;

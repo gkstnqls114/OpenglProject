@@ -78,6 +78,7 @@ void CPlayer::Render()
 	glPushMatrix();
 		m_Matrix->Rotate();
 	glPushMatrix();
+		glScalef(m_Scale, m_Scale, m_Scale);
 		//glRotated(Tumblingdegree, 1, 0, 0);
 		m_Rabit_Body->Render();
 		m_Rabit_Ear->Render();
