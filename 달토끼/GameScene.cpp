@@ -77,17 +77,17 @@ CGameScene::CGameScene(CSceneManager* const changer)
 {
 	SoundManager.AddSound(
 		"GameBGM"
-		, "./Sound/GamePlayBGM/Chew_Chew_Island_Main_Theme.mp3"
+		, ".\\Sound\\GamePlayBGM\\Chew_Chew_Island_Main_Theme.mp3"
 		, SoundType::Stream
 	);
 	SoundManager.AddSound(
 		"JumpEffect"
-		, "./Sound/Effect/Jump.wav"
+		, ".\\Sound\\Effect\\Jump.wav"
 		, SoundType::Effect2D
 	);
 	SoundManager.AddSound(
 		"FallEffect"
-		, "./Sound/Effect/Fall.wav"
+		, ".\\Sound\\Effect\\Fall.wav"
 		, SoundType::Effect2D
 	);
 
@@ -95,10 +95,10 @@ CGameScene::CGameScene(CSceneManager* const changer)
 	m_pSceneManager = changer;
 
 	m_textureStroage = new CTextureStorage;
-	m_textureStroage->StoreBitmap("Background.bmp", m_BackgroundTextureID);
+	m_textureStroage->StoreBitmap(".\\Texture\\Background.bmp", m_BackgroundTextureID);
 
 	m_textureStroage = new CTextureStorage;
-	m_textureStroage->StoreBitmap("Explain.bmp", m_ExplainTextureID);
+	m_textureStroage->StoreBitmap(".\\Texture\\Explain.bmp", m_ExplainTextureID);
 
 	m_MapCamera = new CCamera();
 	m_Camera = new CCamera();

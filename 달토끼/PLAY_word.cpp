@@ -27,6 +27,8 @@ CPLAY_word::~CPLAY_word()
 void CPLAY_word::Render()
 {
 	glPushMatrix();
+	glScalef(NowSize, NowSize, 1.f);
+	glTranslatef(m_Position.x, m_Position.y, m_Position.z);
 	m_matrix->Rotate();
 	m_model->Render();
 	glPopMatrix();
@@ -78,5 +80,5 @@ void CPLAY_word::NotSelected()
 	SizeTime = 0.f;
 	BeginSize = 1.1f;
 	EndSize = 1.3f;
-	//m_matrix->ResetScale();
+	// m_matrix->ResetScale();
 }

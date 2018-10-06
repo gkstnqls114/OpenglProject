@@ -11,7 +11,7 @@ CGameOver::CGameOver(CSceneManager* const changer)
 {
 	SoundManager.AddSound(
 		"GameOverBGM"
-		, "./Sound/GameOverBGM/Isaku98.mp3"
+		, ".\\Sound\\GameOverBGM\\Isaku98.mp3"
 		, SoundType::Stream
 	);
 

@@ -138,7 +138,7 @@ CMainScene::CMainScene(CSceneManager* const changer)
 {
 	SoundManager.AddSound(
 		"MainBGM"
-		, "./Sound/MainBGM/Main.mp3"
+		, ".\\Sound\\MainBGM\\Main.mp3"
 		, SoundType::Stream
 	);
 
@@ -155,9 +155,9 @@ CMainScene::CMainScene(CSceneManager* const changer)
 	Initialize();
 
 	m_textureStroage = new CTextureStorage;
-	m_textureStroage->StoreBitmap("MainBack.bmp", m_BackgroundTextureID);
-	m_textureStroage->StoreBitmap("main_mask.bmp", m_LogoMaskTextureID);
-	m_textureStroage->StoreBitmap("main_image.bmp", m_LogoTextureID);
+	m_textureStroage->StoreBitmap(".\\Texture\\MainBack.bmp", m_BackgroundTextureID);
+	m_textureStroage->StoreBitmap(".\\Texture\\main_mask.bmp", m_LogoMaskTextureID);
+	m_textureStroage->StoreBitmap(".\\Texture\\main_image.bmp", m_LogoTextureID);
 
 }
 

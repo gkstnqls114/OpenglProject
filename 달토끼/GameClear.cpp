@@ -12,12 +12,12 @@ CGameClear::CGameClear(CSceneManager* const changer)
 {
 	SoundManager.AddSound(
 		"GameClearBGM"
-		, "./Sound/GameClearBGM/Baauer-01-Harlem Shake.mp3"
+		, ".\\Sound\\GameClearBGM\\Baauer-01-Harlem Shake.mp3"
 		, SoundType::Stream
 	);
 
 	m_textureStroage = new CTextureStorage;
-	m_textureStroage->StoreBitmap("Background.bmp", m_BackgroundTextureID);
+	m_textureStroage->StoreBitmap(".\\Texture\\Background.bmp", m_BackgroundTextureID);
 
 	m_pSceneManager = changer;
 
