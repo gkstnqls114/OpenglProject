@@ -6,8 +6,8 @@ class RotateMatrix;
 class CEXIT_word
 {
 	CVector3D<> m_InitPosition;
-
 	CVector3D<> m_Position;
+
 	CObjModel* m_model{ nullptr };
 	RotateMatrix* m_matrix{ nullptr };
 

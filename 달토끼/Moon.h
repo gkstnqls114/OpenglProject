@@ -6,6 +6,10 @@ class CMediator;
 
 class CMoon
 {
+	const float m_Scale{ 0.7 };
+	CVector3D<> m_InitPosition;
+	CVector3D<> m_Position;
+
 	static CObjModel* m_Moon;
 
 	CMediator*		m_pMediator{ nullptr };

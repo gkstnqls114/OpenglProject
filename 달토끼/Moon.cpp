@@ -1,4 +1,5 @@
 #include "pch.h"
+#include "SceneManager.h"
 #include "ObjModel.h"
 #include "RotateMatrix.h"
 #include "Moon.h"
@@ -44,12 +45,14 @@ void CMoon::Initialize()
 
 void CMoon::SetPos(const CVector3D<>& rhs)
 {
+	m_Position = rhs;
 	//m_Matrix->Set_Translate(rhs);
 	//m_Matrix->Set_Scale(0.7);
 }
 
 void CMoon::SetPos(CVector3D<>&& rhs)
 {
+	m_Position = rhs;
 	//m_Matrix->Set_Translate(rhs);
 	//m_Matrix->Set_Scale(0.7);
 }
@@ -59,10 +62,12 @@ void CMoon::Update()
 	if (IsGameStart) {
 		m_Matrix->Calu_Rotate(6, 0, 1, 0);
 		//m_Matrix->Calu_Tranlate(CVector3D<>(0, 5, 0));
+		m_Position.y += 5;
 
-		//if (m_Matrix->Get_Tranlate_Y() > 400) {
+		if (m_Position.y > 400) {
+			CSceneManager::GetInstance()->ChangeToGame();
 			//m_pMediator->GameScene();
-		//}
+		}
 
 		return;
 	}
@@ -77,6 +82,8 @@ void CMoon::Render()
 
 	glColor3f(LIGHTRGB.x, LIGHTRGB.y, LIGHTRGB.z);
 	glPushMatrix();
+	glScalef(m_Scale, m_Scale, m_Scale);
+	glTranslatef(m_Position.x, m_Position.y, m_Position.z);
 	m_Matrix->Rotate();
 	m_Moon->Render();
 	glPopMatrix();
@@ -95,6 +102,7 @@ void CMoon::Float()
 
 	GLdouble MoveY = Interpolation(m_BeginY, m_EndY, m_Time);
 	//m_Matrix->Calu_Tranlate(CVector3D<>(0, MoveY, 0));
+	m_Position.y += MoveY;
 }
 
 void CMoon::Init_MainScene()

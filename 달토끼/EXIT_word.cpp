@@ -12,10 +12,11 @@ CEXIT_word::CEXIT_word(const CVector3D<>& Pos)
 	m_model->LoadObj(".\\OBJModel\\EXITWORD.obj");
 	m_model->LoadTexture(".\\Texture\\EXITWORD.bmp");
 
+	//m_matrix->Set_Translate(m_Position);
 	m_Position = Pos;
 	m_InitPosition = Pos;
+
 	m_matrix = new RotateMatrix;
-	//m_matrix->Set_Translate(m_Position);
 }
 
 CEXIT_word::~CEXIT_word()
@@ -53,13 +54,15 @@ void CEXIT_word::Update()
 	}
 
 	SizeTime += 0.03f;
-	NowSize = Interpolation(BeginSize, EndSize, SizeTime);
 
 	//m_matrix->Set_Scale(NowSize);
+	NowSize = Interpolation(BeginSize, EndSize, SizeTime);
+
 }
 
-void CEXIT_word::Scale(const float & NowSize)
+void CEXIT_word::Scale(const float & Size)
 {
+	NowSize = Size;
 	//m_matrix->Calu_Scale(NowSize);
 }
 
