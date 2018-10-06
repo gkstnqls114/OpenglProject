@@ -275,6 +275,8 @@ void CPlayer::WaitCamera()
 
 void CPlayer::AutoWaiting()
 {
+	if (IsGameClear())return;
+
 	if(AutoWaitingState.IsPossibleUpdate()) {
 		Nofity_PlayerAutoJumping();
 	}
@@ -282,6 +284,7 @@ void CPlayer::AutoWaiting()
 
 void CPlayer::StateChange_FrontJump()
 {
+	if (IsGameClear())return;
 	m_MyBoardLength += 1;
 	m_prevKeySide = m_MyKeySide;
 	m_MyKeySide.IsFront();
@@ -290,6 +293,8 @@ void CPlayer::StateChange_FrontJump()
 
 void CPlayer::StateChange_RightJump()
 {
+	if (IsGameClear())return;
+
 	m_MyBoardLength += 1;
 	m_prevKeySide = m_MyKeySide;
 	m_MyKeySide.IsRight();
@@ -299,6 +304,8 @@ void CPlayer::StateChange_RightJump()
 
 void CPlayer::StateChange_LeftJump()
 {
+	if (IsGameClear())return;
+
 	m_MyBoardLength += 1;
 	m_prevKeySide = m_MyKeySide;
 	m_MyKeySide.IsLeft();
@@ -309,6 +316,8 @@ void CPlayer::StateChange_LeftJump()
 //WaitCamera인지 AutoJump인지, 혹은 정상적으로 점프가 완료했는지 확인한다.
 void CPlayer::StateChange_Wait()
 {
+	if (IsGameClear())return;
+
 	if (m_PlayerState != &AutoWaitingState) {
 		// 현재 상태에 따라 rotate각도를 고정한다.
 		// -z 가 현재 토끼가 바라보는 방향이므로 전부 +180도를 한다.
@@ -336,7 +345,6 @@ void CPlayer::StateChange_Wait()
 		m_Pos.x = (m_MyBoardSide.Get_Side() - 1) * m_JumpProperty.Get_RoadDistanceX();
 		m_Pos.z = -m_MyBoardLength * m_JumpProperty.Get_JumpReach();
 	}
-
 
 	if (IsGetOutRoad()) {
 		StateChange_WaitCamera();
