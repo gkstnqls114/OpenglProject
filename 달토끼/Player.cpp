@@ -315,16 +315,17 @@ void CPlayer::StateChange_Wait()
 			std::cout << "Front Jump" << std::endl;
 			m_Matrix->Set_Rotate(180, 0, 1, 0);
 		}
-	}
 
-	m_Rabit_Body->Set_Scale(1.f, 1.f, 1.f);
-	m_Rabit_Body->ResetRotate();
-	m_Rabit_LeftFoot->ResetRotate();
-	m_Rabit_RightFoot->ResetRotate();
-	m_JumpProperty.Reset();
-	m_Pos.x = (m_MyBoardSide.Get_Side() - 1) * m_JumpProperty.Get_RoadDistanceX();
-	m_Pos.y = 0;
-	m_Pos.z = - m_MyBoardLength * m_JumpProperty.Get_JumpReach();
+
+		m_Rabit_Body->Set_Scale(1.f, 1.f, 1.f);
+		m_Rabit_Body->ResetRotate();
+		m_Rabit_LeftFoot->ResetRotate();
+		m_Rabit_RightFoot->ResetRotate();
+		m_JumpProperty.Reset();
+		m_Pos.x = (m_MyBoardSide.Get_Side() - 1) * m_JumpProperty.Get_RoadDistanceX();
+		m_Pos.y = 0;
+		m_Pos.z = -m_MyBoardLength * m_JumpProperty.Get_JumpReach();
+	}
 
 	if (IsGetOutRoad()) {
 		StateChange_WaitCamera();
