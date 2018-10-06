@@ -78,7 +78,6 @@ void CPlayer::Render()
 	glPushMatrix();
 		m_Matrix->Rotate();
 	glPushMatrix();
-		glScalef(m_Scale, m_Scale, m_Scale);
 		//glRotated(Tumblingdegree, 1, 0, 0);
 		m_Rabit_Body->Render();
 		m_Rabit_Ear->Render();
@@ -125,8 +124,7 @@ void CPlayer::Init_GameScene()
 	Reset_ModelRotate();
 
 	m_Matrix->Set_Rotate(180, 0, 1, 0);
-	//m_Matrix->Set_Scale(0.3);
-	//m_Matrix->ResetTranslate();
+	m_Pos = CVector3D<>(0.f, 0.f, 0.f);
 
 	m_PlayerState = &WaitingState;
 
@@ -316,17 +314,16 @@ void CPlayer::StateChange_Wait()
 			std::cout << "Front Jump" << std::endl;
 			m_Matrix->Set_Rotate(180, 0, 1, 0);
 		}
-
-
-		m_Rabit_Body->Set_Scale(1.f, 1.f, 1.f);
-		m_Rabit_Body->ResetRotate();
-		m_Rabit_LeftFoot->ResetRotate();
-		m_Rabit_RightFoot->ResetRotate();
-		m_JumpProperty.Reset();
-		m_Pos.x = (m_MyBoardSide.Get_Side() - 1) * m_JumpProperty.Get_RoadDistanceX();
-		m_Pos.y = 0;
-		m_Pos.z = -m_MyBoardLength * m_JumpProperty.Get_JumpReach();
 	}
+
+	m_Rabit_Body->Set_Scale(1.f, 1.f, 1.f);
+	m_Rabit_Body->ResetRotate();
+	m_Rabit_LeftFoot->ResetRotate();
+	m_Rabit_RightFoot->ResetRotate();
+	m_JumpProperty.Reset();
+	m_Pos.x = (m_MyBoardSide.Get_Side() - 1) * m_JumpProperty.Get_RoadDistanceX();
+	m_Pos.y = 0;
+	m_Pos.z = -m_MyBoardLength * m_JumpProperty.Get_JumpReach();
 
 	if (IsGetOutRoad()) {
 		StateChange_WaitCamera();

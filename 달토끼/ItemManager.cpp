@@ -1,6 +1,8 @@
 #include "pch.h"
 #include"Collision.h"
 
+#include "FootBoardManager.h"
+
 #include "NullItem.h"
 #include "Star.h"
 #include "Shield.h"
@@ -61,7 +63,6 @@ void ItemManager::Initialize(const int& num)
 	Change_Carrot(40);
 	Change_Carrot(50);
 	Change_Star(2);
-	Change_Shield(3);
 }
  
 const bool ItemManager::IsOutRange(const int& num) const noexcept
@@ -70,11 +71,12 @@ const bool ItemManager::IsOutRange(const int& num) const noexcept
 	else return false;
 }
 
-void ItemManager::Render()
+void ItemManager::Render(FootBoardManager* footboardManager)
 {
-	//for (const auto& item : m_ItemList) {
-	//	item->Render();
-	//}
+	int MaxIndex = min(footboardManager->Get_DisappearingBoardIndex() + 7, m_ItemLength);
+	for (int index = 0; index < m_ItemLength; ++index) {
+		m_ItemList[index][0].Render();
+	}
 }
 
 void ItemManager::TestRender()

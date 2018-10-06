@@ -2,6 +2,7 @@
 
 class Item;
 class ItemEffectManager;
+class FootBoardManager;
 
 class ItemManager
 {
@@ -21,7 +22,7 @@ public:
 
 	void Initialize(const int& num);
 	void Set_ItemEffectManager(ItemEffectManager& manager) { m_pItemEffectManager = &manager; };
-	void Render();
+	void Render(FootBoardManager* footboardManager);
 	void TestRender();
 	void Update();
 

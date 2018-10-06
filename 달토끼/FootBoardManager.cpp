@@ -140,22 +140,20 @@ const CVector3D<> FootBoardManager::Get_FirstPos() const noexcept
 	return m_pFootBoard[0][k_FrontIndex].Get_Pos();
 }
 
-const Side FootBoardManager::Get_Side(const int & len, const int & index) const noexcept
+const Side FootBoardManager::Get_Side(const int & len) const noexcept
 {
-	//반드시 수정
 	if (IsOutRange_Length(len)) return Side();
-	if (IsOutRange_Width(index)) return Side();
 
 	Side val;
-	if (index == k_FrontIndex) {
+	if (m_pFootBoard[len][k_FrontIndex].Get_IsExisted()) {
 		val.IsFront();
 		return val;
 	}
-	else if (index == k_LeftIndex) {
+	else if (m_pFootBoard[len][k_LeftIndex].Get_IsExisted()) {
 		val.IsLeft();
 		return val;
 	}
-	else if (index == k_RightIndex) {
+	else if (m_pFootBoard[len][k_RightIndex].Get_IsExisted()) {
 		val.IsRight();
 		return val;
 	}

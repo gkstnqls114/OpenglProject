@@ -35,9 +35,8 @@ Road::~Road()
 void Road::Render()
 {
 	glPushMatrix();
-	glScalef(m_Scale, m_Scale, m_Scale);
 	m_FootBoardManager.Render();
-	m_ItemManager.Render();
+	m_ItemManager.Render(&m_FootBoardManager);
 	glPopMatrix();
 }
 
@@ -100,12 +99,15 @@ void Road::Receive_PlayerJumpFinish(CPlayer* player)
 
 	// 반드시 수정
 	Side player_sideindex = player->Get_BoardSide();
-	Side road_sideindex = m_FootBoardManager.Get_Side(player->Get_BoardLength(), player_sideindex.Get_Side());
+	Side road_sideindex = m_FootBoardManager.Get_Side(player->Get_BoardLength());
 	const bool IsCorrectSide = player_sideindex.Get_Side() == road_sideindex.Get_Side();
 	if (!IsCorrectSide) {
-		//Test를 위해 주석합니다.
-		//player->StateChange_WaitCamera();
+		player->StateChange_WaitCamera();
 	}
+#ifdef _DEBUG
+	std::cout << "플레이어의 위치: " << player_sideindex.Get_Side() << std::endl;
+	std::cout << "해당 발판의 위치: " << road_sideindex.Get_Side() << std::endl << std::endl;
+#endif // _DEBUG
 }
 
 
