@@ -6,6 +6,9 @@
 #include "GameClear.h"
 #include "SceneManager.h"
 
+
+CSceneManager* CSceneManager::m_pCSceneManager{ nullptr };
+
 CSceneManager::CSceneManager()
 {
 	m_GameScene = new CGameScene(this);

@@ -27,7 +27,7 @@ void CGLFramework::Initialize(int argc, char ** argv, int width, int height, int
 	glutInitWindowPosition(x, y);
 	glutCreateWindow("MOON RABBIT");
 
-	m_SceneChager = new CSceneManager();
+	m_SceneChager = CSceneManager::GetInstance();
 	
 	//임시로 쓰이는 라이트값
 	//메인 라이트

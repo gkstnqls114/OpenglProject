@@ -119,8 +119,6 @@ void CMainScene::WordRender()
 		glEnd();
 	glClear(GL_DEPTH_BUFFER_BIT);
 
-	
-
 	//Ä¿¼­
 	glColor3f(1.f, 1.f, 1.f);
 	glPushMatrix();
@@ -143,8 +141,6 @@ CMainScene::CMainScene(CSceneManager* const changer)
 	);
 
 	m_pSceneManager = changer;
-
-	//m_pMediator = new CMediator(m_pSceneManager);
 
 	m_Camera = new CCamera();
 	m_Moon = new CMoon(m_pMediator);
@@ -178,7 +174,11 @@ void CMainScene::Initialize()
 	glDisable(GL_LIGHT2);
 	glDisable(GL_LIGHT3);
 
-	//m_pMediator->Init_MainScene();
+	m_Moon->Init_MainScene();
+	m_Earth->Init_MainScene();
+	m_PLAY->Init_MainScene();
+	m_EXIT->Init_MainScene();
+
 	m_Cursor = k_PLAY;
 	SelectCursor();
 	IsRotate = false;
@@ -266,14 +266,6 @@ void CMainScene::Timer(const int & value)
 
 void CMainScene::Update()
 {
-	//FMOD_System_Instance()->update();
-	//
-	//FMOD_System_Instance()->update(0.16, CVector3D<float>(1, 0, 0), CVector3D<float>(0, 1, 0), CVector3D<float>(0, 0, 0));
-	//if (PlayQueueSize() > 0) {
-	//	auto info = PopPlayQueue();
-	//	SoundManager.Play(info.first, info.second);
-	//}
-
 	m_Moon->Update();
 	m_Earth->Update();
 

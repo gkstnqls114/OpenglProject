@@ -12,6 +12,7 @@ CPLAY_word::CPLAY_word(const CVector3D<>& pos)
 	m_model->LoadObj(".\\OBJModel\\PLAYWORD.obj");
 	m_model->LoadTexture(".\\Texture\\PLAYWORD.bmp");
 
+	m_InitPosition = pos;
 	m_Position = pos;
 	m_matrix = new RotateMatrix;
 //	m_matrix->Set_Translate(m_Position);
@@ -58,6 +59,7 @@ void CPLAY_word::Update()
 void CPLAY_word::Init_MainScene()
 {
 	//m_matrix->Set_Translate(m_Position);
+	m_Position = m_InitPosition;
 	m_matrix->ResetRotate();
 	IsGameStart = false;
 }
@@ -68,8 +70,9 @@ void CPLAY_word::GameStart()
 	IsGameStart = true;
 }
 
-void CPLAY_word::Scale(const float & NowSize)
+void CPLAY_word::Scale(const float & size)
 {
+	NowSize = size;
 	//m_matrix->Calu_Scale(NowSize);
 }
 
