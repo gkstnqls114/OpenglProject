@@ -2,7 +2,6 @@
 #include "Scene.h"
 
 class CSceneManager;
-class CMediator;
 class CPlayer;
 class CCamera;
 class CGAMEOVER_word;
@@ -11,8 +10,6 @@ class CGameOver:
 	public Scene
 {
 	CSceneManager*		m_pSceneManager{ nullptr };
-
-	CMediator *			m_pMediator{ nullptr };
 
 	CCamera*			m_Camera{ nullptr };
 	CPlayer *			m_Player{ nullptr };

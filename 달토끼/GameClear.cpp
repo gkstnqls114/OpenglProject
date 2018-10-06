@@ -19,12 +19,10 @@ CGameClear::CGameClear(CSceneManager* const changer)
 	m_textureStroage = new CTextureStorage;
 	m_textureStroage->StoreBitmap(".\\Texture\\Background.bmp", m_BackgroundTextureID);
 
-	m_pSceneManager = changer;
-
 	m_Camera = new CCamera();
 	m_GAMECLEAR = new CGAMECLEAR_word(CVector3D<>(0, 200, -100));
 
-	m_earth = new CEarth(m_pMediator);
+	m_earth = new CEarth();
 	m_ClearObj = new CClearObject;
 }
 
@@ -45,7 +43,7 @@ void CGameClear::Initialize()
 	glDisable(GL_LIGHT2);
 	glEnable(GL_LIGHT3);
 
-
+	m_Camera->Init_GameClear();
 }
 
 void CGameClear::SoundStop()

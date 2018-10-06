@@ -78,6 +78,8 @@ public:
 	virtual void Receive_PlayerAutoWaiting(CPlayer* player) override {};
 	//////////////////////////////////Receive
 	
+	void Init_FistPerspective();
+	void Init_ThirdPerspective();
 	virtual void Init_MainScene();
 	virtual void Init_GameOver();
 	virtual void Init_GameClear();

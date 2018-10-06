@@ -106,6 +106,25 @@ void CGLFramework::Keyboard(unsigned char key, int x, int y)
 
 void CGLFramework::SpecialKeys(int key, int x, int y)
 {
+#ifdef _MASTER
+	if (key == GLUT_KEY_F5) {
+		std::cout << "Main" << std::endl;
+		m_SceneChager->ChangeToMain();
+	}
+	if (key == GLUT_KEY_F6) {
+		std::cout << "Game" << std::endl;
+		m_SceneChager->ChangeToGame();
+	}
+	if (key == GLUT_KEY_F7) {
+		std::cout << "Clear" << std::endl;
+		m_SceneChager->ChangeToGameClear();
+	}
+	if (key == GLUT_KEY_F8) {
+		std::cout << "Over" << std::endl;
+		m_SceneChager->ChangeToGameOver();
+	}
+#endif
+
 	if(m_SceneChager) m_SceneChager->SceneSpecialKeys(key, x, y);
 }
 

@@ -23,3 +23,5 @@ T Interpolation(T begin, T end, float time) {
 }
 
 const CVector3D<float> LIGHTRGB{ 1.f, 0.7f, 0.7f };
+
+#define _MASTER

@@ -21,10 +21,10 @@ void CEarth::DeleteModel()
 	m_Earth = nullptr;
 }
 
-CEarth::CEarth(CMediator*& mediator)
+CEarth::CEarth()
 {
 	InitModel();
-	m_pMediator = mediator;
+
 	m_Matrix = new RotateMatrix;
 }
 

@@ -10,8 +10,6 @@ class CEarth
 	const float m_Scale{ 1.f };
 	static CObjModel* m_Earth;
 
-	CMediator* m_pMediator{ nullptr };
-
 	RotateMatrix* m_Matrix{ nullptr };
 	GLdouble m_BeginY{ 0.f };
 	GLdouble m_EndY{ 1.f };
@@ -25,7 +23,7 @@ private:
 
 
 public:
-	CEarth(CMediator*& mediator);
+	CEarth();
 	~CEarth();
 	void SetPos(const CVector3D<>& rhs);
 	void SetPos(CVector3D<>&& rhs);

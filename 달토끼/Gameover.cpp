@@ -27,9 +27,9 @@ CGameOver::CGameOver(CSceneManager* const changer)
 
 CGameOver::~CGameOver()
 {
-	delete[] m_Camera;
-	delete[] m_Player;
-	delete[] m_GAMEOVER;
+	delete m_Camera;
+	delete m_Player;
+	delete m_GAMEOVER;
 }
 
 void CGameOver::Initialize()
@@ -41,6 +41,8 @@ void CGameOver::Initialize()
 	glEnable(GL_LIGHT2);
 	glDisable(GL_LIGHT3);
 
+	m_Camera->Init_GameOver();
+	m_Player->Init_GameOver();
 }
 
 void CGameOver::SoundStop()

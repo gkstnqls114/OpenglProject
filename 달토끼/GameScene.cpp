@@ -109,7 +109,7 @@ CGameScene::CGameScene(CSceneManager* const changer)
 	m_Skybox = new CSkybox(LastZ);
 
 	m_Moon = new CMoon(m_pMediator);
-	m_Earth = new CEarth(m_pMediator);
+	m_Earth = new CEarth();
 
 	Initialize();
 }
@@ -295,14 +295,10 @@ void CGameScene::SpecialKeys(const int& key, const int& x, const int& y)
 	if (key == GLUT_KEY_F1) {
 		if (Start) return;
 		if (Perspective) {
-			m_Camera->Initialize(CVector3D<>(0.f, 0.f, 0.f), 130, 0.1f, 600.f, 60);
-			m_Camera->Rotate(25, 20);
-			m_Camera->LookAt();
+			m_Camera->Init_FistPerspective();
 		}
 		else {
-			m_Camera->Initialize(CVector3D<>(0.f, 0.f, 0.f), 100, 0.1f, 600.f, 60);
-			m_Camera->Rotate(0, 20);
-			m_Camera->LookAt();
+			m_Camera->Init_ThirdPerspective();
 		}
 		Perspective = !Perspective;
 	}

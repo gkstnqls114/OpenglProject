@@ -12,9 +12,6 @@ class CTextureStorage;
 class CGameClear :
 	public Scene
 {
-	CSceneManager*		m_pSceneManager{ nullptr };
-
-	CMediator *			m_pMediator{ nullptr };
 	CTextureStorage*	m_textureStroage{ nullptr };
 
 

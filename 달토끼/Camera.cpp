@@ -169,6 +169,20 @@ void CCamera::Receive_PlayerWaitCamera(CPlayer * player)
 	}
 }
 
+void CCamera::Init_FistPerspective()
+{
+	Initialize(CVector3D<>(0.f, 0.f, 0.f), 100, 0.1f, 1500.f, 60);
+	Rotate(0, 20);
+	LookAt();
+}
+
+void CCamera::Init_ThirdPerspective()
+{
+	Initialize(CVector3D<>(0.f, 0.f, 0.f), 700, 0.1f, 1500.f, 60);
+	Rotate(25, 20);
+	LookAt();
+}
+
 void CCamera::Init_MainScene()
 {
 	Initialize(CVector3D<>(0.f, 0.f, 0.f), 500, 0.1f, 1000.f, 60);

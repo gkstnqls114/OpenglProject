@@ -150,7 +150,7 @@ CMainScene::CMainScene(CSceneManager* const changer)
 
 	m_Camera = new CCamera();
 	m_Moon = new CMoon(m_pMediator);
-	m_Earth = new CEarth(m_pMediator);
+	m_Earth = new CEarth();
 	m_PLAY = new CPLAY_word(CVector3D<>(- 150, -300, 0));
 	m_EXIT = new CEXIT_word(CVector3D<>(150, -300, 0));
 
