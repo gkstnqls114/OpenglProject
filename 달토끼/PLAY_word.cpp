@@ -28,9 +28,9 @@ CPLAY_word::~CPLAY_word()
 void CPLAY_word::Render()
 {
 	glPushMatrix();
-	glScalef(NowSize, NowSize, 1.f);
 	glTranslatef(m_Position.x, m_Position.y, m_Position.z);
 	m_matrix->Rotate();
+	glScalef(NowSize, NowSize, NowSize);
 	m_model->Render();
 	glPopMatrix();
 }

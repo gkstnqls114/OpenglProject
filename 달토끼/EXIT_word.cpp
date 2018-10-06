@@ -12,7 +12,6 @@ CEXIT_word::CEXIT_word(const CVector3D<>& Pos)
 	m_model->LoadObj(".\\OBJModel\\EXITWORD.obj");
 	m_model->LoadTexture(".\\Texture\\EXITWORD.bmp");
 
-	//m_matrix->Set_Translate(m_Position);
 	m_Position = Pos;
 	m_InitPosition = Pos;
 
@@ -29,9 +28,9 @@ void CEXIT_word::Render()
 {
 	glColor3f(LIGHTRGB.x, LIGHTRGB.y, LIGHTRGB.z);
 	glPushMatrix();
-	glScalef(NowSize, NowSize, 1.f);
 	glTranslatef(m_Position.x, m_Position.y, m_Position.z);
 	m_matrix->Rotate();
+	glScalef(NowSize, NowSize, NowSize);
 	m_model->Render();
 	glPopMatrix();
 }
@@ -41,7 +40,6 @@ void CEXIT_word::Update()
 	if (IsGameStart) {
 		//내려간다
 		m_Position.y -= 5;
-		//m_matrix->Calu_Tranlate(CVector3D<>(0, -5, 0));
 	}
 
 	if (!IsSelected) return;
@@ -55,7 +53,6 @@ void CEXIT_word::Update()
 
 	SizeTime += 0.03f;
 
-	//m_matrix->Set_Scale(NowSize);
 	NowSize = Interpolation(BeginSize, EndSize, SizeTime);
 
 }
@@ -63,7 +60,6 @@ void CEXIT_word::Update()
 void CEXIT_word::Scale(const float & Size)
 {
 	NowSize = Size;
-	//m_matrix->Calu_Scale(NowSize);
 }
 
 void CEXIT_word::NotSelected()

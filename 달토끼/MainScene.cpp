@@ -32,7 +32,9 @@ void CMainScene::SelectCursor()
 	if (m_Cursor == k_PLAY) {
 		m_CursorPos = m_PLAY->Get_Pos();
 		m_CursorPos.y += 100;
-		//m_pMediator->Cursor_PLAY();
+
+		m_PLAY->Selected();
+		m_EXIT->NotSelected();
 
 		if (Nowdegree < 360 && Nowdegree >= 180) {
 			IsClockWise = false;
@@ -44,7 +46,9 @@ void CMainScene::SelectCursor()
 	else if (m_Cursor == k_EXIT) {
 		m_CursorPos = m_EXIT->Get_Pos();
 		m_CursorPos.y += 100;
-		//m_pMediator->Cursor_EXIT();
+
+		m_PLAY->NotSelected();
+		m_EXIT->Selected();
 
 		if (Nowdegree < 180 && Nowdegree >= 0) {
 			IsClockWise = false;
@@ -177,7 +181,10 @@ void CMainScene::Initialize()
 	m_Moon->Init_MainScene();
 	m_Earth->Init_MainScene();
 	m_PLAY->Init_MainScene();
+	m_PLAY->Selected();
+
 	m_EXIT->Init_MainScene();
+	m_EXIT->NotSelected();
 
 	m_Cursor = k_PLAY;
 	SelectCursor();
