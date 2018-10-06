@@ -1,4 +1,5 @@
 #include "pch.h"
+#include "SceneManager.h"
 #include "Player.h"
 #include "Camera.h"
 
@@ -165,7 +166,12 @@ void CCamera::Receive_PlayerWaitCamera(CPlayer * player)
 
 	bool Finish = !Far && !verticalMove && !horizontalMove;
 	if (Finish) {
-		player->StateChange_Fall();
+		if (player->IsGameClear()) {
+			CSceneManager::GetInstance()->ChangeToGameClear();
+		}
+		else {
+			player->StateChange_Fall();
+		}
 	}
 }
 

@@ -97,17 +97,24 @@ void Road::Receive_PlayerJumpFinish(CPlayer* player)
 {
 	m_FootBoardManager.Add_DisappearingIndex(*player);
 
-	// 반드시 수정
 	Side player_sideindex = player->Get_BoardSide();
 	Side road_sideindex = m_FootBoardManager.Get_Side(player->Get_BoardLength());
+
+
 	const bool IsCorrectSide = player_sideindex.Get_Side() == road_sideindex.Get_Side();
 	if (!IsCorrectSide) {
 		player->StateChange_WaitCamera();
 	}
+
+	const bool IsGameClear = (player->Get_BoardLength() + 1)== (m_RoadLength);
+	if (IsGameClear && IsCorrectSide) {
 #ifdef _DEBUG
-	std::cout << "플레이어의 위치: " << player_sideindex.Get_Side() << std::endl;
-	std::cout << "해당 발판의 위치: " << road_sideindex.Get_Side() << std::endl << std::endl;
-#endif // _DEBUG
+		std::cout << player->Get_BoardLength() << " , " << m_RoadLength << std::endl;
+#endif // !_DEBUG
+
+		player->SetClear();
+		player->StateChange_WaitCamera();
+	}
 }
 
 
@@ -144,25 +151,3 @@ void Road::Receive_PlayerAutoWaiting(CPlayer * player)
 		player->StateChange_RightJump();
 	}
 }
-
-//void Road::Player_JumpFinish(int playerside)
-//{
-	//플레이어 위치가 올바른 곳인지 확인
-	/*bool IsWrongPos = m_pFootBoard[m_PlayerBoardIndex].GetSide() != playerside;
-	if (IsWrongPos) {
-		m_pMediator->Player_Dead();
-		return;
-	}
-	bool IsGameClear = m_PlayerBoardIndex == (m_boardNum - 1);
-	if (IsGameClear) {
-		m_pFootBoard[m_boardNum - 1].IsNotLight();
-		return;
-	}
-
-	if (m_PlayerBoardIndex - 2 < 0) {
-		m_DisappearingBoardIndex = 0;
-	}
-	else {
-		m_DisappearingBoardIndex = m_PlayerBoardIndex - 2;
-	}*/
-//}

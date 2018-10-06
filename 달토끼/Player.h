@@ -36,6 +36,7 @@ class CPlayer
 
 	//플레이어 위치
 	CVector3D<> m_Pos;
+	bool m_bGameClear{ false };
 	RotateMatrix* m_Matrix{ nullptr };
 	GLdouble m_CollideY{ 30 }; /* 플레이어 Y 위치에 이 값을 더해 충돌을 계산해야 합니다*/
 	int m_playerRadius{ 30 };
@@ -140,9 +141,11 @@ public:
 	const CVector3D<GLdouble> Get_CollidPos() const noexcept { return CVector3D<>(m_Pos.x, m_Pos.y + m_CollideY, m_Pos.z); }
 	const int Get_Radius() const noexcept { return m_playerRadius; }
 	const bool IsAutoWaiting() const noexcept;
+	const bool IsGameClear() const noexcept { return m_bGameClear; }
 	/////////////////////////////////GET
 
 	/////////////////////////////////SET
+	void SetClear() { m_bGameClear = true; };
 	void RotateX(const int degree);
 	void RotateY(const int degree);
 	void RotateZ(const int degree);

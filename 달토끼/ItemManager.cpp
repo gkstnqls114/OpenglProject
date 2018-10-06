@@ -57,10 +57,10 @@ void ItemManager::Initialize(const int& num)
 		m_ItemList[index] = new NullItem;
 	}
 	Change_Carrot(1);
-	Change_Carrot(10);
+	/*Change_Carrot(10);
 	Change_Carrot(20);
 	Change_Carrot(30);
-	Change_Carrot(40);
+	Change_Carrot(40);*/
 	//Change_Carrot(50);
 	Change_Star(2);
 }

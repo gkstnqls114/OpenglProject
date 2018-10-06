@@ -128,6 +128,7 @@ void CPlayer::Init_GameScene()
 	m_Pos = CVector3D<>(0.f, 0.f, 0.f);
 
 	m_PlayerState = &WaitingState;
+	m_bGameClear = false;
 
 	m_MyBoardLength = 0;
 	m_prevKeySide.IsFront();
@@ -136,6 +137,8 @@ void CPlayer::Init_GameScene()
 
 void CPlayer::Init_GameOver()
 {
+	m_bGameClear = false;
+
 	m_Rabit_Body->SetTextuerIDindex(1);
 	m_Rabit_LeftFoot->Reset();
 	m_Rabit_RightFoot->Reset();
@@ -208,6 +211,9 @@ float CPlayer::BodyRotateDegree()
 
 void CPlayer::FrontJump()
 {
+	if (IsGameClear())return;
+
+
 	Calculate_FrontJump();
 	//만약 오토점프중이라면 다시 한번 더 호출한다.
 	if (AutoWaitingState.Get_IsUsing()) {
@@ -219,6 +225,8 @@ void CPlayer::FrontJump()
 
 void CPlayer::RightJump()
 {
+	if (IsGameClear())return;
+
 	Calculate_RightJump();
 	//만약 오토점프중이라면 다시 한번 더 호출한다.
 	if (AutoWaitingState.Get_IsUsing()) {
@@ -230,6 +238,7 @@ void CPlayer::RightJump()
 
 void CPlayer::LeftJump()
 {
+	if (IsGameClear())return;
 	Calculate_LeftJump();
 	//만약 오토점프중이라면 다시 한번 더 호출한다.
 	if (AutoWaitingState.Get_IsUsing()) {
@@ -328,18 +337,18 @@ void CPlayer::StateChange_Wait()
 		m_Pos.z = -m_MyBoardLength * m_JumpProperty.Get_JumpReach();
 	}
 
+
 	if (IsGetOutRoad()) {
 		StateChange_WaitCamera();
 	}
-	else if (IsAutoWaiting()) {
-#ifdef _DEBUG
-		std::cout << "오토 중" << std::endl;
-#endif
+
+	if (IsAutoWaiting() && !m_bGameClear) {
 		m_PlayerState = &AutoWaitingState;
 	}
-	else {
+	else if (!m_bGameClear) {
 		m_PlayerState = &WaitingState;
 	}
+
 
 	Notify_PlayerJumpFinish();
 }
@@ -362,9 +371,6 @@ void CPlayer::StateChange_Dead()
 
 void CPlayer::StateChange_AutoWaiting()
 {
-#ifdef _DEBUG
-	std::cout << "오토 점프 실행" << std::endl;
-#endif
 	AutoWaitingState.Initialize();
 }
 
