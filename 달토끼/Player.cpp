@@ -2,6 +2,7 @@
 #include "ObjModel.h"
 #include "RotateMatrix.h"
 
+#include "SceneManager.h"
 #include "PlayerObserver.h"
 #include "PlayerSubject.h"
 #include "PlayerState.h"
@@ -244,6 +245,7 @@ void CPlayer::Fall()
 	m_Pos.y -= 3;
 
 	if (m_Pos.y <= -200) {
+		CSceneManager::GetInstance()->ChangeToGameOver();
 		StateChange_Dead();
 	}
 }
@@ -314,27 +316,32 @@ void CPlayer::StateChange_Wait()
 			std::cout << "Front Jump" << std::endl;
 			m_Matrix->Set_Rotate(180, 0, 1, 0);
 		}
-	}
 
-	m_Rabit_Body->Set_Scale(1.f, 1.f, 1.f);
-	m_Rabit_Body->ResetRotate();
-	m_Rabit_LeftFoot->ResetRotate();
-	m_Rabit_RightFoot->ResetRotate();
-	m_JumpProperty.Reset();
-	m_Pos.x = (m_MyBoardSide.Get_Side() - 1) * m_JumpProperty.Get_RoadDistanceX();
-	m_Pos.y = 0;
-	m_Pos.z = -m_MyBoardLength * m_JumpProperty.Get_JumpReach();
+		m_Rabit_Body->Set_Scale(1.f, 1.f, 1.f);
+		m_Rabit_Body->ResetRotate();
+		m_Rabit_LeftFoot->ResetRotate();
+		m_Rabit_RightFoot->ResetRotate();
+		m_JumpProperty.Reset();
+
+		m_Pos.y = 0;
+		m_Pos.x = (m_MyBoardSide.Get_Side() - 1) * m_JumpProperty.Get_RoadDistanceX();
+		m_Pos.z = -m_MyBoardLength * m_JumpProperty.Get_JumpReach();
+	}
 
 	if (IsGetOutRoad()) {
 		StateChange_WaitCamera();
 	}
 	else if (IsAutoWaiting()) {
+#ifdef _DEBUG
+		std::cout << "오토 중" << std::endl;
+#endif
 		m_PlayerState = &AutoWaitingState;
 	}
 	else {
 		m_PlayerState = &WaitingState;
-		Notify_PlayerJumpFinish();
 	}
+
+	Notify_PlayerJumpFinish();
 }
 
 void CPlayer::StateChange_WaitCamera()
@@ -355,6 +362,9 @@ void CPlayer::StateChange_Dead()
 
 void CPlayer::StateChange_AutoWaiting()
 {
+#ifdef _DEBUG
+	std::cout << "오토 점프 실행" << std::endl;
+#endif
 	AutoWaitingState.Initialize();
 }
 

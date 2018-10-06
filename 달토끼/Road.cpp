@@ -122,17 +122,18 @@ void Road::Receive_PlayerJumping(CPlayer * player)
 // road에 적절한 위치로 점프 시킵니다.
 void Road::Receive_PlayerAutoWaiting(CPlayer * player)
 {
-	int playerLenght = player->Get_BoardLength() - 1;
+	int playerLenght = player->Get_BoardLength() + 1;
 	Side playerSide = player->Get_BoardSide();
 	Side footboardSide = m_FootBoardManager.Get_IsExisted(playerLenght);
+
+	Side futureMove = playerSide.FutureMoveSide(footboardSide);
 
 #if _DEBUG
 	std::cout << "플레이어가 이동 거리: " << playerLenght << std::endl;
 	std::cout << "플레이어의 Side: " << playerSide.Get_Side() << std::endl;
 	std::cout << "플레이어가 갈 발판의 Side: " << footboardSide.Get_Side() << std::endl;
+	std::cout << "이동은 어디로? " << futureMove.Get_Side() << std::endl;
 #endif
-	Side futureMove = playerSide.FutureMoveSide(footboardSide);
-	
 	if (futureMove.Get_IsFront()) {
 		player->StateChange_FrontJump();
 	}

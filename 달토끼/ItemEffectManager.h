@@ -16,8 +16,8 @@ public:
 	ItemEffectManager(FootBoardManager& road, CPlayer& player) : m_pFootboardManager(&road), m_pPlayer(&player) {};
 	~ItemEffectManager() {}
 
-	void Set_pRoad(FootBoardManager& road) { m_pFootboardManager = &road; }
-	void Set_pPlayer(CPlayer& player) { m_pPlayer = &player; }
+	void Set_pRoad(FootBoardManager* road) { m_pFootboardManager = road; }
+	void Set_pPlayer(CPlayer* player) { m_pPlayer = player; }
 
 	void ItemEffect_Star();
 	void ItemEffect_Carrat();

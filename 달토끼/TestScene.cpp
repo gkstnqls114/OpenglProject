@@ -14,8 +14,8 @@ CTestScene::CTestScene()
 	m_Camera = new CCamera();
 	m_Player = new CPlayer();
 	m_Road = new Road(100);
-	m_ItemEffectManager.Set_pPlayer(*m_Player);
-	m_ItemEffectManager.Set_pRoad(m_Road->Get_FootBoardManager());
+	m_ItemEffectManager.Set_pPlayer(m_Player);
+	m_ItemEffectManager.Set_pRoad(&m_Road->Get_FootBoardManager());
 	Item::Set_pItemEffectManager(m_ItemEffectManager);
 
 	m_Camera->Initialize(CVector3D<>(0.f, 0.f, 0.f), 400, 1, 1500.f, 60);
@@ -23,6 +23,7 @@ CTestScene::CTestScene()
 
 	m_Player->Set_PlayerSubjer(&m_PlayerObserver);
 	m_Road->Set_RoadObserver(&m_RoadObserver);
+
 	m_PlayerObserver.Add_Observer(m_Camera);
 	m_PlayerObserver.Add_Observer(m_Road);
 	m_RoadObserver.Add_Observer(m_Player);

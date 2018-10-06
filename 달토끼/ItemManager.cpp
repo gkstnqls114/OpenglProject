@@ -61,7 +61,7 @@ void ItemManager::Initialize(const int& num)
 	Change_Carrot(20);
 	Change_Carrot(30);
 	Change_Carrot(40);
-	Change_Carrot(50);
+	//Change_Carrot(50);
 	Change_Star(2);
 }
  

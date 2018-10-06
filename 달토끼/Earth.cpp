@@ -48,12 +48,7 @@ void CEarth::Update()
 {
 	if (IsGameStart) {
 		m_Matrix->Calu_Rotate(6, 0, 1, 0);
-		//m_Matrix->Calu_Tranlate(CVector3D<>(0, 5, 0));
 		m_Position.y += 5;
-
-		//if (m_Matrix->Get_Tranlate_Y() > 400) {
-			//m_pMediator->GameScene();
-		//}
 
 		return;
 	}

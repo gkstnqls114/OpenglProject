@@ -42,6 +42,8 @@ void CAutoWaiting::Reset()
 
 const bool CAutoWaiting::IsPossibleUpdate()
 {
+	return true;
+
 	if (m_WaitTime == m_MAXWaitTime) {
 		m_WaitTime = 0;
 		return true;
