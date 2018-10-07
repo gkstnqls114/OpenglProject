@@ -350,8 +350,6 @@ void CPlayer::StateChange_Wait()
 		}
 	}
 
-
-
 	m_Rabit_Body->Set_Scale(1.f, 1.f, 1.f);
 	m_Rabit_Body->ResetRotate();
 	m_Rabit_LeftFoot->ResetRotate();

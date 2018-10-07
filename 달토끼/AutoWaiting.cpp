@@ -19,7 +19,7 @@ void CAutoWaiting::Initialize()
 
 void CAutoWaiting::Update(CPlayer & player)
 {
-	if (m_JumpNum > MaxJum) {
+	if (m_JumpNum >= MaxJum) {
 		Reset();
 		player.StateChange_Wait();
 		return;
