@@ -348,21 +348,23 @@ void CPlayer::StateChange_Wait()
 			std::cout << "FrontJump" << std::endl;
 			m_Matrix->Set_Rotate(180, 0, 1, 0);
 		}
-
-		m_Rabit_Body->Set_Scale(1.f, 1.f, 1.f);
-		m_Rabit_Body->ResetRotate();
-		m_Rabit_LeftFoot->ResetRotate();
-		m_Rabit_RightFoot->ResetRotate();
-		m_JumpProperty.Reset();
-
-		m_Pos.y = 0;
-		m_Pos.x = (m_MyBoardSide.Get_Side() - 1) * m_JumpProperty.Get_RoadDistanceX();
-		m_Pos.z = -m_MyBoardLength * m_JumpProperty.Get_JumpReach();
-#ifdef _DEBUG
-		std::cout << "현재 토끼 이동 위치.. :" << m_MyBoardSide.Get_Side() - 1 << "(-1: 왼쪽, 0: 가운데, 1 :오른쪽) " << m_JumpProperty.Get_RoadDistanceX() << std::endl;
-		std::cout << "위치: " << m_Pos.x << " " << m_Pos.y << " " << m_Pos.z << std::endl;
-#endif
 	}
+
+
+
+	m_Rabit_Body->Set_Scale(1.f, 1.f, 1.f);
+	m_Rabit_Body->ResetRotate();
+	m_Rabit_LeftFoot->ResetRotate();
+	m_Rabit_RightFoot->ResetRotate();
+	m_JumpProperty.Reset();
+
+	m_Pos.y = 0;
+	m_Pos.x = (m_MyBoardSide.Get_Side() - 1) * m_JumpProperty.Get_RoadDistanceX();
+	m_Pos.z = -m_MyBoardLength * m_JumpProperty.Get_JumpReach();
+#ifdef _DEBUG
+	std::cout << "현재 토끼 이동 위치.. :" << m_MyBoardSide.Get_Side() - 1 << "(-1: 왼쪽, 0: 가운데, 1 :오른쪽) " << m_JumpProperty.Get_RoadDistanceX() << std::endl;
+	std::cout << "위치: " << m_Pos.x << " " << m_Pos.y << " " << m_Pos.z << std::endl;
+#endif
 
 	if (IsGetOutRoad()) {
 		StateChange_WaitCamera();
