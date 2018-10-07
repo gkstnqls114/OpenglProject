@@ -145,3 +145,10 @@ void Road::Receive_PlayerAutoWaiting(CPlayer * player)
 		player->StateChange_RightJump();
 	}
 }
+
+void Road::Init_GameScene()
+{
+	m_ItemManager.Initialize(m_RoadLength);
+	m_FootBoardManager.Initialize(m_RoadLength, m_ItemManager);
+	StateChange_Stop();
+}

@@ -94,6 +94,7 @@ public:
 	void Render();
 
 	void Reset_ModelRotate();
+	void SoundStop();
 
 	/////////////////////////////////Init
 	void Init_GameScene();

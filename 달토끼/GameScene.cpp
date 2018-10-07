@@ -80,16 +80,7 @@ CGameScene::CGameScene(CSceneManager* const changer)
 		, ".\\Sound\\GamePlayBGM\\Chew_Chew_Island_Main_Theme.mp3"
 		, SoundType::Stream
 	);
-	SoundManager.AddSound(
-		"JumpEffect"
-		, ".\\Sound\\Effect\\Jump.wav"
-		, SoundType::Effect2D
-	);
-	SoundManager.AddSound(
-		"FallEffect"
-		, ".\\Sound\\Effect\\Fall.wav"
-		, SoundType::Effect2D
-	);
+	
 
 
 	m_pSceneManager = changer;
@@ -159,13 +150,14 @@ void CGameScene::Initialize()
 	glEnable(GL_COLOR_MATERIAL);
 
 	//////////////////////////////////// 오브젝트 초기화
+	m_Road->Init_GameScene();
 	m_Camera->Init_GameScene();
 	m_Player->Init_GameScene();
 	// m_Moon->Init_GameScene();
 	// m_Earth->Init_GameScene();
 	//////////////////////////////////// 오브젝트 초기화
 
-	m_MapCamera->Initialize(CVector3D<>(0.f, 0.f, m_Road->Get_FirstPos().z * 5), 1000, 0.1f, 1500.f, 60);
+	m_MapCamera->Initialize(CVector3D<>(0.f, 0.f, m_Road->Get_FirstPos().z * 5), 1200, 0.1f, 1500.f, 90);
 	m_MapCamera->Rotate(0.f, 1.4f);
 	m_MapCamera->Rotate(90, 0);
 
@@ -183,8 +175,7 @@ void CGameScene::Initialize()
 void CGameScene::SoundStop()
 {
 	SoundManager.Stop("GameBGM");
-	SoundManager.Stop("JumpEffect");
-	SoundManager.Stop("FallEffect");
+	m_Player->SoundStop();
 }
 
 void CGameScene::Render()
@@ -198,7 +189,6 @@ void CGameScene::Render()
 
 	m_Skybox->Render();
 
-	RenderAxis();
 	m_Player->Render();
 	m_Road->Render();
 	m_Earth->Render();
@@ -231,11 +221,11 @@ void CGameScene::Update()
 	//m_Skybox->Update();
 	m_Earth->Update();
 	m_Moon->Update();
+	m_Road->Update();
 
 	if (!Start) return;
 	
 	m_Player->Update();
-	m_Road->Update();
 }
 
 void CGameScene::Reshape(const int& w, const int& h)
@@ -260,7 +250,6 @@ void CGameScene::Keyboard(const unsigned char& key, const int& x, const int& y)
 		Explain = true;
 		return;
 	}
-
 
 	if (key == '=' || key == '+') {
 		m_Camera->zoom(0.8f);
@@ -301,12 +290,15 @@ void CGameScene::SpecialKeys(const int& key, const int& x, const int& y)
 			m_Camera->Init_ThirdPerspective();
 		}
 		Perspective = !Perspective;
+		return;
 	}
 
 	if (key == GLUT_KEY_UP || key == GLUT_KEY_LEFT || key == GLUT_KEY_RIGHT) {
 		Start = true;
 	}
 
-	m_Road->StateChange_Disappear();
-	m_Player->SpecialKeys(key, x, y);
+	if (Start && Explain) {
+		m_Road->StateChange_Disappear();
+		m_Player->SpecialKeys(key, x, y);
+	}
 }

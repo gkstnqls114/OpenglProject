@@ -23,13 +23,21 @@ FootBoardManager::~FootBoardManager()
 
 void FootBoardManager::Set_FootBoardPos(ItemManager & itemmanager)
 {
-	if (m_pFootBoard) return;
 	JumpProperty::Initialize();
 
-	m_pFootBoard = new CFootBoard*[m_Length];
+	if (m_pFootBoard == nullptr) {
+		m_pFootBoard = new CFootBoard*[m_Length];
+		for (int index = 0; index < m_Length; ++index)
+		{
+			m_pFootBoard[index] = new CFootBoard[m_Width];
+		}
+	}
+
 	for (int index = 0; index < m_Length; ++index)
 	{
-		m_pFootBoard[index] = new CFootBoard[m_Width];
+		for (int x = 0; x < m_Width; ++x) {
+			m_pFootBoard[index][x].Reset();
+		}
 	}
 
 	GLdouble footboardY = -20;
@@ -84,6 +92,7 @@ void FootBoardManager::InitFootBoardModel()
 void FootBoardManager::Initialize(const int & num, ItemManager & itemManager)
 {
 	m_Length = num;
+	m_DisappearingBoardIndex = 0;
 	Set_FootBoardPos(itemManager);
 }
 

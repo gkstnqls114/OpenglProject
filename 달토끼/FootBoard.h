@@ -19,7 +19,7 @@ class CFootBoard
 
 	float		m_TextureAlpha		{1.f};
 	const float m_DropAlphaUnit		{ 0.3f };
-	//float		m_LightAlpha{ 0.5f };
+	float		m_LightAlpha{ 0.5f };
 
 	RotateMatrix* m_Matrix{ nullptr };
 
@@ -46,6 +46,8 @@ public:
 	void IsNotLight();
 	void LightDisappear();
 
+	void Reset();
+
 	void Render();
 	void Update();
 
@@ -57,6 +59,7 @@ public:
 
 	void Disappear_True() { IsDisappear = true; }
 	void IsExisted() { m_IsExisted = true; }
+	void NotExisted() { m_IsExisted = false; }
 };
 
 

@@ -24,8 +24,8 @@ void CFootBoard::RenderModel()
 
 	if (IsLast) {
 		///////////////////////////Test
-		//glColor4f(LIGHTRGB.x, LIGHTRGB.y, LIGHTRGB.z, m_LightAlpha);
-		//m_Light_obj->Render();
+		glColor4f(LIGHTRGB.x, LIGHTRGB.y, LIGHTRGB.z, m_LightAlpha);
+		m_Light_obj->Render();
 		///////////////////////////Test
 	}
 }
@@ -117,6 +117,14 @@ void CFootBoard::IsNotLight()
 void CFootBoard::LightDisappear()
 {
 	if (IsLightDisappear) {
-		//m_LightAlpha -= 0.01f;
+		m_LightAlpha -= 0.01f;
 	}
+}
+
+void CFootBoard::Reset()
+{
+	m_IsExisted = false;
+	m_TextureAlpha = 1.f;
+	DisappearTime = 0.f;
+	IsDisappear = false;
 }

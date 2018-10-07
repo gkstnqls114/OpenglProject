@@ -129,10 +129,10 @@ void CGameClear::Update()
 
 void CGameClear::Keyboard(const unsigned char & key, const int & x, const int & y)
 {
-
+	CSceneManager::GetInstance()->ChangeToMain();
 }
 
 void CGameClear::SpecialKeys(const int & key, const int & x, const int & y)
 {
-
+	CSceneManager::GetInstance()->ChangeToMain();
 }

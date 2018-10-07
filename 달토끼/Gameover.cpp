@@ -87,10 +87,10 @@ void CGameOver::Update()
 
 void CGameOver::Keyboard(const unsigned char & key, const int & x, const int & y)
 {
-
+	CSceneManager::GetInstance()->ChangeToMain();
 }
 
 void CGameOver::SpecialKeys(const int & key, const int & x, const int & y)
 {
-
+	CSceneManager::GetInstance()->ChangeToMain();
 }
