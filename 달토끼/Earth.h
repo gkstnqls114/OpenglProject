@@ -7,7 +7,7 @@ class RotateMatrix;
 class CEarth
 {
 	CVector3D<> m_Position;
-	const float m_Scale{ 1.f };
+	float m_Scale{ 1.f };
 	static CObjModel* m_Earth;
 
 	RotateMatrix* m_Matrix{ nullptr };
@@ -33,6 +33,7 @@ public:
 	void Float();
 
 	virtual void Init_MainScene();
+	virtual void Init_GameScene();
 	virtual void GameStart();
 };
 

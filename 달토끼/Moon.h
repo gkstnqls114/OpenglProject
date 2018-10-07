@@ -6,7 +6,7 @@ class CMediator;
 
 class CMoon
 {
-	const float m_Scale{ 0.7f };
+	float m_Scale{ 0.7f };
 	CVector3D<> m_InitPosition;
 	CVector3D<> m_Position;
 
@@ -38,6 +38,7 @@ public:
 	void Float();
 
 	virtual void Init_MainScene();
+	void Init_GameScene();
 	virtual void GameStart();
 };
 

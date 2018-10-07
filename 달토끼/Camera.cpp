@@ -139,11 +139,13 @@ void CCamera::Receive_PlayerJumping(CPlayer * player)
 {
 	CVector3D<> Move = player->Get_Pos();
 	Move.y = 0;
+	if (isMapCamera) Move.x = 0;
 	SetPosition(Move);
 }
 
 void CCamera::Receive_PlayerWaitCamera(CPlayer * player)
 {
+	if (isMapCamera) return;
 	float max_v = float(180 + Rotatedegree) * PI / 180.f;
 	float max_h = 0 * PI / 180.f;
 

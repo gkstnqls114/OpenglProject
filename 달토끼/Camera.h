@@ -29,6 +29,7 @@ class CCamera
 	//bool isPlayerDead{ false };
 	bool isGameClear{ false };
 	bool isAnimate{ false };
+	bool isMapCamera{ false };
 
 	float Rotatedegree{ 0 };
 
@@ -41,6 +42,7 @@ public:
 
 	~CCamera() = default;
 
+	void IsMapCamera() { isMapCamera = true; }
 	void Initialize(const CVector3D<> & pos, float distance, float zNear, float zFar, float fov);
 	//void Initialize(CVector3D<> && pos, float distance, float zNear, float zFar, float fov);
 

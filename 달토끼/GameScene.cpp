@@ -92,10 +92,11 @@ CGameScene::CGameScene(CSceneManager* const changer)
 	m_textureStroage->StoreBitmap(".\\Texture\\Explain.bmp", m_ExplainTextureID);
 
 	m_MapCamera = new CCamera();
+	m_MapCamera->IsMapCamera();
 	m_Camera = new CCamera();
 	m_Player = new CPlayer();
 
-	m_Road = new Road(10);
+	m_Road = new Road(20);
 	int LastZ = m_Road->Get_LastPos().z;
 	m_Skybox = new CSkybox(LastZ);
 
@@ -109,6 +110,7 @@ CGameScene::CGameScene(CSceneManager* const changer)
 	m_Player->Set_PlayerSubjer(&m_PlayerObserver);
 	m_Road->Set_RoadObserver(&m_RoadObserver);
 
+	m_PlayerObserver.Add_Observer(m_MapCamera);
 	m_PlayerObserver.Add_Observer(m_Camera);
 	m_PlayerObserver.Add_Observer(m_Road);
 	m_RoadObserver.Add_Observer(m_Player);
@@ -153,15 +155,15 @@ void CGameScene::Initialize()
 	m_Road->Init_GameScene();
 	m_Camera->Init_GameScene();
 	m_Player->Init_GameScene();
-	// m_Moon->Init_GameScene();
-	// m_Earth->Init_GameScene();
+	m_Moon->Init_GameScene();
+	m_Earth->Init_GameScene();
 	//////////////////////////////////// 오브젝트 초기화
 
 	m_MapCamera->Initialize(CVector3D<>(0.f, 0.f, m_Road->Get_FirstPos().z * 5), 1100, 0.1f, 1500.f, 90);
 	m_MapCamera->Rotate(0.f, 1.4f);
 	m_MapCamera->Rotate(90, 0);
 
-	GLdouble DownY = 100;
+	GLdouble DownY = 120;
 	CVector3D<> MoonPos = m_Road->Get_LastPos();
 	CVector3D<> EarthPos = m_Road->Get_FirstPos();
 	m_Earth->SetPos(CVector3D<>(EarthPos.x, EarthPos.y - DownY, EarthPos.z));
@@ -200,7 +202,7 @@ void CGameScene::Render()
 	glPushMatrix();
 	m_MapCamera->LookAt();
 	{
-		m_Road->TestRender();
+		m_Road->Render();
 		m_Player->Render();
 	}
 	glPopMatrix();
