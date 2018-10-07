@@ -68,7 +68,7 @@ const CVector3D<> Road::Get_FirstPos() const noexcept
 
 void Road::Disappear()
 {
-	m_FootBoardManager.Update();
+	m_FootBoardManager.Update(this, m_pRoadSubject);
 	m_ItemManager.Update();
 }
 

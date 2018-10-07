@@ -181,6 +181,8 @@ void CPlayer::Receive_DisappearFootBoard(Road * road)
 {
 	const bool IsOnFallBoard = m_MyBoardLength <= road->Get_DisappearingBoardIndex();
 	if (!IsOnFallBoard) return;
+
+	StateChange_WaitCamera();
 }
 
 void CPlayer::Notify_PlayerJumping()

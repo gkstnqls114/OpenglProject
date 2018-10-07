@@ -2,7 +2,9 @@
 
 class CFootBoard;
 class ItemManager;
+class RoadSubject;
 class CPlayer;
+class Road;
 
 class FootBoardManager
 {
@@ -23,7 +25,7 @@ public:
 	void Initialize(const int&, ItemManager&);
 	void TestRender();
 	void Render();
-	void Update();
+	void Update(Road* road, RoadSubject* roadSubject);
 
 	/////////////////////////////////Get
 	const int Get_DisappearingBoardIndex() const noexcept { return m_DisappearingBoardIndex; }

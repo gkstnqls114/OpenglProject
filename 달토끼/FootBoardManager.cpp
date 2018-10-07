@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "ItemManager.h"
+#include "RoadSubject.h"
 #include "FootBoard.h"
 #include "JumpProperty.h"
 #include "Player.h"
@@ -128,13 +129,14 @@ void FootBoardManager::Render()
 	glDisable(GL_BLEND);
 }
 
-void FootBoardManager::Update()
+void FootBoardManager::Update(Road* road, RoadSubject* roadSubject)
 {
 	for (int index = 0; index < m_Width; ++index) {
 		m_pFootBoard[m_DisappearingBoardIndex][index].Update();
 	}
 
 	if (Get_DisappearLength(m_DisappearingBoardIndex)) {
+		roadSubject->Notify_DisappearFootBoard(road);
 		m_DisappearingBoardIndex += 1;
 	}
 }
