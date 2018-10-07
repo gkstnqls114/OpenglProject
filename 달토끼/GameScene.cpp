@@ -157,7 +157,7 @@ void CGameScene::Initialize()
 	// m_Earth->Init_GameScene();
 	//////////////////////////////////// 오브젝트 초기화
 
-	m_MapCamera->Initialize(CVector3D<>(0.f, 0.f, m_Road->Get_FirstPos().z * 5), 1200, 0.1f, 1500.f, 90);
+	m_MapCamera->Initialize(CVector3D<>(0.f, 0.f, m_Road->Get_FirstPos().z * 5), 1100, 0.1f, 1500.f, 90);
 	m_MapCamera->Rotate(0.f, 1.4f);
 	m_MapCamera->Rotate(90, 0);
 
