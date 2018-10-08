@@ -110,18 +110,22 @@ void CGLFramework::SpecialKeys(int key, int x, int y)
 	if (key == GLUT_KEY_F5) {
 		std::cout << "Main" << std::endl;
 		m_SceneChager->ChangeToMain();
+		return;
 	}
 	if (key == GLUT_KEY_F6) {
 		std::cout << "Game" << std::endl;
 		m_SceneChager->ChangeToGame();
+		return;
 	}
 	if (key == GLUT_KEY_F7) {
 		std::cout << "Clear" << std::endl;
 		m_SceneChager->ChangeToGameClear();
+		return;
 	}
 	if (key == GLUT_KEY_F8) {
 		std::cout << "Over" << std::endl;
 		m_SceneChager->ChangeToGameOver();
+		return;
 	}
 #endif
 
