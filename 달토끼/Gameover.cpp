@@ -36,10 +36,13 @@ void CGameOver::Initialize()
 {
 	SoundManager.Play("GameOverBGM");
 
+	glEnable(GL_LIGHTING);
 	glDisable(GL_LIGHT0);
 	glDisable(GL_LIGHT1);
 	glEnable(GL_LIGHT2);
 	glDisable(GL_LIGHT3);
+
+	glEnable(GL_COLOR_MATERIAL);
 
 	m_Camera->Init_GameOver();
 	m_Player->Init_GameOver();
@@ -52,8 +55,6 @@ void CGameOver::SoundStop()
 
 void CGameOver::Render()
 {
-	RenderAxis();
-
 	glPushMatrix();
 		glScalef(0.3f, 0.3f, 0.3f);
 		glTranslatef(0.f, 10.f, 0.f);

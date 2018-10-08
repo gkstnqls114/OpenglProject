@@ -101,6 +101,8 @@ void CGameClear::Render()
 	glScaled(1.7f, 1.7f, 1.7f);
 	m_ClearObj->Render();
 	glPopMatrix();
+
+	glEnable(GL_BLEND);
 }
 
 void CGameClear::Reshape(const int & w, const int & h)

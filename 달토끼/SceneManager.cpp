@@ -12,14 +12,19 @@ CSceneManager* CSceneManager::m_pCSceneManager{ nullptr };
 CSceneManager::CSceneManager()
 {
 	m_GameScene = new CGameScene(this);
+	m_GameScene->Initialize();
 	m_GameScene->SoundStop();
+
 	m_MainScene = new CMainScene(this);
+	m_MainScene->Initialize();
 	m_MainScene->SoundStop();
-	//m_TestScene = new CTestScene();
-	//m_TestScene->SoundStop();
+
 	m_GameOverScene = new CGameOver(this);
+	m_GameOverScene->Initialize();
 	m_GameOverScene->SoundStop();
+
 	m_GameClearScene = new CGameClear(this);
+	m_GameClearScene->Initialize();
 	m_GameClearScene->SoundStop();
 
 	ChangeToGameOver();
