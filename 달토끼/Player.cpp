@@ -357,15 +357,12 @@ void CPlayer::StateChange_Wait()
 		// -z 가 현재 토끼가 바라보는 방향이므로 전부 +180도를 한다.
 		m_Matrix->ResetRotate();
 		if (m_PlayerState == &LeftJumpState) {
-			std::cout << "LeftJump" << std::endl;
 			m_Matrix->Set_Rotate(m_JumpProperty.Get_Rotatedegree() + 180, 0, 1, 0);
 		}
 		else if (m_PlayerState == &RightJumpState) {
-			std::cout << "Right" << std::endl;
 			m_Matrix->Set_Rotate(-m_JumpProperty.Get_Rotatedegree() + 180, 0, 1, 0);
 		}
 		else if (m_PlayerState == &FrontJumpState) {
-			std::cout << "FrontJump" << std::endl;
 			m_Matrix->Set_Rotate(180, 0, 1, 0);
 		}
 	}
