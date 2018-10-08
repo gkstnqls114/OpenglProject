@@ -6,6 +6,8 @@ class CTextureStorage;
 
 class CObjModel
 {
+	CVector3D<> m_Position;
+
 	int m_VertexNum{ 0 };
 	int m_TextureNum{ 0 };
 	int m_NormalNum{ 0 };
@@ -48,12 +50,8 @@ public:
 
 	void Rotate(const int& Nowdegree, const int& x, const int& y, const int& z);
 	void Rotate(const float& Nowdegree, const int& x, const int& y, const int& z);
-	void Translate(const CVector3D<>& rhs);
-	void Translate(CVector3D<>&& rhs);
-
+	
 	void ResetRotate();
 	
-	void Scale(const float& x, const float& y, const float& z);
-	void Set_Scale(const float& x, const float& y, const float& z);
 };
 

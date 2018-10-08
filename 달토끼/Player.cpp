@@ -91,10 +91,22 @@ void CPlayer::Render()
 		m_Matrix->Rotate();
 	glPushMatrix();
 		// glRotated(Tumblingdegree, 1, 0, 0);
+	
 		m_Rabit_Body->Render();
+		if (m_bGameOver) {
+			glPushMatrix();
+			glTranslatef(0.f, GAMEOVER_EarY, GAMEOVER_EarZ);
+		}
 		m_Rabit_Ear->Render();
+		if (m_bGameOver) glPopMatrix();
+
+		if (m_bGameOver) {
+			glPushMatrix();
+			glTranslatef(0.f, GAMEOVER_FootPosY, GAMEOVER_FootPosZ);
+		}
 		m_Rabit_LeftFoot->Render();
 		m_Rabit_RightFoot->Render();
+		if(m_bGameOver) glPopMatrix();
 	glPopMatrix();
 	glPopMatrix();
 	glPopMatrix();
@@ -148,6 +160,7 @@ void CPlayer::Init_GameScene()
 
 	m_PlayerState = &WaitingState;
 	m_bGameClear = false;
+	m_bGameOver = false;
 
 	m_MyBoardLength = 0;
 	m_prevKeySide.IsFront();
@@ -158,6 +171,11 @@ void CPlayer::Init_GameScene()
 void CPlayer::Init_GameOver()
 {
 	m_bGameClear = false;
+	m_bGameOver = true;
+
+	m_Pos.x = 0.f;
+	m_Pos.y = 30.f;
+	m_Pos.z = 0.f;
 
 	m_Rabit_Body->SetTextuerIDindex(1);
 	m_Rabit_LeftFoot->Reset();
@@ -165,16 +183,12 @@ void CPlayer::Init_GameOver()
 	m_Rabit_Body->Reset();
 	m_Rabit_Ear->Reset();
 
-	m_Rabit_LeftFoot->Translate(CVector3D<>(0, -7, 30));
-	m_Rabit_LeftFoot->Rotate(-90, 1, 0, 0);
-
-	m_Rabit_RightFoot->Translate(CVector3D<>(0, -7, 30));
-	m_Rabit_RightFoot->Rotate(-90, 1, 0, 0);
+	m_Rabit_LeftFoot->Rotate(-70, 1, 0, 0);
+	m_Rabit_RightFoot->Rotate(-70, 1, 0, 0);
 	
 	m_Rabit_Body->Rotate(15, 1, 0, 0);
 
-	m_Rabit_Ear->Translate(CVector3D<>(0, -10, -10));
-	m_Rabit_Ear->Rotate(70, 1, 0, 0);
+	m_Rabit_Ear->Rotate(80, 1, 0, 0);
 }
 
 void CPlayer::Receive_DisappearFootBoard(Road * road)
@@ -350,7 +364,6 @@ void CPlayer::StateChange_Wait()
 		}
 	}
 
-	m_Rabit_Body->Set_Scale(1.f, 1.f, 1.f);
 	m_Rabit_Body->ResetRotate();
 	m_Rabit_LeftFoot->ResetRotate();
 	m_Rabit_RightFoot->ResetRotate();
@@ -449,12 +462,10 @@ void CPlayer::JumpRotate()
 		m_Rabit_LeftFoot->Rotate(Foot_top_degree, 1, 0, 0);
 		m_Rabit_RightFoot->Rotate(Foot_top_degree, 1, 0, 0);
 		m_Rabit_Body->Rotate(Body_degree, 1, 0, 0);
-		m_Rabit_Body->Scale(1.f, 1.f - Boby_flat_percent, 1.f);
 		m_Rabit_Ear->Rotate(Ear_degree, 1, 0, 0);
 	}
 	else {
 		m_Rabit_Body->Rotate(-Body_degree, 1, 0, 0);
-		m_Rabit_Body->Scale(1.f, 1.f + Boby_flat_percent, 1.f);
 		m_Rabit_Ear->Rotate(-Ear_degree, 1, 0, 0);
 	}
 

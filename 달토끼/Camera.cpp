@@ -200,8 +200,8 @@ void CCamera::Init_MainScene()
 
 void CCamera::Init_GameOver()
 {
-	Initialize(CVector3D<>(0.f, 0.f, 0.f), 100, 0.1f, 600.f, 60);
-	Rotate(0, 10);
+	Initialize(CVector3D<>(0.f, 0.f, 0.f), 100, 0.1f, 1000.f, 60);
+	Rotate(0, 0);
 	LookAt();
 }
 

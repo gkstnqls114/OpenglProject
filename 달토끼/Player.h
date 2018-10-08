@@ -12,6 +12,10 @@
 
 #include "JumpProperty.h"
 
+#define GAMEOVER_FootPosY 5
+#define GAMEOVER_FootPosZ 30
+#define GAMEOVER_EarY 30
+#define GAMEOVER_EarZ -30
 
 class CObjModel;
 class RotateMatrix;
@@ -26,6 +30,7 @@ class PlayerSubject;
 class CPlayer
 	: public RoadObserver
 {
+
 	const float m_Scale{ 0.3f };
 	static CObjModel* m_Rabit_Body		;
 	static CObjModel* m_Rabit_Ear		;
@@ -36,6 +41,7 @@ class CPlayer
 
 	//플레이어 위치
 	CVector3D<> m_Pos;
+	bool m_bGameOver{ false };
 	bool m_bGameClear{ false };
 	RotateMatrix* m_Matrix{ nullptr };
 	GLdouble m_CollideY{ 30 }; /* 플레이어 Y 위치에 이 값을 더해 충돌을 계산해야 합니다*/

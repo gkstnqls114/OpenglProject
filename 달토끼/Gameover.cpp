@@ -52,7 +52,11 @@ void CGameOver::SoundStop()
 
 void CGameOver::Render()
 {
+	RenderAxis();
+
 	glPushMatrix();
+		glScalef(0.3f, 0.3f, 0.3f);
+		glTranslatef(0.f, 10.f, 0.f);
 		glRotated(150, 0, 1, 0);
 		m_Player->Render();
 	glPopMatrix();
@@ -87,7 +91,29 @@ void CGameOver::Update()
 
 void CGameOver::Keyboard(const unsigned char & key, const int & x, const int & y)
 {
-	CSceneManager::GetInstance()->ChangeToMain();
+
+	if (key == '=' || key == '+') {
+		m_Camera->zoom(0.8f);
+	}
+	if (key == '-' || key == '_') {
+		m_Camera->zoom(1.2f);
+	}
+
+	if (key == 'd' || key == 'D') {
+		m_Camera->Rotate(10, 0);
+	}
+	if (key == 'a' || key == 'A') {
+		m_Camera->Rotate(-10, 0);
+	}
+	if (key == 's' || key == 'S') {
+		m_Camera->Rotate(0, -10);
+	}
+	if (key == 'w' || key == 'W') {
+		m_Camera->Rotate(0, 10);
+	}
+
+	m_Camera->LookAt();
+	//CSceneManager::GetInstance()->ChangeToMain();
 }
 
 void CGameOver::SpecialKeys(const int & key, const int & x, const int & y)

@@ -337,27 +337,7 @@ void CObjModel::Rotate(const float & Nowdegree, const int & x, const int & y, co
 	m_RotateMatrix->Calu_Rotate(Nowdegree, x, y, z);
 }
 
-void CObjModel::Translate(const CVector3D<>& rhs)
-{
-//	m_Matrix->Calu_Tranlate(rhs);
-}
-
-void CObjModel::Translate(CVector3D<>&& rhs)
-{
-//	m_Matrix->Calu_Tranlate(rhs);
-}
-
 void CObjModel::ResetRotate()
 {
 	m_RotateMatrix->ResetRotate();
-}
-
-void CObjModel::Scale(const float & x, const float & y, const float & z)
-{
-	//m_RotateMatrix->Calu_Scale(x, y, z);
-}
-
-void CObjModel::Set_Scale(const float & x, const float & y, const float & z)
-{
-	//m_RotateMatrix->Set_Scale(x, y, z);
 }

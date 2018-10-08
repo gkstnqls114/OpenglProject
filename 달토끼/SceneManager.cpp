@@ -22,7 +22,7 @@ CSceneManager::CSceneManager()
 	m_GameClearScene = new CGameClear(this);
 	m_GameClearScene->SoundStop();
 
-	ChangeToGame();
+	ChangeToGameOver();
 }
 
 
