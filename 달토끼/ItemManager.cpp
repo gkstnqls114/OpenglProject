@@ -57,7 +57,6 @@ void ItemManager::Initialize(const int& num)
 		m_ItemList[index] = new NullItem;
 	}
 
-	Change_Star(1);
 	Change_Carrot(15);
 	Change_Star(60);
 

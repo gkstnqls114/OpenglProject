@@ -106,10 +106,7 @@ void Road::Receive_PlayerJumpFinish(CPlayer* player)
 	const bool IsCorrectSide = player_sideindex.Get_Side() == road_sideindex.Get_Side();
 	
 	std::cout << IsAllCorrect << std::endl;
-	if (!IsCorrectSide && !IsAllCorrect) {
-		player->StateChange_WaitCamera();
-	}
-	if (IsAllCorrect && player_sideindex.IsOutofRange()) {
+	if ((!IsCorrectSide && !IsAllCorrect) || player_sideindex.IsOutofRange()) {
 		player->StateChange_WaitCamera();
 	}
 
