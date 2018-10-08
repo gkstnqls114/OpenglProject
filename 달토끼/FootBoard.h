@@ -15,7 +15,6 @@ class CFootBoard
 	static CObjModel* m_Light_obj;
 
 	bool IsLast						{ false };
-	bool IsLightDisappear			{ false };
 
 	float		m_TextureAlpha		{1.f};
 	const float m_DropAlphaUnit		{ 0.3f };

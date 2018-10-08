@@ -146,8 +146,19 @@ void CCamera::Receive_PlayerJumping(CPlayer * player)
 void CCamera::Receive_PlayerWaitCamera(CPlayer * player)
 {
 	if (isMapCamera) return;
+	if (player->Get_KeySide().Get_IsLeft()) {
+		Rotatedegree = JumpProperty::Get_Rotatedegree();
+	}
+	else if (player->Get_KeySide().Get_IsRight()) {
+		Rotatedegree = - JumpProperty::Get_Rotatedegree();
+	}
+	else {
+		Rotatedegree = 0;
+	}
+
 	float max_v = float(180 + Rotatedegree) * PI / 180.f;
 	float max_h = 0 * PI / 180.f;
+	
 
 	bool verticalMove = m_vertical < max_v;
 	if (verticalMove) {

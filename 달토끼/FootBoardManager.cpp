@@ -92,6 +92,7 @@ void FootBoardManager::InitFootBoardModel()
 
 void FootBoardManager::Initialize(const int & num, ItemManager & itemManager)
 {
+	m_bGameClear = false;
 	m_Length = num;
 	m_DisappearingBoardIndex = 0;
 	Set_FootBoardPos(itemManager);
@@ -138,6 +139,13 @@ void FootBoardManager::Update(Road* road, RoadSubject* roadSubject)
 	if (Get_DisappearLength(m_DisappearingBoardIndex)) {
 		roadSubject->Notify_DisappearFootBoard(road);
 		m_DisappearingBoardIndex += 1;
+	}
+}
+
+void FootBoardManager::LightUpdate()
+{
+	if (m_bGameClear) {
+		m_pFootBoard[m_Length - 1][k_FrontIndex].LightDisappear();
 	}
 }
 

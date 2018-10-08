@@ -8,6 +8,8 @@ class Road;
 
 class FootBoardManager
 {
+	bool			m_bGameClear{ false };
+
 	CFootBoard**		m_pFootBoard{ nullptr };
 	int				m_DisappearingBoardIndex{ 0 };
 	int				m_Length{ -1 };
@@ -26,6 +28,7 @@ public:
 	void TestRender();
 	void Render();
 	void Update(Road* road, RoadSubject* roadSubject);
+	void LightUpdate();
 
 	/////////////////////////////////Get
 	const int Get_DisappearingBoardIndex() const noexcept { return m_DisappearingBoardIndex; }
@@ -44,4 +47,6 @@ public:
 	const bool IsOutRange_Length(const int& boardnum) const;
 	const bool IsOutRange_Width(const int & index) const;
 	void Add_DisappearingIndex(const CPlayer& player);
+
+	void IsGameClear() { m_bGameClear = true; }
 };

@@ -74,7 +74,8 @@ void Road::Disappear()
 
 void Road::Stop()
 {
-	//FootBoardManager do nothing;
+	// do nothing
+	m_FootBoardManager.LightUpdate();
 	m_ItemManager.Update();
 }
 
@@ -114,6 +115,10 @@ void Road::Receive_PlayerJumpFinish(CPlayer* player)
 
 		player->SetClear();
 		player->StateChange_WaitCamera();
+
+		// 마지막 발판 조명 약해지도록...
+		StateChange_Stop();
+		m_FootBoardManager.IsGameClear();
 	}
 }
 
