@@ -98,7 +98,7 @@ void CEarth::Init_GameScene()
 	m_Matrix->ResetRotate();
 	IsGameStart = false;
 	IsFloat = false;
-	m_Scale = 1.3f;
+	m_Scale = 3.f;
 }
 
 void CEarth::GameStart()

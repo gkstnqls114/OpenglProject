@@ -27,7 +27,7 @@ CSceneManager::CSceneManager()
 	m_GameClearScene->Initialize();
 	m_GameClearScene->SoundStop();
 
-	ChangeToGameOver();
+	ChangeToMain();
 }
 
 

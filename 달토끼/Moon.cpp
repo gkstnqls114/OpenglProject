@@ -117,7 +117,7 @@ void CMoon::Init_GameScene()
 	m_Matrix->ResetRotate();
 	IsFloat = false;
 	IsGameStart = false;
-	m_Scale = 1.1f;
+	m_Scale = 1.5f;
 }
 
 void CMoon::GameStart()

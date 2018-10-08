@@ -82,7 +82,6 @@ CGameScene::CGameScene(CSceneManager* const changer)
 	);
 	
 
-
 	m_pSceneManager = changer;
 
 	m_textureStroage = new CTextureStorage;
@@ -163,11 +162,11 @@ void CGameScene::Initialize()
 	m_MapCamera->Rotate(0.f, 1.4f);
 	m_MapCamera->Rotate(90, 0);
 
-	GLdouble DownY = 120;
+	GLdouble DownY = 300;
 	CVector3D<> MoonPos = m_Road->Get_LastPos();
 	CVector3D<> EarthPos = m_Road->Get_FirstPos();
 	m_Earth->SetPos(CVector3D<>(EarthPos.x, EarthPos.y - DownY, EarthPos.z));
-	m_Moon->SetPos(CVector3D<>(MoonPos.x, MoonPos.y - DownY + 30, MoonPos.z));
+	m_Moon->SetPos(CVector3D<>(MoonPos.x, MoonPos.y - DownY + 150, MoonPos.z));
 
 	Start = false;
 	Explain = false;
