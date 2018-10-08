@@ -88,6 +88,8 @@ void CPlayer::Render()
 	glPushMatrix();
 		glTranslated(m_Pos.x, m_Pos.y, m_Pos.z);
 	glPushMatrix();
+		glScalef(m_Scale.x, m_Scale.y , m_Scale.z);
+	glPushMatrix();
 		m_Matrix->Rotate();
 	glPushMatrix();
 		// glRotated(Tumblingdegree, 1, 0, 0);
@@ -110,7 +112,7 @@ void CPlayer::Render()
 	glPopMatrix();
 	glPopMatrix();
 	glPopMatrix();
-
+	glPopMatrix();
 }
 
 void CPlayer::Reset_ModelRotate()
@@ -174,7 +176,7 @@ void CPlayer::Init_GameOver()
 	m_bGameOver = true;
 
 	m_Pos.x = 0.f;
-	m_Pos.y = 30.f;
+	m_Pos.y = 0.f;
 	m_Pos.z = 0.f;
 
 	m_Rabit_Body->SetTextuerIDindex(1);
@@ -284,9 +286,9 @@ void CPlayer::LeftJump()
 void CPlayer::Fall()
 {
 	m_Matrix->Calu_Rotate(10, 0, 1, 0);
-	m_Pos.y -= 3;
+	m_Pos.y -= 4;
 
-	if (m_Pos.y <= -200) {
+	if (m_Pos.y <= -250) {
 		CSceneManager::GetInstance()->ChangeToGameOver();
 		StateChange_Dead();
 	}
@@ -315,6 +317,7 @@ void CPlayer::AutoWaiting()
 
 void CPlayer::StateChange_FrontJump()
 {
+	m_Scale = CVector3D<>(1.f, 1.f, 1.f);
 	SoundManager.Play("JumpEffect");
 	m_MyBoardLength += 1;
 	m_prevKeySide = m_MyKeySide;
@@ -324,6 +327,7 @@ void CPlayer::StateChange_FrontJump()
 
 void CPlayer::StateChange_RightJump()
 {
+	m_Scale = CVector3D<>(1.f, 1.f, 1.f);
 	SoundManager.Play("JumpEffect");
 	m_MyBoardLength += 1;
 	m_prevKeySide = m_MyKeySide;
@@ -334,6 +338,7 @@ void CPlayer::StateChange_RightJump()
 
 void CPlayer::StateChange_LeftJump()
 {
+	m_Scale = CVector3D<>(1.f, 1.f, 1.f);
 	SoundManager.Play("JumpEffect");
 	m_MyBoardLength += 1;
 	m_prevKeySide = m_MyKeySide;
@@ -345,6 +350,7 @@ void CPlayer::StateChange_LeftJump()
 //WaitCamera인지 AutoJump인지, 혹은 정상적으로 점프가 완료했는지 확인한다.
 void CPlayer::StateChange_Wait()
 {
+	m_Scale = CVector3D<>(1.f, 1.f, 1.f);
 	if (IsGameClear()) return;
 	if (m_PlayerState != &AutoWaitingState) {
 		// 현재 상태에 따라 rotate각도를 고정한다.
@@ -394,11 +400,13 @@ void CPlayer::StateChange_Wait()
 
 void CPlayer::StateChange_WaitCamera()
 {
+	m_Scale = CVector3D<>(1.f, 1.f, 1.f);
 	m_PlayerState = &WaitCameraState;
 }
 
 void CPlayer::StateChange_Fall()
 {
+	m_Scale = CVector3D<>(1.f, 1.3f, 1.f);
 	SoundManager.Play("FallEffect");
 	m_Rabit_Body->SetTextuerIDindex(1);
 	m_PlayerState = &FallingState;
@@ -407,11 +415,13 @@ void CPlayer::StateChange_Fall()
 void CPlayer::StateChange_Dead()
 {
 	Init_GameOver();
+	m_Scale = CVector3D<>(1.f, 1.f, 1.f);
 	m_PlayerState = &DeadState;
 }
 
 void CPlayer::StateChange_AutoWaiting()
 {
+	m_Scale = CVector3D<>(1.f, 1.f, 1.f);
 	AutoWaitingState.Initialize();
 }
 

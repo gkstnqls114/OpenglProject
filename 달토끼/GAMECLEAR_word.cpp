@@ -26,6 +26,7 @@ void CGAMECLEAR_word::Render()
 {
 	glColor3f(LIGHTRGB.x, LIGHTRGB.y, LIGHTRGB.z);
 	glPushMatrix();
+	glTranslatef(m_Position.x, m_Position.y, m_Position.z);
 	m_matrix->Rotate();
 	m_model->Render();
 	glPopMatrix();

@@ -24,6 +24,7 @@ CGAMEOVER_word::~CGAMEOVER_word()
 void CGAMEOVER_word::Render()
 {
 	glPushMatrix();
+	glTranslatef(m_Position.x, m_Position.y, m_Position.z);
 	m_matrix->Rotate();
 	m_model->Render();
 	glPopMatrix();

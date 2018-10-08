@@ -31,7 +31,6 @@ class CPlayer
 	: public RoadObserver
 {
 
-	const float m_Scale{ 0.3f };
 	static CObjModel* m_Rabit_Body		;
 	static CObjModel* m_Rabit_Ear		;
 	static CObjModel* m_Rabit_LeftFoot	;
@@ -39,6 +38,7 @@ class CPlayer
 
 	PlayerSubject* m_pPlayerSubject{ nullptr };
 
+	CVector3D<> m_Scale{ 1.f, 1.f, 1.f };
 	//플레이어 위치
 	CVector3D<> m_Pos;
 	bool m_bGameOver{ false };
