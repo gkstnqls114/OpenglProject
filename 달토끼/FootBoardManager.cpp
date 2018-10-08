@@ -257,3 +257,9 @@ const Side FootBoardManager::Get_IsExisted(const int & len) const noexcept
 	else if (Get_IsExisted(len, k_RightIndex)) return Side(k_RightIndex);
 	else return Side();
 }
+
+const bool FootBoardManager::Is_AllExisted(const int & len) const noexcept
+{
+	if (Get_IsExisted(len, k_FrontIndex) && Get_IsExisted(len, k_LeftIndex) && Get_IsExisted(len, k_RightIndex))  return true;
+	else return false;
+}

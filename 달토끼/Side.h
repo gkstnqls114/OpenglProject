@@ -5,12 +5,13 @@ enum eSide
 {
 	k_LeftIndex = 0,
 	k_FrontIndex,
-	k_RightIndex
+	k_RightIndex,
+	k_All
 };
 
 class Side
 {
-	int m_Side{ k_FrontIndex };
+	int m_Side{ -1 };
 
 public:
 	Side();

@@ -40,6 +40,7 @@ public:
 	const bool Get_DisappearLength(const int& len) const noexcept;
 	const bool Get_IsExisted(const int& len, const int& index) const noexcept;
 	const Side Get_IsExisted(const int& len) const noexcept;
+	const bool Is_AllExisted(const int& len) const noexcept;
 	/////////////////////////////////Get
 
 	void IsExisted_FootBoard(const int& len, const int& index);

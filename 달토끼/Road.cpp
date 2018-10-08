@@ -101,13 +101,19 @@ void Road::Receive_PlayerJumpFinish(CPlayer* player)
 	Side player_sideindex = player->Get_BoardSide();
 	Side road_sideindex = m_FootBoardManager.Get_Side(player->Get_BoardLength());
 
-
+	int playerLength = player->Get_BoardLength() ;
+	const bool IsAllCorrect = m_FootBoardManager.Is_AllExisted(playerLength);
 	const bool IsCorrectSide = player_sideindex.Get_Side() == road_sideindex.Get_Side();
-	if (!IsCorrectSide) {
+	
+	std::cout << IsAllCorrect << std::endl;
+	if (!IsCorrectSide && !IsAllCorrect) {
+		player->StateChange_WaitCamera();
+	}
+	if (IsAllCorrect && player_sideindex.IsOutofRange()) {
 		player->StateChange_WaitCamera();
 	}
 
-	const bool IsGameClear = (player->Get_BoardLength() + 1)== (m_RoadLength);
+	const bool IsGameClear = (playerLength + 1) == (m_RoadLength);
 	if (IsGameClear && IsCorrectSide) {
 #ifdef _DEBUG
 		std::cout << player->Get_BoardLength() << " , " << m_RoadLength << std::endl;

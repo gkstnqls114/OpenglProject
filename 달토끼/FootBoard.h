@@ -56,6 +56,7 @@ public:
 	const bool Get_IsExisted() const noexcept{ return m_IsExisted; }
 	///////////////////////////////// Get
 
+	void Disappear_False() { IsDisappear = false; }
 	void Disappear_True() { IsDisappear = true; }
 	void IsExisted() { m_IsExisted = true; }
 	void NotExisted() { m_IsExisted = false; }
