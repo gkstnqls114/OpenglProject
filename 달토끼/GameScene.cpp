@@ -220,7 +220,7 @@ void CGameScene::Update()
 	}
 
 	m_Camera->Update();
-	//m_Skybox->Update();
+	m_Skybox->Update();
 	m_Earth->Update();
 	m_Moon->Update();
 	m_Road->Update();
