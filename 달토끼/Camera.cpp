@@ -225,7 +225,7 @@ void CCamera::Init_GameClear()
 
 void CCamera::Init_GameScene()
 {
-	Initialize(CVector3D<>(0.f, 0.f, 0.f), 300, 0.1f, 1500.f, 60);
+	Initialize(CVector3D<>(0.f, 0.f, 0.f), 350, 0.1f, 1500.f, 60);
 	Rotate(25, 20);
 	LookAt();
 	isAnimate = false;
