@@ -296,33 +296,12 @@ void CMainScene::Keyboard(const unsigned char & key, const int & x, const int & 
 {
 	if (IsGameStart) return;
 
-	if (key == '=' || key == '+') {
-		m_Camera->zoom(0.8f);
-	}
-	if (key == '-' || key == '_') {
-		m_Camera->zoom(1.2f);
-	}
-
-	if (key == 'd' || key == 'D') {
-		m_Camera->Rotate(10, 0);
-	}
-	if (key == 'a' || key == 'A') {
-		m_Camera->Rotate(-10, 0);
-	}
-	if (key == 's' || key == 'S') {
-		m_Camera->Rotate(0, -10);
-	}
-	if (key == 'w' || key == 'W') {
-		m_Camera->Rotate(0, 10);
-	}
-
 	const int kENTER = 13;
 	const int kSPACE = 32;
 	if (key == kENTER || key == kSPACE) {
 		ConfirmCursor();
 	}
 
-	m_Camera->LookAt();
 }
 
 void CMainScene::SpecialKeys(const int & key, const int & x, const int & y)

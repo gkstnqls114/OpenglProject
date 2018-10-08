@@ -264,10 +264,10 @@ void CGameScene::SpecialKeys(const int& key, const int& x, const int& y)
 	if (key == GLUT_KEY_F1) {
 		if (Start) return;
 		if (Perspective) {
-			m_Camera->Init_FistPerspective();
+			m_Camera->Init_ThirdPerspective();
 		}
 		else {
-			m_Camera->Init_ThirdPerspective();
+			m_Camera->Init_FistPerspective();
 		}
 		Perspective = !Perspective;
 		return;
